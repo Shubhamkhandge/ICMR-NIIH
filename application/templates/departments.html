@@ -1,0 +1,62 @@
+{% include 'header.html'%}
+{% load static %}
+<div class="inner__header">
+    <div class="inner__header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="inner__header-breadcrumb">
+                        <h1 class="page-title">Our Departments</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">About NIIH</a></li>
+                                <li aria-current="page" class="breadcrumb-item active">Departments</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner__header-media owl-carousel owl-theme innerBannerSlide">
+        <div class="inner__header-slide">
+            <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
+                src="{% static 'dist/images/inner-banners/departments.png' %}" title="Indian Council of Medical Research | Government of India" />
+            </div>
+    </div>
+</div>
+<div class="inner__body">
+    <div class="inner__body-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="colorBox">
+                        <div class="colorBox__list managedItem">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div class="colorBox__list-item lightBg">
+                                        <div class="content-area w-100">
+                                            <h4 class="title withBorder">Clinical &amp; Experimental Immunology</h4>
+                                            <div class="linkView__container">
+                                                <a class="linkView" href="/departments-details" rel="noopener noreferrer">
+                                                    <span class="iconView">
+                                                        <img class="Document Icon" src="{% static 'dist/images/svg/info_icon.svg' %}" />
+                                                    </span>
+                                                    <span class="content">
+                                                        "Clinical & Experimental Immunology focuses on studying and understanding immune system disorders and their treatments."
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html'%}

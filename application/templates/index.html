@@ -1,0 +1,530 @@
+{% include 'header.html'%}
+{% load static %}
+
+<header class="header" style="background-image:url('static/dist/videos/b2.JPG');">
+  <div class="header__social">
+    <ul>
+      <li class="header__social-item">
+        <a class="header__social-link hyperLinkPolicy" href="https://www.facebook.com/icmr.niih/"
+          rel="noopener noreferrer" target="_blank">
+          <img alt="Facebook Icon" class="img-fluid u-icon" src="{% static 'dist/images/svg/fb.svg' %}">
+        </a>
+      </li>
+      <li class="header__social-item">
+        <a class="header__social-link hyperLinkPolicy" href="https://x.com/icmrniih/" rel="noopener noreferrer"
+          target="_blank">
+          <img alt="Twitter Icon" class="img-fluid u-icon" src="{% static 'dist/images/svg/tw-new.svg' %}">
+        </a>
+      </li>
+      <li class="header__social-item">
+        <a class="header__social-link hyperLinkPolicy"
+          href="https://in.linkedin.com/in/icmr-national-institute-of-immunohaematology-386514218/"
+          rel="noopener noreferrer" target="_blank">
+          <img alt="Linkedin Icon" class="img-fluid u-icon" src="{% static 'dist/images/svg/in.svg' %}">
+        </a>
+      </li>
+      <li class="header__social-item">
+        <a class="header__social-link hyperLinkPolicy" href="https://www.youtube.com/@icmrnationalinstituteofimm4905"
+          rel="noopener noreferrer" target="_blank">
+          <img alt="Youtube Icon" class="img-fluid u-icon" src="{% static 'dist/images/svg/yt.svg' %}">
+        </a>
+      </li>
+      <li class="header__social-item">
+        <a class="header__social-link hyperLinkPolicy" href="https://www.instagram.com/icmrniih/"
+          rel="noopener noreferrer" target="_blank">
+          <img alt="Instagram Icon" class="img-fluid u-icon" src="{% static 'dist/images/svg/insta.svg' %}">
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="header__container">
+          <div class="article__view">
+            <div class="article__view-heading">
+              <h1 class="title">National Institute of Immunohaematology</h1>
+              <!-- <h2 class="sub-title">INDIAN COUNCIL OF MEDICAL RESEARCH</h2> -->
+            </div>
+            <div class="article__view-content">
+              <p class="desc" style="text-align: justify;">
+                ICMR-National Institute of Immunohaematology was established in the year 1957 with an aim to conduct
+                multidisciplinary research related to Immunohaematology offer diagnostic services and provide training
+                to medical and non medical professionals in the field of haematology, Immunology, genetics and conduct
+                awareness programmes on haematological disorders.</p>
+            </div>
+            <p><a class="theme__btn theme__btn--orange theme__btn--radius50 themeWidth shadow"
+                href="/vision-mission-mandate">Read More</a><a
+                class="theme__btn theme__btn--whiteOutline theme__btn--radius50 shadow" data-caption=""
+                data-fancybox="Watch ICMR-NIIH Video" href="https://youtu.be/cL1WI5wza2A" rel="noopener noreferrer"
+                target="_blank"><span class="icon"><img alt="Play Icon" class="img-fluid u-icon"
+                    src="{% static 'dist/images/svg/play.svg' %}"></span><span>The NIIH Film</span></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<link href="{% static 'dist/css/all-min.css' %}" rel="stylesheet">
+<script>
+  document.getElementById("announcementBlock").style.display = "flex";
+  document.getElementById("mainBodyWrapper").classList.replace("innerHeader", "homepage");
+</script>
+<section class="slider design1 homeSpecific" data-custom="">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="slider__main">
+          <h3 class="sectionHead">ICMR at a Glance</h3>
+          <div class="owl-carousel owl-theme icmrGlance">
+            <div class="cardView design1" style="background-image:url('static/dist/videos/crmch_buil1.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">CRMCH Center</h4>
+                <!-- <p class="caption">
+                    Advancing research and care for haemoglobinopathies to improve health outcomes in Chandrapur.</p>
+                  <p><a class="u-link" href="grants-funding-overview">View More</a></p> -->
+              </div>
+            </div>
+            <div class="cardView design1" style="background-image:url('static/dist/videos/c1.JPG');">
+              <div class="cardView__content">
+                <h4 class="heading">COE</h4>
+                <!-- <p class="caption">Pioneering research to advance immunohaematology and transfusion medicine for
+                    better healthcare solutions.</p>
+                  <p><a class="u-link" href="research">View More</a></p> -->
+              </div>
+            </div>
+            <div class="cardView design1" style="background-image:url('static/dist/videos/pid1.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">COE for Diagnosis of PID</h4>
+                <!-- <p class="caption">Leading advanced diagnostics for primary immunodeficiency disorders to improve
+                    early detection and treatment.</p>
+                  <p><a class="u-link" href="institutes">View More</a></p> -->
+              </div>
+            </div>
+            <div class="cardView design1" style="background-image:url('static/dist/videos/acti_5.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">RNA Extraction of Covid-19 Samples</h4>
+                <!-- <p class="caption">Performing safe and accurate RNA extraction from Covid-19 samples in our
+                    specialized BSL-2 lab for reliable testing.</p>
+                  <p><a class="u-link" href="employment-opportunities">View More</a></p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slider design2">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-0">
+        <div class="slider__main">
+          <div class="commonHeading">
+            <div class="main-head">Recent Publications</div>
+          </div>
+          <p></p>
+          <div class="owl-carousel owl-theme latestPublication">
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/1.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">Cleavage-Resistant RIPK1-Induced Autoinflammatory Syndrome</h4>
+                <p class="caption">Case report of three generations with periodic fever and response to colchicine,
+                  published in Int J Rheum Dis(2024).
+                </p><a class="u-link" href="https://onlinelibrary.wiley.com/doi/10.1002/jmv.28484  "
+                  target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/2.png');">
+              <div class="cardView__content">
+                <h4 class="heading">PLCG2-Associated Immune Dysregulation (PLAID)</h4>
+                <p class="caption">Study on broad clinical presentations of PLCG2-related immune dysregulation,
+                  published in J Allergy Clin Immunol(2024).
+                </p><a class="u-link" href="https://link.springer.com/article/10.1007/s44197-022-00082-0"
+                  target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/3.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">Hydroxyurea Therapy in Preventing Organ Damage in Sickle Cell Disease</h4>
+                <p class="caption">Systematic review and meta-analysis on the role of hydroxyurea in preventing organ
+                  damage in sickle cell disease, published in Syst Rev(2024).
+                  mortality.</p><a class="u-link" href="https://academic.oup.com/qjmed/article/116/1/47/6687141"
+                  target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/4.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">Efficacy of Combined Hepatitis B Screening in Minimizing Transfusion Risk</h4>
+                <p class="caption">Study on the impact of combined HBsAg, anti-HBc, and anti-HBs screening in reducing
+                  hepatitis B transmission through transfusion in low-resource settings.
+                </p><a class="u-link"
+                  href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)02078-5/fulltext"
+                  target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/5.png');">
+              <div class="cardView__content">
+                <h4 class="heading">Impact of Climate Change on Malaria Transmission in Chennai</h4>
+                <p class="caption">Study on how temperature variations and the extrinsic incubation period of malaria
+                  parasites are influenced by climate change in Chennai, India.</p><a class="u-link"
+                  href="https://www.nature.com/articles/s41586-023-05772-8" target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/6.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">Low-Dose Emicizumab Prophylaxis in Severe Hemophilia A</h4>
+                <p class="caption">Retrospective study on the effectiveness of low-dose Emicizumab in improving
+                  outcomes for severe hemophilia A patients.</p><a class="u-link"
+                  href="https://link.springer.com/article/10.1007/s12098-022-04449-w" target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/7.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">Flow Cytometry in Diagnosing X-linked Agammaglobulinemia</h4>
+                <p class="caption">Study on the clinical utility of flow cytometry for diagnosis and
+                  genotype-phenotype correlation in X-linked agammaglobulinemia patients.
+                </p><a class="u-link"
+                  href="https://journals.lww.com/ijmr/fulltext/2023/02000/a_comparison_of_the_quality_of_images_of_chest.14.aspx"
+                  target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/8.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">When a Synonymous Mutation Affects Thalassemia</h4>
+                <p class="caption">Case study on how a synonymous mutation unexpectedly impacts a thalassemia
+                  patient’s condition.</p><a class="u-link"
+                  href="https://journals.lww.com/ijmr/fulltext/2022/09000/an_integrated_multidisciplinary_model_of_care_for.12.aspx"
+                  target="_blank">View More</a>
+              </div>
+            </div>
+            <div class="cardView design2" style="background-image: url('static/dist/images/custom_img/9.jpg');">
+              <div class="cardView__content">
+                <h4 class="heading">Chromosomal CNVs and Genomic Variations in Myelodysplastic Syndromes</h4>
+                <p class="caption">Study on how chromosomal CNVs and genomic variations predict overall survival in
+                  Myelodysplastic syndromes.</p><a class="u-link"
+                  href="https://www.sciencedirect.com/science/article/abs/pii/S0168160522005207?via%3Dihub"
+                  target="_blank">View More</a>
+              </div>
+            </div>
+          </div><a class="theme__btn theme__btn--orange theme__btn--radius50 themeWidth shadow d-none"
+            href="javascript:;">View All</a>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="tabview">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-5">
+        <div class="tabview__container-content">
+          <div class="tabview__container-header">
+            <h5 class="title">Photo Gallery</h5>
+            <p><a class="u-link viewMore" href="/photo-gallery">View All</a></p>
+          </div>
+          <p></p>
+          <div class="tabview__container-main">
+            <div class="mediaCard">
+              <div class="owl-carousel owl-theme mediaSlide">
+                <div class="mediaCard__item">
+                  <div class="mediaCard__item-media"><img alt="None" class="img-fluid"
+                      src="{% static 'uploads/Gallery/c1.jpg' %}">
+                  </div>
+                  <div class="mediaCard__item-content">
+                    <h3 class="title">Current Events</h3>
+                    <div class="info">
+                      <div class="counters">
+                        <div class="counters__item"><img alt="image icon" class="img-fluid"
+                            src="{% static 'dist/images/svg/image.svg' %}">
+                          <div class="value"></div>
+                        </div>
+                      </div><a class="u-link viewMore"
+                        href="/post/janjatiya-gaurav-divas-from-15th-november-2024-to-26th-november-2024">View
+                        More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mediaCard__item">
+                  <div class="mediaCard__item-media"><img alt="None" class="img-fluid"
+                      src="{% static 'uploads/Gallery/c2.jpeg' %}">
+                  </div>
+                  <div class="mediaCard__item-content">
+                    <h3 class="title">Inauguration of ICMR- NIIH Bandra Campus by ICMR DG Dr. Balram Bhargava,
+                      on 03rd of June 2022.</h3>
+                    <div class="info">
+                      <div class="counters">
+                        <div class="counters__item"><img alt="image icon" class="img-fluid"
+                            src="{% static 'dist/images/svg/image.svg' %}">
+                          <div class="value"></div>
+                        </div>
+                      </div><a class="u-link viewMore" href="/post/independence-day-celebration-2024">View
+                        More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mediaCard__item">
+                  <div class="mediaCard__item-media"><img alt="None" class="img-fluid"
+                      src="{% static 'uploads/Gallery/c3.jpg' %}">
+                  </div>
+                  <div class="mediaCard__item-content">
+                    <h3 class="title">Guest Lecture at ICMR- NIIH, Mumbai, by Dr. Sanjeeva Srivastava, IIT
+                      Bombay, on the ocassion of National Science Day</h3>
+                    <div class="info">
+                      <div class="counters">
+                        <div class="counters__item"><img alt="image icon" class="img-fluid"
+                            src="{% static 'dist/images/svg/image.svg' %}">
+                          <div class="value"></div>
+                        </div>
+                      </div><a class="u-link viewMore"
+                        href="/post/10th-international-day-of-yoga-organized-at-icmr-headquarters-new-delhi-june-21-2024-2">View
+                        More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mediaCard__item">
+                  <div class="mediaCard__item-media"><img alt="None" class="img-fluid"
+                      src="{% static 'uploads/Gallery/c4.jpg' %}">
+                  </div>
+                  <div class="mediaCard__item-content">
+                    <h3 class="title">Visit of hon’ ble union minister of health & family welfare Dr Mansukh
+                      Mandaviya and Health minister of state Dr Bharati Pawar at ICMR- NIIH Mumbai on 19th Feb
+                      2022</h3>
+                    <div class="info">
+                      <div class="counters">
+                        <div class="counters__item"><img alt="image icon" class="img-fluid"
+                            src="{% static 'dist/images/svg/image.svg' %}">
+                          <div class="value"></div>
+                        </div>
+                      </div><a class="u-link viewMore" href="/post/celebration-dr-b-r-birthday-at-icmr-2">View
+                        More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mediaCard__item">
+                  <div class="mediaCard__item-media"><img alt="None" class="img-fluid"
+                      src="{% static 'uploads/Gallery/c5.jpg' %}">
+                  </div>
+                  <div class="mediaCard__item-content">
+                    <h3 class="title">Visit of Dr Balram Bhargava at Chandrapur</h3>
+                    <div class="info">
+                      <div class="counters">
+                        <div class="counters__item"><img alt="image icon" class="img-fluid"
+                            src="{% static 'dist/images/svg/image.svg' %}">
+                          <div class="value"></div>
+                        </div>
+                      </div><a class="u-link viewMore" href="/post/icmr-au-course-nicpr-7-2">View More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<p></p>
+<section class="mapSection white mTabView mt-4">
+  <div class="mapSection__header">
+    <div class="commonHeading mb-4">
+      <div class="main-head">Institutes</div>
+    </div>
+  </div>
+  <div class="mapView__container">
+    <div class="mapView__container-map">
+      <div class="map-section"><img alt="map of india" class="img-fluid" src="{% static 'dist/images/svg/1.svg' %}">
+        <ul class="nav nav-tabs">
+          <li class="nav-item ls-mumbai">
+            <a class="nav-link" data-bs-toggle="tab" href="#mumbai">
+              <span class="value">Mumbai</span> <span class="icon dotani"></span>
+            </a>
+          </li>
+          <li class="nav-item ls-chandrapur">
+            <a class="nav-link" data-bs-toggle="tab" href="#chandrapur">
+              <span class="value">Chandrapur</span> <span class="icon dotani"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mapView__container-content">
+      <div class="listView">
+        <div class="listView__list">
+          <div class="tab-content">
+            <div class="tab-pane active" id="mumbai">
+              <div class="colorBox">
+                <h5 class="titleHead">Mumbai</h5>
+                <div class="colorBox__list flexView">
+                  <div class="colorBox__list-item">
+                    <div class="content-area">
+                      <div class="colorBox__head">
+                        <div class="title">ICMR National Institute of Immunohaematology</div>
+                        <div class="title">(ICMR-NIIH)</div>
+                      </div>
+                      <p class="highlightes"><span class="keyText">Mumbai I Estd. 1957</span></p>
+                      <p class="highlightes"></p>
+                      <p>ICMR-NIIH conducts multidisciplinary research related to immunohaematology, offers diagnostic
+                        services, and provides training to medical and non-medical professionals in the field of
+                        hematology, immunology, and genetics.</p>
+                      <p></p>
+                    </div>
+                    <div class="actions">
+                      <div class="logo">
+                        <img alt="None" class="img-fluid"
+                          src="{% static 'dist/images/custom_img/1708684811_15_niih_logo_new1.png' %}">
+                        <a class="u-link" href="https://niih.org.in/" target="_blank">Visit Website</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="chandrapur">
+              <div class="colorBox">
+                <h5 class="titleHead">Chandrapur</h5>
+                <div class="colorBox__list flexView">
+                  <div class="colorBox__list-item">
+                    <div class="content-area">
+                      <div class="colorBox__head">
+                        <div class="title">ICMR Centre for Research, Management and Control of Haemoglobinopathies
+                        </div>
+                        <div class="title">(ICMR-CRMCH)</div>
+                      </div>
+                      <p class="highlightes"><span class="keyText">Chennai I Estd. 1955</span></p>
+                      <p class="highlightes"></p>
+                      <p>ICMR-NIRT carries out research on all aspects (clinical, bacteriological, epidemiological,
+                        behavioural and laboratory) of tuberculosis and HIV-TB, with a focus on treatment, prevention,
+                        and control.</p>
+                      <p></p>
+                    </div>
+                    <div class="actions">
+                      <div class="logo"><img alt="None" style="width: 60%;" class="img-fluid"
+                          src="{% static 'dist/images/custom_img/1708684811_16_CRMCH_logo.png' %}"><a class="u-link"
+                          href="https://icmr-crmch.org/" target="_blank">Visit Website</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>&nbsp;&nbsp;<p></p>
+<section class="event">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="event__container">
+          <div class="commonHeading mb-4">
+            <div class="main-head">NIIH Live</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 col-xs-12">
+              <div class="owl-carousel owl-theme eventSlide feedView">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                    <div class="event__container-media"><iframe
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen="" frameborder="0" height="100%"
+                        src="https://www.youtube.com/embed/kXCUVAUQa5E?si=qfm5boplRj6szlPS" title="YouTube video player"
+                        width="100%"></iframe></div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                    <div class="event__container-info">
+                      <p class="caption">Watch this space to catch our live events. For more details, visit our
+                        YouTube Channel</p><a class="theme__btn theme__btn--orange theme__btn--radius50 themeWidth"
+                        href="https://www.youtube.com/watch?v=kXCUVAUQa5E&amp;t=2s" target="_blank">Watch Now</a>
+                    </div>
+                    <a class="twitter-mention-button" data-show-count="false"
+                      href="https://twitter.com/intent/tweet?screen_name=TwitterDev&amp;ref_src=twsrc%5Etfw">Tweet to
+                      @TwitterDev</a>
+                    <script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-xs-12 feedView withFixHeight">
+
+              <script src="{% static 'dist/js/platform.js' %}" async></script>
+              <div class="elfsight-app-1c08ac61-808f-4f1a-930b-755167932eb9" data-elfsight-app-lazy></div>
+              <script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slider mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="slider__main">
+          <div class="commonHeading mb-4">
+            <div class="main-head">NIIH Important Portals</div>
+          </div>
+          <div class="owl-carousel owl-theme keyWebsite">
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="https://recruit.icmr.org.in/" rel="noopener noreferrer"
+                  target="_blank"><img alt="website Icon" class="img-fluid"
+                    src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="https://recruit.icmr.org.in/"
+                  rel="noopener noreferrer" target="_blank">ICMR Recruitment Portal</a></div>
+            </div>
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="https://mdms.icmr.org.in/" rel="noopener noreferrer"
+                  target="_blank"><img alt="website Icon" class="img-fluid"
+                    src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="https://mdms.icmr.org.in/" rel="noopener noreferrer"
+                  target="_blank">Medical Device and Diagnostics Mission Secretariat
+                  (MDMS)</a></div>
+            </div>
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="portal-for-export-of-human-biological-material"><img
+                    alt="website Icon" class="img-fluid" src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="information-on-tuberculosis-tb">Export of Human
+                  Biological Material</a></div>
+            </div>
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="information-on-tuberculosis-tb"><img alt="website Icon"
+                    class="img-fluid" src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="information-on-tuberculosis-tb">Information on
+                  Tuberculosis (TB)</a></div>
+            </div>
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="https://influenza.icmr.org.in/public_dashboard/"
+                  rel="noopener noreferrer" target="_blank"><img alt="website Icon" class="img-fluid"
+                    src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="https://influenza.icmr.org.in/public_dashboard/"
+                  rel="noopener noreferrer" target="_blank">ILI-SARI Surveillance Dashboard</a></div>
+            </div>
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="proposal-submission-portal"><img alt="website Icon" class="img-fluid"
+                    src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="proposal-submission-portal">Proposal Submission
+                  Portal</a></div>
+            </div>
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="icmr-portals"><img alt="website Icon" class="img-fluid"
+                    src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="portals">ICMR Portals</a></div>
+            </div>
+            <div class="cardView__content">
+              <p><a class="cardView design3" href="indexcovid" rel="noopener noreferrer" target="_blank"><img
+                    alt="website Icon" class="img-fluid" src="{% static 'dist/images/svg/file-search.svg' %}"></a></p>
+              <div class="title"><a class="cardView design3" href="indexcovid" rel="noopener noreferrer"
+                  target="_blank">Information on COVID-19</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'footer.html'%}

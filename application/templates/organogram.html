@@ -1,0 +1,51 @@
+{% include 'header.html'%}
+{% load static %}
+<div class="inner__header">
+    <div class="inner__header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="inner__header-breadcrumb">
+                        <h1 class="page-title">Organogram</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">About NIIH</a></li>
+                                <li aria-current="page" class="breadcrumb-item active">Organogram</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner__header-media owl-carousel owl-theme innerBannerSlide">
+        <div class="inner__header-slide">
+            <img alt="Indian Council of Medical Research | Government of India" class="img-fluid" src="{% static 'dist/images/custom_img/1704434487_mandate.jpg' %}"  title="Indian Council of Medical Research | Government of India" />
+        </div>
+    </div>
+</div>
+<div class="inner__body">
+    <div class="inner__body-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="blogView mb-5">
+                        <h2 class="page-head v2">Organogram</h2>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                <div class="blogView__media">
+                                    <img alt="Organogram Image" class="img-fluid" src="{% static 'dist/images/inner-banners/organogram_of_icmr.png' %}" usemap="#t-map"/>
+                                    <map name="t-map">
+                                        <area shape="rect" coords="568,30,1616,130" href="http://10.1.0.105:8000/our-director/" alt="Region1" title="Go to Region1">
+                                    </map>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html'%}
