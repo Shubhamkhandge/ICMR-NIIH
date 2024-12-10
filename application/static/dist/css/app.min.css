@@ -17243,7 +17243,7 @@ strong {
     background-clip: padding-box;
     border: 1px solid var(--baseColor);
     margin-bottom: 20px;
-    padding: 25px 30px
+    padding: 25px 30px;
 }
 
 @media screen and (max-width:991px) {
@@ -17279,15 +17279,28 @@ strong {
     font-size: var(--fs-30)
 }
 
+@media screen and (max-width:1024px) {
+    .colorBox__list-item .content-area .title {
+        font-size: var(--fs-20)
+    }
+}
+
 @media screen and (max-width:991px) {
     .colorBox__list-item .content-area .title {
         font-size: var(--fs-24)
     }
 }
 
+@media screen and (max-width:768px) {
+    .colorBox__list-item .content-area .title {
+        font-size: var(--fs-15)
+    }
+}
+
+
 @media screen and (max-width:567px) {
     .colorBox__list-item .content-area .title {
-        font-size: var(--fs-20)
+        font-size: var(--fs-12)
     }
 }
 
@@ -17303,15 +17316,22 @@ strong {
     font-size: var(--fs-24)
 }
 
-@media screen and (max-width:991px) {
+@media screen and (min-width:567px) and (max-width:991px) {
     .colorBox__list-item .content-area .sub-title {
-        font-size: var(--fs-20)
+        font-size: var(--fs-20);
+    }
+    .colorBox__list-item .content-area .txt {
+        font-size: var(--fs-9);
     }
 }
 
 @media screen and (max-width:567px) {
     .colorBox__list-item .content-area .sub-title {
-        font-size: var(--fs-16)
+        font-size: var(--fs-13);
+        margin-bottom: -2px;
+    }
+    .colorBox__list-item .content-area .txt {
+        font-size: var(--fs-9);
     }
 }
 
@@ -17332,7 +17352,7 @@ strong {
 
 .colorBox__list-item .content-area .highlightes {
     color: var(--darkBlack);
-    font-size: var(--fs-16);
+    /* font-size: var(--fs-16); */
     margin-bottom: 0;
     text-indent: 50px;
     text-align: justify;
@@ -17600,6 +17620,92 @@ strong {
     font-size: var(--fs-14);
     color: var(--trinetry)
 }
+
+@media screen and (max-width:567px) {
+    .colorBox__list-item {
+        padding: 20px 15px;
+    }
+
+    .linkView .iconView {
+        width: 25px;
+        height: 25px;
+        -webkit-border-radius: 35px;
+        border-radius: 50%;
+        background-clip: padding-box;
+        background: var(--trinetry);
+        min-width: 25px;
+        margin-right: 12px;
+        color: var(--white);
+        font-size: var(--fs-14)
+    }
+
+    .linkView .iconView img {
+        width: 100%;
+    }
+
+    .linkView .content {
+        font-size: 9px;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width:567px) and (max-width:768px) {
+    .colorBox__list-item {
+        padding: 20px 15px;
+    }
+
+    .linkView .iconView {
+        width: 25px;
+        height: 25px;
+        -webkit-border-radius: 35px;
+        border-radius: 50%;
+        background-clip: padding-box;
+        background: var(--trinetry);
+        min-width: 25px;
+        margin-right: 12px;
+        color: var(--white);
+        font-size: var(--fs-14)
+    }
+
+    .linkView .iconView img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .linkView .content {
+        font-size: 9px;
+        text-align: justify;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1024px) {
+    .colorBox__list-item {
+        padding: 20px 15px;
+    }
+
+    .linkView .iconView {
+        width: 30px;
+        height: 30px;
+        -webkit-border-radius: 35px;
+        border-radius: 50%;
+        background-clip: padding-box;
+        background: var(--trinetry);
+        min-width: 30px;
+        margin-right: 12px;
+        color: var(--white);
+        font-size: var(--fs-14)
+    }
+
+    .linkView .iconView img {
+        width: 100%;
+    }
+
+    .linkView .content {
+        font-size: var(--fs-11);
+        text-align: justify;
+    }
+}
+
 
 .linkView+.linkView {
     margin-top: 25px
