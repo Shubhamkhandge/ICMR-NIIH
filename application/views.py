@@ -56,3 +56,6 @@ def scientists(request):
 def scientist_details(request):
     return render(request, 'scientist-details.html')
 
+def awards_achievements(request):
+    return render(request, 'awards-achievements.html')
+
