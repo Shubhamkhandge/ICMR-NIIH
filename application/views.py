@@ -59,3 +59,9 @@ def scientist_details(request):
 def awards_achievements(request):
     return render(request, 'awards-achievements.html')
 
+def former_directors(request):
+    return render(request, 'former-directors.html')
+
+def contact_directory(request):
+    return render(request, 'contact-directory.html')
+

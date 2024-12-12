@@ -17274,9 +17274,9 @@ strong {
 }
 
 .colorBox__list-item .content-area .title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: var(--trinetry);
-    font-size: var(--fs-30)
+    font-size: var(--fs-30);
 }
 
 @media screen and (max-width:1024px) {
@@ -17320,6 +17320,7 @@ strong {
     .colorBox__list-item .content-area .sub-title {
         font-size: var(--fs-20);
     }
+
     .colorBox__list-item .content-area .txt {
         font-size: var(--fs-9);
     }
@@ -17330,6 +17331,7 @@ strong {
         font-size: var(--fs-13);
         margin-bottom: -2px;
     }
+
     .colorBox__list-item .content-area .txt {
         font-size: var(--fs-9);
     }
@@ -22162,8 +22164,13 @@ strong {
 
 .timelineView {
     background: #021e42;
-    padding: 100px;
+    padding: 100px 50px;
     position: relative
+}
+@media screen and (max-width:768px) {
+    .timelineView {
+        padding: 100px 25px;
+    }
 }
 
 .timelineView .topBorder {
@@ -22183,7 +22190,7 @@ strong {
     border-radius: 12px;
     background-clip: padding-box;
     border: 1px solid var(--secoundry);
-    text-align: center
+    text-align: center;
 }
 
 .timelineView .timeline-slide .circle {
@@ -22237,11 +22244,19 @@ strong {
     }
 }
 
+@media screen and (min-width:768px) {
+    .timelineView .timeline-slide .img-fluid {
+        width: 150px;
+        height: 150px;
+    }
+}
+
 .timelineView .timeline-slide .img-fluid {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 250px;
+    padding: 10px;
     -webkit-border-radius: 150px;
-    border-radius: 150px;
+    border-radius: 10px;
     background-clip: padding-box;
     -webkit-object-fit: cover;
     -moz-object-fit: cover;
@@ -22249,12 +22264,12 @@ strong {
     -o-object-fit: cover;
     object-fit: cover;
     margin: 0 auto 30px auto;
-    border: 8px solid var(--baseColor)
+    border: 5px solid var(--baseColor)
 }
 
 .timelineView .timeline-slide .title {
     color: var(--white);
-    font-size: var(--fs-25)
+    font-size: var(--fs-25);
 }
 
 .timelineView .timeline-slide p {
@@ -23878,15 +23893,15 @@ strong {
 }
 
 .arrow2 {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
     -webkit-border-radius: 75px;
     border-radius: 75px;
     background-clip: padding-box;
-    min-width: 75px;
+    min-width: 65px;
     position: fixed;
-    bottom: 60px;
-    left: 20px;
+    bottom: 20px;
+    left: 95.5%;
     background-image: url("../images/svg/up-arrow.svg");
     background-size: 25px;
     background-repeat: no-repeat;
@@ -23898,7 +23913,28 @@ strong {
     -ms-box-shadow: 0 0 50px rgba(0, 0, 0, .1);
     box-shadow: 0 0 50px rgba(0, 0, 0, .1)
 }
-
+@media screen and (max-width:768px) {
+    .arrow2{
+        width: 45px;
+        height: 45px;    
+        border-radius: 50px;
+        min-width: 45px;
+        position: fixed;
+        bottom: 10px;
+        left: 260px;
+    }
+}
+@media screen and (min-width:1024px) {
+    .arrow2{
+        width: 55px;
+        height: 55px;    
+        border-radius: 50px;
+        min-width: 45px;
+        position: fixed;
+        bottom: 20px;
+        left: 94.5%;
+    }
+}
 .bounce2 {
     -moz-animation: bounce 2s infinite;
     -webkit-animation: bounce 2s infinite;

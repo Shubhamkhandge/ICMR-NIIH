@@ -15,4 +15,6 @@ urlpatterns = [
     path('scientists/', views.scientists, name='scientists'),
     path('scientist-details/', views.scientist_details, name='scientist-details'),
     path('awards-achievements/', views.awards_achievements, name='awards-achievements'),
+    path('former-directors/', views.former_directors, name='former-directors'),
+    path('contact-directory/', views.contact_directory, name='contact-directory'),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
