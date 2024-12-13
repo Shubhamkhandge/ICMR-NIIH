@@ -1,0 +1,558 @@
+{% include 'header.html' %}
+{% load static %}
+    <div class="inner__header" id="inner-header">
+        <div class="inner__header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="inner__header-breadcrumb">
+                            <!-- <h1 class="page-title">Our Director</h1> -->
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item text-white">Staff</li>
+                                    <li class="breadcrumb-item"><a href="/administration-staff">Administration Staff</a></li>
+                                    <li aria-current="page" class="breadcrumb-item active text-warning">Administration Profile</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inner__header-media owl-carousel owl-theme innerBannerSlide">
+            <div class="inner__header-slide">
+                <img alt="Indian Council of Medical Research | Government of India" class="img-fluid" 
+                    src="{% static 'dist/images/inner-banners/banner.jpg' %}" title="Indian Council of Medical Research | Government of India" />
+            </div>
+        </div>
+    </div>
+    <div class="inner__body">
+        <div class="inner__body-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="adminView__container w-100">
+                            <div class="adminView__container-section" id="ICMRDirector">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card-body">
+                                            <div class="userCard">
+                                                <div class="userCard__list">
+                                                    <div class="userCard__list-item">
+                                                        <div class="row">
+                                                            <style>
+                                                                .inner__header-slide {
+                                                                    height: 290px;
+                                                                    object-fit: cover;
+                                                                }
+                                                                .inner__body {
+                                                                    padding: 20px 0;
+                                                                }
+                                                                .individualProfile__main-media {
+                                                                    margin-top: 0px;
+                                                                }
+
+                                                                .individualProfile__main-media .img-fluid{
+                                                                    padding: 10px;
+                                                                    width: 100%;
+                                                                    border: 1px solid var(--grey);
+                                                                    height: 300px;
+                                                                }
+                                                                .page-head .v2{
+                                                                    font-size: var(--fs-22);
+                                                                }
+                                                                .inner__body-content .tbl1 th{
+                                                                    /* width: 25%; */
+                                                                }
+                                                                .individualProfile__main-head{
+                                                                    width: 1050px;
+                                                                    padding: 10px;
+                                                                }
+                                                                .nav-pills li{
+                                                                    margin: auto;
+                                                                }
+                                                                .list{
+                                                                    margin-left: 20px; 
+                                                                    font-size: 1rem;
+                                                                }
+                                                                @media screen and (max-width:567px) {
+                                                                    .individualProfile__main-media .img-fluid{
+                                                                        padding: 10px;
+                                                                        width: 150px;
+                                                                        border: 1px solid var(--grey);
+                                                                        height: 160px;
+                                                                    }
+                                                                    .table>:not(caption)>*>*{
+                                                                        padding: .3rem 0.1rem;
+                                                                    }
+                                                                    .tbl1 th{
+                                                                        font-size: 8px;
+                                                                    }
+                                                                    .tbl1 td{
+                                                                        font-size: 8px;
+                                                                        width: auto;
+                                                                    }
+                                                                    .individualProfile__main-head{
+                                                                        width: auto;
+                                                                        padding: 0;
+                                                                    }
+                                                                    .list-item{
+                                                                        font-size: 6px;
+                                                                        margin-left: -5px;
+                                                                        text-align: justify;
+                                                                        padding: 0px 5px;
+                                                                    }
+                                                                    .accordionView .card {
+                                                                        margin-bottom: 5px;
+                                                                        border-radius: 0;
+                                                                    }
+                                                                    .card .card-body{
+                                                                        padding: 15px 8px;
+                                                                    }
+                                                                    .table{
+                                                                        padding: 0px 10px;
+                                                                    }
+                                                                    .tbl2 th{
+                                                                        font-size: 8px;
+                                                                    }
+                                                                    .tbl2 td{
+                                                                        font-size: 8px;
+                                                                        width: auto;
+                                                                    }
+                                                                    .table th:nth-child(1){
+                                                                        width: 18%;
+                                                                    }
+                                                                    .accordionView .card .card-header .btn{
+                                                                        padding: 5px 5px;
+                                                                        border-radius: 0px;
+                                                                    }
+                                                                }
+
+                                                                @media screen and (min-width:567px) and (max-width:768px) {
+                                                                    .individualProfile__main-media .img-fluid{
+                                                                        padding: 10px;
+                                                                        width: 250px;
+                                                                        border: 1px solid var(--grey);
+                                                                        height: 200;
+                                                                    }
+                                                                    .table>:not(caption)>*>*{
+                                                                        padding: .3rem 0.1rem;
+                                                                    }
+                                                                    .tbl1 th{
+                                                                        font-size: 14px;
+                                                                    }
+                                                                    .tbl1 td{
+                                                                        font-size: 14px;
+                                                                        width: auto;
+                                                                    }
+                                                                    .individualProfile__main-head{
+                                                                        width: auto;
+                                                                        padding: 0;
+                                                                    }
+                                                                    .list-item{
+                                                                        font-size: 12px;
+                                                                        margin-left: -5px;
+                                                                        text-align: justify;
+                                                                        padding: 0px 5px;
+                                                                    }
+                                                                    .accordionView .card {
+                                                                        margin-bottom: 5px;
+                                                                        border-radius: 0;
+                                                                    }
+                                                                    .card .card-body{
+                                                                        padding: 15px 8px;
+                                                                    }
+                                                                    .accordionView .card .card-header .btn{
+                                                                        font-size: 14px;
+                                                                    }
+                                                                    .table{
+                                                                        padding: 0px 10px;
+                                                                    }
+                                                                    .tbl2 th{
+                                                                        font-size: 8px;
+                                                                    }
+                                                                    .tbl2 td{
+                                                                        font-size: 8px;
+                                                                        width: auto;
+                                                                    }
+                                                                    .table th:nth-child(1){
+                                                                        width: 18%;
+                                                                    }
+                                                                    .accordionView .card .card-header .btn{
+                                                                        padding: 5px 5px;
+                                                                        border-radius: 0px;
+                                                                    }
+                                                                }
+                                                                @media screen and (min-width:768px) and (max-width:1024px){
+                                                                    .individualProfile__main-media .img-fluid{
+                                                                        padding: 10px;
+                                                                        width: 250px;
+                                                                        border: 1px solid var(--grey);
+                                                                        height: 250px;
+                                                                    }
+                                                                    .table>:not(caption)>*>*{
+                                                                        padding: .3rem 0.1rem;
+                                                                    }
+                                                                    .tbl1 th{
+                                                                        font-size: 14px;
+                                                                    }
+                                                                    .tbl1 td{
+                                                                        font-size: 14px;
+                                                                        width: auto;
+                                                                    }
+                                                                    .individualProfile__main-head{
+                                                                        width: auto;
+                                                                        padding: 0;
+                                                                    }
+                                                                    .list-item{
+                                                                        font-size: 12px;
+                                                                        margin-left: -5px;
+                                                                        text-align: justify;
+                                                                        padding: 0px 5px;
+                                                                    }
+                                                                    .accordionView .card {
+                                                                        margin-bottom: 5px;
+                                                                        border-radius: 0;
+                                                                    }
+                                                                    .card .card-body{
+                                                                        padding: 15px 8px;
+                                                                    }
+                                                                    .accordionView .card .card-header .btn{
+                                                                        font-size: 14px;
+                                                                    }
+                                                                    .table{
+                                                                        padding: 0px 10px;
+                                                                    }
+                                                                    .tbl2 th{
+                                                                        font-size: 12px;
+                                                                    }
+                                                                    .tbl2 td{
+                                                                        font-size: 12px;
+                                                                        width: auto;
+                                                                    }
+                                                                    .table th:nth-child(1){
+                                                                        width: 15%;
+                                                                    }
+                                                                    .table td:nth-child(2){
+                                                                        text-align: left;
+                                                                        padding-left: 20px;
+                                                                    }
+                                                                    .accordionView .card .card-header .btn{
+                                                                        padding: 5px 5px;
+                                                                        border-radius: 0px;
+                                                                    }
+                                                                }
+                                                            </style>
+                                                            <div class="col-12">
+                                                                <div class="individualProfile__main" style="background-image: url('../static/dist/images/inner-banners/profile-bg.jpg');">
+                                                                    <div class="individualProfile__main-container">
+                                                                        <div class="individualProfile__main-head">
+                                                                            <div class="individualProfile__main-media">
+                                                                                <div class="blogView-1 mb-2">
+                                                                                    <h2 class="page-head v2">Profile Photo :</h2>
+                                                                                    <img alt="DG Photo of ICMR" class="img-fluid" src="{% static 'dist/images/staff/director/niih-director.jpg' %}" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="individualProfile__main-content">
+                                                                                <div class="blogView-1 mb-2">
+                                                                                    <h2 class="page-head v2">Personal Details : </h2>
+                                                                                </div>
+                                                                                <table class="table tbl1 table-borderless" style="text-align: left;">
+                                                                                    <tr>
+                                                                                        <th><strong>Name  </strong></th>
+                                                                                        <td>:</td>
+                                                                                        <td>Dr. Manisha R. Madkaikar</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th><strong>Designation  </strong></th>
+                                                                                        <td>:</td>
+                                                                                        <td>Director &amp; Scientist G</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th><strong>Division  </strong></th>
+                                                                                        <td>:</td>
+                                                                                        <td>ICMR-NIIH</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th><strong>Email ID  </strong></th>
+                                                                                        <td>:</td>
+                                                                                        <td><a href="mailto:madkaikarmanisha@yahoo.co.inn">madkaikarmanisha@yahoo.co.inn</a> <br>
+                                                                                        <a href="mailto:directorniih@gmail.com">directorniih@gmail.com</a></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th><strong>Specialization  </strong></th>
+                                                                                        <td>:</td>
+                                                                                        <td>Primary Immunodeficiency Disorders and Hematological Malignancy</td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="individualProfile__main-head d-grid">
+                                                                            <!-- <ul class="nav nav-pills mb-3 w-100" id="pills-tab" role="tablist">
+                                                                                <li class="nav-item" role="presentation">
+                                                                                    <a class="nav-link active" id="pills-projects-tab" data-toggle="pill" href="#pills-projects" role="tab" aria-controls="pills-projects" aria-selected="true">Projects</a>
+                                                                                </li>
+                                                                                <li class="nav-item" role="presentation">
+                                                                                    <a class="nav-link" id="pills-publications-tab" data-toggle="pill" href="#pills-publications" role="tab" aria-controls="pills-publications" aria-selected="true">Publications</a>
+                                                                                </li>
+                                                                                <li class="nav-item" role="presentation">
+                                                                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-awards" role="tab" aria-controls="pills-awards" aria-selected="false">Awards & Achievements</a>
+                                                                                </li>
+                                                                                <li class="nav-item" role="presentation">
+                                                                                    <a class="nav-link" id="pills-research-tab" data-toggle="pill" href="#pills-research" role="tab" aria-controls="pills-research" aria-selected="false">Research Staff</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <div class="tab-content" id="pills-tabContent">
+                                                                                <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-projects-tab">
+                                                                                    <ol class="list">
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                        </li>
+                                                                                    </ol>
+                                                                                </div>
+                                                                                <div class="tab-pane fade" id="pills-publications" role="tabpanel" aria-labelledby="pills-publications-tab">
+                                                                                    <ol class="list">
+                                                                                        <li class="list-item" style="list-style: decimal;">
+                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: decimal;">
+                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: decimal;">
+                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: decimal;">
+                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: decimal;">
+                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                        </li>
+                                                                                    </ol>
+                                                                                </div>
+                                                                                <div class="tab-pane fade" id="pills-awards" role="tabpanel" aria-labelledby="pills-awards-tab">
+                                                                                    <ol class="list" style="width: 100% !important;">
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                        </li>
+                                                                                        <li class="list-item" style="list-style: disc;">
+                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                        </li>
+                                                                                    </ol>
+                                                                                </div>
+                                                                                <div class="tab-pane fade" id="pills-research" role="tabpanel" aria-labelledby="pills-research-tab">
+                                                                                    <table class="table table-bordered">
+                                                                                        <style>
+                                                                                        #pills-research table th,td{
+                                                                                            /* text-align: center; */
+                                                                                        }
+                                                                                        </style>
+                                                                                        <thead>
+                                                                                            <th>Sr. No.</th>
+                                                                                            <th>Name</th>
+                                                                                            <th>Designation</th>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>1</td>
+                                                                                                <td><strong>Dr. Vandana D Pradhan</strong></td>
+                                                                                                <td>Scientist D</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div> -->
+                                                                            <div class="accordionView">
+                                                                                <div id="accordion">
+                                                                                    <div class="card">
+                                                                                        <div class="card-header">
+                                                                                            <a class="btn collapsed" data-bs-toggle="collapse" href="#projects">
+                                                                                                Projects
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="collapse" data-bs-parent="#accordion" id="projects">
+                                                                                            <div class="card-body">
+                                                                                                <ul class="list">
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card">
+                                                                                        <div class="card-header">
+                                                                                            <a class="collapsed btn" data-bs-toggle="collapse" href="#publications">
+                                                                                                Publications
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="collapse" data-bs-parent="#accordion" id="publications">
+                                                                                            <div class="card-body">
+                                                                                                <ol class="list">
+                                                                                                    <li class="list-item" style="list-style: decimal;">
+                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: decimal;">
+                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: decimal;">
+                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: decimal;">
+                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: decimal;">
+                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                                    </li>
+                                                                                                </ol>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card">
+                                                                                        <div class="card-header">
+                                                                                            <a class="collapsed btn" data-bs-toggle="collapse" href="#awards">
+                                                                                                Awards & Achievements
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="collapse" data-bs-parent="#accordion" id="awards">
+                                                                                            <div class="card-body">
+                                                                                                <ol class="list">
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                                    </li>
+                                                                                                    <li class="list-item" style="list-style: disc;">
+                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
+                                                                                                    </li>
+                                                                                                </ol>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card">
+                                                                                        <div class="card-header">
+                                                                                            <a class="collapsed btn" data-bs-toggle="collapse" href="#research">
+                                                                                                Research Staff
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="collapse" data-bs-parent="#accordion" id="research">
+                                                                                            <div class="card-body">
+                                                                                                <table class="table tbl2 table-bordered">
+                                                                                                    <thead>
+                                                                                                        <th class="text-center">Sr. No.</th>
+                                                                                                        <th class="text-center">Name</th>
+                                                                                                        <th class="text-center">Designation</th>
+                                                                                                    </thead>
+                                                                                                    <tbody class="text-center">
+                                                                                                        <tr>
+                                                                                                            <td>1</td>
+                                                                                                            <td><strong>Dr. Anindita Banerjee</strong></td>
+                                                                                                            <td>Scientist E</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>2</td>
+                                                                                                            <td><strong>Dr. Reetika Malik Yadav</strong></td>
+                                                                                                            <td>Scientist D</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>3</td>
+                                                                                                            <td><strong>Dr. Umair A Bargir</strong></td>
+                                                                                                            <td>Scientist B</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>4</td>
+                                                                                                            <td><strong>Dr. Nithin Rajamani</strong></td>
+                                                                                                            <td>Scientist B</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>5</td>
+                                                                                                            <td><strong>Prashant Tapase</strong></td>
+                                                                                                            <td>Sr. Technical Officer</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>6</td>
+                                                                                                            <td><strong>Aparna D Dalvi</strong></td>
+                                                                                                            <td>Technical Officer A</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>7</td>
+                                                                                                            <td><strong>Maya R Gupta</strong></td>
+                                                                                                            <td>Technical Officer C</td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#inner-header" class="arrow2 animated bounce2"></a>
+{% include 'footer.html' %}

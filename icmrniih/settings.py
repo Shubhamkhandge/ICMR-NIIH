@@ -80,24 +80,19 @@ WSGI_APPLICATION = 'icmrniih.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-'''
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recruit',
-        'USER': 'niih',
-        'PASSWORD': 'Icmr24#57niih',
-        'HOST': '34.100.159.157',  # or the hostname where your MySQL server is running
-        'PORT': '3620',      # or the port on which your MySQL server is listening
+        'NAME': 'icmrniih',
+        'USER': 'root',
+        'PASSWORD': 'Niih@123',
+        'HOST': '127.0.0.1',  # or the hostname where your MySQL server is running
+        'PORT': '3306',      # or the port on which your MySQL server is listening
     }
 }
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

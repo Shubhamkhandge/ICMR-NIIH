@@ -1,0 +1,72 @@
+{% include 'header.html'%}
+{% load static %}
+<div class="inner__header" id="inner-header">
+    <div class="inner__header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="inner__header-breadcrumb">
+                        <h1 class="page-title">Emplopyee Links</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item text-white">Employee Centre</li>
+                                <li aria-current="page" class="breadcrumb-item active text-warning">Employee Links
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner__header-media owl-carousel owl-theme innerBannerSlide">
+        <div class="inner__header-slide"><img alt="Indian Council of Medical Research | Government of India"
+                class="img-fluid" src="{% static 'dist/images/inner-banners/employee_links.png' %}"
+                title="Indian Council of Medical Research | Government of India" /></div>
+    </div>
+</div>
+<style>
+    .inner__header-slide {
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .inner__header-content {
+        padding-bottom: 0;
+    }
+    @media screen and (max-width: 567px) {
+    .colorBox__list-item .content-area .title {
+        font-size: var(--fs-20);
+    }
+}
+</style>
+<div class="inner__body">
+    <div class="inner__body-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="colorBox mb-5">
+                        <div class="colorBox__list managedItem">
+                            <div class="colorBox__list-item lightBg">
+                                <div class="content-area w-100 colWise">
+                                    <h4 class="title withBorder">Links</h4>
+                                    <div class="linkView__container">
+                                        <a class="linkView hyperLinkPolicy" href="http://10.1.0.252/niih/" rel="noopener noreferrer" target="_blank">
+                                            <span class="content">Pay Slip Generation</span>
+                                        </a>
+                                        <a class="linkView hyperLinkPolicy" href="https://icmr.eoffice.gov.in/" rel="noopener noreferrer" target="_blank">
+                                            <span class="content hyperLinkPolicy">eOffice</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#inner-header" class="arrow2 animated bounce2"></a>
+{% include 'footer.html'%}

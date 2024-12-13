@@ -50,12 +50,6 @@ def departments(request):
 def departments_details(request):
     return render(request, 'departments-details.html')
 
-def scientists(request):
-    return render(request, 'scientists.html')
-
-def scientist_details(request):
-    return render(request, 'scientist-details.html')
-
 def awards_achievements(request):
     return render(request, 'awards-achievements.html')
 
@@ -64,4 +58,70 @@ def former_directors(request):
 
 def contact_directory(request):
     return render(request, 'contact-directory.html')
+
+def scientist_staff(request):
+    return render(request, 'scientist-staff.html')
+
+def scientist_details(request):
+    return render(request, 'scientist-details.html')
+
+def administration_staff(request):
+    return render(request, 'administration-staff.html')
+
+def administration_details(request):
+    return render(request, 'administration-details.html')
+
+def technical_staff(request):
+    return render(request, 'technical-staff.html')
+
+def technical_details(request):
+    return render(request, 'technical-details.html')
+
+def project_staff(request):
+    return render(request, 'project-staff.html')
+
+def project_details(request):
+    return render(request, 'project-details.html')
+
+def students_list(request):
+    return render(request, 'students-list.html')
+
+def student_details(request):
+    return render(request, 'student-details.html')
+
+def alumini_staff(request):
+    return render(request, 'alumini-staff.html')
+
+def alumini_details(request):
+    return render(request, 'alumini-details.html')
+
+def publications_list(request):
+    return render(request, 'publications.html')
+
+def niih_bulletin(request):
+    return render(request, 'niih_bulletin.html')
+
+def bgrc_news_letter(request):
+    return render(request, 'bgrc-news-letter.html')
+
+def projects_list(request):
+    return render(request, 'projects-list.html')
+
+def ongoing_projects(request):
+    return render(request, 'ongoing-projects.html')
+
+def completed_projects(request):
+    return render(request, 'completed-projects.html')
+
+def media_gallery(request):
+    return render(request, 'media-gallery.html')
+
+def circulars_list(request):
+    return render(request, 'circulars-list.html')
+
+def tenders_list(request):
+    return render(request, 'tenders-list.html')
+
+def reports_list(request):
+    return render(request, 'reports-list.html')
 
