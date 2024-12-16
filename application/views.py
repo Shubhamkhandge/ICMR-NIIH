@@ -96,22 +96,22 @@ def alumini_details(request):
     return render(request, 'alumini-details.html')
 
 def publications_list(request):
-    return render(request, 'publications.html')
+    return render(request, 'publications-list.html')
 
-def niih_bulletin(request):
-    return render(request, 'niih_bulletin.html')
+def niih_bulletin_list(request):
+    return render(request, 'niih-bulletin-list.html')
 
 def bgrc_news_letter(request):
     return render(request, 'bgrc-news-letter.html')
 
-def projects_list(request):
-    return render(request, 'projects-list.html')
+# def projects_list(request):
+#     return render(request, 'projects-list.html')
 
-def ongoing_projects(request):
-    return render(request, 'ongoing-projects.html')
+def ongoing_projects_list(request):
+    return render(request, 'ongoing-projects-list.html')
 
-def completed_projects(request):
-    return render(request, 'completed-projects.html')
+def completed_projects_list(request):
+    return render(request, 'completed-projects-list.html')
 
 def media_gallery(request):
     return render(request, 'media-gallery.html')

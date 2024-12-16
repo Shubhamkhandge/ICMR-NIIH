@@ -1,0 +1,207 @@
+{% include 'header.html'%}
+{% load static %}
+<div class="inner__header" id="inner-header">
+    <div class="inner__header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="inner__header-breadcrumb">
+                        <h1 class="page-title">Circulars</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item text-white">More</li>
+                                <li aria-current="page" class="breadcrumb-item active text-warning">Circulars List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner__header-media owl-carousel owl-theme innerBannerSlide">
+        <div class="inner__header-slide">
+            <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
+                src="{% static 'dist/images/inner-banners/publication.jpg' %}" title="Indian Council of Medical Research | Government of India" />
+            </div>
+    </div>
+</div>
+<div class="inner__body-content">
+    <div class="container dataInline SecLastChild">
+        <p></p>
+        <div class="row">
+            <div class="col-12" style="margin-top:10px;">
+                <div class="tabView">
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="tab11">
+                            <div class="baseFilter">
+                                <form method="GET" action="#">
+                                    <div class="baseFilter__main">
+                                        <div class="formView">
+                                            <!-- Name Filter -->
+                                            <div class="formView__group">
+                                                <label class="form-label" for="nameFilter">Name</label>
+                                                <input type="text" id="nameFilter" class="form-control" name="nameFilter" placeholder="Enter Title" />
+                                            </div>
+                
+                                            <!-- Date Filter -->
+                                            <div class="formView__group">
+                                                <label class="form-label" for="dateFilter">Date</label>
+                                                <input type="date" class="form-control" name="dateFilter" id="dateFilter" />
+                                            </div>
+                                        </div>
+                
+                                        <div class="actions">
+                                            <!-- Search button -->
+                                            <button type="submit" class="theme__btn theme__btn--orange theme__btn--radius50 u-small">Search</button>
+                                            <!-- Reset button -->
+                                            <button type="button" id="resetButton" class="theme__btn theme__btn--grey theme__btn--radius50 u-small">Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                
+                            <div class="tableView mt-3">
+                                <div class="table-responsive switchIcon">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="w-1">Sr.No</th>
+                                                <th class="w-70">Title</th>
+                                                <th class="w-10">Date Of Circular</th>
+                                                <th class="w-12">Document</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableBody">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Reminder for Submission of Income Tax Declaration Form for the FY 2024-25, before 05.01.25 (along with Self attested Investment Copies)</td>
+                                                <td class="circular-date">09-12-2024</td>
+                                                <td>
+                                                    <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}">
+                                                        <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
+                                                        <span class="action" style="font-size: 12px;">View</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Office Closure for Maharashtra Assembly Election Voting on 20th November, 2024.</td>
+                                                <td class="circular-date">18-11-2024</td>
+                                                <td>
+                                                    <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}">
+                                                        <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
+                                                        <span class="action" style="font-size: 12px;">View</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Urgent Data for Medical Benefits under NHA-reg.</td>
+                                                <td class="circular-date">13-11-2024</td>
+                                                <td>
+                                                    <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}">
+                                                        <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
+                                                        <span class="action" style="font-size: 12px;">View</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Emoluments Bills of Project Staff to be verified based on the attendance records of AEBAS-reg.</td>
+                                                <td class="circular-date">12-11-2024</td>
+                                                <td>
+                                                    <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}">
+                                                        <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
+                                                        <span class="action" style="font-size: 12px;">View</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Call for Nominations under Rashtriya Vigyan Puraskar-2025.</td>
+                                                <td class="circular-date">11-11-2024</td>
+                                                <td>
+                                                    <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}">
+                                                        <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
+                                                        <span class="action" style="font-size: 12px;">View</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                    <li aria-current="page" class="page-item active"><span class="page-link">1</span></li>
+                                    <li class="page-item"><a class="page-link" href="?page=2">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    // Add event listeners for Search and Reset functionality
+                    document.getElementById('nameFilter').addEventListener('input', filterTable);
+                    document.getElementById('dateFilter').addEventListener('change', filterTable);
+                
+                    // Reset button functionality
+                    document.getElementById('resetButton').addEventListener('click', function() {
+                        // Clear both the name filter and the date filter
+                        document.getElementById('nameFilter').value = '';
+                        document.getElementById('dateFilter').value = '';
+                
+                        // Reset table visibility to show all rows
+                        var rows = document.querySelectorAll('.tableView tbody tr');
+                        rows.forEach(function(row) {
+                            row.style.display = '';
+                        });
+                    });
+                
+                    function filterTable() {
+                        var nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+                        var dateFilter = document.getElementById('dateFilter').value;
+                
+                        // Get all rows in the table
+                        var rows = document.querySelectorAll('.tableView tbody tr');
+                
+                        rows.forEach(function(row) {
+                            var title = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
+                            var dateText = row.querySelector('.circular-date').innerText.trim();
+                
+                            var isVisible = true;
+                
+                            // Filter by Name (if applicable)
+                            if (nameFilter && !title.includes(nameFilter)) {
+                                isVisible = false;
+                            }
+                
+                            // Filter by Date (if applicable)
+                            if (dateFilter) {
+                                // Convert dateText (dd-mm-yyyy) to yyyy-mm-dd for comparison
+                                var [day, month, year] = dateText.split('-');
+                                var formattedDate = `${year}-${month}-${day}`;
+                
+                                // Compare formatted date with dateFilter
+                                if (formattedDate !== dateFilter) {
+                                    isVisible = false;
+                                }
+                            }
+                
+                            // Show or hide the row based on the filters
+                            row.style.display = isVisible ? '' : 'none';
+                        });
+                    }
+                </script>
+                
+            </div>
+        </div>
+        <p></p>
+    </div>
+</div>
+<a href="#inner-header" class="arrow2 animated bounce2"></a>
+{% include 'footer.html'%}

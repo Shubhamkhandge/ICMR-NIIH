@@ -1,0 +1,219 @@
+{% include 'header.html'%}
+{% load static %}
+<div class="inner__header" id="inner-header">
+    <div class="inner__header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="inner__header-breadcrumb">
+                        <h1 class="page-title">BGRC News Letter</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item text-white">Publications</li>
+                                <li aria-current="page" class="breadcrumb-item active text-warning">BGRC News Letter List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner__header-media owl-carousel owl-theme innerBannerSlide">
+        <div class="inner__header-slide">
+            <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
+                src="{% static 'dist/images/inner-banners/bgrc.jpg' %}" title="Indian Council of Medical Research | Government of India" />
+            </div>
+    </div>
+</div>
+<div class="inner__body-content">
+    <div class="container dataInline SecLastChild">
+        <p></p>
+        <div class="row">
+            <!-- <p class="text-end archive-btn"><a
+                    class="theme__btn theme__btn--orange theme__btn--radius50 themeWidth shadow js-archiveBtn"
+                    href="/circulars?archive=1">Archive</a></p> -->
+            <div class="col-12" style="margin-top:10px;">
+                <div class="tabView">
+                    <!-- <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="/circulars">
+                                <span class="date">Circulars</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/form-circulars">
+                                <span class="date">Forms</span>
+                            </a>
+                        </li>
+                    </ul> -->
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="tab11">
+                            <div class="baseFilter">
+                                <form method="GET">
+                                    <div class="baseFilter__main">
+                                        <div class="formView">
+                                            <!-- From Year filter -->
+                                            <div class="formView__group">
+                                                <label class="form-label" for="toMonthFilter">Select Month</label>
+                                                <select class="form-select form-control chzn-select" name="toMonthFilter" id="toMonthFilter">
+                                                    <option value="">-- ANY --</option>
+                                                    <option value="Jan">Jan</option>
+                                                    <option value="Feb">Feb</option>
+                                                    <option value="Mar">Mar</option>
+                                                    <option value="Apr">Apr</option>
+                                                    <option value="May">May</option>
+                                                    <option value="Jun">Jun</option>
+                                                    <option value="Jul">Jul</option>
+                                                    <option value="Aug">Aug</option>
+                                                    <option value="Sep">Sept</option>
+                                                    <option value="Oct">Oct</option>
+                                                    <option value="Nov">Nov</option>
+                                                    <option value="Dec">Dec</option>
+                                                </select>
+                                            </div>
+                    
+                                            <!-- To Volume filter -->
+                                            <div class="formView__group">
+                                                <label class="form-label" for="toVolumeFilter">Select Volume</label>
+                                                <select class="form-select form-control chzn-select" name="toVolumeFilter" id="toVolumeFilter">
+                                                    <option value="">-- ANY --</option>
+                                                    <option value="I">I</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                    <option value="IV">IV</option>
+                                                    <option value="V">V</option>
+                                                    <option value="VI">VI</option>
+                                                    <option value="VII">VII</option>
+                                                    <option value="VIII">VIII</option>
+                                                    <option value="IX">IX</option>
+                                                    <option value="X">X</option>
+                                                    <option value="XI">XI</option>
+                                                    <option value="XII">XII</option>
+                                                    <option value="XIII">XIII</option>
+                                                </select>
+                                            </div>
+                    
+                                            <!-- To Year filter -->
+                                            <div class="formView__group">
+                                                <label class="form-label" for="toYear">To Year</label>
+                                                <select class="form-select form-control chzn-select" name="toYear" id="toYear">
+                                                    <option value="">-- ANY --</option>
+                                                    <option value="1982">1982</option>
+                                                    <option value="1981">1981</option>
+                                                    <option value="1983">1983</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="actions">
+                                            <!-- Search button -->
+                                            <button type="submit" class="theme__btn theme__btn--orange theme__btn--radius50 u-small">Search</button>
+                                            <!-- Reset button -->
+                                            <a class="theme__btn theme__btn--grey theme__btn--radius50 u-small" href="/bgrc-news-letter">Reset</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                    
+                            <div class="tableView mt-3">
+                                <div class="table-responsive switchIcon">
+                                    <table class="table table-bordered" id="documentTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr. No.</th>
+                                                <th>Title</th>
+                                                <th>Vol. & No.</th>
+                                                <th>Months</th>
+                                                <th>Year</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Example row -->
+                                            <tr data-month="Nov-Dec" data-volume="XIII" data-year="1982">
+                                                <td>1</td>
+                                                <td>HLA antibodies</td>
+                                                <td>XIII (6)</td>
+                                                <td>Nov-Dec</td>
+                                                <td>1982</td>
+                                            </tr>
+                                            <tr data-month="Dec-Jan" data-volume="XII" data-year="1981">
+                                                <td>2</td>
+                                                <td>Recent advances in fluorescent microscopy</td>
+                                                <td>XII (5)</td>
+                                                <td>Dec-Jan</td>
+                                                <td>1981</td>
+                                            </tr>
+                                            <tr data-month="May-Jun" data-volume="XI" data-year="1983">
+                                                <td>3</td>
+                                                <td>Acquired disorders of haemoglobins</td>
+                                                <td>XI (4)</td>
+                                                <td>May-Jun</td>
+                                                <td>1983</td>
+                                            </tr>
+                                            <!-- More rows here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                        // Ensure this is used when the form is submitted and the page reloads
+                        document.querySelector('form').addEventListener('submit', function (event) {
+                            event.preventDefault();
+                            filterTable();
+                        });
+                    
+                        // Function to filter the table rows based on selected filters
+                        function filterTable() {
+                            const toYearFilter = document.getElementById("toYear").value; // Get the selected "To Year" value
+                            const toMonthFilter = document.getElementById("toMonthFilter").value.toLowerCase(); // Get the selected "To Month" value
+                            const toVolumeFilter = document.getElementById("toVolumeFilter").value.toLowerCase(); // Get the selected "To Volume" value
+                            const table = document.getElementById("documentTable");
+                            const rows = table.getElementsByTagName("tr");
+                    
+                            // Loop through all rows and hide those that don't match the filter
+                            for (let i = 1; i < rows.length; i++) { // Start at 1 to skip the header row
+                                const row = rows[i];
+                                const year = row.getAttribute("data-year"); // Get the "data-year" attribute of the row
+                                const month = row.getAttribute("data-month").toLowerCase(); // Get the "data-month" attribute of the row
+                                const volume = row.getAttribute("data-volume").toLowerCase(); // Get the "data-volume" attribute of the row
+                    
+                                // Check if the row matches the filters
+                                if (
+                                    (toYearFilter === "" || year === toYearFilter) &&  // Check if the row matches the "To Year" filter
+                                    (month.includes(toMonthFilter) || toMonthFilter === "") &&  // Check if the row matches the "To Month" filter
+                                    (volume.includes(toVolumeFilter) || toVolumeFilter === "")  // Check if the row matches the "To Volume" filter
+                                ) {
+                                    row.style.display = ""; // Show row
+                                } else {
+                                    row.style.display = "none"; // Hide row
+                                }
+                            }
+                        }
+                    
+                        // Trigger the filter when the page loads if there are selected filters
+                        window.onload = function () {
+                            filterTable();
+                        };
+                    </script>
+                </div>
+            </div>
+        </div>
+        <p></p>
+    </div>
+</div>
+<a href="#inner-header" class="arrow2 animated bounce2"></a>
+{% include 'footer.html'%}

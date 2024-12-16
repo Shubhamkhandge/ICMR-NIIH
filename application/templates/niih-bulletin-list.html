@@ -1,0 +1,248 @@
+{% include 'header.html'%}
+{% load static %}
+<div class="inner__header" id="inner-header">
+    <div class="inner__header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="inner__header-breadcrumb">
+                        <h1 class="page-title">NIIH-Bulletin</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item text-white">Publications</li>
+                                <li aria-current="page" class="breadcrumb-item active text-warning">NIIH-Bulletin LIst</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner__header-media owl-carousel owl-theme innerBannerSlide">
+        <div class="inner__header-slide">
+            <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
+                src="{% static 'dist/images/inner-banners/bulletin.jpg' %}"
+                title="Indian Council of Medical Research | Government of India" />
+        </div>
+    </div>
+</div>
+<div class="inner__body-content">
+    <div class="container dataInline SecLastChild">
+        <p></p>
+        <div class="row">
+            <div class="col-12" style="margin-top:10px;">
+                <div class="tabView">
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="tab11">
+                            <div class="baseFilter">
+                                <form method="GET">
+                                    <div class="baseFilter__main">
+                                        <div class="formView">
+                                            <div class="formView__group">
+                                                <label class="form-label" for="toMonthFilter">Select Month</label>
+                                                <select class="form-select form-control chzn-select" name="toMonthFilter" id="toMonthFilter">
+                                                    <option value="">-- ANY --</option>
+                                                    <option value="Jan">Jan</option>
+                                                    <option value="Feb">Feb</option>
+                                                    <option value="Mar">Mar</option>
+                                                    <option value="Apr">Apr</option>
+                                                    <option value="May">May</option>
+                                                    <option value="Jun">Jun</option>
+                                                    <option value="Jul">Jul</option>
+                                                    <option value="Aug">Aug</option>
+                                                    <option value="Sep">Sept</option>
+                                                    <option value="Oct">Oct</option>
+                                                    <option value="Nov">Nov</option>
+                                                    <option value="Dec">Dec</option>
+                                                </select>
+                                            </div>
+                    
+                                            <div class="formView__group">
+                                                <label class="form-label" for="toVolumeFilter">Select Volume</label>
+                                                <select class="form-select form-control chzn-select" name="toVolumeFilter" id="toVolumeFilter">
+                                                    <option value="">-- ANY --</option>
+                                                    <option value="I">I</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                    <option value="IV">IV</option>
+                                                    <option value="V">V</option>
+                                                    <option value="VI">VI</option>
+                                                    <option value="VII">VII</option>
+                                                    <option value="VIII">VIII</option>
+                                                    <option value="IX">IX</option>
+                                                    <option value="X">X</option>
+                                                    <option value="XI">XI</option>
+                                                    <option value="XII">XII</option>
+                                                    <option value="XIII">XIII</option>
+                                                </select>
+                                            </div>
+                    
+                                            <div class="formView__group">
+                                                <label class="form-label" for="toYear">To Year</label>
+                                                <select class="form-select form-control chzn-select" name="toYear" id="toYear">
+                                                    <option value="">-- ANY --</option>
+                                                    <option value="1982">1982</option>
+                                                    <option value="1981">1981</option>
+                                                    <option value="1983">1983</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="actions">
+                                            <button type="submit" class="theme__btn theme__btn--orange theme__btn--radius50 u-small">Search</button>
+                                            <a class="theme__btn theme__btn--grey theme__btn--radius50 u-small" href="/bgrc-news-letter">Reset</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div> 
+                    
+                            <div class="tableView mt-3">
+                                <div class="table-responsive switchIcon">
+                                    <table class="table table-bordered" id="documentTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr. No.</th>
+                                                <th>Title</th>
+                                                <th>Vol. & No.</th>
+                                                <th>Months</th>
+                                                <th>Year</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-month="Jan-Apr" data-volume="51(1)" data-year="2020">
+                                                <td>1</td>
+                                                <td>Next-generation sequencing- Improves the diagnosis and management of patients with Congenital anemia - Rashmi Dongerdiye and Prabhakar Kedar</td>
+                                                <td>51(1)</td>
+                                                <td>Jan-Apr</td>
+                                                <td>2020</td>
+                                            </tr>
+                                            <tr data-month="May-Aug" data-volume="51(2)" data-year="2020">
+                                                <td>2</td>
+                                                <td>Autoimmune Lymphoproliferative Syndrome (ALPS) 2 - Priyanka Setia</td>
+                                                <td>51(2)</td>
+                                                <td>May-Aug</td>
+                                                <td>2020</td>
+                                            </tr>
+                                            <tr data-month="Sep-Dec" data-volume="51(3)" data-year="2020">
+                                                <td>3</td>
+                                                <td>Serological & molecular techniques for RhD typing and their role in the identification of D variants - Garima Mishra</td>
+                                                <td>51(3)</td>
+                                                <td>Sep-Dec</td>
+                                                <td>2020</td>
+                                            </tr>
+                                            <tr data-month="Jan-Apr" data-volume="50(1)" data-year="2019">
+                                                <td>4</td>
+                                                <td>Fibrinolysis and risk of Venous Thrombosis: An overview- by Aniket Prabhudesai</td>
+                                                <td>50(1)</td>
+                                                <td>Jan-Apr</td>
+                                                <td>2019</td>
+                                            </tr>
+                                            <tr data-month="May-Aug" data-volume="50(2)" data-year="2019">
+                                                <td>5</td>
+                                                <td>Spliceosomal Mutations in Myelodysplastic Syndromes and Its Therapeutic Implications- An Overview - Purvi Mohanty</td>
+                                                <td>50(2)</td>
+                                                <td>May-Aug</td>
+                                                <td>2019</td>
+                                            </tr>
+                                            <tr data-month="Sep-Dec" data-volume="50(3)" data-year="2019">
+                                                <td>6</td>
+                                                <td>SLIM21: Unique Library Software- Vijay Padwal, Amruta Mahale & Gauri Kesarkar</td>
+                                                <td>50(3)</td>
+                                                <td>Sep-Dec</td>
+                                                <td>2019</td>
+                                            </tr>
+                                            <tr data-month="Jan-Apr" data-volume="49(1)" data-year="2018">
+                                                <td>7</td>
+                                                <td>DARC : Structure, Function and Disease Pathophysiology - Roshan Shaikh</td>
+                                                <td>49(1)</td>
+                                                <td>Jan - April</td>
+                                                <td>2018</td>
+                                            </tr>
+                                            <tr data-month="May-Aug" data-volume="49(2)" data-year="2018">
+                                                <td>8</td>
+                                                <td>Protein Glycosylation in Hepatitis B Related Liver Diseases - Kruti Bhavik Dalal</td>
+                                                <td>49(2)</td>
+                                                <td>May - August</td>
+                                                <td>2018</td>
+                                            </tr>
+                                            <tr data-month="Sep-Dec" data-volume="49(3)" data-year="2018">
+                                                <td>9</td>
+                                                <td>Chronic Granulamatous Disease- Manasi Kulkarni</td>
+                                                <td>49(3)</td>
+                                                <td>Sep-Dec</td>
+                                                <td>2018</td>
+                                            </tr>
+                                            <tr data-month="Jan-April" data-volume="48(1)" data-year="2017">
+                                                <td>10</td>
+                                                <td>Adipokines: the new players of inflammatory response in Systemic Lupus Erythematosus - Durga Chougule</td>
+                                                <td>48(1)</td>
+                                                <td>Jan-April</td>
+                                                <td>2017</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    
+                    <script>
+                        // Ensure this is used when the form is submitted and the page reloads
+                        document.querySelector('form').addEventListener('submit', function (event) {
+                            event.preventDefault();
+                            filterTable();
+                        });
+                    
+                        // Function to filter the table rows based on selected filters
+                        function filterTable() {
+                            const toYearFilter = document.getElementById("toYear").value; // Get the selected "To Year" value
+                            const toMonthFilter = document.getElementById("toMonthFilter").value.toLowerCase(); // Get the selected "To Month" value
+                            const toVolumeFilter = document.getElementById("toVolumeFilter").value.toLowerCase(); // Get the selected "To Volume" value
+                            const table = document.getElementById("documentTable");
+                            const rows = table.getElementsByTagName("tr");
+                    
+                            // Loop through all rows and hide those that don't match the filter
+                            for (let i = 1; i < rows.length; i++) { // Start at 1 to skip the header row
+                                const row = rows[i];
+                                const year = row.getAttribute("data-year"); // Get the "data-year" attribute of the row
+                                const month = row.getAttribute("data-month").toLowerCase(); // Get the "data-month" attribute of the row
+                                const volume = row.getAttribute("data-volume").toLowerCase(); // Get the "data-volume" attribute of the row
+                    
+                                // Check if the row matches the filters
+                                if (
+                                    (toYearFilter === "" || year === toYearFilter) &&  // Check if the row matches the "To Year" filter
+                                    (month.includes(toMonthFilter) || toMonthFilter === "") &&  // Check if the row matches the "To Month" filter
+                                    (volume.includes(toVolumeFilter) || toVolumeFilter === "")  // Check if the row matches the "To Volume" filter
+                                ) {
+                                    row.style.display = ""; // Show row
+                                } else {
+                                    row.style.display = "none"; // Hide row
+                                }
+                            }
+                        }
+                    
+                        // Trigger the filter when the page loads if there are selected filters
+                        window.onload = function () {
+                            filterTable();
+                        };
+                    </script>
+                </div>
+            </div>
+        </div>
+        <p></p>
+    </div>
+</div>
+<a href="#inner-header" class="arrow2 animated bounce2"></a>
+{% include 'footer.html'%}

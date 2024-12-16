@@ -5148,7 +5148,8 @@ fieldset:disabled .btn {
 .pagination {
     display: flex;
     padding-left: 0;
-    list-style: none
+    list-style: none;
+    justify-content: center;
 }
 
 .page-link {
@@ -15766,9 +15767,15 @@ html [data-theme=dark] ::-webkit-scrollbar-thumb:window-active {
     position: relative
 }
 
-@media screen and (max-width:1199px) {
+@media screen and (max-width:1440px) {
     .global-navs.design1 .global-navs__items {
-        font-size: var(--fs-9)
+        font-size: var(--fs-12)
+    }
+}
+
+@media screen and (min-width:991px) and (max-width:1024px) {
+    .global-navs.design1 .global-navs__items {
+        font-size: var(--fs-10)
     }
 }
 
@@ -17731,7 +17738,7 @@ strong {
 .tableView table .descView__link {
     margin-left: 0;
     margin-right: 10px;
-    margin-bottom: 10px
+    /* margin-bottom: 10px */
 }
 
 .tableView table .descView__link .value {
@@ -17756,6 +17763,7 @@ strong {
     color: var(--white);
     font-size: var(--fs-16);
     border: none;
+    text-align: center;
     padding: 15px
 }
 
@@ -17775,7 +17783,19 @@ strong {
     padding: 15px;
     border: 0;
     color: var(--zblack);
-    font-size: var(--fs-14)
+    font-size: var(--fs-14);
+    text-align: justify;
+}
+
+@media screen and (max-width: 768px) {
+    .tableView thead th {
+        font-size: var(--fs-10);
+    }
+
+    .tableView tbody td {
+        font-size: var(--fs-10);
+        text-align: justify;
+    }
 }
 
 .tableView tbody td p {
@@ -19622,6 +19642,42 @@ strong {
 .descView__link .value {
     font-size: var(--fs-12);
     color: var(--darkBlack)
+}
+
+@media screen and (max-width:768px) {
+    .descView__head .title {
+        color: var(--darkBlack);
+        font-size: var(--fs-16);
+        margin: 0
+    }
+
+    .descView__link {
+        border: 1px solid var(--grey);
+        padding: 5px 5px;
+        background: var(--white);
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        background-clip: padding-box;
+        color: var(--darkBlack);
+        font-size: var(--fs-16)
+    }
+
+    .descView__link:hover {
+        background: var(--grey2)
+    }
+
+    .descView__link .u-image {
+        margin-right: 5px;
+        min-width: 15px;
+        width: 15px;
+        height: auto;
+        margin-left: 10px
+    }
+
+    .descView__link .value {
+        font-size: var(--fs-9);
+        color: var(--darkBlack)
+    }
 }
 
 .descView__link+.descView__link {
@@ -22167,6 +22223,7 @@ strong {
     padding: 100px 50px;
     position: relative
 }
+
 @media screen and (max-width:768px) {
     .timelineView {
         padding: 100px 25px;
@@ -23913,10 +23970,11 @@ strong {
     -ms-box-shadow: 0 0 50px rgba(0, 0, 0, .1);
     box-shadow: 0 0 50px rgba(0, 0, 0, .1)
 }
+
 @media screen and (max-width:768px) {
-    .arrow2{
+    .arrow2 {
         width: 45px;
-        height: 45px;    
+        height: 45px;
         border-radius: 50px;
         min-width: 45px;
         position: fixed;
@@ -23924,10 +23982,11 @@ strong {
         left: 260px;
     }
 }
+
 @media screen and (min-width:1024px) {
-    .arrow2{
+    .arrow2 {
         width: 55px;
-        height: 55px;    
+        height: 55px;
         border-radius: 50px;
         min-width: 45px;
         position: fixed;
@@ -23935,6 +23994,7 @@ strong {
         left: 94.5%;
     }
 }
+
 .bounce2 {
     -moz-animation: bounce 2s infinite;
     -webkit-animation: bounce 2s infinite;
@@ -24705,7 +24765,11 @@ strong {
     border-radius: 40px;
     background-clip: padding-box;
     min-width: 40px;
-    background: var(--secoundry)
+    background: var(--secoundry);
+}
+
+.footer__primary .social__link:hover {
+    background: var(--trinetry);
 }
 
 .footer__primary .social__item+.social__item {
