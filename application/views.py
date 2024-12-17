@@ -63,37 +63,37 @@ def scientist_staff(request):
     return render(request, 'scientist-staff.html')
 
 def scientist_details(request):
-    return render(request, 'scientist-details.html')
+    return render(request, 'scientist-staff-details.html')
 
 def administration_staff(request):
     return render(request, 'administration-staff.html')
 
 def administration_details(request):
-    return render(request, 'administration-details.html')
+    return render(request, 'administration-staff-details.html')
 
 def technical_staff(request):
     return render(request, 'technical-staff.html')
 
 def technical_details(request):
-    return render(request, 'technical-details.html')
+    return render(request, 'technical-staff-details.html')
 
 def project_staff(request):
     return render(request, 'project-staff.html')
 
 def project_details(request):
-    return render(request, 'project-details.html')
+    return render(request, 'project-staff-details.html')
 
 def students_list(request):
     return render(request, 'students-list.html')
 
 def student_details(request):
-    return render(request, 'student-details.html')
+    return render(request, 'student-staff-details.html')
 
 def alumini_staff(request):
     return render(request, 'alumini-staff.html')
 
 def alumini_details(request):
-    return render(request, 'alumini-details.html')
+    return render(request, 'alumini-staff-details.html')
 
 def publications_list(request):
     return render(request, 'publications-list.html')
@@ -103,9 +103,6 @@ def niih_bulletin_list(request):
 
 def bgrc_news_letter(request):
     return render(request, 'bgrc-news-letter.html')
-
-# def projects_list(request):
-#     return render(request, 'projects-list.html')
 
 def ongoing_projects_list(request):
     return render(request, 'ongoing-projects-list.html')
@@ -125,3 +122,5 @@ def tenders_list(request):
 def reports_list(request):
     return render(request, 'reports-list.html')
 
+def photo_details(request):
+    return render(request, 'photo-details.html')
