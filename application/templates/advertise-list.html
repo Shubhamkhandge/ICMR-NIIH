@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="inner__header-breadcrumb">
-                        <h1 class="page-title">Circulars</h1>
+                        <h1 class="page-title">Advertise</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                                 <li class="breadcrumb-item text-white">More</li>
-                                <li aria-current="page" class="breadcrumb-item active text-warning">Circulars List</li>
+                                <li aria-current="page" class="breadcrumb-item active text-warning">Advertise List</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,32 +34,7 @@
                 <div class="tabView">
                     <div class="tab-content">
                         <div class="tab-pane container active" id="tab11">
-                            <div class="baseFilter">
-                                <form method="GET" action="#">
-                                    <div class="baseFilter__main">
-                                        <div class="formView">
-                                            <!-- Name Filter -->
-                                            <div class="formView__group">
-                                                <label class="form-label" for="nameFilter">Name</label>
-                                                <input type="text" id="nameFilter" class="form-control" name="nameFilter" placeholder="Enter Title" />
-                                            </div>
-                
-                                            <!-- Date Filter -->
-                                            <div class="formView__group">
-                                                <label class="form-label" for="dateFilter">Date</label>
-                                                <input type="date" class="form-control" name="dateFilter" id="dateFilter" />
-                                            </div>
-                                        </div>
-                
-                                        <div class="actions">
-                                            <!-- Search button -->
-                                            <button type="submit" class="theme__btn theme__btn--orange theme__btn--radius50 u-small">Search</button>
-                                            <!-- Reset button -->
-                                            <button type="button" id="resetButton" class="theme__btn theme__btn--grey theme__btn--radius50 u-small">Reset</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            
                 
                             <div class="tableView mt-3">
                                 <div class="table-responsive switchIcon">
@@ -68,7 +43,8 @@
                                             <tr>
                                                 <th class="w-1">Sr.No</th>
                                                 <th class="w-70">Title</th>
-                                                <th class="w-10">Date Of Circular</th>
+                                                <th class="w-10">Date Of Advertise</th>
+                                                <th class="w-10">Last Date Of Advertise</th>
                                                 <th class="w-12">Document</th>
                                             </tr>
                                         </thead>
@@ -77,6 +53,7 @@
                                                 <td>1</td>
                                                 <td>Reminder for Submission of Income Tax Declaration Form for the FY 2024-25, before 05.01.25 (along with Self attested Investment Copies)</td>
                                                 <td class="circular-date">09-12-2024</td>
+                                                <td class="circular-date">18-12-2024</td>
                                                 <td>
                                                     <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}" target="_blank">
                                                         <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
@@ -88,6 +65,7 @@
                                                 <td>2</td>
                                                 <td>Office Closure for Maharashtra Assembly Election Voting on 20th November, 2024.</td>
                                                 <td class="circular-date">18-11-2024</td>
+                                                <td class="circular-date">24-11-2024</td>
                                                 <td>
                                                     <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}" target="_blank">
                                                         <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
@@ -99,6 +77,7 @@
                                                 <td>3</td>
                                                 <td>Urgent Data for Medical Benefits under NHA-reg.</td>
                                                 <td class="circular-date">13-11-2024</td>
+                                                <td class="circular-date">20-11-2024</td>
                                                 <td>
                                                     <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}" target="_blank">
                                                         <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
@@ -110,6 +89,7 @@
                                                 <td>4</td>
                                                 <td>Emoluments Bills of Project Staff to be verified based on the attendance records of AEBAS-reg.</td>
                                                 <td class="circular-date">12-11-2024</td>
+                                                <td class="circular-date">28-11-2024</td>
                                                 <td>
                                                     <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}" target="_blank">
                                                         <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
@@ -121,6 +101,7 @@
                                                 <td>5</td>
                                                 <td>Call for Nominations under Rashtriya Vigyan Puraskar-2025.</td>
                                                 <td class="circular-date">11-11-2024</td>
+                                                <td class="circular-date">24-11-2024</td>
                                                 <td>
                                                     <a class="descView__link" href="{% static 'uploads/Documents/c1.pdf' %}" target="_blank">
                                                         <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />

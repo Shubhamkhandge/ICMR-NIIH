@@ -16655,7 +16655,7 @@ strong {
 
     .breadcrumb .breadcrumb-item,
     a {
-        font-size: var(--fs-9) !important;
+        /* font-size: var(--fs-9) !important; */
     }
 
     .breadcrumb .breadcrumb-item+.breadcrumb-item:before {
@@ -23133,7 +23133,7 @@ strong {
 .mediaCard__item {
     background: var(--grey2);
     padding: 15px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     overflow: hidden;
     -webkit-border-radius: 18px;
     border-radius: 18px;

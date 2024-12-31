@@ -1,8 +1,7 @@
 from django.contrib.sessions.models import Session
-from datetime import datetime
 from django.contrib.auth import logout
 from django.utils import timezone
-from django.shortcuts import render,redirect
+from django.shortcuts import redirect
 
 class SessionTimeoutMiddleware:
     def process_request(self, request):

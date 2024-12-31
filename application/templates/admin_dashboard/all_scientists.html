@@ -1,0 +1,44 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container-fluid p-5">
+    <h2 class="text-center mb-4 text-uppercase">Manage Scientists<hr></h2>
+    <!-- Departments Table -->
+    <a href="/admin_dashboard/add_scientist"><button class="btn btn-primary mb-3" style="float: right;">Add Scientists</button></a>
+
+    <table class="table table-responsive table-bordered" id="scientists-table">
+        <thead class="text-center">
+            <th>ID</th>
+            <th>Scientist Name</th>
+            <th>Deignation</th>
+            <th>Division</th>
+            <th>Email ID</th>
+            <th>Specialization</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <tr style="text-align: center;">
+                <td>1</td>
+                <td>Dr. Manisha R. Madkaikar</td>
+                <td>Director & Scientist G</td>
+                <td>ICMR-NIIH</td>
+                <td style="text-align: justify;">
+                    <table>
+                        <tr>
+                            <td>madkaikarmanisha@yahoo.co.in</td>
+                        </tr>
+                        <tr>
+                            <td>directorniih@gmail.com</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>Primary Immunodeficiency Disorders and Hematological Malignancy</td>
+                <td><a href="/admin_dashboard/update_scientist"><i class="fa-solid fa-edit text-success"></i></a></td>
+                <td><a href="/admin_dashboard/delete_scientist"><i class="fa-solid fa-trash text-danger"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

@@ -1,0 +1,60 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container p-5">
+    <h2 class="text-center mb-4 text-uppercase">Manage Departments<hr></h2>
+    <!-- Departments Table -->
+    <a href="/admin_dashboard/add_department"><button class="btn btn-primary mb-3" style="float: right;">Add Departments</button></a>
+
+    <table class="table table-responsive table-bordered" id="departments-table">
+        <thead class="text-center">
+            <th>ID</th>
+            <th>Department Name</th>
+            <th>Head of Department</th>
+            <!-- <th>Description1</th>
+            <th>Description2</th>
+            <th>Description3</th> -->
+            <!-- <th>Research Focus and Achievements</th>
+            <th>Research Project Name</th>
+            <th>Research Project Description</th>
+            <th>Research Project Details</th>
+            <th>Staff</th> -->
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <tr style="text-align: center;">
+                <td>1</td>
+                <td>Clinical & Experimental Immunology</td>
+                <td>Dr. Vandana D. Pradhan</td>
+                <!-- <td>The Department of Autoimmune Disorders, established in 1985, has been a pioneer in the diagnosis, treatment, and research of autoimmune diseases. Initially named the Department of Autoimmune Disorders, it has grown to become a leading center for understanding the complexities of autoimmune conditions, with a focus on immunobiology, immune regulation, and immunogenetics. This department plays a vital role in both clinical care and groundbreaking research, contributing to advancements in the field of autoimmune diseases and related immune disorders.</td>
+                <td>Every year, around 4000 cases are referred to the department for suspected autoimmune disorders. The department’s clinical focus is on diagnosing these conditions by screening for autoantibodies such as anti-nuclear antibodies (ANA), anti-dsDNA antibodies, and anti-neutrophil cytoplasmic antibodies (ANCA). For this, a variety of advanced diagnostic methods and assays are used, including enzyme-linked immunosorbent assay (ELISA), line blot assays, and nephelometers for detecting autoantibodies and other immune parameters. These diagnostic tools are vital in the early identification and treatment of autoimmune diseases.</td>
+                <td>Once diagnosed, patients are provided with treatment and closely monitored over time. The department follows up with patients at regular intervals to assess disease activity, making sure to adjust treatment plans as necessary to ensure effective disease management.</td> -->
+                <!-- <td>The department focuses on immunobiology, immune regulation, and immunogenetics, particularly in autoimmune and infectious diseases. Recent research includes a project on catalytic antibodies under the ICMR-INSERM International Associated Laboratories (IAL) program, providing key insights into immune regulation. Future research aims to explore cellular immunology to better understand disease progression and identify therapeutic targets.</td>
+                <td>SLE Study in North Eastern India</td>
+                <td>Early diagnosis and pathogenesis of Systemic Lupus Erythematosus (SLE).</td>
+                <td>PI: Dr. Vandana D. Pradhan</td>
+                <td>
+                    <table class="table tbl2 table-bordered">
+                        <thead>
+                            <th class="text-center">Sr. No.</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Designation</th>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>1</td>
+                                <td><strong>Dr. Anindita Banerjee</strong></td>
+                                <td>Scientist E</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td> -->
+                <td><a href="/admin_dashboard/update_department"><i class="fa-solid fa-edit text-success"></i></a></td>
+                <td><a href="/admin_dashboard/delete_department"><i class="fa-solid fa-trash text-danger"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}
