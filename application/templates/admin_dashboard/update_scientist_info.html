@@ -1,0 +1,145 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update Scientist Information
+        <a href="/admin_dashboard/all_scientists_staff"><div class="btn text-danger" style="float: right; font-size: 25px; font-weight: 600;">X</div><hr></a>
+    </h2>
+
+    <!-- Add Scientist Form -->
+    <div class="col-md-12 mb-3 d-flex">
+        <div class="col-1">
+            <label for="scientistId" class="form-label text-dark mt-1" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Scientist ID : </label>
+        </div>
+        <div class="col-1">
+            <input type="text" class="form-control rounded-0" id="scientistId" name="scientistId"  style="text-align: center;" required>
+        </div>
+    </div>
+    <div class="col-md-10 m-auto">
+        <form action="#" method="POST" class="form" id="add-department-form" enctype="multipart/form-data">
+            
+            <div class="row">
+                <!-- Department Name -->
+                <!-- <div class="col-2 mb-3">
+                    <label for="departmentId" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department ID : </label>
+                    <input type="text" class="form-control rounded-0" id="departmentId" name="departmentId" required>
+                </div> -->
+
+                <!-- Profile Picture Upload -->
+                <!-- <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="profilePicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Profile Picture : </label>
+                        <input type="file" class="form-control rounded-0" id="profilePicture" name="profilePicture" accept="image/*" onchange="previewImage(event)" required>
+                        
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="mt-3">
+                            <img id="preview" src="#" alt="Profile Picture Preview" class="img-fluid" style="max-height: 200px; display: none;">
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row mx-0 px-0">
+                    <div class="col-6 mb-3">
+                        <label for="scientistName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Scientist Name : </label>
+                        <input type="text" class="form-control rounded-0" id="scientistName" name="scientistName" required>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="divisionName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Division Name : </label>
+                        <input type="text" class="form-control rounded-0" id="divisionName" name="divisionName" required>
+                    </div>
+                </div>
+                <div class="row mx-0 px-0">
+                    <!-- <div class="col-6 mb-3">
+                        <label for="departmentName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Name : </label>
+                        <input type="text" class="form-control rounded-0" id="departmentName" name="departmentName" required>
+                    </div> -->
+                    <div class="col-6 mb-3">
+                        <label for="departmentName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Department : </label>
+                        <select id="departmentName" value="Select Department" name="departmentName" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Department</option>
+                            <option value="Scientist">Scientist</option>
+                            <option value="Administraion">Administraion</option>
+                            <option value="Technical">Technical</option>
+                        </select>
+                    </div>
+                    <!-- <div class="col-6 mb-3">
+                        <label for="designationName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Designation Name : </label>
+                        <input type="text" class="form-control rounded-0" id="designationName" name="designationName" required>
+                    </div> -->
+                    <div class="col-6 mb-3">
+                        <label for="designationName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Designation : </label>
+                        <select id="designationName" value="Select Designation" name="designationName" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Designation</option>
+                            <optgroup label="Scientist">
+                                <option value="Director & Scientist
+                                 G">Director & Scientist G</option>
+                                <option value="scientist G">scientist G</option>
+                                <option value="scientist F">scientist F</option>
+                                <option value="scientist E">scientist E</option>
+                                <option value="scientist B">scientist B</option>
+                            </optgroup>
+                            <optgroup label="Administraion">
+                                <option value="accounts">Accounts</option>
+                                <option value="dataentry">Data Entry</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mx-0 px-0">
+                    <div class="col-6 mb-3">
+                        <label for="emailID" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email ID : </label>
+                        <input type="text" class="form-control rounded-0" id="emailID" name="emailID" required>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="phoneNo" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Phone Number : </label>
+                        <input type="number" class="form-control rounded-0" id="phoneNo" name="phoneNo" required>
+                    </div>
+                </div>
+                <div class="row mx-0 px-0">
+                    <div class="col-6 mb-3">
+                        <label for="faxNo" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">FAX Number : </label>
+                        <input type="number" class="form-control rounded-0" id="faxNo" name="faxNo" required>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="profilePicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Profile Picture : </label>
+                        <input type="file" class="form-control rounded-0" id="profilePicture" name="profilePicture" accept="image/*" onchange="previewImage(event)" required>
+                    </div>
+                </div>
+                <div class="row mx-0 px-0">
+                    <div class="col-6 mb-3">
+                        <label for="status" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Status : </label>
+                        <select id="status" value="Select Status" name="status" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Status</option>
+                            <option value="active">Active</option>
+                            <option value="deactive">Deactive</option>
+                        </select>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="displayOrder" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Display Order : </label>
+                        <input type="number" class="form-control rounded-0" id="displayOrder" name="displayOrder" required>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="researchInterests" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Specialization : </label>
+                    <textarea class="form-control rounded-0" id="researchInterests" name="researchInterests" rows="4" required></textarea>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="academicBackagournd" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Academic Background : </label>
+                    <textarea class="form-control rounded-0" id="academicBackagournd" name="academicBackagournd" rows="4" required></textarea>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="professionalExperience" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Professional Experience : </label>
+                    <textarea class="form-control rounded-0" id="professionalExperience" name="professionalExperience" rows="4" required></textarea>
+                </div>
+                <center>
+                    <div class="mb-3">
+                        <a href="#"><button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Update Depeatment Data</button></a>
+                        <!-- <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-department-form">Reset Depeatment Data</button> -->
+                    </div>
+                </center>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

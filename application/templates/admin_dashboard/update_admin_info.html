@@ -1,0 +1,53 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update Administration Information
+        <a href="/admin_dashboard/all_admin_staff"><div class="btn text-danger" style="float: right; font-size: 25px; font-weight: 600;">X</div><hr></a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-8 m-auto">
+        <form action="#" method="POST" class="form" id="add-department-form">
+            <div class="row">
+                <!-- Department Name -->
+                <div class="col-2 mb-3">
+                    <label for="scientistId" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Scientist ID : </label>
+                    <input type="text" class="form-control rounded-0" id="scientistId" name="scientistId" required>
+                </div>
+                <div class="col-10 mb-3">
+                    <label for="scientistName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Scientist Name : </label>
+                    <input type="text" class="form-control rounded-0" id="scientistName" name="scientistName" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label for="designationName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Designation Name : </label>
+                    <input type="text" class="form-control rounded-0" id="designationName" name="designationName" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="divisionName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Division Name : </label>
+                    <input type="text" class="form-control rounded-0" id="divisionName" name="divisionName" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="emailID" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email ID : </label>
+                    <input type="text" class="form-control rounded-0" id="emailID" name="emailID" required>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="specialization" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Specialization : </label>
+                    <textarea class="form-control rounded-0" id="specialization" name="specialization" rows="4" required></textarea>
+                </div>
+            </div>
+        </form>
+        <center>
+            <div class="mb-3">
+                <a href="#"><button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Update Depeatment Data</button></a>
+                <!-- <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-department-form">Reset Depeatment Data</button> -->
+            </div>
+        </center>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

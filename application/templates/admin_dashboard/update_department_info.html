@@ -1,14 +1,14 @@
 {% include 'admin_dashboard/includes/header.html'%}
 {% load static %}
 
-<div class="container my-5">
-    <h2 class="text-center mb-4 text-uppercase">Update Scientist Information
-        <a href="/admin_dashboard/all_scientist"><div class="btn text-danger" style="float: right; font-size: 25px; font-weight: 600;">X</div><hr></a>
+<div class="container my-3">
+    <h2 class="text-center mb-4 text-uppercase">Update Department
+        <a href="/admin_dashboard/all_departments"><div class="btn text-danger" style="float: right; font-size: 25px; font-weight: 600;">X</div><hr></a>
     </h2>
 
     <!-- Add Department Form -->
     <div class="col-md-10 m-auto">
-        <form action="#" method="POST" class="form" id="add-scientist-form">
+        <form action="#" method="POST" class="form" id="add-department-form">
             <div class="row">
                 <!-- Department Name -->
                 <div class="col-2 mb-3">
@@ -31,24 +31,24 @@
                 <!-- Description (3 Paragraphs) -->
                 <div class="col-12 mb-3">
                     <label for="description1" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Description (Paragraph 1) : </label>
-                    <textarea class="form-control rounded-0" id="description1" name="description1" rows="6" required></textarea>
+                    <textarea class="form-control rounded-0" id="description1" name="description1" rows="5" required></textarea>
                 </div>
                 
                 <div class="col-12 mb-3">
                     <label for="description2" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Description (Paragraph 2) : </label>
-                    <textarea class="form-control rounded-0" id="description2" name="description2" rows="6" required></textarea>
+                    <textarea class="form-control rounded-0" id="description2" name="description2" rows="5" required></textarea>
                 </div>
     
                 <div class="col-12 mb-3">
                     <label for="description3" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Description (Paragraph 3) : </label>
-                    <textarea class="form-control rounded-0" id="description3" name="description3" rows="6" required></textarea>
+                    <textarea class="form-control rounded-0" id="description3" name="description3" rows="5" required></textarea>
                 </div>
             </div>
         </form>
         <center>
             <div class="mb-3">
-                <a href="#"><button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add Depeatment Data</button></a>
-                <a href="#"><button type="reset" class="btn btn-danger px-5 py-2 rounded-0">Reset Depeatment Data</button></a>
+                <a href="#"><button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Update Department Data</button></a>
+                <a href="#"><button type="reset" class="btn btn-danger px-5 py-2 rounded-0">Reset Department Data</button></a>
             </div>
         </center>
     </div>

@@ -209,6 +209,12 @@ class scientific_staff(models.Model):
     status = models.BooleanField(default=True)  # Changed to BooleanField
     data_created = models.DateTimeField(null=True)  # Changed to DateTimeField
 
+# Model for Scientific Staff
+class admin_staff(models.Model):
+    staff_name = models.CharField(max_length=255, null=True)
+    designation = models.CharField(max_length=255, null=True)
+    department_name = models.CharField(max_length=255,null=True)
+
 class out_publications(models.Model):
     publication_title = models.CharField(max_length=255, null=True)
     author_name = models.CharField(max_length=255, null=True)

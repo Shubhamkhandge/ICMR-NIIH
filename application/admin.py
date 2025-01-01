@@ -19,21 +19,30 @@ def dashboard_view(request):
 def user_registration(request):
     return render(request, 'admin_dashboard/user_registration.html')
 
-def user_registration(request):
-    return render(request, 'admin_dashboard/user_registration.html')
-
 def all_departments(request):
     return render(request, 'admin_dashboard/all_departments.html')
 
-def add_department(request):
-    return render(request, 'admin_dashboard/add_department.html')
+def add_department_info(request):
+    return render(request, 'admin_dashboard/add_department_info.html')
             
-def update_department(request):
-    return render(request, 'admin_dashboard/update_department.html')
+def update_department_info(request):
+    return render(request, 'admin_dashboard/update_department_info.html')
             
-def all_scientists(request):
-    return render(request, 'admin_dashboard/all_scientists.html')
+def all_scientists_staff(request):
+    return render(request, 'admin_dashboard/all_scientists_staff.html')
                    
-def add_scientist(request):
-    return render(request, 'admin_dashboard/add_scientist.html')
+def add_scientist_info(request):
+    return render(request, 'admin_dashboard/add_scientist_info.html')
+                            
+def update_scientist_info(request):
+    return render(request, 'admin_dashboard/update_scientist_info.html')
+            
+def all_admin_staff(request):
+    return render(request, 'admin_dashboard/all_admin_staff.html')
+                   
+def add_admin_info(request):
+    return render(request, 'admin_dashboard/add_admin_info.html')
+                            
+def update_admin_info(request):
+    return render(request, 'admin_dashboard/update_admin_info.html')
             
