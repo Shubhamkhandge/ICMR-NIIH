@@ -6,7 +6,7 @@ from django.http import QueryDict
 from application.forms import CaptchaForm
 from django.http import HttpRequest
 from django.contrib import messages
-from .models import department_staff, departments, department
+from .models import *
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import datetime
@@ -56,14 +56,11 @@ def contact_directory(request):
 
 # Department-related pages
 def departments_list(request):
-    d_name = department.objects.values_list('department_name','department_info')
-    return render(request, 'departments.html', {'d_name': d_name})
+    d_name = dept_info.objects.values_list('department_name','department_info')
+    return render(request, 'departments.html',{'dept_info':d_name})
     
-
 def departments_details(request):
-    d_name = department.objects.values_list('hod_name')
-    d_info = departments.objects.values_list('department_name','about_department1','about_department2','about_department3','about_research')
-    return render(request, 'departments-details.html', {'d_info': d_info, 'd_name': d_name})
+    return render(request, 'departments-details.html')
 
 # Staff-related pages
 def scientist_staff(request):

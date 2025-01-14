@@ -41,18 +41,18 @@
                     <div class="colorBox">
                         <div class="colorBox__list managedItem">
                             <div class="row">
-                                {% for x in d_name %}
+                                {% for d_name in dept_info %}
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="colorBox__list-item lightBg">
                                         <div class="content-area w-100">
-                                            <h4 class="title withBorder">{{x.0}}</h4>
+                                            <h4 class="title withBorder">{{d_name.0}}</h4>
                                             <div class="linkView__container">
                                                 <a class="linkView" href="/departments-details" rel="noopener noreferrer">
                                                     <span class="iconView">
                                                         <img class="Document Icon" src="{% static 'dist/images/svg/info_icon.svg' %}" />
                                                     </span>
                                                     <span class="content">
-                                                        {{x.1}}
+                                                        {{d_name.1}}
                                                     </span>
                                                 </a>
                                             </div>

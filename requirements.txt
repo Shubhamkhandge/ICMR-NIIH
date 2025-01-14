@@ -16,3 +16,25 @@ mysql
 # Django admin
 # -username : admin
 # -password : Niih@123
+    d_name = department.objects.values_list('department_name','department_info')
+    return render(request, 'departments.html', {'d_name': d_name})
+
+    
+    if request.method=='POST':
+        d_id=request.POST.get('department_id')
+        d_name=request.POST.get('department_name')
+        hid=request.POST.get('hod_id')
+        hname=request.POST.get('hod_name')
+        dinfo=request.POST.get('department_info')
+        radio_selected = request.POST.get('tax-calculation', None)
+            ab1=request.POST.get('about_department1')
+            ab2=request.POST.get('about_department2')
+            ab3=request.POST.get('about_department3')
+            ars=request.POST.get('about_research')
+            rsp=request.POST.get('research_projects')
+            sd=request.POST.get('staff_designation')
+            se=request.POST.get('staff_email')
+            sdo=request.POST.get('staff_display_order')
+            do=request.POST.get('display_order')
+
+

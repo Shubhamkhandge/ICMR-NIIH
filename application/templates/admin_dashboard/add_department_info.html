@@ -1,58 +1,131 @@
-{% include 'admin_dashboard/includes/header.html'%}
+{% include 'admin_dashboard/includes/header.html' %}
 {% load static %}
 
-<div class="container fixed my-3">
+<div class="container fixed my-5">
     <h2 class="text-center mb-4 text-uppercase">Add Department
-        <a href="/admin_dashboard/all_departments"><div class="btn text-danger" style="float: right; font-size: 25px; font-weight: 600;">X</div><hr></a>
+        <a href="/admin_dashboard/all_departments">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
     </h2>
-    
 
     <!-- Add Department Form -->
-    <div class="col-md-10 m-auto">
-        <form action="#" method="POST" class="form" id="add-department-form">
+    <div class="col-md-10 pb-2 m-auto">
+        <form action="{% url 'add_department_info' %}" method="POST" class="form" id="add-department-form" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="row">
-                <!-- Department Name -->
-                <!-- <div class="col-2 mb-3">
-                    <label for="departmentId" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department ID : </label>
-                    <input type="text" class="form-control rounded-0" id="departmentId" name="departmentId" required>
-                </div> -->
+                <!-- Department ID -->
+                <div class="col-3 mb-3">
+                    <label for="department_id" class="form-label text-dark" style="font-weight: 600;">Department ID : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="department_id" placeholder="Enter Department ID" name="department_id" required>
+                </div> 
 
-                <div class="col-6 mb-3">
-                    <label for="departmentName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Name : </label>
-                    <input type="text" class="form-control rounded-0" id="departmentName" name="departmentName" required>
+                <!-- Department Name -->
+                <div class="col mb-3">
+                    <label for="lab_department_name" class="form-label text-dark" style="font-weight: 600;">Department Name : </label>
+                    <input type="text" class="form-control rounded-0" id="lab_department_name" placeholder="Enter Department Name" name="lab_department_name" required>
                 </div>
-    
-                <!-- Head of Department -->
-                <div class="col-6 mb-3">
-                    <label for="headOfDepartment" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Head of Department : </label>
-                    <input type="text" class="form-control rounded-0" id="headOfDepartment" name="headOfDepartment" required>
+            </div>
+
+            <div class="row">
+                <!-- Head of Department ID -->
+                <div class="col mb-3">
+                    <label for="scientist_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select HOD Name : </label>
+                    <select id="scientist_name" value="Select Department" name="scientist_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select HOD Name</option>
+                        <optgroup label="Scientist">
+                        {% for i in scientist_name %}
+                            <option value="{{i.0}}">{{i.0}}</option>
+                        {% endfor %}
+                        </optgroup>
+                    </select>
+                </div>
+                <!-- <div class="col-6 mb-3">
+                    <label for="hod_id" class="form-label text-dark" style="font-weight: 600;">Head of Department ID : </label>
+                    <input type="text" class="form-control rounded-0" id="hod_id" name="hod_id" required>
+                </div> -->
+                <!-- Head of Department Name -->
+                <div class="col mb-3">
+                    <label for="department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Department : </label>
+                    <select id="department_name" value="Select Department" name="department_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Department</option>
+                        {% for i in dropdept %}
+                        <option value="{{i.0}}">{{i.0}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col mb-3">
+                    <label for="staff_designation" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Designation : </label>
+                    <select id="staff_designation" value="Select Designation" name="staff_designation" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Designation</option>
+                        <optgroup label="Scientist">
+                        {% for i in dropdesig %}
+                            <option value="{{i.0}}">{{i.0}}</option>
+                        {% endfor %}
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="col mb-3">
+                    <label for="staff_email" class="form-label text-dark" style="font-weight: 600;">HOD Email ID : </label>
+                    <input type="email" class="form-control rounded-0" id="staff_email" placeholder="Enter HOD Email ID" name="staff_email" required>
+                </div> 
+            </div>
+            <div class="row">
+                <!-- Department Info -->
+                <div class="col mb-3">
+                    <label for="department_info" class="form-label text-dark" style="font-weight: 600;">Department Info : </label>
+                    <textarea class="form-control rounded-0" id="department_info" placeholder="Enter Department Information" name="department_info" rows="2" required></textarea>
                 </div>
             </div>
             <div class="row">
                 <!-- Description (3 Paragraphs) -->
                 <div class="col-12 mb-3">
-                    <label for="description1" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Description (Paragraph 1) : </label>
-                    <textarea class="form-control rounded-0" id="description1" name="description1" rows="5" required></textarea>
+                    <label for="about_department1" class="form-label text-dark" style="font-weight: 600;">Department Description (Paragraph 1) : </label>
+                    <textarea class="form-control rounded-0" id="about_department1" placeholder="Enter Description Paragraph(1)" name="about_department1" rows="5" required></textarea>
                 </div>
-                
                 <div class="col-12 mb-3">
-                    <label for="description2" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Description (Paragraph 2) : </label>
-                    <textarea class="form-control rounded-0" id="description2" name="description2" rows="5" required></textarea>
+                    <label for="about_department2" class="form-label text-dark" style="font-weight: 600;">Department Description (Paragraph 2) : </label>
+                    <textarea class="form-control rounded-0" id="about_department2" placeholder="Enter Description Paragraph(2)" name="about_department2" rows="5" required></textarea>
                 </div>
-    
                 <div class="col-12 mb-3">
-                    <label for="description3" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Description (Paragraph 3) : </label>
-                    <textarea class="form-control rounded-0" id="description3" name="description3" rows="5" required></textarea>
+                    <label for="about_department3" class="form-label text-dark" style="font-weight: 600;">Department Description (Paragraph 3) : </label>
+                    <textarea class="form-control rounded-0" id="about_department3" placeholder="Enter Description Paragraph(3)" name="about_department3" rows="5" required></textarea>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="about_research" class="form-label text-dark" style="font-weight: 600;">About Research : </label>
+                    <textarea class="form-control rounded-0" id="about_research" placeholder="Enter About Research" name="about_research" rows="5"></textarea>
                 </div>
             </div>
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-department-form">Reset</button>
+                </div>
+            </center>
         </form>
-        <center>
-            <div class="mb-3">
-                <a href="#"><button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add Department Data</button></a>
-                <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-department-form">Reset Department Data</button>
-            </div>
-        </center>
     </div>
 </div>
 
-{% include 'admin_dashboard/includes/footer.html'%}
+<script>
+    function toggleTaxFields() {
+        var oldTax = document.getElementById('old-tax');
+        var bottomFields = document.getElementById('bottom-fields');
+
+        if (oldTax.checked) {
+            bottomFields.style.display = 'block';
+        } else {
+            bottomFields.style.display = 'none';
+        }
+    }
+
+    window.onload = function() {
+        var oldTax = document.getElementById('old-tax');
+        toggleTaxFields();
+        oldTax.addEventListener('change', toggleTaxFields);
+    }
+    
+</script>
+
+{% include 'admin_dashboard/includes/footer.html' %}

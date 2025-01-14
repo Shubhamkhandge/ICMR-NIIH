@@ -1,0 +1,70 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container p-5">
+    <h2 class="text-center mb-4 text-uppercase">Manage Designations<hr></h2>
+    <!-- Designations Table -->
+    <a href="/admin_dashboard/add_designation_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add Designation</button></a>
+
+    <table class="table table-responsive table-bordered" id="departments-table">
+        <thead class="text-center">
+            <th>ID</th>
+            <th>Designation Name</th>
+            <th>Department Name</th>
+            <!-- <th>Edit</th> -->
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% for all_desig in all_designation %}
+            <tr style="text-align: center;">
+                <td>{{forloop.counter}}</td>
+                <td>{{all_desig.designation}}</td>
+                <td>{{all_desig.department}}</td>
+                <!-- <td>
+                    <form action="{% url 'update_designation_info' %}" method="POST"
+                        >
+                        {% csrf_token %}
+                        <input type="hidden" name="department_id" value="{{support_deptinfo.department_id}}">
+                         <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                    </form>
+                </td> -->
+                <td>
+                    <form action="{% url 'delete_designation_info' %}" method="POST"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete_data" value="delete_data">
+                        <input type="hidden" name="designation" value="{{all_desig.designation}}">
+                        <input type="hidden" name="department" value="{{all_desig.department}}">
+                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa-solid fa-angles-left text-primary"></i>
+                    </a>
+                </li>
+                <li aria-current="page" class="page-item active">
+                    <span class="page-link">1</span>
+                </li>
+                <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">4</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">5</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa-solid fa-angles-right text-primary"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

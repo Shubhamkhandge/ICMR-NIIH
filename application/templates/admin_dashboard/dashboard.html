@@ -1,109 +1,109 @@
 {% include 'admin_dashboard/includes/header.html'%}
 {% load static %}
 
-<!-- Dashboard Content -->
-<div class="p-4 bg-light">
-    <div class="container-fluid px-5">
-        <h1 class="h3 mb-4">Dashboard <hr></h1>
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h6 text-muted">Total Users</h3>
-                    <p class="h3 mb-2">1,234</p>
-                    <span class="small positive-trend">
-                        <i class="bi bi-arrow-up"></i> 12% from last month
-                    </span>
+    <!-- Dashboard Content -->
+    <div class="p-4 dashboard bg-light">
+        <div class="container-fluid px-5">
+            <h1 class="h3 mb-4">Dashboard <hr></h1>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h6 text-muted">Total Users</h3>
+                        <p class="h3 mb-2">1,234</p>
+                        <span class="small positive-trend">
+                            <i class="bi bi-arrow-up"></i> 12% from last month
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h6 text-muted">Revenue</h3>
+                        <p class="h3 mb-2">$45,678</p>
+                        <span class="small positive-trend">
+                            <i class="bi bi-arrow-up"></i> 8% from last month
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h6 text-muted">Orders</h3> 
+                        <p class="h3 mb-2">567</p>
+                        <span class="small negative-trend">
+                            <i class="bi bi-arrow-down"></i> 3% from last month
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h6 text-muted">Active Users</h3>
+                        <p class="h3 mb-2">890</p>
+                        <span class="small positive-trend">
+                            <i class="bi bi-arrow-up"></i> 15% from last month
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h6 text-muted">Revenue</h3>
-                    <p class="h3 mb-2">$45,678</p>
-                    <span class="small positive-trend">
-                        <i class="bi bi-arrow-up"></i> 8% from last month
-                    </span>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h4 text-center"><a href="/admin_dashboard/all_departments" class="text-decoration-none text-muted">Departments</a></h3>
+                        <p class="h3 mb-2 text-dark text-center">1</p>
+                        <span class="small positive-trend">
+                            <!-- <a href="/admin_dashboard/all_departments" class="text-decoration-none">View departments</a> -->
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h4 text-center"><a href="/admin_dashboard/all_designations" class="text-decoration-none text-muted">Designations</a></h3>
+                        <p class="h3 mb-2 text-dark text-center">1</p>
+                        <span class="small positive-trend">
+                            <!-- <a href="/admin_dashboard/all_departments" class="text-decoration-none">View departments</a> -->
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h6 text-muted">Orders</h3> 
-                    <p class="h3 mb-2">567</p>
-                    <span class="small negative-trend">
-                        <i class="bi bi-arrow-down"></i> 3% from last month
-                    </span>
+            <div class="row">
+                <h2>Staff <hr></h2>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h4 text-center"><a href="/admin_dashboard/all_scientists_staff" class="text-decoration-none text-muted">Scientist</a></h3>
+                        <p class="h3 mb-2 text-dark text-center">1</p>
+                        <span class="small positive-trend">
+                            <!-- <a href="/admin_dashboard/all_scientists_staff" class="text-decoration-none">View Scientists Staff</a> -->
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h6 text-muted">Active Users</h3>
-                    <p class="h3 mb-2">890</p>
-                    <span class="small positive-trend">
-                        <i class="bi bi-arrow-up"></i> 15% from last month
-                    </span>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h4 text-center"><a href="/admin_dashboard/all_admin_staff" class="text-decoration-none text-muted">Administraion</a></h3>
+                        <p class="h3 mb-2 text-dark text-center">1</p>
+                        <span class="small positive-trend">
+                            <!-- <a href="/admin_dashboard/all_admin_staff" class="text-decoration-none">View Admins Staff</a> -->
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h4 text-center"><a href="/admin_dashboard/all_departments" class="text-decoration-none text-muted">Departments</a></h3>
-                    <p class="h3 mb-2 text-dark text-center">1</p>
-                    <span class="small positive-trend">
-                        <!-- <a href="/admin_dashboard/all_departments" class="text-decoration-none">View departments</a> -->
-                    </span>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h4 text-center"><a href="/admin_dashboard/all_technical_staff" class="text-decoration-none text-muted">Technical</a></h3>
+                        <p class="h3 mb-2 text-dark text-center">1</p>
+                        <span class="small positive-trend">
+                            <!-- <a href="/admin_dashboard/all_technical_staff" class="text-decoration-none">View Technical Staff</a> -->
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <h2>Staff <hr></h2>
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h4 text-center"><a href="/admin_dashboard/all_scientists_staff" class="text-decoration-none text-muted">Scientist</a></h3>
-                    <p class="h3 mb-2 text-dark text-center">1</p>
-                    <span class="small positive-trend">
-                        <!-- <a href="/admin_dashboard/all_scientists_staff" class="text-decoration-none">View Scientists Staff</a> -->
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h4 text-center"><a href="/admin_dashboard/all_admin_staff" class="text-decoration-none text-muted">Administraion</a></h3>
-                    <p class="h3 mb-2 text-dark text-center">1</p>
-                    <span class="small positive-trend">
-                        <!-- <a href="/admin_dashboard/all_admin_staff" class="text-decoration-none">View Admins Staff</a> -->
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h4 text-center"><a href="/admin_dashboard/all_technical_staff" class="text-decoration-none text-muted">Technical</a></h3>
-                    <p class="h3 mb-2 text-dark text-center">1</p>
-                    <span class="small positive-trend">
-                        <!-- <a href="/admin_dashboard/all_technical_staff" class="text-decoration-none">View Technical Staff</a> -->
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="stats-card">
-                    <h3 class="h4 text-center"><a href="/admin_dashboard/all_project_staff" class="text-decoration-none text-muted">Project</a></h3>
-                    <p class="h3 mb-2 text-dark text-center">1</p>
-                    <span class="small positive-trend">
-                        <!-- <a href="/admin_dashboard/all_project_staff" class="text-decoration-none">View Project Staff</a> -->
-                    </span>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <h3 class="h4 text-center"><a href="/admin_dashboard/all_project_staff" class="text-decoration-none text-muted">Project</a></h3>
+                        <p class="h3 mb-2 text-dark text-center">1</p>
+                        <span class="small positive-trend">
+                            <!-- <a href="/admin_dashboard/all_project_staff" class="text-decoration-none">View Project Staff</a> -->
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
-{% if messages %}
-    <script type="text/javascript">
-        window.onload = function() {
-            {% for message in messages %}
-                alert("{{ message }}");
-            {% endfor %}
-        }
-    </script>
-{% endif %}
 {% include 'admin_dashboard/includes/footer.html'%}

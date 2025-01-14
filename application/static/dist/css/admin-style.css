@@ -12,8 +12,9 @@ body {
 }
 
 .sidebar {
-    width: 330px;
-    height: 100vh;
+    width: 280px;
+    height: 100%;
+    margin-top: 80px;
     position: fixed;
     left: 0;
     top: 0;
@@ -27,13 +28,18 @@ body {
     width: 70px;
 }
 
+.sidebar i .collapsed {
+    align-items: center;
+    justify-content: center;
+}
+
 .sidebar.collapsed .nav-text,
 .sidebar.collapsed .submenu {
     display: none;
 }
 
 .main-content {
-    margin-left: 260px;
+    margin-left: 280px;
     transition: all 0.3s ease;
 }
 
@@ -116,3 +122,4 @@ i {
     height: auto;
     text-align: center;
 }
+

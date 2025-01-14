@@ -1,0 +1,102 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container my-3">
+    <h2 class="text-center mb-4 text-uppercase">Update Support Department
+        <a href="/admin_dashboard/all_support_departments">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <div class="col-md-10 m-auto">
+        <!-- Add Department Form -->
+        <form action="" method="POST" class="form" id="add-department-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{update_data.0.id}} -->
+            <div class="col-12 d-none">
+                <input type="hidden" name="update_data" value="update_data">
+            </div>
+            <div class="row">
+                <!-- Department ID -->
+                <div class="col-6 mb-3">
+                    <label for="department_id" class="form-label text-dark" style="font-weight: 600;">Department ID : </label>
+                    <input type="number" readonly class="form-control rounded-0" id="department_id" value="{{update_data.0.department_id}}" name="department_id" required>
+                </div> 
+
+                <!-- Department Name -->
+                <div class="col-6 mb-3">
+                    <label for="department_name" class="form-label text-dark" style="font-weight: 600;">Department Name : </label>
+                    <input type="text"  value="{{update_data.0.department_name}}" class="form-control rounded-0" id="department_name" name="department_name" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Head of Department ID -->
+                <!-- <div class="col-6 mb-3">
+                    <label for="hod_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your HOD ID : </label>
+                    <select id="hod_id" value="Select Department" name="hod_id" class="form-select rounded-0">
+                        <option value="" selected disabled>Select HOD ID</option>
+                        <optgroup label="Scientist Department">
+                            <option value="1045">1045</option>
+                            <option value="1012">1012</option>
+                            <option value="1527">1527</option>
+                        </optgroup>
+                    </select>
+                </div> -->
+                <div class="col-6 mb-3">
+                    <label for="hod_id" class="form-label text-dark" style="font-weight: 600;">Head of Department ID : </label>
+                    <input type="text" value="{{update_data.0.hod_id}}" class="form-control rounded-0" id="hod_id" name="hod_id" required>
+                </div>
+                <!-- Head of Department Name -->
+                <!-- <div class="col-6 mb-3">
+                    <label for="hod_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your HOD Name : </label>
+                    <select id="hod_name" value="Select Department" name="hod_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select HOD Name</option>
+                        <optgroup label="Scientist Department">
+                            <option value="Dr. Vandana D Pradhan">Dr. Vandana D Pradhan</option>
+                            <option value="Dr. Vandana D Pradhan">Dr. Vandana D Pradhan</option>
+                            <option value="Dr. Vandana D Pradhan">Dr. Vandana D Pradhan</option>
+                        </optgroup>
+                    </select>
+                </div> -->
+                <div class="col-6 mb-3">
+                    <label for="hod_name" class="form-label text-dark" style="font-weight: 600;">Head of Department Name : </label>
+                    <input type="text" value="{{update_data.0.hod_name}}" class="form-control rounded-0" id="hod_name" name="hod_name" required>
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Update</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-department-form">Reset</button>
+                </div>
+            </center>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function toggleTaxFields() {
+        var oldTax = document.getElementById('old-tax');
+        var bottomFields = document.getElementById('bottom-fields');
+
+        if (oldTax.checked) {
+            bottomFields.style.display = 'block';
+        } else {
+            bottomFields.style.display = 'none';
+        }
+    }
+
+    window.onload = function() {
+        var oldTax = document.getElementById('old-tax');
+        toggleTaxFields();
+        oldTax.addEventListener('change', toggleTaxFields);
+    }
+    
+</script>
+
+{% include 'admin_dashboard/includes/footer.html' %}

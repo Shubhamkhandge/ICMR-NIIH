@@ -1,0 +1,132 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb px-3 py-2" style="font-family:Arial, Helvetica, sans-serif; font-weight: 550;">
+        <li class="breadcrumb-item"><a href="\admin_dashboard\dashboard" class="text-decoration-none text-primary">Dashboard</a></li>
+        <li class="breadcrumb-item text-primary">About NIIH</li>
+        <li aria-current="page" class="breadcrumb-item active text-danger">Vision, Mission & Mandate</li>
+    </ol>
+</nav>
+
+<div class="container fixed mb-5">
+    <h2 class="text-center mb-4 text-uppercase">Add Vision, Mission & Mandate Information<hr></h2>
+    
+    <!-- Add Department Form -->
+    <div class="col-md-8 m-auto">
+        <form action="#" method="POST" class="form" id="add-department-form" enctype="multipart/form-data">
+            <div class="row">
+                <!-- Profile Picture Upload -->
+                <!-- <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="profilePicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Profile Picture : </label>
+                        <input type="file" class="form-control rounded-0" id="profilePicture" name="profilePicture" accept="image/*" onchange="previewImage(event)" required>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="mt-3">
+                            <img id="preview" src="#" alt="Profile Picture Preview" class="img-fluid" style="max-height: 200px; display: none;">
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row mx-0 px-0">
+                    <h4>Welcome Information :</h4>
+                    <div class="col-12 mb-3">
+                        <label for="welcomeInfo" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">About NIIH : </label>
+                        <textarea class="form-control rounded-0" id="welcomeInfo" name="welcomeInfo" rows="4" required></textarea>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-0 px-0">
+                    <h4>Vision Information :</h4>
+                    <div class="col-12 mb-3">
+                        <!-- <label for="aboutVision" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">About Vision : </label> -->
+                        <textarea class="form-control rounded-0" id="aboutVision" name="aboutVision" rows="4" required></textarea>
+                    </div>
+                    <h4>Vision Photo :</h4>
+                    <div class="col-12 mb-3">
+                        <!-- <label for="profilePicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Profile Picture : </label> -->
+                        <input type="file" class="form-control rounded-0" id="profilePicture" name="profilePicture" accept="image/*" onchange="previewImage(event)" required>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-0 px-0">
+                    <h4>Mission Information :</h4>
+                    <div class="mb-4">
+                        <label for="researchInterests" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Specialization : </label>
+                        <input type="text" class="form-control rounded-0" id="scientistName" name="scientistName" required>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="researchInterests" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Specialization : </label>
+                        <textarea class="form-control rounded-0" id="researchInterests" name="researchInterests" rows="4" required></textarea>
+                    </div>
+                    <h4>Mission Photo :</h4>
+                    <div class="col-12 mb-3">
+                        <!-- <label for="profilePicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Profile Picture : </label> -->
+                        <input type="file" class="form-control rounded-0" id="profilePicture" name="profilePicture" accept="image/*" onchange="previewImage(event)" required>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <!-- Record 1 -->
+                            <div class="row">
+                                <!-- Subject Section -->
+                                <div class="col-md-6">
+                                    <h5>Subject: Record 1</h5>
+                                </div>
+                                <!-- Form Section -->
+                                <div class="col-md-6">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="exampleInputName">Name</label>
+                                            <input type="text" class="form-control" id="exampleInputName" placeholder="Enter name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail">Email</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="row mx-0 px-0">
+                    <h4>Mandate Information :</h4>
+                    <div class="col-12 mb-3">
+                        <!-- <label for="researchInterests" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Specialization : </label> -->
+                        <textarea class="form-control rounded-0" id="researchInterests" name="researchInterests" rows="4" required></textarea>
+                    </div>
+                </div>
+                <hr>
+                <center>
+                    <div class="mb-3">
+                        <a href="#"><button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add Depeatment Data</button></a>
+                        <button type="reset" class="btn btn-danger px-5 py-2 rounded-0">Reset Depeatment Data</button>
+                    </div>
+                </center>
+            </div>
+        </form>
+        <!-- <script>
+            // JavaScript function to preview the selected profile picture
+            function previewImage(event) {
+                const preview = document.getElementById('preview');
+                const file = event.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = 'none';
+                }
+            }
+        </script> -->
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}
