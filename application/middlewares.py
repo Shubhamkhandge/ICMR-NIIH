@@ -10,7 +10,7 @@ class SessionTimeoutMiddleware:
             last_activity = request.session.get('last_activity', now)
             if (now - last_activity).total_seconds() > 240:
                 logout(request)
-                return redirect("adds")
+                return redirect("login_page")
         request.session['last_activity'] = now
 
 class OneSessionPerUserMiddleware:

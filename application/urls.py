@@ -16,7 +16,7 @@ urlpatterns = [
     path('contact-directory/', views.contact_directory, name='contact-directory'),
     
     # Department-related pages
-    path('departments/', views.departments_list, name='departments'),
+    path('departments/', views.departments, name='departments'),
     path('departments-details/', views.departments_details, name='departments-details'),
     
     # Staff-related pages
@@ -54,44 +54,55 @@ urlpatterns = [
     
     # Dashboard URL's
     # Login Authentication and Logout
-    path('', views.login_page, name='login'),
     path('admin_dashboard/login', views.login_page, name='login'),
-    # path('dashboard/logout', views.logout_page, name='logout'),
+    path('admin_dashboard/logout', views.logout_page, name='logout'),
 
     # Dashboard URL
     path('admin_dashboard/dashboard', views.dashboard_view, name='dashboard'),
+
     # User-registration page
-    path('admin_dashboard/user_registration', views.user_registration, name='user_registration'),
+    path('admin_dashboard/admin_user_registration', views.admin_user_registration, name='admin_user_registration'),
+    path('admin_dashboard/add_admin_user', views.add_admin_user, name='add_admin_user'),
+    
     # About pages URL
     path('admin_dashboard/vision_info', views.vision_info, name='vision_info'),
+    
     # Department Pages URL's
     path('admin_dashboard/all_departments', views.all_departments, name='all_departments'),
     path('admin_dashboard/add_department_info', views.add_department_info, name='add_department_info'),
     path('admin_dashboard/update_department_info', views.update_department_info, name='update_department_info'),
+    path('admin_dashboard/delete_department', views.delete_department, name='delete_department'),
+    
     # Support Department URL's
-    path('admin_dashboard/all_support_departments', views.all_support_departments, name='all_support_departments'),
-    path('admin_dashboard/add_support_department_info', views.add_support_department_info, name='add_support_department_info'),
-    path('admin_dashboard/update_support_department_info', views.update_support_department_info, name='update_support_department_info'),
-    path('admin_dashboard/delete_support_department', views.delete_support_department, name='delete_support_department'),
+    path('admin_dashboard/all_categories', views.all_categories, name='all_categories'),
+    path('admin_dashboard/add_category_info', views.add_category_info, name='add_category_info'),
+    path('admin_dashboard/update_category_info', views.update_category_info, name='update_category_info'),
+    path('admin_dashboard/delete_category', views.delete_category, name='delete_category'),
+    
     # Designation Pages URL's
     path('admin_dashboard/all_designations', views.all_designations, name='all_designations'),
     path('admin_dashboard/add_designation_info', views.add_designation_info, name='add_designation_info'),
     path('admin_dashboard/update_designation_info', views.update_designation_info, name='update_designation_info'),
     path('admin_dashboard/delete_designation_info', views.delete_designation_info, name='delete_designation_info'),
+    
     # Staff URL's
     # Scientist Pages URL's
     path('admin_dashboard/all_scientists_staff', views.all_scientists_staff, name='all_scientists_staff'),
     path('admin_dashboard/add_scientist_info', views.add_scientist_info, name='add_scientist_info'),
     path('admin_dashboard/update_scientist_info', views.update_scientist_info, name='update_scientist_info'),
     path('admin_dashboard/delete_scientist', views.delete_scientist, name='delete_scientist'),
+    
     # Administration Pages URL's
     path('admin_dashboard/all_admin_staff', views.all_admin_staff, name='all_admin_staff'),
     path('admin_dashboard/add_admin_info', views.add_admin_info, name='add_admin_info'),
     path('admin_dashboard/update_admin_info', views.update_admin_info, name='update_admin_info'),
+    
     # Project Pages URL's
     path('admin_dashboard/all_projects', views.all_projects, name='all_projects'),
     path('admin_dashboard/add_project_info', views.add_project_info, name='add_project_info'),
-
+    path('admin_dashboard/update_project_info', views.update_project_info, name='update_project_info'),
+    path('admin_dashboard/delete_project', views.delete_project, name='delete_project'),
+    
     # Settings Page URL
     path('admin_dashboard/settings', views.settings_page, name='settings'),
 

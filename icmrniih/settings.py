@@ -66,10 +66,10 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -170,9 +170,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     
 # session timeout 
 
-SESSION_EXPIRE_SECONDS = 1000
+SESSION_EXPIRE_SECONDS = 3600
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True
-SESSION_TIMEOUT_REDIRECT = 'adds'
+SESSION_TIMEOUT_REDIRECT = 'login_page'
 SESSION_COOKIE_AGE = 86400
 
 SESSION_SECURITY_WARN_AFTER = 180 

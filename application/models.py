@@ -85,7 +85,7 @@ class dept_info(models.Model):
     # General Department Information
     department_id = models.CharField(max_length=255, null=True)
     lab_department_name = models.CharField(max_length=255, null=True)
-    department_info = models.CharField(max_length=255, null=True)
+    department_info = models.CharField(max_length=1000, null=True)
     
     # HOD Information   
     # hod_id = models.CharField(max_length=255, null=True)
@@ -105,9 +105,9 @@ class dept_info(models.Model):
     data_created = models.DateTimeField(auto_now_add=True, null=False)
 
 
-class support_department(models.Model):
-    department_id = models.CharField(max_length=255, null=True)
-    department_name = models.CharField(max_length=255, null=True)
+class category(models.Model):
+    category_id = models.CharField(max_length=255, null=True)
+    category_name = models.CharField(max_length=255, null=True)
     hod_id = models.CharField(max_length=255, null=True)
     hod_name = models.CharField(max_length=255, null=True)
 
@@ -190,32 +190,34 @@ class niih_staff(models.Model):
     date_cp = models.CharField(max_length=255, null=True)
     level_no = models.CharField(max_length=255, null=True)
 
+# Staff Model's
 # Model for Scientific Staff
 class scientific_staff(models.Model):
     scientist_id = models.CharField(max_length=255, null=True)
     scientist_name = models.CharField(max_length=255, null=True)
-    department_name = models.CharField(max_length=255, null=True)
+    lab_department_name = models.CharField(max_length=255, null=True)
+    category_name = models.CharField(max_length=255, null=True)
     designation = models.CharField(max_length=255, null=True)
     email_id = models.CharField(max_length=200, null=True)
     alt_email_id = models.CharField(max_length=200, null=True)
     profilepic_name = models.CharField(max_length=255, null=True)
     phone_no = models.CharField(max_length=255, null=True)
     fax_no = models.CharField(max_length=255, null=True)
+    alt_phone_no = models.CharField(max_length=255, null=True)
+    author_name = models.CharField(max_length=255, null=True)
+    level_no = models.CharField(max_length=255, null=True)
+    aadhar_no = models.CharField(max_length=255, null=True)
+    # guide_name = models.CharField(max_length=255, null=True)
+    join_year = models.CharField(max_length=255, null=True)
     academic_background = models.TextField()
     professional_experience = models.TextField()
     research_interests = models.TextField()
-    awards_achievements = models.TextField()
-    publications = models.TextField()
-    projects = models.TextField()
-    research_staff = models.CharField(max_length=255, null=True)
-    status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
+    profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
+    # awards_achievements = models.TextField()
+    # publications = models.TextField()
+    # projects = models.TextField()
+    # research_staff = models.CharField(max_length=255, null=True)
     data_created = models.DateTimeField(null=True)  # Changed to DateTimeField
-
-# Model for Scientific Staff
-class admin_staff(models.Model):
-    staff_name = models.CharField(max_length=255, null=True)
-    designation = models.CharField(max_length=255, null=True)
-    department_name = models.CharField(max_length=255,null=True)
 
 class out_publications(models.Model):
     publication_title = models.CharField(max_length=255, null=True)
@@ -228,12 +230,13 @@ class out_publications(models.Model):
     staff_id = models.CharField(max_length=255, null=True)
     select_publication = models.CharField(max_length=255, null=True)
 
-class project_new(models.Model):
-    project_title = models.CharField(max_length=255, null=True)
-    project_incharge = models.CharField(max_length=255, null=True)
-    department_name = models.CharField(max_length=255, null=True)
+class projects(models.Model):
+    project_id = models.CharField(max_length=255, null=True)
+    project_title = models.CharField(max_length=1000, null=True)
+    scientist_name = models.CharField(max_length=255, null=True)
+    category_name = models.CharField(max_length=255, null=True)
     project_date = models.DateTimeField(null=True)
-    status = models.CharField(max_length=255, null=True)
+    project_status = models.CharField(max_length=255, null=True)
 
 class publication_copy(models.Model):
     publication_title = models.CharField(max_length=255, null=True)
@@ -273,12 +276,11 @@ class user(models.Model):
     level_no = models.CharField(max_length=255, null=True)
 
 class admin_user(models.Model):
-    first_name = models.CharField(max_length=255, null=True)
-    last_name = models.CharField(max_length=255, null=True)
-    user_name = models.CharField(max_length=255, null=True)
+    name = models.CharField(max_length=255, null=True)
+    username = models.CharField(max_length=255, null=True)
     password = models.CharField(max_length=255, null=True)
     
 
 class staff_designation(models.Model):
     designation = models.CharField(max_length=255, null=True)
-    department = models.CharField(max_length=255, null=True)
+    category_name = models.CharField(max_length=255, null=True)

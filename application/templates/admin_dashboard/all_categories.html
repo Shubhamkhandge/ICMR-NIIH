@@ -2,12 +2,12 @@
 {% load static %}
 
 <div class="container p-5">
-    <h2 class="text-center mb-4 text-uppercase">Manage Support Departments
+    <h2 class="text-center mb-4 text-uppercase">Manage Department Categories 
         <hr>
     </h2>
     <!-- Departments Table -->
-    <a href="/admin_dashboard/add_support_department_info"><button class="btn btn-primary mb-3"
-            style="float: right; font-size: 16px; font-weight: 600;">Add Department</button></a>
+    <a href="/admin_dashboard/add_category_info"><button class="btn btn-primary mb-3"
+            style="float: right; font-size: 16px; font-weight: 600;">Add Category</button></a>
 
     <table class="table table-responsive table-bordered" id="departments-table">
         <thead class="text-center">
@@ -19,7 +19,7 @@
             <th>Delete</th>
         </thead>
         <tbody>
-            {% for support_deptinfo in all_support_dept %}
+            {% for category_info in all_cat_info %}
             <tr style="text-align: center;">
 
                 {% csrf_token %}
@@ -28,29 +28,29 @@
 
                 </td>
                 <td>
-                    {{support_deptinfo.department_id}}
+                    {{category_info.category_id}}
 
                 </td>
                 <td>
-                    {{support_deptinfo.department_name}}
+                    {{category_info.category_name}}
 
                 </td>
                 <td>
-                    {{support_deptinfo.hod_name}}
+                    {{category_info.hod_name}}
 
                 </td>
                 <td>
-                    <form action="{% url 'update_support_department_info' %}" method="POST">
+                    <form action="{% url 'update_category_info' %}" method="POST">
                         {% csrf_token %}
-                        <input type="hidden" name="department_id" value="{{support_deptinfo.department_id}}">
+                        <input type="hidden" name="category_id" value="{{category_info.category_id}}">
                          <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                     </form>
                 </td>
                 <td>
-                    <form action="{% url 'delete_support_department' %}" method="POST">
+                    <form action="{% url 'delete_category' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="delete_data" value="delete_data">
-                        <input type="hidden" name="department_id" value="{{support_deptinfo.department_id}}">
+                        <input type="hidden" name="category_id" value="{{category_info.category_id}}">
                         <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
                     </form>
                 </td>

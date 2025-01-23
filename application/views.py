@@ -55,19 +55,28 @@ def contact_directory(request):
     return render(request, 'contact-directory.html')
 
 # Department-related pages
-def departments_list(request):
-    d_name = dept_info.objects.values_list('department_name','department_info')
+def departments(request):
+    d_name = dept_info.objects.values_list('department_id','lab_department_name','department_info')
     return render(request, 'departments.html',{'dept_info':d_name})
     
 def departments_details(request):
-    return render(request, 'departments-details.html')
+    print(request.POST.get('dept_id'))
+    if request.method == 'POST':
+        department_info = dept_info.objects.filter(department_id=request.POST.get('dept_id')).values_list()
+        project_list = projects.objects.filter(scientist_name = department_info[0][4]).values_list()
+        res_staff_list = scientific_staff.objects.filter(lab_department_name = department_info[0][2]).values_list('scientist_name','designation')
+        print(res_staff_list)
+        return render(request, 'departments-details.html', {'dept_info':department_info, 'project':project_list, 'res_staff':res_staff_list})
 
 # Staff-related pages
 def scientist_staff(request):
-    return render(request, 'scientist-staff.html')
+    sci_staff = scientific_staff.objects.values_list('scientist_name','profilepic_name')
+    return render(request, 'scientist-staff.html', {'scientist_staff':sci_staff})
 
 def scientist_details(request):
-    return render(request, 'scientist-staff-details.html')
+    if request.method == 'POST':
+        sci_info = scientific_staff.objects.filter(scientist_id = request.POST.get('sci_id')).values_list()
+        return render(request, 'scientist-staff-details.html', {'scientist_info':sci_info})
 
 def administration_staff(request):
     return render(request, 'administration-staff.html')

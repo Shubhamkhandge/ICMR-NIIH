@@ -2,7 +2,7 @@
 {% load static %}
 
 <div class="container fixed my-5">
-    <h2 class="text-center mb-4 text-uppercase">Add Department
+    <h2 class="text-center mb-4 text-uppercase">Add LAB Department
         <a href="/admin_dashboard/all_departments">
             <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
                 Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
@@ -19,7 +19,7 @@
                 <!-- Department ID -->
                 <div class="col-3 mb-3">
                     <label for="department_id" class="form-label text-dark" style="font-weight: 600;">Department ID : </label>
-                    <input type="text" class="form-control rounded-0 text-center" id="department_id" placeholder="Enter Department ID" name="department_id" required>
+                    <input type="number" class="form-control rounded-0 text-center" id="department_id" placeholder="Enter Department ID" name="department_id" required>
                 </div> 
 
                 <!-- Department Name -->
@@ -33,7 +33,7 @@
                 <!-- Head of Department ID -->
                 <div class="col mb-3">
                     <label for="scientist_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select HOD Name : </label>
-                    <select id="scientist_name" value="Select Department" name="scientist_name" class="form-select rounded-0">
+                    <select id="scientist_name" value="Select Scientist" name="scientist_name" class="form-select rounded-0">
                         <option value="" selected disabled>Select HOD Name</option>
                         <optgroup label="Scientist">
                         {% for i in scientist_name %}
@@ -48,10 +48,10 @@
                 </div> -->
                 <!-- Head of Department Name -->
                 <div class="col mb-3">
-                    <label for="department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Department : </label>
-                    <select id="department_name" value="Select Department" name="department_name" class="form-select rounded-0">
-                        <option value="" selected disabled>Select Department</option>
-                        {% for i in dropdept %}
+                    <label for="category_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Category : </label>
+                    <select id="category_name" value="Select Category" name="category_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Category</option>
+                        {% for i in category_name %}
                         <option value="{{i.0}}">{{i.0}}</option>
                         {% endfor %}
                     </select>

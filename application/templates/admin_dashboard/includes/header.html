@@ -51,7 +51,7 @@
                 </div>
                 <div class="position-relative">
                     <button class="btn">
-                        <a href="#" class="text-decoration-none text-dark" style="font-size: 20px; font-weight: 600; text-transform: capitalize;">admin &nbsp;<i class="fa-solid fa-right-from-bracket text-dark"></i></a>
+                        <a href="{% url 'logout' %}" class="text-decoration-none text-dark" style="font-size: 20px; font-weight: 600; text-transform: capitalize;">{{username}} &nbsp;<i class="fa-solid fa-right-from-bracket text-dark"></i></a>
                     </button>
                 </div>  
                 <div class="d-flex align-items-center gap-2">
@@ -117,8 +117,19 @@
                     <div class="collapse submenu" id="departmentSubmenu">
                         <a href="/admin_dashboard/all_departments" class="nav-link"><i class="fa-regular fa-file"></i>All Departments</a>
                         <a href="/admin_dashboard/add_department_info" class="nav-link"><i class="fa-solid fa-file-circle-plus"></i>Add Departments</a>
-                        <a href="/admin_dashboard/all_support_departments" class="nav-link"><i class="fa-regular fa-file"></i>Support Departments</a>
-                        <a href="/admin_dashboard/add_support_department_info" class="nav-link"><i class="fa-solid fa-file-circle-plus"></i>Add Support Departments</a>
+                        <!-- <a href="#" class="nav-link"><i class="fa-solid fa-user-plus"></i>Add Departments</a>
+                        <a href="#" class="nav-link"><i class="fa-solid fa-user-gear"></i>User Roles</a> -->
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#categorySubmenu" class="nav-link" data-bs-toggle="collapse">
+                        <i class="fa-solid fa-list"></i>
+                        <span class="nav-text">Category</span>
+                        <i class="fa-solid fa-chevron-down ms-auto nav-text"></i>
+                    </a>
+                    <div class="collapse submenu" id="categorySubmenu">
+                        <a href="/admin_dashboard/all_categories" class="nav-link"><i class="fa-regular fa-file"></i>All Categories</a>
+                        <a href="/admin_dashboard/add_category_info" class="nav-link"><i class="fa-solid fa-file-circle-plus"></i>Add Category</a>
                         <!-- <a href="#" class="nav-link"><i class="fa-solid fa-user-plus"></i>Add Departments</a>
                         <a href="#" class="nav-link"><i class="fa-solid fa-user-gear"></i>User Roles</a> -->
                     </div>
@@ -165,9 +176,14 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a href="/admin_dashboard/all_projects" class="nav-link">
+                        <i class="fa-regular fa-file-powerpoint"></i>
+                        <span class="nav-text">Projects</span>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
                     <a href="#projectSubmenu" class="nav-link" data-bs-toggle="collapse">
                         <i class="fa-regular fa-file-powerpoint"></i>
-                        <!-- <i class="fa-solid fa-id-card-clip"></i> -->
                         <span class="nav-text">Projects</span>
                         <i class="fa-solid fa-chevron-down ms-auto nav-text"></i>
                     </a>
@@ -176,7 +192,7 @@
                         <a href="/admin_dashboard/all_department" class="nav-link"><i class="fa-solid fa-file-pen"></i>On Going Projects</a>
                         <a href="/admin_dashboard/add_department" class="nav-link"><i class="fa-solid fa-file-circle-check"></i>Completed Projects</a>
                     </div>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item">
                     <a href="#userSubmenu" class="nav-link" data-bs-toggle="collapse">
                         <i class="fa-solid fa-user-group"></i>

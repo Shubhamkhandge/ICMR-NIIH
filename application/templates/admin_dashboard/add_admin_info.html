@@ -2,13 +2,13 @@
 {% load static %}
 
 <div class="container fixed my-5">
-    <h2 class="text-center mb-4 text-uppercase">Add Scientist Information
-        <a href="/admin_dashboard/all_scientists_staff"><div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i></div><hr></a>
+    <h2 class="text-center mb-4 text-uppercase">Add Admin Profile Information
+        <a href="/admin_dashboard/all_admin_staff"><div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i></div><hr></a>
     </h2>
     
     <!-- Add Scientist Staff Form -->
     <div class="col-md-10 m-auto">
-        <form action="{% url 'add_scientist_info' %}" method="POST" class="form" id="add-department-form" enctype="multipart/form-data">
+        <form action="{% url 'add_admin_info' %}" method="POST" class="form" id="add-department-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
                 <!-- Department Name -->
@@ -17,18 +17,18 @@
                         <div class="col mb-1">
                             <label for="previewPicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Preview Picture : </label>
                             <div class="border p-1">
-                                <img id="preview" src="#" aria-placeholder="fbbv" alt="" class="img-fluid rounded-0" style="height: 280px; width: 100%;">
+                                <img id="preview" src="#" alt="" class="img-fluid rounded-0" style="height: 280px; width: 100%;">
                             </div>
                         </div>
                     </div>
                     <div class="col-9 row mx-0 px-0">
                         <div class="col-6">
-                            <label for="scientist_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Scientist ID : </label>
-                            <input type="number" class="form-control rounded-0" id="scientist_id" placeholder="Enter Scientist ID" name="scientist_id" required>
+                            <label for="admin_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Admin ID : </label>
+                            <input type="number" class="form-control rounded-0" id="admin_id" placeholder="Enter Admin ID" name="admin_id" required>
                         </div>
                         <div class="col-6">
-                            <label for="scientist_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Scientist Name : </label>
-                            <input type="text" class="form-control rounded-0" id="scientist_name" placeholder="Enter Scientist Name" name="scientist_name" required>
+                            <label for="admin_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Admin Name : </label>
+                            <input type="text" class="form-control rounded-0" id="admin_name" placeholder="Enter Admin Name" name="admin_name" required>
                         </div>
                         <div class="col-6">
                             <label for="department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Department : </label>
@@ -49,14 +49,6 @@
                                 {% endfor %}
                                 </optgroup>
                             </select>
-                        </div>
-                        <div class="col-6">
-                            <label for="email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email ID : </label>
-                            <input type="email" class="form-control rounded-0" id="email_id" placeholder="Enter your EmailID" name="email_id" >
-                        </div>
-                        <div class="col-6">
-                            <label for="alt_email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Alternate Email ID : </label>
-                            <input type="email" class="form-control rounded-0" id="alt_email_id" placeholder="Enter your Alternate EmailID" name="alt_email_id" >
                         </div>
                         <div class="col-4">
                             <label for="status" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Status : </label>
@@ -105,6 +97,14 @@
                     </div>
                 </div> -->
                 <div class="col row mx-0 px-0">
+                    <div class="col-6 mb-3">
+                        <label for="email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email ID : </label>
+                        <input type="email" class="form-control rounded-0" id="email_id" placeholder="Enter your EmailID" name="email_id" >
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="alt_email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Alternate Email ID : </label>
+                        <input type="email" class="form-control rounded-0" id="alt_email_id" placeholder="Enter your Alternate EmailID" name="alt_email_id" >
+                    </div>
                     <div class="col-6 mb-3">
                         <label for="phone_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Phone Number : </label>
                         <input type="tel" class="form-control rounded-0" id="phone_no" name="phone_no" placeholder="Enter Phone Number" pattern="^[7-9]{1}[0-9]{9}$" >

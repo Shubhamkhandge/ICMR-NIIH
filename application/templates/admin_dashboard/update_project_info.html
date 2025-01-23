@@ -1,0 +1,146 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update Project Information
+        <a href="/admin_dashboard/all_projects">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-10 pb-2 m-auto">
+        <form action="" method="POST" class="form" id="update-project-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{update_data.0.id}} -->
+            <div class="col-12 d-none">
+                <input type="hidden" name="update_data" value="update_data">
+            </div>
+
+            <div class="row">
+                <div class="col-3 mb-3">
+                    <label for="project_id" class="form-label text-dark" style="font-weight: 600;">Project ID : </label>
+                    <input type="number" class="form-control rounded-0 text-center" value="{{update_data.0.project_id}}" name="project_id" id="project_id" readonly>
+                </div>
+                <!-- <div class="col mb-3">
+                    <label for="scientist_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Project Incharge : </label>
+                    <select id="scientist_name" value="Select Project Incharge" name="scientist_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select PI</option>
+                        <optgroup label="Scientist">
+                        {% for i in scientist_name %}
+                            {% if i.0 == update_data.0.scientist_name %}
+                                <option value="{{update_data.0.scientist_name}}" selected class="text-muted">{{update_data.0.scientist_name}}</option>
+                            {% else %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="col mb-3">
+                    <label for="department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Department : </label>
+                    <select id="department_name" value="Select Department" name="department_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Department</option>
+                        {% for i in dropdept %}
+                            {% if i.0 == update_data.0.department_name %}
+                                <option value="{{update_data.0.department_name}}" selected class="text-muted">{{update_data.0.department_name}}</option>
+                            {% else %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div> -->
+            </div>
+            
+            <div class="row">
+                <!-- Department ID -->
+                <div class="col mb-3">
+                    <label for="project_title" class="form-label text-dark" style="font-weight: 600;">Project Title : </label>
+                    <textarea class="form-control rounded-0" id="project_title" placeholder="Update Project Title" name="project_title" rows="5" >{{update_data.0.project_title}}</textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Head of Department ID -->
+                <div class="col mb-3">
+                    <label for="scientist_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Project Incharge : </label>
+                    <select id="scientist_name" value="Select Project Incharge" name="scientist_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select PI</option>
+                        <optgroup label="Scientist">
+                        {% for i in scientist_name %}
+                            {% if i.0 == update_data.0.scientist_name %}
+                                <option value="{{update_data.0.scientist_name}}" selected class="text-muted">{{update_data.0.scientist_name}}</option>
+                            {% else %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </optgroup>
+                    </select>
+                </div>
+                <!-- Head of Department Name -->
+                <div class="col mb-3">
+                    <label for="department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Department : </label>
+                    <select id="department_name" value="Select Department" name="category_name" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Department</option>
+                        {% for i in category_name %}
+                            {% if i.0 == update_data.0.category_name %}
+                                <option value="{{update_data.0.category_name}}" selected class="text-muted">{{update_data.0.category_name}}</option>
+                            {% else %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col mb-3">
+                    <label for="project_status" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Project Status : </label>
+                    <select id="project_status" value="Select Status" name="project_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Status</option>
+                        {% if 'Completed' == update_data.0.project_status %}
+                            <option value="On going" >On going</option>
+                            <option value="Completed" selected>Completed</option>
+                        {% else %}
+                            <option value="On going" selected>On going</option>  
+                            <option value="Completed">Completed</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <!-- <div class="col mb-3">
+                    <label for="project_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Date of Project : </label>
+                    <input type="date" name="project_date" id="project_date" class="form-control datetime">
+                </div> -->
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Update</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-project-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleTaxFields() {
+        var oldTax = document.getElementById('old-tax');
+        var bottomFields = document.getElementById('bottom-fields');
+
+        if (oldTax.checked) {
+            bottomFields.style.display = 'block';
+        } else {
+            bottomFields.style.display = 'none';
+        }
+    }
+
+    window.onload = function() {
+        var oldTax = document.getElementById('old-tax');
+        toggleTaxFields();
+        oldTax.addEventListener('change', toggleTaxFields);
+    }
+    
+</script>
+
+{% include 'admin_dashboard/includes/footer.html' %}

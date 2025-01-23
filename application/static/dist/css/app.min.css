@@ -17267,7 +17267,7 @@ strong {
 }
 
 .colorBox__list-item .content-area {
-    padding-right: 30px
+    /* padding-right: 30px */
 }
 
 @media screen and (max-width:1199px) {

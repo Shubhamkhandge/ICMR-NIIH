@@ -10,8 +10,8 @@
         <thead class="text-center">
             <th>ID</th>
             <th>Designation Name</th>
-            <th>Department Name</th>
-            <!-- <th>Edit</th> -->
+            <th>Category Name</th>
+            <th>Edit</th>
             <th>Delete</th>
         </thead>
         <tbody>
@@ -19,22 +19,21 @@
             <tr style="text-align: center;">
                 <td>{{forloop.counter}}</td>
                 <td>{{all_desig.designation}}</td>
-                <td>{{all_desig.department}}</td>
-                <!-- <td>
-                    <form action="{% url 'update_designation_info' %}" method="POST"
-                        >
+                <td>{{all_desig.category_name}}</td>
+                <td>
+                    <form action="{% url 'update_designation_info' %}" method="POST">
                         {% csrf_token %}
-                        <input type="hidden" name="department_id" value="{{support_deptinfo.department_id}}">
+                        <input type="hidden" name="designation" value="{{all_desig.designation}}">
                          <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                     </form>
-                </td> -->
+                </td>
                 <td>
                     <form action="{% url 'delete_designation_info' %}" method="POST"
                         enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="delete_data" value="delete_data">
                         <input type="hidden" name="designation" value="{{all_desig.designation}}">
-                        <input type="hidden" name="department" value="{{all_desig.department}}">
+                        <input type="hidden" name="category_name" value="{{all_desig.category_name}}">
                         <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
                     </form>
                 </td>

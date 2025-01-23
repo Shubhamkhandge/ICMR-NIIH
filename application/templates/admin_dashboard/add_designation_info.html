@@ -18,16 +18,16 @@
 
             <!-- Designation Name -->
             <div class="col-12 mb-3">
-                <label for="designation_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Designation Name : </label>
-                <input type="text" class="form-control rounded-0" id="designation_name" name="designation_name" required>
+                <label for="designation" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Designation Name : </label>
+                <input type="text" class="form-control rounded-0" id="designation" placeholder="Enter Designation Name" name="designation" required>
             </div>
 
             <!-- Department Name -->
             <div class="col-12 mb-3">
-                <label for="department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Department : </label>
-                <select id="department_name" value="" name="department_name" class="form-select rounded-0">
-                    <option value="" selected disabled>Select Department</option>
-                    {% for i in department_name %}
+                <label for="category_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Department Category : </label>
+                <select id="category_name" value="" name="category_name" class="form-select rounded-0">
+                    <option value="" selected disabled>Select Department Category</option>
+                    {% for i in category_name %}
                     <option value="{{i.0}}">{{i.0}}</option>
                     {% endfor %}
                 </select>
