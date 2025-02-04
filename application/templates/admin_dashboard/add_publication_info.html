@@ -1,0 +1,76 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Add Publication
+        <a href="/admin_dashboard/all_publications">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-10 pb-2 m-auto">
+        <form action="{% url 'add_publication_info' %}" method="POST" class="form" id="add-publiation-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-3 mb-3">
+                    <label for="publication_id" class="form-label text-dark" style="font-weight: 600;">Publication ID : </label>
+                    <input type="number" class="form-control rounded-0" id="publication_id" placeholder="Enter Publication ID" name="publication_id" required>
+                </div>
+
+                <div class="col-9 mb-3">
+                    <label for="publication_author_name" class="form-label text-dark" style="font-weight: 600;">Publication Author : </label>
+                    <input type="text" class="form-control rounded-0" id="publication_author_name" placeholder="Enter Publication Author" name="publication_author_name" required>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="publication_title" class="form-label text-dark" style="font-weight: 600;">Publication Title : </label>
+                    <textarea class="form-control rounded-0" id="publication_title" placeholder="Enter Publication Title" name="publication_title" rows="3" required></textarea>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="publication_journal_name" class="form-label text-dark" style="font-weight: 600;">Publication Journal Name : </label>
+                    <input type="text" class="form-control rounded-0" id="publication_journal_name" placeholder="Enter Publication Journal Name" name="publication_journal_name" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="publication_type" class="form-label text-dark" style="font-weight: 600;">Select Publication Type : </label>
+                    <select id="publication_type" value="Select Publication Type" name="publication_type" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Publication Type</option>
+                        <option value="publication">Publication</option>
+                        <option value="booklet">Booklet</option>
+                        <option value="newsletter">Newsletter</option>
+                    </select>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="publication_status" class="form-label text-dark" style="font-weight: 600;">Select Publication Status : </label>
+                    <select id="publication_status" value="Select Publication Status" name="publication_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Publication Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="publication_date" class="form-label text-dark" style="font-weight: 600;">Select Publication Date : </label>
+                    <input type="date" name="publication_date" id="publication_date" class="form-control datetime">
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-publiation-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

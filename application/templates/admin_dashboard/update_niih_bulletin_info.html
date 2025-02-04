@@ -1,0 +1,86 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update NIIH Bulletin Information
+        <a href="/admin_dashboard/all_niih_bulletins">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-8 pb-2 m-auto">
+        <form action="" method="POST" class="form" id="update-publiation-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{update_data.0.id}} -->
+            <div class="col-12 d-none">
+                <input type="hidden" name="update_data" value="update_data">
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="bulletin_id" class="form-label text-dark" style="font-weight: 600;">Bulletin ID : </label>
+                    <input type="number" class="form-control text-center rounded-0" id="bulletin_id" value="{{update_data.0.bulletin_id}}" placeholder="Update Bulletin ID" name="bulletin_id" required>
+                </div>
+                
+                <div class="col mb-3">
+                    <label for="bulletin_vol_no" class="form-label text-dark" style="font-weight: 600;">Bulletin Volume No. : </label>
+                    <input type="number" class="form-control text-center rounded-0" id="bulletin_vol_no" value="{{update_data.0.bulletin_vol_no}}" placeholder="Update Bulletin Volume No." name="bulletin_vol_no" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="bulletin_year" class="form-label text-dark" style="font-weight: 600;">Select Bulletin Year : </label>
+                    <input type="date" name="bulletin_year" id="bulletin_year" value="{{update_data.0.bulletin_year|date:'Y-m-d'}}" class="form-control rounded-0">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="bulletin_title" class="form-label text-dark" style="font-weight: 600;">Bulletin Title : </label>
+                    <textarea class="form-control rounded-0" id="bulletin_title" placeholder="Update Bulletin Title" name="bulletin_title" rows="5" required>{{update_data.0.bulletin_title}}</textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="bulletin_month" class="form-label text-dark" style="font-weight: 600;">Select Bulletin Month : </label>
+                    <select id="bulletin_month" value="Select Bulletin Month" name="bulletin_month" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Bulletin Month</option>
+                        {% if update_data.0.bulletin_month == 'Jan - Apr' %}
+                            <option value="Jan - Apr" selected>Jan - Apr</option>
+                            <option value="May - Aug">May - Aug</option>
+                            <option value="Sep - Dec">Sep - Dec</option>
+                        {% elif update_data.0.bulletin_month == 'May - Aug' %}
+                            <option value="Jan - Apr">Jan - Apr</option>
+                            <option value="May - Aug" selected>May - Aug</option>
+                            <option value="Sep - Dec">Sep - Dec</option>
+                        {% elif update_data.0.bulletin_month == 'Sep - Dec' %}
+                            <option value="Jan - Apr">Jan - Apr</option>
+                            <option value="May - Aug">May - Aug</option>
+                            <option value="Sep - Dec" selected>Sep - Dec</option>
+                        {% else %}
+                            <option value="Jan - Apr">Jan - Apr</option>
+                            <option value="May - Aug">May - Aug</option>
+                            <option value="Sep - Dec">Sep - Dec</option>
+                        {% endif %}
+                    </select>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="bulletin_file_name" class="form-label text-dark" style="font-weight: 600;">Select Bulletin File : </label>
+                    {{update_data.0.bulletin_file_name}}
+                    <input type="file" id="bulletin_file_name" value="Select Bulletin File" name="bulletin_file_name" class="form-control rounded-0">
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success px-5 py-2 rounded-0">Update</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-publiation-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

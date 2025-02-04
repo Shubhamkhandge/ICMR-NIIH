@@ -17783,7 +17783,7 @@ strong {
     padding: 15px;
     border: 0;
     color: var(--zblack);
-    font-size: var(--fs-14);
+    font-size: var(--fs-15);
     text-align: justify;
 }
 
@@ -23759,7 +23759,7 @@ strong {
 
 .baseFilter__main .formView {
     width: calc(100% - 290px);
-    padding-right: 15px
+    padding-right: 15px;
 }
 
 @media screen and (max-width:1199px) {

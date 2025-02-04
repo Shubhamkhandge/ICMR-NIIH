@@ -51,7 +51,7 @@
                 </div>
                 <div class="position-relative">
                     <button class="btn">
-                        <a href="{% url 'logout' %}" class="text-decoration-none text-dark" style="font-size: 20px; font-weight: 600; text-transform: capitalize;">{{username}} &nbsp;<i class="fa-solid fa-right-from-bracket text-dark"></i></a>
+                        <a href="{% url 'logout' %}" class="text-decoration-none text-dark" style="font-size: 25px; font-weight: 600; text-transform: capitalize;"><i class="fa-solid fa-circle-user text-dark" style="font-size: 25px;"></i> {{username}} &nbsp;<i class="fa-solid fa-right-from-bracket text-dark"></i></a>
                     </button>
                 </div>  
                 <div class="d-flex align-items-center gap-2">
@@ -111,12 +111,25 @@
                 <li class="nav-item">
                     <a href="#departmentSubmenu" class="nav-link" data-bs-toggle="collapse">
                         <i class="fa-solid fa-network-wired"></i>
-                        <span class="nav-text">Departments</span>
+                        <span class="nav-text">LAB Departments</span>
                         <i class="fa-solid fa-chevron-down ms-auto nav-text"></i>
                     </a>
                     <div class="collapse submenu" id="departmentSubmenu">
-                        <a href="/admin_dashboard/all_departments" class="nav-link"><i class="fa-regular fa-file"></i>All Departments</a>
-                        <a href="/admin_dashboard/add_department_info" class="nav-link"><i class="fa-solid fa-file-circle-plus"></i>Add Departments</a>
+                        <a href="/admin_dashboard/all_departments" class="nav-link"><i class="fa-regular fa-file"></i>All LAB Departments</a>
+                        <a href="/admin_dashboard/add_department_info" class="nav-link"><i class="fa-solid fa-file-circle-plus"></i>Add LAB Departments</a>
+                        <!-- <a href="#" class="nav-link"><i class="fa-solid fa-user-plus"></i>Add Departments</a>
+                        <a href="#" class="nav-link"><i class="fa-solid fa-user-gear"></i>User Roles</a> -->
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#supportdepartmentSubmenu" class="nav-link" data-bs-toggle="collapse">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <span class="nav-text">Support Departments</span>
+                        <i class="fa-solid fa-chevron-down ms-auto nav-text"></i>
+                    </a>
+                    <div class="collapse submenu" id="supportdepartmentSubmenu">
+                        <a href="/admin_dashboard/all_support_departments" class="nav-link"><i class="fa-regular fa-file"></i>All Support Departments</a>
+                        <a href="/admin_dashboard/add_support_department_info" class="nav-link"><i class="fa-solid fa-file-circle-plus"></i>Add Support Departments</a>
                         <!-- <a href="#" class="nav-link"><i class="fa-solid fa-user-plus"></i>Add Departments</a>
                         <a href="#" class="nav-link"><i class="fa-solid fa-user-gear"></i>User Roles</a> -->
                     </div>
@@ -170,15 +183,21 @@
                         <i class="fa-solid fa-chevron-down ms-auto nav-text"></i>
                     </a>
                     <div class="collapse submenu" id="publicationSubmenu">
-                        <a href="/admin_dashboard/all_department" class="nav-link"><i class="fa-solid fa-receipt"></i>Publications</a>
-                        <a href="/admin_dashboard/add_department" class="nav-link"><i class="fa-regular fa-rectangle-list"></i>NIIH Bulletin</a>
-                        <a href="/admin_dashboard/add_department" class="nav-link"><i class="fa-regular fa-newspaper"></i>BGRC Newsletter</a>
+                        <a href="/admin_dashboard/all_publications" class="nav-link"><i class="fa-solid fa-receipt"></i>Publications</a>
+                        <a href="/admin_dashboard/all_niih_bulletins" class="nav-link"><i class="fa-regular fa-rectangle-list"></i>NIIH Bulletin</a>
+                        <a href="/admin_dashboard/all_newsletters" class="nav-link"><i class="fa-regular fa-newspaper"></i>BGRC Newsletter</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="/admin_dashboard/all_projects" class="nav-link">
                         <i class="fa-regular fa-file-powerpoint"></i>
                         <span class="nav-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin_dashboard/all_awards" class="nav-link">
+                        <i class="fa-solid fa-award"></i>
+                        <span class="nav-text">Awards & Achievements</span>
                     </a>
                 </li>
                 <!-- <li class="nav-item">

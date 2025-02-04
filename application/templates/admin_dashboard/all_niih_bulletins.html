@@ -1,0 +1,67 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container-fluid">
+    <!-- Title -->
+    <h2 class="text-center px-3 text-uppercase my-4">Manage NIIH Bulletins
+        <a href="/admin_dashboard/add_niih_bulletin_info"><button class="btn btn-primary rounded-0 mb-3" style="float: right; font-size: 16px; font-weight: 600; letter-spacing: 0.8px;">Add Bulletin</button></a>
+        <hr>
+    </h2>
+    
+    <div class="container-fluid px-3">
+        <table class="table table-responsive table-bordered" id="departments-table">
+            <thead class="text-center">
+                <th>ID</th>
+                <th>Bulletin ID</th>
+                <th>Bulletin Title</th>
+                <th>Bulletin Vol & No.</th>
+                <th>Bulletin Month</th>
+                <th>Bulletin Year</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                {% for all_niih_bulletins in all_bulletins %}
+                <tr style="text-align: center;">
+                    {% csrf_token %}
+                    <td>
+                        {{forloop.counter}}
+                    </td>
+                    <td>
+                        {{all_niih_bulletins.bulletin_id}}
+                    </td>
+                    <td>
+                        {{all_niih_bulletins.bulletin_title}}
+                    </td>
+                    <td>
+                        {{all_niih_bulletins.bulletin_vol_no}}
+                    </td>
+                    <td>
+                        {{all_niih_bulletins.bulletin_month}}
+                    </td>
+                    <td>
+                        {{all_niih_bulletins.bulletin_year | date:"Y" }}
+                    </td>
+                    <td>
+                        <form action="{% url 'update_niih_bulletin_info' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="bulletin_id" value="{{all_niih_bulletins.bulletin_id}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url 'delete_niih_bulletin' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_data" value="delete_data">
+                            <input type="hidden" name="bulletin_id" value="{{all_niih_bulletins.bulletin_id}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

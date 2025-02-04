@@ -1,0 +1,70 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Add Newsletter
+        <a href="/admin_dashboard/all_newsletters">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-9 pb-2 m-auto">
+        <form action="{% url 'add_newsletter_info' %}" method="POST" class="form" id="add-newsletter-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_id" class="form-label text-dark" style="font-weight: 600;">Newsletter ID : </label>
+                    <input type="number" class="form-control rounded-0" id="newsletter_id" placeholder="Enter Newsletter ID" name="newsletter_id" required>
+                </div>
+                
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_vol_no" class="form-label text-dark" style="font-weight: 600;">Newsletter Volume No. : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="newsletter_vol_no" placeholder="Enter Newsletter Volume No." name="newsletter_vol_no" required>
+                </div>
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_year" class="form-label text-dark" style="font-weight: 600;">Select Newsletter Year : </label>
+                    <input type="date" name="newsletter_year" id="newsletter_year" class="form-control rounded-0">
+                </div>
+
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_month" class="form-label text-dark" style="font-weight: 600;">Select Newsletter Month : </label>
+                    <select id="newsletter_month" value="Select Newsletter Month" name="newsletter_month" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Newsletter Month</option>
+                        <option value="Jan - Feb">Jan - Feb</option>
+                        <option value="Mar - Apr">Mar - Apr</option>
+                        <option value="May - Jun">May - Jun</option>
+                        <option value="July - Aug">July - Aug</option>
+                        <option value="Sep - Oct">Sep - Oct</option>
+                        <option value="Nov - Dec">Nov - Dec</option>
+                    </select>
+                </div>
+
+                <div class="col-12 mb-3 p-0">
+                    <label for="newsletter_title" class="form-label text-dark" style="font-weight: 600;">Newsletter Title : </label>
+                    <textarea class="form-control rounded-0" id="newsletter_title" placeholder="Enter Newsletter Title" name="newsletter_title" rows="5" required></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- <div class="col mb-3">
+                    <label for="bulletin_file_name" class="form-label text-dark" style="font-weight: 600;">Select Bulletin File : </label>
+                    <input type="file" id="bulletin_file_name" value="Select Bulletin File" name="bulletin_file_name" class="form-control rounded-0">
+                </div> -->
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-newsletter-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

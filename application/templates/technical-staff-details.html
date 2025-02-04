@@ -251,7 +251,7 @@
                                                                             <div class="individualProfile__main-media">
                                                                                 <div class="blogView-1 mb-2">
                                                                                     <h2 class="page-head v2">Profile Photo :</h2>
-                                                                                    <img alt="DG Photo of ICMR" class="img-fluid" src="{% static 'dist/images/staff/director/niih-director.jpg' %}" />
+                                                                                    <img alt="DG Photo of ICMR" class="img-fluid" src="/static/dist/images/staff/technical/{{technical_info.profilepic_name}}" />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="individualProfile__main-content">
@@ -262,12 +262,12 @@
                                                                                     <tr>
                                                                                         <th><strong>Name  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td>Dr. Manisha R. Madkaikar</td>
+                                                                                        <td>{{technical_info.technical_name}}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th><strong>Designation  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td>Director &amp; Scientist G</td>
+                                                                                        <td>{{technical_info.designation}} [{{technical_info.support_department_name}}]</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th><strong>Division  </strong></th>
@@ -277,120 +277,49 @@
                                                                                     <tr>
                                                                                         <th><strong>Email ID  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td><a href="mailto:madkaikarmanisha@yahoo.co.inn">madkaikarmanisha@yahoo.co.inn</a> <br>
-                                                                                        <a href="mailto:directorniih@gmail.com">directorniih@gmail.com</a></td>
+                                                                                        <td><a href="mailto:madkaikarmanisha@yahoo.co.inn">{{technical_info.email_id}}</a> <br>
+                                                                                        <a href="mailto:directorniih@gmail.com">{{technical_info.alt_email_id}}</a></td>
                                                                                     </tr>
                                                                                     <tr>
+                                                                                        <th><strong>Academic Qualifications  </strong></th>
+                                                                                        <td>:</td>
+                                                                                        <td style="position: relative; top: -23px;"> {{ str_academic_info|safe }}</td>
+                                                                                    </tr>
+                                                                                    <!-- <tr>
                                                                                         <th><strong>Specialization  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td>Primary Immunodeficiency Disorders and Hematological Malignancy</td>
-                                                                                    </tr>
+                                                                                        <td> {{ sci_spec|safe }}</td>
+                                                                                    </tr> -->
                                                                                 </table>
                                                                             </div>
                                                                         </div>
                                                                         <div class="individualProfile__main-head d-grid">
-                                                                            <!-- <ul class="nav nav-pills mb-3 w-100" id="pills-tab" role="tablist">
-                                                                                <li class="nav-item" role="presentation">
-                                                                                    <a class="nav-link active" id="pills-projects-tab" data-toggle="pill" href="#pills-projects" role="tab" aria-controls="pills-projects" aria-selected="true">Projects</a>
+                                                                            <h4 class="card-header" style="color: white; background-color: var(--trinetry);">Publications</h4>
+                                                                            <ol class="list" style="margin-left: 30px; margin-top: 10px;">
+                                                                                <li class="list-item" style="list-style: decimal;">
+                                                                                    Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                    <br>Erythrocytes as a preferential target of oxidative stress in blood.
                                                                                 </li>
-                                                                                <li class="nav-item" role="presentation">
-                                                                                    <a class="nav-link" id="pills-publications-tab" data-toggle="pill" href="#pills-publications" role="tab" aria-controls="pills-publications" aria-selected="true">Publications</a>
+                                                                                <li class="list-item" style="list-style: decimal;">
+                                                                                    Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                    <br>Erythrocytes as a preferential target of oxidative stress in blood.
                                                                                 </li>
-                                                                                <li class="nav-item" role="presentation">
-                                                                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-awards" role="tab" aria-controls="pills-awards" aria-selected="false">Awards & Achievements</a>
+                                                                                <li class="list-item" style="list-style: decimal;">
+                                                                                    Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                    <br>Erythrocytes as a preferential target of oxidative stress in blood.
                                                                                 </li>
-                                                                                <li class="nav-item" role="presentation">
-                                                                                    <a class="nav-link" id="pills-research-tab" data-toggle="pill" href="#pills-research" role="tab" aria-controls="pills-research" aria-selected="false">Research Staff</a>
+                                                                                <li class="list-item" style="list-style: decimal;">
+                                                                                    Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                    <br>Erythrocytes as a preferential target of oxidative stress in blood.
                                                                                 </li>
-                                                                            </ul>
-                                                                            <div class="tab-content" id="pills-tabContent">
-                                                                                <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-projects-tab">
-                                                                                    <ol class="list">
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                        </li>
-                                                                                    </ol>
-                                                                                </div>
-                                                                                <div class="tab-pane fade" id="pills-publications" role="tabpanel" aria-labelledby="pills-publications-tab">
-                                                                                    <ol class="list">
-                                                                                        <li class="list-item" style="list-style: decimal;">
-                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: decimal;">
-                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: decimal;">
-                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: decimal;">
-                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: decimal;">
-                                                                                            Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                            <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                        </li>
-                                                                                    </ol>
-                                                                                </div>
-                                                                                <div class="tab-pane fade" id="pills-awards" role="tabpanel" aria-labelledby="pills-awards-tab">
-                                                                                    <ol class="list" style="width: 100% !important;">
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                        </li>
-                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                            Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                        </li>
-                                                                                    </ol>
-                                                                                </div>
-                                                                                <div class="tab-pane fade" id="pills-research" role="tabpanel" aria-labelledby="pills-research-tab">
-                                                                                    <table class="table table-bordered">
-                                                                                        <style>
-                                                                                        #pills-research table th,td{
-                                                                                            /* text-align: center; */
-                                                                                        }
-                                                                                        </style>
-                                                                                        <thead>
-                                                                                            <th>Sr. No.</th>
-                                                                                            <th>Name</th>
-                                                                                            <th>Designation</th>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td>1</td>
-                                                                                                <td><strong>Dr. Vandana D Pradhan</strong></td>
-                                                                                                <td>Scientist D</td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
-                                                                            </div> -->
+                                                                                <li class="list-item" style="list-style: decimal;">
+                                                                                    Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
+                                                                                    <br>Erythrocytes as a preferential target of oxidative stress in blood.
+                                                                                </li>
+                                                                            </ol>
                                                                             <div class="accordionView">
                                                                                 <div id="accordion">
-                                                                                    <div class="card">
+                                                                                    <!-- <div class="card">
                                                                                         <div class="card-header">
                                                                                             <a class="btn collapsed" data-bs-toggle="collapse" href="#projects">
                                                                                                 Projects
@@ -417,8 +346,8 @@
                                                                                                 </ul>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                    <div class="card">
+                                                                                    </div> -->
+                                                                                    <!-- <div class="card">
                                                                                         <div class="card-header">
                                                                                             <a class="collapsed btn" data-bs-toggle="collapse" href="#publications">
                                                                                                 Publications
@@ -450,8 +379,8 @@
                                                                                                 </ol>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                    <div class="card">
+                                                                                    </div> -->
+                                                                                    <!-- <div class="card">
                                                                                         <div class="card-header">
                                                                                             <a class="collapsed btn" data-bs-toggle="collapse" href="#awards">
                                                                                                 Awards & Achievements
@@ -533,7 +462,7 @@
                                                                                                 </table>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
+                                                                                    </div> -->
                                                                                 </div>
                                                                             </div>
                                                                         </div>

@@ -88,26 +88,31 @@
                         </div>
                         <div class="col-8">
                             <label for="profilepic_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Choose Profile Picture : </label>
+                            {{update_data.0.profilepic_name}}
                             <input type="file" class="form-control rounded-0" id="profilepic_name" name="profilepic_name" accept="image/*" onchange="previewImage(event)" >
                         </div>
                     </div>
                 </div>
                 <div class="row mx-0 px-0">
-                    <div class="col-4 mb-3">
+                    <div class="col-3 mb-3">
                         <label for="phone_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Phone Number : </label>
                         <input type="tel" class="form-control rounded-0" id="phone_no" name="phone_no" placeholder="Update Phone Number" value="{{update_data.0.phone_no}}" pattern="^[7-9]{1}[0-9]{9}$" >
                         <!-- <small>Format: 9876543210 (10 digits starting with 7, 8, or 9)</small> -->
                         <!-- <input type="number" class="form-control rounded-0" id="phoneNo" name="phoneNo" > -->
                     </div>
-                    <div class="col-4 mb-3">
+                    <div class="col-3 mb-3">
                         <label for="alt_phone_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Alternate Phone Number : </label>
                         <input type="tel" class="form-control rounded-0" id="alt_phone_no" name="alt_phone_no" placeholder="Update Alternate Phone Number" value="{{update_data.0.alt_phone_no}}" pattern="^[7-9]{1}[0-9]{9}$" >
                         <!-- <small>Format: 9876543210 (10 digits starting with 7, 8, or 9)</small> -->
                         <!-- <input type="number" class="form-control rounded-0" id="phoneNo" name="phoneNo" > -->
                     </div>
-                    <div class="col-4 mb-3">
+                    <div class="col-3 mb-3">
                         <label for="aadhar_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Aadhar(UAN) Number : </label>
                         <input type="text" class="form-control rounded-0" id="aadhar_no" placeholder="Update Aaadhar(UAN) Number" value="{{update_data.0.aadhar_no}}" name="aadhar_no" >
+                    </div>
+                    <div class="col-3 mb-3">
+                        <label for="orcid" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">ORCID Number : </label>
+                        <input type="text" class="form-control rounded-0" id="orcid" placeholder="Update ORCID Number" name="orcid" value="{{update_data.0.orcid}}">
                     </div>
                 </div>
                 <div class="row mx-0 px-0">
@@ -165,7 +170,7 @@
                 </div>
                 <center>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Update</button>
+                        <button type="submit" class="btn btn-success px-5 py-2 rounded-0">Update</button>
                         <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-scientist-form">Reset</button>
                     </div>
                 </center>

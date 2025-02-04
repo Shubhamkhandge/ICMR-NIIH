@@ -41,11 +41,22 @@
                                         <table class="table table-bordered" id="documentTable">
                                             <thead>
                                                 <tr>
-                                                    <th>Sr. No.</th>
+                                                    <th width="8%">Sr. No.</th>
                                                     <th>Title</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {% for all_project in completed_project %}
+                                                <tr>
+                                                    <td class="text-center">
+                                                        {{forloop.counter}}
+                                                    </td>
+                                                    <td>
+                                                        {{all_project.project_title}} <br>
+                                                        <em class="text-muted">PI: {{all_project.scientist_name}}</em>                                                    
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
                                                 <tr>
                                                     <td>1</td>
                                                     <td>Establishment of Prenatal Diagnosis of Thalassemia Syndromes and Sickle Cell Disorders in Madhya Pradesh and Assam</td>

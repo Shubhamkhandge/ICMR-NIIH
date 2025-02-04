@@ -1,0 +1,120 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update Newsletter
+        <a href="/admin_dashboard/all_newsletters">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-8 pb-2 m-auto">
+        <form action="" method="POST" class="form" id="update-newsletter-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{update_data.0.id}} -->
+            <div class="col-12 d-none">
+                <input type="hidden" name="update_data" value="update_data">
+            </div>
+            <div class="row">
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_id" class="form-label text-dark" style="font-weight: 600;">Newsletter ID : </label>
+                    <input type="number" class="form-control text-center rounded-0" id="newsletter_id" value="{{update_data.0.newsletter_id}}" placeholder="Update Newsletter ID" name="newsletter_id" required>
+                </div>
+                
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_vol_no" class="form-label text-dark" style="font-weight: 600;">Newsletter Volume No. : </label>
+                    <input type="text" class="form-control text-center rounded-0" id="newsletter_vol_no" value="{{update_data.0.newsletter_vol_no}}" placeholder="Update Newsletter Volume No." name="newsletter_vol_no" required>
+                </div>
+
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_year" class="form-label text-dark" style="font-weight: 600;">Select Newsletter Year : </label>
+                    <input type="date" name="newsletter_year" id="newsletter_year" value="{{update_data.0.newsletter_year|date:'Y-m-d'}}" class="form-control rounded-0">
+                </div>
+
+                <div class="col mb-3 px-1">
+                    <label for="newsletter_month" class="form-label text-dark" style="font-weight: 600;">Select Newsletter Month : </label>
+                    <select id="newsletter_month" name="newsletter_month" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Newsletter Month</option>
+                        {% if update_data.0.newsletter_month == 'Jan - Feb' %}
+                            <option value="Jan - Feb" selected>Jan - Feb</option>
+                            <option value="Mar - Apr">Mar - Apr</option>
+                            <option value="May - Jun">May - Jun</option>
+                            <option value="July - Aug">July - Aug</option>
+                            <option value="Sep - Oct">Sep - Oct</option>
+                            <option value="Nov - Dec">Nov - Dec</option>
+                        {% elif update_data.0.newsletter_month == 'Mar - Apr' %}
+                            <option value="Jan - Feb">Jan - Feb</option>
+                            <option value="Mar - Apr" selected>Mar - Apr</option>
+                            <option value="May - Jun">May - Jun</option>
+                            <option value="July - Aug">July - Aug</option>
+                            <option value="Sep - Oct">Sep - Oct</option>
+                            <option value="Nov - Dec">Nov - Dec</option>
+                        {% elif update_data.0.newsletter_month == 'May - Jun' %}
+                            <option value="Jan - Feb">Jan - Feb</option>
+                            <option value="Mar - Apr">Mar - Apr</option>
+                            <option value="May - Jun" selected>May - Jun</option>
+                            <option value="July - Aug">July - Aug</option>
+                            <option value="Sep - Oct">Sep - Oct</option>
+                            <option value="Nov - Dec">Nov - Dec</option>
+                        {% elif update_data.0.newsletter_month == 'July - Aug' %}
+                            <option value="Jan - Feb">Jan - Feb</option>
+                            <option value="Mar - Apr">Mar - Apr</option>
+                            <option value="May - Jun">May - Jun</option>
+                            <option value="July - Aug" selected>July - Aug</option>
+                            <option value="Sep - Oct">Sep - Oct</option>
+                            <option value="Nov - Dec">Nov - Dec</option>
+                        {% elif update_data.0.newsletter_month == 'Sep - Oct' %}
+                            <option value="Jan - Feb">Jan - Feb</option>
+                            <option value="Mar - Apr">Mar - Apr</option>
+                            <option value="May - Jun">May - Jun</option>
+                            <option value="July - Aug">July - Aug</option>
+                            <option value="Sep - Oct" selected>Sep - Oct</option>
+                            <option value="Nov - Dec">Nov - Dec</option>
+                        {% elif update_data.0.newsletter_month == 'Nov - Dec' %}
+                            <option value="Jan - Feb">Jan - Feb</option>
+                            <option value="Mar - Apr">Mar - Apr</option>
+                            <option value="May - Jun">May - Jun</option>
+                            <option value="July - Aug">July - Aug</option>
+                            <option value="Sep - Oct">Sep - Oct</option>
+                            <option value="Nov - Dec" selected>Nov - Dec</option>
+                        {% else %}
+                            <option value="Jan - Feb">Jan - Feb</option>
+                            <option value="Mar - Apr">Mar - Apr</option>
+                            <option value="May - Jun">May - Jun</option>
+                            <option value="July - Aug">July - Aug</option>
+                            <option value="Sep - Oct">Sep - Oct</option>
+                            <option value="Nov - Dec">Nov - Dec</option>
+                        {% endif %}
+                    </select>
+                </div>
+
+                <div class="col-12 mb-3 p-0">
+                    <label for="newsletter_title" class="form-label text-dark" style="font-weight: 600;">Newsletter Title : </label>
+                    <textarea class="form-control rounded-0" id="newsletter_title" placeholder="Update Newsletter Title" name="newsletter_title" rows="5" required>{{update_data.0.newsletter_title}}</textarea>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- <div class="col mb-3">
+                    <label for="bulletin_file_name" class="form-label text-dark" style="font-weight: 600;">Select Bulletin File : </label>
+                    {{update_data.0.bulletin_file_name}}
+                    <input type="file" id="bulletin_file_name" value="Select Bulletin File" name="bulletin_file_name" class="form-control rounded-0">
+                </div> -->
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success px-5 py-2 rounded-0">Update</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-newsletter-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

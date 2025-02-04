@@ -23,7 +23,7 @@ class alumini(models.Model):
     department_name = models.CharField(max_length=255, null=True)
     year_leaving = models.CharField(max_length=255, null=True)
 
-# Model for appointment
+'''# Model for appointment
 class appointment(models.Model):
     patient_name = models.CharField(max_length=255, null=True)
     departmemt_name = models.CharField(max_length=255, null=True)
@@ -46,31 +46,9 @@ class appointment(models.Model):
     # doctor_email_id = models.CharField(max_length=255, null=True)
     presenting_complaints = models.TextField()
     any_queries = models.TextField()
-    report_file = models.CharField(max_length=255, null=True)
+    report_file = models.CharField(max_length=255, null=True)'''
 
-# Model for award
-class award(models.Model):
-    award_name = models.CharField(max_length=255, null=True)
-    user_name = models.CharField(max_length=255, null=True)
-
-# Model for bgrc_news
-class bgrc_news(models.Model):
-    bgrc_news_name = models.CharField(max_length=255, null=True)
-    vol_no = models.CharField(max_length=255, null=True)
-    bgrc_news_month = models.CharField(max_length=255, null=True)
-    bgrc_news_year = models.CharField(max_length=255, null=True)
-    data_created = models.DateTimeField(null=True)
-
-# Model for bulletin
-class bulletin(models.Model):
-    bulletin_name = models.CharField(max_length=255, null=True)
-    vol_no = models.CharField(max_length=255, null=True)
-    bulletin_month = models.CharField(max_length=255, null=True)
-    bulletin_year = models.CharField(max_length=255, null=True)
-    bulletin_file_name = models.CharField(max_length=300, null=True)
-    data_created = models.DateTimeField(null=True)
-
-class committee(models.Model):
+'''class committee(models.Model):
     library_type = models.CharField(max_length=255, null=True)
     about_committee = models.TextField()
     image_name = models.CharField(max_length=255, null=True)
@@ -79,7 +57,7 @@ class cv_photo(models.Model):
     photo_title = models.TextField(max_length=255, null=True)
     photo_f = models.CharField(max_length=255, null=True)
     Show_1 = models.CharField(max_length=255, null=True)
-    date_sub = models.DateTimeField(null=True)
+    date_sub = models.DateTimeField(null=True)'''
 
 class dept_info(models.Model):
     # General Department Information
@@ -104,6 +82,10 @@ class dept_info(models.Model):
     # Creation Date
     data_created = models.DateTimeField(auto_now_add=True, null=False)
 
+class support_department(models.Model):
+    support_department_id = models.CharField(max_length=255, null=True)
+    support_department_name = models.CharField(max_length=255, null=True)
+    support_hod_name = models.CharField(max_length=255, null=True)
 
 class category(models.Model):
     category_id = models.CharField(max_length=255, null=True)
@@ -111,7 +93,7 @@ class category(models.Model):
     hod_id = models.CharField(max_length=255, null=True)
     hod_name = models.CharField(max_length=255, null=True)
 
-class departments_test(models.Model):
+'''class departments_test(models.Model):
     department_id = models.CharField(max_length=255, null=True)
     department_name = models.CharField(max_length=255, null=True)
     test_name = models.CharField(max_length=255, null=True)
@@ -188,7 +170,7 @@ class niih_staff(models.Model):
     staff_qualifications = models.CharField(max_length=255, null=True)
     staff_specialization = models.CharField(max_length=255, null=True)
     date_cp = models.CharField(max_length=255, null=True)
-    level_no = models.CharField(max_length=255, null=True)
+    level_no = models.CharField(max_length=255, null=True)'''
 
 # Staff Model's
 # Model for Scientific Staff
@@ -201,6 +183,7 @@ class scientific_staff(models.Model):
     email_id = models.CharField(max_length=200, null=True)
     alt_email_id = models.CharField(max_length=200, null=True)
     profilepic_name = models.CharField(max_length=255, null=True)
+    orcid = models.CharField(max_length=255, null=True)
     phone_no = models.CharField(max_length=255, null=True)
     fax_no = models.CharField(max_length=255, null=True)
     alt_phone_no = models.CharField(max_length=255, null=True)
@@ -219,7 +202,59 @@ class scientific_staff(models.Model):
     # research_staff = models.CharField(max_length=255, null=True)
     data_created = models.DateTimeField(null=True)  # Changed to DateTimeField
 
-class out_publications(models.Model):
+class administration_staff(models.Model):
+    admin_id = models.CharField(max_length=255, null=True)
+    admin_name = models.CharField(max_length=255, null=True)
+    support_department_name = models.CharField(max_length=255, null=True)
+    category_name = models.CharField(max_length=255, null=True)
+    designation = models.CharField(max_length=255, null=True)
+    email_id = models.CharField(max_length=200, null=True)
+    alt_email_id = models.CharField(max_length=200, null=True)
+    profilepic_name = models.CharField(max_length=255, null=True)
+    phone_no = models.CharField(max_length=255, null=True)
+    fax_no = models.CharField(max_length=255, null=True)
+    alt_phone_no = models.CharField(max_length=255, null=True)
+    level_no = models.CharField(max_length=255, null=True)
+    aadhar_no = models.CharField(max_length=255, null=True)
+    # guide_name = models.CharField(max_length=255, null=True)
+    join_year = models.CharField(max_length=255, null=True)
+    academic_background = models.TextField()
+    specialization = models.TextField()
+    professional_experience = models.TextField()
+    profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
+    data_created = models.DateTimeField(null=True)  # Changed to DateTimeField
+
+class technical_staff(models.Model):
+    technical_id = models.CharField(max_length=255, null=True)
+    technical_name = models.CharField(max_length=255, null=True)
+    support_department_name = models.CharField(max_length=255, null=True)
+    category_name = models.CharField(max_length=255, null=True)
+    designation = models.CharField(max_length=255, null=True)
+    email_id = models.CharField(max_length=200, null=True)
+    alt_email_id = models.CharField(max_length=200, null=True)
+    profilepic_name = models.CharField(max_length=255, null=True)
+    phone_no = models.CharField(max_length=255, null=True)
+    fax_no = models.CharField(max_length=255, null=True)
+    alt_phone_no = models.CharField(max_length=255, null=True)
+    level_no = models.CharField(max_length=255, null=True)
+    aadhar_no = models.CharField(max_length=255, null=True)
+    join_year = models.CharField(max_length=255, null=True)
+    author_name = models.CharField(max_length=255, null=True)
+    publications = models.TextField()
+    academic_background = models.TextField()
+    specialization = models.TextField()
+    professional_experience = models.TextField()
+    profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
+    data_created = models.DateTimeField(null=True)  # Changed to DateTimeField
+
+class project_staff(models.Model):
+    project_staff_id = models.CharField(max_length=255, null=True)
+    project_staff_name = models.CharField(max_length=255, null=True)
+    project_staff_department = models.CharField(max_length=255, null=True)
+    project_staff_designation = models.CharField(max_length=255, null=True)
+    profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
+
+'''class out_publications(models.Model):
     publication_title = models.CharField(max_length=255, null=True)
     author_name = models.CharField(max_length=255, null=True)
     journal_name = models.CharField(max_length=255, null=True)
@@ -228,7 +263,7 @@ class out_publications(models.Model):
     publication_month_number = models.CharField(max_length=255, null=True)
     publication_year = models.CharField(max_length=255, null=True)
     staff_id = models.CharField(max_length=255, null=True)
-    select_publication = models.CharField(max_length=255, null=True)
+    select_publication = models.CharField(max_length=255, null=True)'''
 
 class projects(models.Model):
     project_id = models.CharField(max_length=255, null=True)
@@ -238,18 +273,45 @@ class projects(models.Model):
     project_date = models.DateTimeField(null=True)
     project_status = models.CharField(max_length=255, null=True)
 
-class publication_copy(models.Model):
+class publications_list(models.Model):
+    publication_id = models.CharField(max_length=255, null=True)
+    publication_author_name = models.CharField(max_length=255, null=True)
     publication_title = models.CharField(max_length=255, null=True)
-    author_name = models.CharField(max_length=255, null=True)
-    journal_name = models.CharField(max_length=255, null=True)
+    publication_journal_name = models.CharField(max_length=255, null=True)
     publication_type = models.CharField(max_length=255, null=True)
-    publication_month = models.CharField(max_length=255, null=True)
-    publication_month_number = models.CharField(max_length=255, null=True)
-    publication_year = models.CharField(max_length=255, null=True)
-    staff_id = models.CharField(max_length=255, null=True)
-    select_publication = models.CharField(max_length=255, null=True)
+    publication_status = models.CharField(max_length=255, null=True)
+    publication_date = models.DateTimeField(null=True)
+    
+# Model for bulletin
+class bulletin_list(models.Model):
+    bulletin_id = models.CharField(max_length=255, null=True)
+    bulletin_title = models.CharField(max_length=255, null=True)
+    bulletin_vol_no = models.CharField(max_length=255, null=True)
+    bulletin_month = models.CharField(max_length=255, null=True)
+    # bulletin_start_month = models.CharField(max_length=255, null=True)
+    # bulletin_end_month = models.CharField(max_length=255, null=True)
+    bulletin_year = models.DateTimeField(null=True)
+    bulletin_file_name = models.CharField(max_length=300, null=True)
+    # bulletin_date = models.DateTimeField(null=True)
 
-class staff_new(models.Model):
+# Model for bgrc_news
+class newsletter_list(models.Model):
+    newsletter_id = models.CharField(max_length=255, null=True)
+    newsletter_title = models.CharField(max_length=255, null=True)
+    newsletter_vol_no = models.CharField(max_length=255, null=True)
+    newsletter_month = models.CharField(max_length=255, null=True)
+    # newsletter_start_month = models.CharField(max_length=255, null=True)
+    # newsletter_end_month = models.CharField(max_length=255, null=True)
+    newsletter_year = models.DateTimeField(null=True)
+    # newsletter_file_name = models.CharField(max_length=300, null=True)
+
+
+# Model for award
+class award_list(models.Model):
+    award_name = models.CharField(max_length=255, null=True)
+    scientist_name = models.CharField(max_length=255, null=True)
+
+'''class staff_new(models.Model):
     staff_name = models.CharField(max_length=255, null=True)
     guide_name = models.CharField(max_length=255, null=True)
     designation = models.CharField(max_length=255, null=True)
@@ -273,7 +335,7 @@ class user(models.Model):
     staff_id = models.CharField(max_length=255, null=True)
     category_name = models.CharField(max_length=255, null=True)
     catcategory_work = models.CharField(max_length=255, null=True)
-    level_no = models.CharField(max_length=255, null=True)
+    level_no = models.CharField(max_length=255, null=True)'''
 
 class admin_user(models.Model):
     name = models.CharField(max_length=255, null=True)

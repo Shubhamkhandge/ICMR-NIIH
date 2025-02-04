@@ -22,11 +22,11 @@ urlpatterns = [
     # Staff-related pages
     path('scientist-staff/', views.scientist_staff, name='scientist-staff'),
     path('scientist-staff-details/', views.scientist_details, name='scientist-staff-details'),
-    path('administration-staff/', views.administration_staff, name='administration-staff'),
+    path('administration-staff/', views.admin_staff, name='administration-staff'),
     path('administration-staff-details/', views.administration_details, name='administration-staff-details'),
-    path('technical-staff/', views.technical_staff, name='technical-staff'),
+    path('technical-staff/', views.technical_staffs, name='technical-staff'),
     path('technical-staff-details/', views.technical_details, name='technical-staff-details'),
-    path('project-staff/', views.project_staff, name='project-staff'),
+    path('project-staff/', views.project_staff_info, name='project-staff'),
     path('project-staff-details/', views.project_details, name='project-staff-details'),
     path('students-list/', views.students_list, name='students-list'),
     path('student-staff-details/', views.student_details, name='student-staff-details'),
@@ -34,7 +34,7 @@ urlpatterns = [
     path('alumini-staff-details/', views.alumini_details, name='alumini-staff-details'),
     
     # Publications and News
-    path('publications-list/', views.publications_list, name='publications-list'),
+    path('publications-list/', views.publications, name='publications-list'),
     path('niih-bulletin-list/', views.niih_bulletin_list, name='niih-bulletin-list'),
     path('bgrc-news-letter/', views.bgrc_news_letter, name='bgrc-news-letter'),
     
@@ -73,7 +73,13 @@ urlpatterns = [
     path('admin_dashboard/update_department_info', views.update_department_info, name='update_department_info'),
     path('admin_dashboard/delete_department', views.delete_department, name='delete_department'),
     
-    # Support Department URL's
+    # Support Department Pages URL's
+    path('admin_dashboard/all_support_departments', views.all_support_departments, name='all_support_departments'),
+    path('admin_dashboard/add_support_department_info', views.add_support_department_info, name='add_support_department_info'),
+    path('admin_dashboard/update_support_department_info', views.update_support_department_info, name='update_support_department_info'),
+    path('admin_dashboard/delete_support_department', views.delete_support_department, name='delete_support_department'),
+    
+    # Category URL's
     path('admin_dashboard/all_categories', views.all_categories, name='all_categories'),
     path('admin_dashboard/add_category_info', views.add_category_info, name='add_category_info'),
     path('admin_dashboard/update_category_info', views.update_category_info, name='update_category_info'),
@@ -96,12 +102,49 @@ urlpatterns = [
     path('admin_dashboard/all_admin_staff', views.all_admin_staff, name='all_admin_staff'),
     path('admin_dashboard/add_admin_info', views.add_admin_info, name='add_admin_info'),
     path('admin_dashboard/update_admin_info', views.update_admin_info, name='update_admin_info'),
+    path('admin_dashboard/delete_admin', views.delete_admin, name='delete_admin'),
+    
+    # Technical Pages URL's
+    path('admin_dashboard/all_technical_staff', views.all_technical_staff, name='all_technical_staff'),
+    path('admin_dashboard/add_technical_info', views.add_technical_info, name='add_technical_info'),
+    path('admin_dashboard/update_technical_info', views.update_technical_info, name='update_technical_info'),
+    path('admin_dashboard/delete_technical', views.delete_technical, name='delete_technical'),
+   
+    # Project Pages URL's
+    path('admin_dashboard/all_project_staff', views.all_project_staff, name='all_project_staff'),
+    path('admin_dashboard/add_project_staff_info', views.add_project_staff_info, name='add_project_staff_info'),
+    path('admin_dashboard/update_project_staff_info', views.update_project_staff_info, name='update_project_staff_info'),
+    path('admin_dashboard/delete_project_staff', views.delete_project_staff, name='delete_project_staff'),
     
     # Project Pages URL's
     path('admin_dashboard/all_projects', views.all_projects, name='all_projects'),
     path('admin_dashboard/add_project_info', views.add_project_info, name='add_project_info'),
     path('admin_dashboard/update_project_info', views.update_project_info, name='update_project_info'),
     path('admin_dashboard/delete_project', views.delete_project, name='delete_project'),
+    
+    # Publications Pages URL's
+    path('admin_dashboard/all_publications', views.all_publications, name='all_publications'),
+    path('admin_dashboard/add_publication_info', views.add_publication_info, name='add_publication_info'),
+    path('admin_dashboard/update_publication_info', views.update_publication_info, name='update_publication_info'),
+    path('admin_dashboard/delete_publication', views.delete_publication, name='delete_publication'),
+    
+    # Bulletins Pages URL's
+    path('admin_dashboard/all_niih_bulletins', views.all_niih_bulletins, name='all_niih_bulletins'),
+    path('admin_dashboard/add_niih_bulletin_info', views.add_niih_bulletin_info, name='add_niih_bulletin_info'),
+    path('admin_dashboard/update_niih_bulletin_info', views.update_niih_bulletin_info, name='update_niih_bulletin_info'),
+    path('admin_dashboard/delete_niih_bulletin', views.delete_niih_bulletin, name='delete_niih_bulletin'),
+    
+    # Newsletters Pages URL's
+    path('admin_dashboard/all_newsletters', views.all_newsletters, name='all_newsletters'),
+    path('admin_dashboard/add_newsletter_info', views.add_newsletter_info, name='add_newsletter_info'),
+    path('admin_dashboard/update_newsletter_info', views.update_newsletter_info, name='update_newsletter_info'),
+    path('admin_dashboard/delete_newsletter', views.delete_newsletter, name='delete_newsletter'),
+    
+    # Awards Pages URL's
+    path('admin_dashboard/all_awards', views.all_awards, name='all_awards'),
+    path('admin_dashboard/add_award_info', views.add_award_info, name='add_award_info'),
+    path('admin_dashboard/update_award_info', views.update_award_info, name='update_award_info'),
+    path('admin_dashboard/delete_award', views.delete_award, name='delete_award'),
     
     # Settings Page URL
     path('admin_dashboard/settings', views.settings_page, name='settings'),

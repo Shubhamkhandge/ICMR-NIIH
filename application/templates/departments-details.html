@@ -60,10 +60,27 @@
                                                 {% for project_list in project %}
                                                 <li class="linkView__list">
                                                     <span class="linkView__list-link">
-                                                        {{project_list.2}}<br>    
+                                                        <!-- {{project_list.2}}<br>    
                                                         <em>PI: {{project_list.3}}</em><br>
-                                                        <i class="text-success">{{project_list.6}}</i>
+                                                        <i class="text-success">{{project_list.6}}</i> -->
+                                                        {{project_list.2}} <br> 
+                                                        {% if 'Completed' == project_list.6 %}
+                                                            <i style="font-size: 15px; font-weight: 700;" class="text-success">{{project_list.6}}</i>
+                                                        {% else %}
+                                                            <i style="font-size: 15px; font-weight: 700;" class="text-danger">{{project_list.6}}</i>
+                                                        {% endif %}
+                                                            <span class="text-dark" style="font-weight: 550;">|  {{project_list.5 | date:"d-M-Y"}}</span>
+
                                                     </span>
+                                                    <!-- <li class="list-item" style="list-style: disc;">
+                                                        {{project.project_title}} <br> 
+                                                        {% if 'Completed' == project.project_status %}
+                                                            <i style="font-size: 15px;" class="text-success">{{project.project_status}}
+                                                        {% else %}
+                                                            <i style="font-size: 15px;" class="text-danger">{{project.project_status}}
+                                                        {% endif %}
+                                                            | <em class="text-dark" style="font-weight: 550;">{{project.project_date | date:"d.M.Y"}}</em></i>
+                                                    </li> -->
                                                 </li>
                                                 {% endfor %}
                                             </ul>

@@ -53,66 +53,83 @@
                                 <form method="GET">
                                     <div class="baseFilter__main">
                                         <div class="formView">
-                                            <!-- From Year filter -->
                                             <div class="formView__group">
                                                 <label class="form-label" for="toMonthFilter">Select Month</label>
                                                 <select class="form-select form-control chzn-select" name="toMonthFilter" id="toMonthFilter">
-                                                    <option value="">-- ANY --</option>
-                                                    <option value="Jan">Jan</option>
-                                                    <option value="Feb">Feb</option>
-                                                    <option value="Mar">Mar</option>
-                                                    <option value="Apr">Apr</option>
-                                                    <option value="May">May</option>
-                                                    <option value="Jun">Jun</option>
-                                                    <option value="Jul">Jul</option>
-                                                    <option value="Aug">Aug</option>
-                                                    <option value="Sep">Sept</option>
-                                                    <option value="Oct">Oct</option>
-                                                    <option value="Nov">Nov</option>
-                                                    <option value="Dec">Dec</option>
+                                                    <option value="Select Month" disabled>Select Month</option>
+                                                    <option value="">---- ANY ----</option>
+                                                    {% if update_data.0.newsletter_month == 'Jan - Feb' %}
+                                                        <option value="Jan - Feb" selected>Jan - Feb</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'Mar - Apr' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Mar - Apr" selected>Mar - Apr</option>
+                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'May - Jun' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="May - Jun" selected>May - Jun</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'July - Aug' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="July - Aug" selected>July - Aug</option>
+                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'Sep - Oct' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="Sep - Oct" selected>Sep - Oct</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'Nov - Dec' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="Nov - Dec" selected>Nov - Dec</option>
+                                                    {% else %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% endif %}
                                                 </select>
                                             </div>
                     
-                                            <!-- To Volume filter -->
                                             <div class="formView__group">
-                                                <label class="form-label" for="toVolumeFilter">Select Volume</label>
+                                                <label class="form-label" for="toVolumeFilter">Select Vol & No.</label>
                                                 <select class="form-select form-control chzn-select" name="toVolumeFilter" id="toVolumeFilter">
-                                                    <option value="">-- ANY --</option>
-                                                    <option value="I">I</option>
-                                                    <option value="II">II</option>
-                                                    <option value="III">III</option>
-                                                    <option value="IV">IV</option>
-                                                    <option value="V">V</option>
-                                                    <option value="VI">VI</option>
-                                                    <option value="VII">VII</option>
-                                                    <option value="VIII">VIII</option>
-                                                    <option value="IX">IX</option>
-                                                    <option value="X">X</option>
-                                                    <option value="XI">XI</option>
-                                                    <option value="XII">XII</option>
-                                                    <option value="XIII">XIII</option>
+                                                    <option value="Select Vol & No." disabled>Select Vol & No.</option>
+                                                    <option value="">---- ANY ----</option>
+                                                    {% for all_newsletters in all_news %}
+                                                    <option value="{{all_newsletters.3}}">{{all_newsletters.3}}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                     
-                                            <!-- To Year filter -->
                                             <div class="formView__group">
                                                 <label class="form-label" for="toYear">To Year</label>
                                                 <select class="form-select form-control chzn-select" name="toYear" id="toYear">
-                                                    <option value="">-- ANY --</option>
-                                                    <option value="1982">1982</option>
-                                                    <option value="1981">1981</option>
-                                                    <option value="1983">1983</option>
-                                                    <option value="2014">2014</option>
-                                                    <option value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
+                                                    <option value="Select Year" disabled>Select Year</option>
+                                                    <option value="">---- ANY ----</option>
+                                                    {% for all_newsletters in all_news %}
+                                                    <option value="{{all_newsletters.5 | date:'Y' }}">{{all_newsletters.5 | date:"Y" }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                         </div>
@@ -131,37 +148,23 @@
                                     <table class="table table-bordered" id="documentTable">
                                         <thead>
                                             <tr>
-                                                <th>Sr. No.</th>
+                                                <th style="width: 10%;">Sr. No.</th>
                                                 <th>Title</th>
-                                                <th>Vol. & No.</th>
+                                                <th style="width: 10%;">Vol. & No.</th>
                                                 <th>Months</th>
-                                                <th>Year</th>
+                                                <th style="width: 10%;">Year</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- Example row -->
-                                            <tr data-month="Nov-Dec" data-volume="XIII" data-year="1982">
-                                                <td>1</td>
-                                                <td>HLA antibodies</td>
-                                                <td>XIII (6)</td>
-                                                <td>Nov-Dec</td>
-                                                <td>1982</td>
-                                            </tr>
-                                            <tr data-month="Dec-Jan" data-volume="XII" data-year="1981">
-                                                <td>2</td>
-                                                <td>Recent advances in fluorescent microscopy</td>
-                                                <td>XII (5)</td>
-                                                <td>Dec-Jan</td>
-                                                <td>1981</td>
-                                            </tr>
-                                            <tr data-month="May-Jun" data-volume="XI" data-year="1983">
-                                                <td>3</td>
-                                                <td>Acquired disorders of haemoglobins</td>
-                                                <td>XI (4)</td>
-                                                <td>May-Jun</td>
-                                                <td>1983</td>
-                                            </tr>
-                                            <!-- More rows here -->
+                                            {% for all_newsletters in all_news %}
+                                                <tr data-month="{{ all_newsletters.3 }}" data-volume="{{ all_newsletters.4 }}" data-year="{{ all_newsletters.0.5 }}">
+                                                    <td class="text-center">{{ forloop.counter }}</td>
+                                                    <td style="font-weight: 600;">{{ all_newsletters.2 }}</td>
+                                                    <td class="text-center">{{ all_newsletters.3 }}</td>
+                                                    <td class="text-center">{{ all_newsletters.4 }}</td>
+                                                    <td class="text-center">{{ all_newsletters.5 | date:"Y" }}</td>
+                                                </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>

@@ -1,0 +1,89 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container-fluid p-5">
+    <h2 class="text-center mb-4 text-uppercase mx-1">Manage Technical Staff<hr></h2>
+    <!-- Departments Table -->
+    <a href="/admin_dashboard/add_technical_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add Technician Profile</button></a>
+
+    <table class="table table-responsive table-bordered mx-2" id="scientists-table">
+        <thead class="text-center">
+            <th>ID</th>
+            <th>Technical Officer ID</th>
+            <th>Technical Officer Name</th>
+            <th>Department Name</th>
+            <th>Deignation</th>
+            <!-- <th>Division</th> -->
+            <th>Email ID</th>
+            <!-- <th>Specialization</th> -->
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% for all_technical in all_tech %}
+            <tr style="text-align: center;">
+                {% csrf_token %}
+                <td>{{forloop.counter}}</td>
+                <td>{{all_technical.technical_id}}</td>
+                <td>{{all_technical.technical_name}}</td>
+                <td>{{all_technical.support_department_name}}</td>
+                <td>{{all_technical.designation}}</td>
+                <!-- <td>ICMR-NIIH</td> -->
+                <td style="text-align: justify;">
+                    <table>
+                        <tr>
+                            <td>{{all_technical.email_id}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{all_technical.alt_email_id}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <!-- <td>Primary Immunodeficiency Disorders and Hematological Malignancy</td> -->
+                <td>
+                    <form action="{% url 'update_technical_info' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="technical_id" value="{{all_technical.technical_id}}">
+                         <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'delete_technical' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete_data" value="delete_data">
+                        <input type="hidden" name="technical_id" value="{{all_technical.technical_id}}">
+                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                    </form>
+                </td>
+                <!-- <td><a href="/admin_dashboard/update_scientist_info"><i class="fa-solid fa-edit text-success"></i></a></td>
+                <td><a href="/admin_dashboard/delete_scientist"><i class="fa-solid fa-trash text-danger"></i></a></td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa-solid fa-angles-left text-primary"></i>
+                    </a>
+                </li>
+                <li aria-current="page" class="page-item active">
+                    <span class="page-link">1</span>
+                </li>
+                <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">4</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="#">5</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="fa-solid fa-angles-right text-primary"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

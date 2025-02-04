@@ -1,7 +1,7 @@
 {% include 'admin_dashboard/includes/header.html'%}
 {% load static %}
 
-<div class="container-fluid p-5">
+<div class="container p-5">
     <h2 class="text-center mb-4 text-uppercase mx-1">Manage Administration Staff<hr></h2>
     <!-- Departments Table -->
     <a href="/admin_dashboard/add_admin_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add Administration Profile</button></a>
@@ -9,21 +9,35 @@
     <table class="table table-responsive table-bordered mx-2" id="scientists-table">
         <thead class="text-center">
             <th>ID</th>
-            <th>Scientist Name</th>
-            <th>Deignation</th>
-            <th>Division</th>
-            <th>Email ID</th>
-            <th>Specialization</th>
+            <th>Admin ID</th>
+            <th>Admin Name</th>
+            <th>Department Name</th>
+            <th>Designation</th>
+            <!-- <th>Division</th> -->
+            <!-- <th>Email ID</th> -->
+            <!-- <th>Specialization</th> -->
             <th>Edit</th>
             <th>Delete</th>
         </thead>
         <tbody>
+            {% for admin in all_admin %}
             <tr style="text-align: center;">
-                <td>1</td>
-                <td>Dr. Manisha R. Madkaikar</td>
-                <td>Director & Scientist G</td>
-                <td>ICMR-NIIH</td>
-                <td style="text-align: justify;">
+                <td>
+                    {{forloop.counter}}
+                </td>
+                <td>
+                    {{admin.admin_id}}
+                </td>
+                <td>
+                    {{admin.admin_name}}
+                </td>
+                <td>
+                    {{admin.support_department_name}}
+                </td>
+                <td>
+                    {{admin.category_name}}
+                </td>
+                <!-- <td style="text-align: justify;">
                     <table>
                         <tr>
                             <td>madkaikarmanisha@yahoo.co.in</td>
@@ -32,11 +46,24 @@
                             <td>directorniih@gmail.com</td>
                         </tr>
                     </table>
+                </td> -->
+                <td>
+                    <form action="{% url 'update_admin_info' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="admin_id" value="{{admin.admin_id}}">
+                         <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                    </form>
                 </td>
-                <td>Primary Immunodeficiency Disorders and Hematological Malignancy</td>
-                <td><a href="/admin_dashboard/update_admin_info"><i class="fa-solid fa-edit text-success"></i></a></td>
-                <td><a href="/admin_dashboard/delete_admin"><i class="fa-solid fa-trash text-danger"></i></a></td>
+                <td>
+                    <form action="{% url 'delete_admin' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete_data" value="delete_data">
+                        <input type="hidden" name="admin_id" value="{{admin.admin_id}}">
+                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                    </form>
+                </td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

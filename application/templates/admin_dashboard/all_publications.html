@@ -1,0 +1,64 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container-fluid">
+    <!-- Title -->
+    <h2 class="text-center px-3 text-uppercase my-4">Manage Publications
+        <a href="/admin_dashboard/add_publication_info"><button class="btn btn-primary rounded-0 mb-3" style="float: right; font-size: 16px; font-weight: 600; letter-spacing: 0.8px;">Add Publication</button></a>
+        <hr>
+    </h2>
+    
+    <div class="container-fluid px-3">
+        <table class="table table-responsive table-bordered" id="departments-table">
+            <thead class="text-center">
+                <th width="5%">ID</th>
+                <th width="8%">Publication ID</th>
+                <th>Publication Author</th>
+                <th>Publication Title</th>
+                <th width="10%">Publication Date</th>
+                <th width="5%">Edit</th>
+                <th width="5%">Delete</th>
+            </thead>
+            <tbody>
+                {% for all_publication in all_publications %}
+                <tr style="text-align: center;">
+                    {% csrf_token %}
+                    <td>
+                        {{forloop.counter}}
+
+                    </td>
+                    <td>
+                        {{all_publication.publication_id}}
+                    </td>
+                    <td style="text-align: justify;">
+                        {{all_publication.publication_author_name}}
+                    </td>
+                    <td style="text-align: justify;">
+                        {{all_publication.publication_title}}
+                    </td>
+                    <td>
+                        {{all_publication.publication_date | date:"d M Y" }}
+                    </td>
+                    <td>
+                        <form action="{% url 'update_publication_info' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="publication_id" value="{{all_publication.publication_id}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url 'delete_publication' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_data" value="delete_data">
+                            <input type="hidden" name="publication_id" value="{{all_publication.publication_id}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

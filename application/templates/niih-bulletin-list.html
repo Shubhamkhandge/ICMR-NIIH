@@ -43,66 +43,53 @@
                                             <div class="formView__group">
                                                 <label class="form-label" for="toMonthFilter">Select Month</label>
                                                 <select class="form-select form-control chzn-select" name="toMonthFilter" id="toMonthFilter">
-                                                    <option value="">-- ANY --</option>
-                                                    <option value="Jan">Jan</option>
-                                                    <option value="Feb">Feb</option>
-                                                    <option value="Mar">Mar</option>
-                                                    <option value="Apr">Apr</option>
-                                                    <option value="May">May</option>
-                                                    <option value="Jun">Jun</option>
-                                                    <option value="Jul">Jul</option>
-                                                    <option value="Aug">Aug</option>
-                                                    <option value="Sep">Sept</option>
-                                                    <option value="Oct">Oct</option>
-                                                    <option value="Nov">Nov</option>
-                                                    <option value="Dec">Dec</option>
+                                                    <option value="Select Month" disabled>Select Month</option>
+                                                    <option value="">---- ANY ----</option>
+                                                    {% if update_data.0.bulletin_month == 'jan-apr' %}
+                                                        <option value="jan-apr" selected>JAN - APR</option>
+                                                        <option value="may-aug">May - Aug</option>
+                                                        <option value="sep-dec">Sep - Dec</option>
+                                                    {% elif update_data.0.bulletin_month == 'may-aug' %}
+                                                        <option value="jan-apr">JAN - APR</option>
+                                                        <option value="may-aug" selected>May - Aug</option>
+                                                        <option value="sep-dec">Sep - Dec</option>
+                                                    {% elif update_data.0.bulletin_month == 'sep-dec' %}
+                                                        <option value="jan-apr">JAN - APR</option>
+                                                        <option value="may-aug">May - Aug</option>
+                                                        <option value="sep-dec" selected>Sep - Dec</option>
+                                                    {% else %}
+                                                        <option value="jan-apr">JAN - APR</option>
+                                                        <option value="may-aug">May - Aug</option>
+                                                        <option value="sep-dec">Sep - Dec</option>
+                                                    {% endif %}
                                                 </select>
                                             </div>
                     
                                             <div class="formView__group">
                                                 <label class="form-label" for="toVolumeFilter">Select Volume</label>
                                                 <select class="form-select form-control chzn-select" name="toVolumeFilter" id="toVolumeFilter">
-                                                    <option value="">-- ANY --</option>
-                                                    <option value="I">I</option>
-                                                    <option value="II">II</option>
-                                                    <option value="III">III</option>
-                                                    <option value="IV">IV</option>
-                                                    <option value="V">V</option>
-                                                    <option value="VI">VI</option>
-                                                    <option value="VII">VII</option>
-                                                    <option value="VIII">VIII</option>
-                                                    <option value="IX">IX</option>
-                                                    <option value="X">X</option>
-                                                    <option value="XI">XI</option>
-                                                    <option value="XII">XII</option>
-                                                    <option value="XIII">XIII</option>
+                                                    <option value="Select Vol & No." disabled>Select Vol & No.</option>
+                                                    <option value="">---- ANY ----</option>
+                                                    {% for bulletin in all_bulletins %}
+                                                    <option value="{{bulletin.3}}">{{bulletin.3}}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                     
                                             <div class="formView__group">
                                                 <label class="form-label" for="toYear">To Year</label>
                                                 <select class="form-select form-control chzn-select" name="toYear" id="toYear">
-                                                    <option value="">-- ANY --</option>
-                                                    <option value="1982">1982</option>
-                                                    <option value="1981">1981</option>
-                                                    <option value="1983">1983</option>
-                                                    <option value="2014">2014</option>
-                                                    <option value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
+                                                    <option value="Select Year" disabled>Select Year</option>
+                                                    <option value="">---- ANY ----</option>
+                                                    {% for bulletin in all_bulletins %}
+                                                    <option value="{{bulletin.5 | date:'Y' }}">{{bulletin.5 | date:"Y" }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="actions">
                                             <button type="submit" class="theme__btn theme__btn--orange theme__btn--radius50 u-small">Search</button>
-                                            <a class="theme__btn theme__btn--grey theme__btn--radius50 u-small" href="/bgrc-news-letter">Reset</a>
+                                            <a class="theme__btn theme__btn--grey theme__btn--radius50 u-small" href="/niih-bulletin-list">Reset</a>
                                         </div>
                                     </div>
                                 </form>
@@ -113,84 +100,23 @@
                                     <table class="table table-bordered" id="documentTable">
                                         <thead>
                                             <tr>
-                                                <th>Sr. No.</th>
-                                                <th>Title</th>
-                                                <th>Vol. & No.</th>
+                                                <th style="width: 8%;">Sr. No.</th>
+                                                <th style="width: 70%;">Title</th>
+                                                <th style="width: 10%;">Vol. & No.</th>
                                                 <th>Months</th>
-                                                <th>Year</th>
+                                                <th style="width: 10%;">Year</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-month="Jan-Apr" data-volume="51(1)" data-year="2020">
-                                                <td>1</td>
-                                                <td>Next-generation sequencing- Improves the diagnosis and management of patients with Congenital anemia - Rashmi Dongerdiye and Prabhakar Kedar</td>
-                                                <td>51(1)</td>
-                                                <td>Jan-Apr</td>
-                                                <td>2020</td>
-                                            </tr>
-                                            <tr data-month="May-Aug" data-volume="51(2)" data-year="2020">
-                                                <td>2</td>
-                                                <td>Autoimmune Lymphoproliferative Syndrome (ALPS) 2 - Priyanka Setia</td>
-                                                <td>51(2)</td>
-                                                <td>May-Aug</td>
-                                                <td>2020</td>
-                                            </tr>
-                                            <tr data-month="Sep-Dec" data-volume="51(3)" data-year="2020">
-                                                <td>3</td>
-                                                <td>Serological & molecular techniques for RhD typing and their role in the identification of D variants - Garima Mishra</td>
-                                                <td>51(3)</td>
-                                                <td>Sep-Dec</td>
-                                                <td>2020</td>
-                                            </tr>
-                                            <tr data-month="Jan-Apr" data-volume="50(1)" data-year="2019">
-                                                <td>4</td>
-                                                <td>Fibrinolysis and risk of Venous Thrombosis: An overview- by Aniket Prabhudesai</td>
-                                                <td>50(1)</td>
-                                                <td>Jan-Apr</td>
-                                                <td>2019</td>
-                                            </tr>
-                                            <tr data-month="May-Aug" data-volume="50(2)" data-year="2019">
-                                                <td>5</td>
-                                                <td>Spliceosomal Mutations in Myelodysplastic Syndromes and Its Therapeutic Implications- An Overview - Purvi Mohanty</td>
-                                                <td>50(2)</td>
-                                                <td>May-Aug</td>
-                                                <td>2019</td>
-                                            </tr>
-                                            <tr data-month="Sep-Dec" data-volume="50(3)" data-year="2019">
-                                                <td>6</td>
-                                                <td>SLIM21: Unique Library Software- Vijay Padwal, Amruta Mahale & Gauri Kesarkar</td>
-                                                <td>50(3)</td>
-                                                <td>Sep-Dec</td>
-                                                <td>2019</td>
-                                            </tr>
-                                            <tr data-month="Jan-Apr" data-volume="49(1)" data-year="2018">
-                                                <td>7</td>
-                                                <td>DARC : Structure, Function and Disease Pathophysiology - Roshan Shaikh</td>
-                                                <td>49(1)</td>
-                                                <td>Jan - April</td>
-                                                <td>2018</td>
-                                            </tr>
-                                            <tr data-month="May-Aug" data-volume="49(2)" data-year="2018">
-                                                <td>8</td>
-                                                <td>Protein Glycosylation in Hepatitis B Related Liver Diseases - Kruti Bhavik Dalal</td>
-                                                <td>49(2)</td>
-                                                <td>May - August</td>
-                                                <td>2018</td>
-                                            </tr>
-                                            <tr data-month="Sep-Dec" data-volume="49(3)" data-year="2018">
-                                                <td>9</td>
-                                                <td>Chronic Granulamatous Disease- Manasi Kulkarni</td>
-                                                <td>49(3)</td>
-                                                <td>Sep-Dec</td>
-                                                <td>2018</td>
-                                            </tr>
-                                            <tr data-month="Jan-April" data-volume="48(1)" data-year="2017">
-                                                <td>10</td>
-                                                <td>Adipokines: the new players of inflammatory response in Systemic Lupus Erythematosus - Durga Chougule</td>
-                                                <td>48(1)</td>
-                                                <td>Jan-April</td>
-                                                <td>2017</td>
-                                            </tr>
+                                            {% for bulletin in all_bulletins %}
+                                                <tr data-month="{{ bulletin.3 }}" data-volume="{{ bulletin.4 }}" data-year="{{ bulletin.0.5 }}">
+                                                    <td class="text-center">{{ forloop.counter }}</td>
+                                                    <td><a style="font-weight: 600;" href="/static/uploads/Bulletins/{{ bulletin.6 }}" target="_blank">{{ bulletin.2 }}</a></td>
+                                                    <td class="text-center">{{ bulletin.3 }}</td>
+                                                    <td class="text-center">{{ bulletin.4 }}</td>
+                                                    <td class="text-center">{{ bulletin.5 | date:"Y" }}</td>
+                                                </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>

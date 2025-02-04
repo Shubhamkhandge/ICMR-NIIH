@@ -1,0 +1,55 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container-fluid">
+    <!-- Title -->
+    <h2 class="text-center px-3 text-uppercase my-4">Manage Awards and Achievements
+        <a href="/admin_dashboard/add_award_info"><button class="btn btn-primary rounded-0 mb-3" style="float: right; font-size: 16px; font-weight: 600; letter-spacing: 0.8px;">Add Award</button></a>
+        <hr>
+    </h2>
+    
+    <div class="container-fluid px-3">
+        <table class="table table-responsive table-bordered" id="departments-table">
+            <thead class="text-center">
+                <th style="width: 5%;">ID</th>
+                <th>Award Title</th>
+                <th style="width: 15%;">Scientist Name</th>
+                <th style="width: 5%;">Edit</th>
+                <th style="width: 5%;">Delete</th>
+            </thead>
+            <tbody>
+                {% for all_awards_list in all_awards %}
+                <tr>
+                    {% csrf_token %}
+                    <td class="text-center">
+                        {{forloop.counter}}
+                    </td>
+                    <td style="text-align: justify;">
+                        {{all_awards_list.award_name}}
+                    </td>
+                    <td class="text-center">
+                        {{all_awards_list.scientist_name}}
+                    </td>
+                    <td class="text-center">
+                        <form action="{% url 'update_award_info' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="award_name" value="{{all_awards_list.award_name}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                        </form>
+                    </td>
+                    <td class="text-center">
+                        <form action="{% url 'delete_award' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_data" value="delete_data">
+                            <input type="hidden" name="award_name" value="{{all_awards_list.award_name}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}
