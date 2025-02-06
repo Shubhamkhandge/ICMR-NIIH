@@ -120,7 +120,27 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>                            
+                            </div>
+                                
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-end">
+                                    {% if all_bulletins.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ all_bulletins.previous_page_number }}">Previous</a></li>
+                                    {% endif %}
+                                    {% for num in all_bulletins.paginator.page_range %}
+                                        {% if all_bulletins.number == num %}
+                                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if all_bulletins.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ all_bulletins.next_page_number }}">Next</a></li>
+                                
+                                    {% endif %}
+                                    
+                                </ul>
+                            </nav>                            
                         </div>
                     </div>
                     

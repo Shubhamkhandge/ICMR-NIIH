@@ -291,6 +291,26 @@
                                 {% endfor %}
                             </div>
                         </div>
+                        
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-end">
+                                {% if admin_staff_info.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ admin_staff_info.previous_page_number }}">Previous</a></li>
+                                {% endif %}
+                                {% for num in admin_staff_info.paginator.page_range %}
+                                    {% if admin_staff_info.number == num %}
+                                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if admin_staff_info.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ admin_staff_info.next_page_number }}">Next</a></li>
+                            
+                                {% endif %}
+                                
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

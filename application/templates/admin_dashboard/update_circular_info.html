@@ -1,0 +1,69 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update Circular Information
+        <a href="/admin_dashboard/all_circulars">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-10 pb-2 m-auto">
+        <form action="" method="POST" class="form" id="update-circular-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{update_data.0.id}} -->
+            <div class="col-12 d-none">
+                <input type="hidden" name="update_data" value="update_data">
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="circular_id" class="form-label text-dark" style="font-weight: 600;">Circular ID : </label>
+                    <input type="number" class="form-control text-center rounded-0" id="circular_id" value="{{update_data.0.circular_id}}" placeholder="Update Circular ID" name="circular_id" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="circular_date" class="form-label text-dark" style="font-weight: 600;">Select Circular Year : </label>
+                    <input type="date" name="circular_date" id="circular_date" value="{{update_data.0.circular_date|date:'Y-m-d'}}" class="form-control rounded-0">
+                </div>
+
+                <div class="col mb-3">
+                    <label for="circular_status" class="form-label text-dark" style="font-weight: 600;">Select Circular Status : </label>
+                    <select id="circular_status" value="Select Status" name="circular_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Status</option>
+                            {% if 'Open' == update_data.0.circular_status %}
+                                <option value="Open" selected>Open</option>
+                                <option value="Closed">Closed</option>
+                            {% else %}
+                                <option value="Open">Open</option>  
+                                <option value="Closed" selected>Closed</option>
+                            {% endif %}
+                    </select>
+                </div>
+
+                <div class="col-4 mb-3">
+                    <label for="circular_file_name" class="form-label text-dark" style="font-weight: 600;">Select Circular File : </label>
+                    <br>{{update_data.0.circular_file_name}}
+                    <input type="file" id="circular_file_name" value="Select Circular File" name="circular_file_name" class="form-control rounded-0">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="circular_title" class="form-label text-dark" style="font-weight: 600;">Circular Title : </label>
+                    <textarea class="form-control rounded-0" id="circular_title" placeholder="Update Circular Title" name="circular_title" rows="5" required>{{update_data.0.circular_title}}</textarea>
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success px-5 py-2 rounded-0">Update</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-circular-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

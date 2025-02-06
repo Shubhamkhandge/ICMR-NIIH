@@ -1,0 +1,74 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update Student Information
+        <a href="/admin_dashboard/all_student_staff">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-8 pb-2 m-auto">
+        <form action="" method="POST" class="form" id="update-student-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{update_data.0.id}} -->
+            <div class="col-12 d-none">
+                <input type="hidden" name="update_data" value="update_data">
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="student_staff_id" class="form-label text-dark" style="font-weight: 600;">Student ID : </label>
+                    <input type="number" class="form-control rounded-0 text-center" id="student_staff_id" value="{{update_data.0.student_staff_id}}" placeholder="Update Student ID" name="student_staff_id" readonly>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="student_join_year" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
+                    <input type="number" class="form-control rounded-0" id="student_join_year" value="{{update_data.0.student_join_year}}" placeholder="Update Student Name" name="student_join_year">
+                </div>
+                
+                <div class="col mb-3">
+                    <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
+                    <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Profile Status</option>
+                        {% if 'Active' == update_data.0.profile_status %}
+                            <option value="Active" selected>Active</option>
+                            <option value="Inactive">Inactive</option>
+                        {% else %}
+                            <option value="Active">Active</option>  
+                            <option value="Inactive" selected>Inactive</option>
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="student_staff_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
+                    <input type="text" class="form-control rounded-0" id="student_staff_name" value="{{update_data.0.student_staff_name}}" placeholder="Update Student Name" name="student_staff_name">
+                </div>
+
+                <div class="col mb-3">
+                    <label for="student_guide_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
+                    <input type="text" class="form-control rounded-0" id="student_guide_name" value="{{update_data.0.student_guide_name}}" placeholder="Update Student Name" name="student_guide_name">
+                </div>
+
+                <div class="col mb-3">
+                    <label for="project_staff_departmernt" class="form-label text-dark" style="font-weight: 600;">Student Department Name : </label>
+                    <input type="text" class="form-control rounded-0" id="project_staff_departmernt" value="{{update_data.0.student_staff_department}}" placeholder="Update Student Department" name="student_staff_department">
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success px-5 py-2 rounded-0">Update</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-student-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

@@ -1,0 +1,59 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Add Alumini Information
+        <a href="/admin_dashboard/all_alumini_staff">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-9 pb-2 m-auto">
+        <form action="{% url 'add_alumini_staff_info' %}" method="POST" class="form" id="add-alumini-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="alumini_staff_id" class="form-label text-dark" style="font-weight: 600;">Alumini ID : </label>
+                    <input type="number" class="form-control rounded-0 text-center" id="alumini_staff_id" placeholder="Enter Alumini ID" name="alumini_staff_id" required>
+                </div>
+                <div class="col mb-3">
+                    <label for="alumini_leave_year" class="form-label text-dark" style="font-weight: 600;">Alumini Leaving Year : </label>
+                    <input type="number" class="form-control rounded-0 text-center" id="alumini_leave_year" placeholder="Enter Alumini Leaving Year " name="alumini_leave_year" required>
+                </div>
+                
+                <div class="col mb-3">
+                    <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
+                    <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Profile Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 mb-3">
+                    <label for="alumini_staff_name" class="form-label text-dark" style="font-weight: 600;">Alumini Name : </label>
+                    <input type="text" class="form-control rounded-0" id="alumini_staff_name" placeholder="Enter Alumini Name" name="alumini_staff_name" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="alumini_staff_designation" class="form-label text-dark" style="font-weight: 600;">Alumini Designation : </label>
+                    <input type="text" class="form-control rounded-0" id="alumini_staff_designation" placeholder="Enter Alumini Designation " name="alumini_staff_designation" required>
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-alumini-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

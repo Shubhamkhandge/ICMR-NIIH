@@ -30,7 +30,7 @@ urlpatterns = [
     path('project-staff-details/', views.project_details, name='project-staff-details'),
     path('students-list/', views.students_list, name='students-list'),
     path('student-staff-details/', views.student_details, name='student-staff-details'),
-    path('alumini-staff/', views.alumini_staff, name='alumini-staff'),
+    path('alumini-staff/', views.alumini_list, name='alumini-staff'),
     path('alumini-staff-details/', views.alumini_details, name='alumini-staff-details'),
     
     # Publications and News
@@ -48,7 +48,7 @@ urlpatterns = [
     
     # Reports and Cirulars, Tenders
     path('circulars-list/', views.circulars_list, name='circulars-list'),
-    path('advertise-list/', views.advertise_list, name='advertise-list'),
+    path('advertise-list/', views.advertises, name='advertise-list'),
     path('reports-list/', views.reports_list, name='reports-list'),
     path('tenders-list/', views.tenders_list, name='tenders-list'),
     
@@ -92,30 +92,47 @@ urlpatterns = [
     path('admin_dashboard/delete_designation_info', views.delete_designation_info, name='delete_designation_info'),
     
     # Staff URL's
-    # Scientist Pages URL's
+    # Scientist Staff Pages URL's
     path('admin_dashboard/all_scientists_staff', views.all_scientists_staff, name='all_scientists_staff'),
     path('admin_dashboard/add_scientist_info', views.add_scientist_info, name='add_scientist_info'),
     path('admin_dashboard/update_scientist_info', views.update_scientist_info, name='update_scientist_info'),
     path('admin_dashboard/delete_scientist', views.delete_scientist, name='delete_scientist'),
     
-    # Administration Pages URL's
+    # Administration Staff Pages URL's
     path('admin_dashboard/all_admin_staff', views.all_admin_staff, name='all_admin_staff'),
     path('admin_dashboard/add_admin_info', views.add_admin_info, name='add_admin_info'),
     path('admin_dashboard/update_admin_info', views.update_admin_info, name='update_admin_info'),
     path('admin_dashboard/delete_admin', views.delete_admin, name='delete_admin'),
     
-    # Technical Pages URL's
+    # Technical Staff Pages URL's
     path('admin_dashboard/all_technical_staff', views.all_technical_staff, name='all_technical_staff'),
     path('admin_dashboard/add_technical_info', views.add_technical_info, name='add_technical_info'),
     path('admin_dashboard/update_technical_info', views.update_technical_info, name='update_technical_info'),
     path('admin_dashboard/delete_technical', views.delete_technical, name='delete_technical'),
    
-    # Project Pages URL's
+    # Project Staff Pages URL's
     path('admin_dashboard/all_project_staff', views.all_project_staff, name='all_project_staff'),
     path('admin_dashboard/add_project_staff_info', views.add_project_staff_info, name='add_project_staff_info'),
     path('admin_dashboard/update_project_staff_info', views.update_project_staff_info, name='update_project_staff_info'),
     path('admin_dashboard/delete_project_staff', views.delete_project_staff, name='delete_project_staff'),
     
+    # Student Staff Pages URL's
+    path('admin_dashboard/all_student_staff', views.all_student_staff, name='all_student_staff'),
+    path('admin_dashboard/add_student_staff_info', views.add_student_staff_info, name='add_student_staff_info'),
+    path('admin_dashboard/update_student_staff_info', views.update_student_staff_info, name='update_student_staff_info'),
+    path('admin_dashboard/delete_student', views.delete_student, name='delete_student'),
+    
+    # Student Staff Pages URL's
+    path('admin_dashboard/all_alumini_staff', views.all_alumini_staff, name='all_alumini_staff'),
+    path('admin_dashboard/add_alumini_staff_info', views.add_alumini_staff_info, name='add_alumini_staff_info'),
+    path('admin_dashboard/update_alumini_staff_info', views.update_alumini_staff_info, name='update_alumini_staff_info'),
+    path('admin_dashboard/delete_alumini', views.delete_alumini, name='delete_alumini'),
+    
+
+
+
+
+
     # Project Pages URL's
     path('admin_dashboard/all_projects', views.all_projects, name='all_projects'),
     path('admin_dashboard/add_project_info', views.add_project_info, name='add_project_info'),
@@ -145,6 +162,24 @@ urlpatterns = [
     path('admin_dashboard/add_award_info', views.add_award_info, name='add_award_info'),
     path('admin_dashboard/update_award_info', views.update_award_info, name='update_award_info'),
     path('admin_dashboard/delete_award', views.delete_award, name='delete_award'),
+    
+    # Circular Pages URL's
+    path('admin_dashboard/all_circulars', views.all_circulars, name='all_circulars'),
+    path('admin_dashboard/add_circular_info', views.add_circular_info, name='add_circular_info'),
+    path('admin_dashboard/update_circular_info', views.update_circular_info, name='update_circular_info'),
+    path('admin_dashboard/delete_circular', views.delete_circular, name='delete_circular'),
+    
+    # Tender Pages URL's
+    path('admin_dashboard/all_tenders', views.all_tenders, name='all_tenders'),
+    path('admin_dashboard/add_tender_info', views.add_tender_info, name='add_tender_info'),
+    path('admin_dashboard/update_tender_info', views.update_tender_info, name='update_tender_info'),
+    path('admin_dashboard/delete_tender', views.delete_tender, name='delete_tender'),
+    
+    # Advertisement Pages URL's
+    path('admin_dashboard/all_advertise', views.all_advertise, name='all_advertise'),
+    path('admin_dashboard/add_advertise_info', views.add_advertise_info, name='add_advertise_info'),
+    path('admin_dashboard/update_advertise_info', views.update_advertise_info, name='update_advertise_info'),
+    path('admin_dashboard/delete_advertise', views.delete_advertise, name='delete_advertise'),
     
     # Settings Page URL
     path('admin_dashboard/settings', views.settings_page, name='settings'),

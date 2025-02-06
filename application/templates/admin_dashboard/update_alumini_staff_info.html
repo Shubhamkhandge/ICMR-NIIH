@@ -1,0 +1,69 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Update Student Information
+        <a href="/admin_dashboard/all_alumini_staff">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-8 pb-2 m-auto">
+        <form action="" method="POST" class="form" id="update-student-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{update_data.0.id}} -->
+            <div class="col-12 d-none">
+                <input type="hidden" name="update_data" value="update_data">
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="alumini_staff_id" class="form-label text-dark" style="font-weight: 600;">Alumini Staff ID : </label>
+                    <input type="number" class="form-control rounded-0 text-center" id="alumini_staff_id" value="{{update_data.0.alumini_staff_id}}" placeholder="Update Alumini Staff ID" name="alumini_staff_id" readonly>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="alumini_leave_year" class="form-label text-dark" style="font-weight: 600;">Alumini Staff Name : </label>
+                    <input type="number" class="form-control rounded-0" id="alumini_leave_year" value="{{update_data.0.alumini_leave_year}}" placeholder="Update Alumini Staff Name" name="alumini_leave_year">
+                </div>
+                
+                <div class="col mb-3">
+                    <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
+                    <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Profile Status</option>
+                        {% if 'Active' == update_data.0.profile_status %}
+                            <option value="Active" selected>Active</option>
+                            <option value="Inactive">Inactive</option>
+                        {% else %}
+                            <option value="Active">Active</option>  
+                            <option value="Inactive" selected>Inactive</option>
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 mb-3">
+                    <label for="alumini_staff_name" class="form-label text-dark" style="font-weight: 600;">Alumini Staff Name : </label>
+                    <input type="text" class="form-control rounded-0" id="alumini_staff_name" value="{{update_data.0.alumini_staff_name}}" placeholder="Update Alumini Staff Name" name="alumini_staff_name">
+                </div>
+
+                <div class="col mb-3">
+                    <label for="alumini_staff_designation" class="form-label text-dark" style="font-weight: 600;">Alumini Staff Name : </label>
+                    <input type="text" class="form-control rounded-0" id="alumini_staff_designation" value="{{update_data.0.alumini_staff_designation}}" placeholder="Update Alumini Staff Name" name="alumini_staff_designation">
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success px-5 py-2 rounded-0">Update</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-student-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

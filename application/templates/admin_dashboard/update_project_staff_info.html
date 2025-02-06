@@ -46,11 +46,11 @@
                     <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
                         <option value="" selected disabled>Select Profile Status</option>
                         {% if 'Active' == update_data.0.profile_status %}
-                            <option value="Active" selected disabled>Active</option>
+                            <option value="Active" selected>Active</option>
                             <option value="Inactive">Inactive</option>
                         {% else %}
                             <option value="Active">Active</option>  
-                            <option value="Inactive" selected disabled>Inactive</option>
+                            <option value="Inactive" selected>Inactive</option>
                         {% endif %}
                     </select>
                 </div>

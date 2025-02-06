@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import loader
+from django.core.paginator import Paginator
 from django.http import QueryDict
 from application.forms import CaptchaForm
 from django.http import HttpRequest
@@ -71,7 +72,10 @@ def departments_details(request):
 # Staff-related pages
 def scientist_staff(request):
     sci_staff = scientific_staff.objects.values_list('scientist_name','profilepic_name', 'scientist_id','profile_status')
-    return render(request, 'scientist-staff.html', {'scientist_staff':sci_staff})
+    paginator = Paginator(sci_staff, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'scientist-staff.html', {'scientist_staff':page_obj})
 
 def scientist_details(request):
     if request.method == 'POST': 
@@ -103,7 +107,11 @@ def scientist_details(request):
 
 def admin_staff(request):
     admin_staff = administration_staff.objects.values_list('admin_name','profilepic_name', 'admin_id','profile_status')
-    return render(request, 'administration-staff.html', {'admin_staff_info':admin_staff})
+    
+    paginator = Paginator(admin_staff, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'administration-staff.html', {'admin_staff_info':page_obj})
 
 def administration_details(request):
     if request.method == 'POST': 
@@ -115,7 +123,10 @@ def administration_details(request):
 
 def technical_staffs(request):
     tech_staff = technical_staff.objects.values_list('technical_name','profilepic_name', 'technical_id','profile_status')
-    return render(request, 'technical-staff.html', {'technical_staff':tech_staff})
+    paginator = Paginator(tech_staff, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'technical-staff.html', {'technical_staff':page_obj})
 
 def technical_details(request):
     if request.method == 'POST': 
@@ -133,19 +144,30 @@ def technical_details(request):
 
 def project_staff_info(request):
     proj_staff = project_staff.objects.values_list('project_staff_name', 'project_staff_designation', 'project_staff_department', 'profile_status')
-    return render(request, 'project-staff.html', {'all_project_staff': proj_staff})
+    paginator = Paginator(proj_staff, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'project-staff.html', {'all_project_staff': page_obj})
 
 def project_details(request):
     return render(request, 'project-staff-details.html')
 
 def students_list(request):
-    return render(request, 'students-list.html')
+    all_students = student_staff.objects.values_list('student_staff_name', 'student_guide_name', 'student_staff_department', 'student_join_year','profile_status')
+    paginator = Paginator(all_students, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'students-list.html', {'all_student': page_obj})
 
 def student_details(request):
     return render(request, 'student-staff-details.html')
 
-def alumini_staff(request):
-    return render(request, 'alumini-staff.html')
+def alumini_list(request):
+    all_aluminis = alumini_staff.objects.values_list('alumini_staff_name', 'alumini_staff_designation', 'alumini_leave_year','profile_status')
+    paginator = Paginator(all_aluminis, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'alumini-staff.html', {'all_alumini': page_obj})
 
 def alumini_details(request):
     return render(request, 'alumini-staff-details.html')
@@ -153,26 +175,41 @@ def alumini_details(request):
 # Publications and News
 def publications(request):
     all_publications = publications_list.objects.values_list()
-    return render(request, 'publications-list.html', {'publications':all_publications})
+    paginator = Paginator(all_publications, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'publications-list.html', {'publications':page_obj})
 
 def niih_bulletin_list(request):
     all_niih_bulletins = bulletin_list.objects.values_list()
-    return render(request, 'niih-bulletin-list.html', {'all_bulletins':all_niih_bulletins})
+    paginator = Paginator(all_niih_bulletins, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'niih-bulletin-list.html', {'all_bulletins':page_obj})
 
 def bgrc_news_letter(request):
     all_newsletters = newsletter_list.objects.values_list()
-    return render(request, 'bgrc-news-letter.html', {'all_news':all_newsletters})
+    paginator = Paginator(all_newsletters, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'bgrc-news-letter.html', {'all_news':page_obj})
 
 # Projects
 def ongoing_projects_list(request):
     all_project = projects.objects.values()
     ongoing_project = projects.objects.filter(project_status = 'On going').values()
-    return render(request, 'ongoing-projects-list.html', {'projects':all_project, 'ongoing_project':ongoing_project})
+    paginator = Paginator(ongoing_project, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'ongoing-projects-list.html', {'projects':all_project, 'ongoing_project':page_obj})
 
 def completed_projects_list(request):
     all_project = projects.objects.values()
     completed_project = projects.objects.filter(project_status = 'Completed').values()
-    return render(request, 'completed-projects-list.html', {'projects':all_project, 'completed_project':completed_project})
+    paginator = Paginator(completed_project, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'completed-projects-list.html', {'projects':all_project, 'completed_project':page_obj})
 
 # Media and Photo Details
 def media_gallery(request):
@@ -183,13 +220,39 @@ def photo_details(request):
 
 # Reports and Cirulars, Tenders
 def circulars_list(request):
-    return render(request, 'circulars-list.html')
+    # Get filter values from the GET request
+    name_filter = request.GET.get('nameFilter', '')
+    from_year = request.GET.get('fromYear', '')
 
-def advertise_list(request):
-    return render(request, 'advertise-list.html')
+    # Base query to get all circulars
+    # all_circular = CircularList.objects.all()
+
+    # Apply filters if provided
+    if name_filter:
+        all_circular = all_circular.filter(circular_title__icontains=name_filter)
+    if from_year:
+        all_circular = all_circular.filter(circular_date__year=from_year)
+
+    all_circular = circular_list.objects.values_list('circular_title', 'circular_date','circular_file_name', 'circular_status')
+    paginator = Paginator(all_circular, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'circulars-list.html', {'all_circulars': page_obj})
+
+def advertises(request):
+    all_advertise = advertise_list.objects.values_list('advertise_title', 'advertise_date','advertise_file_name', 'advertise_status')
+    paginator = Paginator(all_advertise, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'advertise-list.html', {'all_advertises':page_obj})
 
 def tenders_list(request):
-    return render(request, 'tenders-list.html')
+    all_tender = tender_list.objects.values_list('tender_title', 'tender_date','tender_file_name', 'tender_status')
+    print(all_tender)
+    paginator = Paginator(all_tender, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'tenders-list.html', {'all_tenders':page_obj})
 
 def reports_list(request):
     return render(request, 'reports-list.html')

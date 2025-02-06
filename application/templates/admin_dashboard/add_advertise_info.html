@@ -1,0 +1,59 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Add Advertise Information
+        <a href="/admin_dashboard/all_advertise">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-10 pb-2 m-auto">
+        <form action="{% url 'add_advertise_info' %}" method="POST" class="form" id="add-advertise-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-3 mb-3">
+                    <label for="advertise_id" class="form-label text-dark" style="font-weight: 600;">Advertise ID : </label>
+                    <input type="number" class="form-control rounded-0" id="advertise_id" placeholder="Enter Advertise ID" name="advertise_id" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="advertise_date" class="form-label text-dark" style="font-weight: 600;">Select Advertise Date : </label>
+                    <input type="date" name="advertise_date" id="advertise_date" class="form-control rounded-0">
+                </div>
+
+                <div class="col mb-3">
+                    <label for="advertise_status" class="form-label text-dark" style="font-weight: 600;">Select Advertise Status : </label>
+                    <select id="advertise_status" value="Select Status" name="advertise_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+
+                <div class="col-4 mb-3">
+                    <label for="advertise_file_name" class="form-label text-dark" style="font-weight: 600;">Select Advertise File : </label>
+                    <input type="file" id="advertise_file_name" value="Select Advertise File" name="advertise_file_name" class="form-control rounded-0">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="advertise_title" class="form-label text-dark" style="font-weight: 600;">Advertise Title : </label>
+                    <textarea class="form-control rounded-0" id="advertise_title" placeholder="Enter Advertise Title" name="advertise_title" rows="5" required></textarea>
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-advertise-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

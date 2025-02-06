@@ -1,5 +1,6 @@
 import datetime
 import os
+from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib import admin
 from django.shortcuts import render,redirect
@@ -47,13 +48,19 @@ def dashboard_view(request):
         total_support_departments = support_department.objects.count()
         total_categories = category.objects.count()
         total_designations = staff_designation.objects.count()
+        total_scientist_staff = scientific_staff.objects.count()
+        total_admin_staff = administration_staff.objects.count()
+        total_technical_staff = technical_staff.objects.count()
+        total_project_staff = project_staff.objects.count()
+        total_student_staff = student_staff.objects.count()
+        total_alumini_staff = alumini_staff.objects.count()
         total_projects = projects.objects.count()
-        total_scientists = scientific_staff.objects.count()
-        total_admins = administration_staff.objects.count()
-        total_technical = technical_staff.objects.count()
         total_publications = publications_list.objects.count()
         total_niih_bulletins = bulletin_list.objects.count()
-        total_bgrc_newsletters = technical_staff.objects.count()
+        total_bgrc_newsletters = newsletter_list.objects.count()
+        total_circulars = circular_list.objects.count()
+        total_advertises = advertise_list.objects.count()
+        total_tenders = tender_list.objects.count()
         total_awards = award_list.objects.count()
 
         # Assuming 'project_status' field to differentiate between ongoing and completed projects
@@ -66,15 +73,21 @@ def dashboard_view(request):
             'total_support_departments': total_support_departments,
             'total_categories': total_categories,
             'total_designations': total_designations,
+            'total_scientist_staff': total_scientist_staff,
+            'total_admin_staff': total_admin_staff,
+            'total_technical_staff': total_technical_staff,
+            'total_project_staff': total_project_staff,
+            'total_student_staff': total_student_staff,
+            'total_alumini_staff': total_alumini_staff,
             'total_projects': total_projects,
-            'total_scientists': total_scientists,
-            'total_admins': total_admins,
-            'total_technical': total_technical,
             'ongoing_projects': ongoing_projects,
             'completed_projects': completed_projects,
             'total_publications': total_publications,
             'total_niih_bulletins': total_niih_bulletins,
             'total_bgrc_newsletters': total_bgrc_newsletters,
+            'total_circulars': total_circulars,
+            'total_advertises': total_advertises,
+            'total_tenders': total_tenders,
             'total_awards': total_awards,
         }
         return render(request, 'admin_dashboard/dashboard.html', context)
@@ -318,7 +331,10 @@ def delete_category(request):
 def all_designations(request):
     if 'user' in request.session:
         all_desig = staff_designation.objects.values()
-        return render(request, 'admin_dashboard/all_designations.html', {'all_designation': all_desig, 'username': request.session['user']})
+        paginator = Paginator(all_desig, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_designations.html', {'all_designation': page_obj, 'username': request.session['user']})
     return redirect('login')
 
 def add_designation_info(request):
@@ -374,7 +390,10 @@ def delete_designation_info(request):
 def all_scientists_staff(request):
     if 'user' in request.session:
         all_scientist = scientific_staff.objects.values()
-        return render(request, 'admin_dashboard/all_scientists_staff.html', {'all_sci': all_scientist, 'username': request.session['user']})
+        paginator = Paginator(all_scientist, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_scientists_staff.html', {'all_sci': page_obj, 'username': request.session['user']})
     return redirect('login')
                    
 def add_scientist_info(request):
@@ -538,7 +557,10 @@ def delete_scientist(request):
 def all_admin_staff(request):
     if 'user' in request.session:
         all_admins = administration_staff.objects.values()
-        return render(request, 'admin_dashboard/all_admin_staff.html', {'all_admin': all_admins,'username': request.session['user'] })
+        paginator = Paginator(all_admins, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_admin_staff.html', {'all_admin': page_obj,'username': request.session['user'] })
     return redirect('login')
 
 def add_admin_info(request):
@@ -690,7 +712,10 @@ def delete_admin(request):
 def all_technical_staff(request):
     if 'user' in request.session:
         all_technical = technical_staff.objects.values()
-        return render(request, 'admin_dashboard/all_technical_staff.html', {'all_tech': all_technical, 'username': request.session['user']})
+        paginator = Paginator(all_technical, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_technical_staff.html', {'all_tech': page_obj, 'username': request.session['user']})
     return redirect('login')
 
 def add_technical_info(request):
@@ -846,7 +871,10 @@ def delete_technical(request):
 def all_project_staff(request):
     if 'user' in request.session:
         allproject_staff = project_staff.objects.values()
-        return render(request, 'admin_dashboard/all_project_staff.html', {'all_proj_staff': allproject_staff,'username': request.session['user'] })
+        paginator = Paginator(allproject_staff, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_project_staff.html', {'all_proj_staff': page_obj,'username': request.session['user'] })
     return redirect('login')
 
 def add_project_staff_info(request):
@@ -885,13 +913,119 @@ def delete_project_staff(request):
         return render(request, 'admin_dashboard/delete_project_staff.html', {'project_staff': all_staff,'username': request.session['user'] })
     return redirect('login')
 
+# Student Pages
+def all_student_staff(request):
+    if 'user' in request.session:
+        all_students = student_staff.objects.values()
+        paginator = Paginator(all_students, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_student_staff.html', {'all_student_info': page_obj, 'username': request.session['user']})
+    return redirect('login')
+
+def add_student_staff_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            student_data = student_staff(
+                student_staff_id = request.POST.get('student_staff_id'),
+                student_staff_name = request.POST.get('student_staff_name'),
+                student_guide_name = request.POST.get('student_guide_name'),
+                student_staff_department = request.POST.get('student_staff_department'),
+                student_join_year = request.POST.get('student_join_year'),
+                profile_status = request.POST.get('profile_status')
+            )
+            student_data.save()
+            return redirect('all_student_staff') 
+        return render(request, 'admin_dashboard/add_student_staff_info.html')
+    return redirect('login')
+
+def update_student_staff_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.POST.get('update_data') == 'update_data':
+                student_staff.objects.filter(student_staff_id = request.POST.get('student_staff_id')).update(
+                    student_staff_name = request.POST.get('student_staff_name'),
+                    student_guide_name = request.POST.get('student_guide_name'),
+                    student_staff_department = request.POST.get('student_staff_department'),
+                    student_join_year = request.POST.get('student_join_year'),
+                    profile_status = request.POST.get('profile_status')
+                )
+                return redirect('all_student_staff')
+            
+            update_student= student_staff.objects.filter(student_staff_id=request.POST.get('student_staff_id')).values()
+            param={'update_data':update_student, 'username': request.session['user']}
+        return render(request, 'admin_dashboard/update_student_staff_info.html',param)
+    return redirect('login')
+
+def delete_student(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            student_staff.objects.filter(student_staff_id = request.POST.get('student_staff_id')).delete()
+            return redirect('all_student_staff')
+        return render(request, 'admin_dashboard/delete_student.html', {'username': request.session['user']})
+
+# Alumini Pages
+def all_alumini_staff(request):
+    if 'user' in request.session:
+        all_aluminis = alumini_staff.objects.values()
+        paginator = Paginator(all_aluminis, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_alumini_staff.html', {'all_alumini_info': page_obj, 'username': request.session['user']})
+    return redirect('login')
+
+def add_alumini_staff_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            alumini_data = alumini_staff(
+                alumini_staff_id = request.POST.get('alumini_staff_id'),
+                alumini_staff_name = request.POST.get('alumini_staff_name'),
+                alumini_staff_designation = request.POST.get('alumini_staff_designation'),
+                alumini_leave_year = request.POST.get('alumini_leave_year'),
+                profile_status = request.POST.get('profile_status')
+            )
+            alumini_data.save()
+            return redirect('all_alumini_staff') 
+        return render(request, 'admin_dashboard/add_alumini_staff_info.html')
+    return redirect('login')
+
+def update_alumini_staff_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.POST.get('update_data') == 'update_data':
+                alumini_staff.objects.filter(alumini_staff_id = request.POST.get('alumini_staff_id')).update(
+                    alumini_staff_name = request.POST.get('alumini_staff_name'),
+                    alumini_staff_designation = request.POST.get('alumini_staff_designation'),
+                    alumini_leave_year = request.POST.get('alumini_leave_year'),
+                    profile_status = request.POST.get('profile_status')
+                )
+                return redirect('all_alumini_staff')
+            
+            update_alumini= alumini_staff.objects.filter(alumini_staff_id=request.POST.get('alumini_staff_id')).values()
+            param={'update_data':update_alumini, 'username': request.session['user']}
+        return render(request, 'admin_dashboard/update_alumini_staff_info.html',param)
+    return redirect('login')
+
+def delete_alumini(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            alumini_staff.objects.filter(alumini_staff_id = request.POST.get('alumini_staff_id')).delete()
+            return redirect('all_alumini_staff')
+        return render(request, 'admin_dashboard/delete_alumini.html', {'username': request.session['user']})
+
 # Project Pages
 def all_projects(request):
     if 'user' in request.session:
         all_project = projects.objects.values()
         ongoing_project = projects.objects.filter(project_status = 'On going').values()
+        paginator = Paginator(ongoing_project, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         completed_project = projects.objects.filter(project_status = 'Completed').values()
-        return render(request, 'admin_dashboard/all_projects.html', {'all_project': all_project, 'ongoing_project': ongoing_project , 'completed_project': completed_project, 'username': request.session['user']})
+        paginator1 = Paginator(completed_project, 10)
+        page_number1 = request.GET.get('page')
+        page_obj1 = paginator1.get_page(page_number1)
+        return render(request, 'admin_dashboard/all_projects.html', {'all_project': all_project, 'ongoing_project': page_obj , 'completed_project': page_obj1, 'username': request.session['user']})
     return redirect('login')
 
 def add_project_info(request):
@@ -940,12 +1074,14 @@ def delete_project(request):
             return redirect('all_projects')
         return render(request, 'admin_dashboard/delete_project.html', {'username': request.session['user']})
 
-
 # Project Pages
 def all_publications(request):
     if 'user' in request.session:
         all_publication = publications_list.objects.values()
-        return render(request, 'admin_dashboard/all_publications.html',{ 'all_publications':all_publication, 'username': request.session['user'] })
+        paginator = Paginator(all_publication, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_publications.html',{ 'all_publications':page_obj, 'username': request.session['user'] })
     return redirect('login')
 
 def add_publication_info(request):
@@ -996,7 +1132,10 @@ def delete_publication(request):
 def all_niih_bulletins(request):
     if 'user' in request.session:
         all_niih_bulletins = bulletin_list.objects.values()
-        return render(request, 'admin_dashboard/all_niih_bulletins.html',{ 'all_bulletins':all_niih_bulletins, 'username': request.session['user'] })
+        paginator = Paginator(all_niih_bulletins, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_niih_bulletins.html',{ 'all_bulletins':page_obj, 'username': request.session['user'] })
     return redirect('login')
 
 def add_niih_bulletin_info(request):
@@ -1086,7 +1225,10 @@ def delete_niih_bulletin(request):
 def all_newsletters(request):
     if 'user' in request.session:
         all_newsletter = newsletter_list.objects.values()
-        return render(request, 'admin_dashboard/all_newsletters.html',{ 'all_news':all_newsletter, 'username': request.session['user'] })
+        paginator = Paginator(all_newsletter, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_newsletters.html',{ 'all_news':page_obj, 'username': request.session['user'] })
     return redirect('login')  
   
 def add_newsletter_info(request):
@@ -1131,7 +1273,10 @@ def delete_newsletter(request):
 def all_awards(request):
     if 'user' in request.session:
         all_awards_list = award_list.objects.values()
-        return render(request, 'admin_dashboard/all_awards.html',{ 'all_awards':all_awards_list, 'username': request.session['user'] })
+        paginator = Paginator(all_awards_list, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_awards.html',{ 'all_awards':page_obj, 'username': request.session['user'] })
     return redirect('login')
 
 def add_award_info(request):
@@ -1173,3 +1318,277 @@ def delete_award(request):
                 return render(request, 'admin_dashboard/all_awards.html', { 'all_awards':all_awards_list, 'username': request.session['user']})
         return render(request, 'admin_dashboard/delete_award.html',{ 'username': request.session['user'] })
 
+def all_advertise(request):
+    if 'user' in request.session:
+        all_advertise = advertise_list.objects.values()
+        paginator = Paginator(all_advertise, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_advertise.html',{ 'all_advertise_info':page_obj, 'username': request.session['user'] })
+    return redirect('login')
+
+def add_advertise_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.FILES.get('advertise_file_name'):
+                fs = FileSystemStorage(location="application/static/uploads/Advertise")
+                advertise_file = request.FILES['advertise_file_name']
+                filename = fs.save(advertise_file.name, advertise_file)
+                uploaded_advertise_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
+                
+                advertise_data = advertise_list(
+                    advertise_id = request.POST.get('advertise_id'),
+                    advertise_title = request.POST.get('advertise_title'),
+                    advertise_date = request.POST.get('advertise_date'),
+                    advertise_file_name = uploaded_advertise_file, 
+                    advertise_status = request.POST.get('advertise_status'),
+                )
+                advertise_data.save()
+                messages.success(request, 'Advertise added successfully!')
+                return redirect('all_advertise')
+            else:
+                advertise_data  =  advertise_list(
+                    advertise_id = request.POST.get('advertise_id'),
+                    advertise_title = request.POST.get('advertise_title'),
+                    advertise_date = request.POST.get('advertise_date'),
+                    advertise_status = request.POST.get('advertise_status'),
+                )
+                advertise_data.save()
+                messages.success(request, 'Advertise added successfully!')
+                return redirect('all_advertise')
+        return render(request, 'admin_dashboard/add_advertise_info.html', {'username': request.session['user']})
+    return redirect('login')
+
+def update_advertise_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.POST.get('update_data') == 'update_data':
+                print("\n-----------------------------------")
+                if request.FILES.get('advertise_file_name'):
+                    print("\n-----------------------------------")
+                    fs = FileSystemStorage(location="application/static/uploads/Advertise")
+                    advertise_file = request.FILES['advertise_file_name']
+                    filename = fs.save(advertise_file.name, advertise_file)
+                    uploaded_advertise_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
+                    
+                    advertise_file = advertise_list.objects.filter(advertise_id = request.POST.get('advertise_id')).values_list('advertise_file_name')    
+                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Advertise/"+str(advertise_file[0][0])))
+                    
+                    advertise_list.objects.filter(advertise_id=request.POST.get('advertise_id')).update(
+                        advertise_title=request.POST.get('advertise_title'),
+                        advertise_date = request.POST.get('advertise_date'),
+                        advertise_file_name = uploaded_advertise_file, 
+                        advertise_status = request.POST.get('advertise_status'),
+                    )
+                    all_advertise = advertise_list.objects.values()
+                    messages.success(request, 'Advertise update successfully!')
+                    return render(request, 'admin_dashboard/all_advertise.html',{ 'all_advertise_info':all_advertise})
+                else:
+                    advertise_list.objects.filter(advertise_id=request.POST.get('advertise_id')).update(
+                        advertise_title=request.POST.get('advertise_title'),
+                        advertise_date = request.POST.get('advertise_date'),
+                        advertise_status = request.POST.get('advertise_status'),
+                    )
+                    all_advertise = advertise_list.objects.values()
+                    messages.success(request, 'Advertise update successfully!')
+                    return render(request, 'admin_dashboard/all_advertise.html',{ 'all_advertise_info':all_advertise})
+            
+            update_advertise = advertise_list.objects.filter(advertise_id = request.POST.get('advertise_id')).values()
+            param = {'update_data':update_advertise,'username': request.session['user']}
+            print(update_advertise)
+        return render(request, 'admin_dashboard/update_advertise_info.html', param)
+    return redirect('login')
+
+def delete_advertise(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            advertise_file = advertise_list.objects.filter(advertise_id = request.POST.get('advertise_id')).values_list('advertise_file_name')
+            print(advertise_file)
+            os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Advertise/"+str(advertise_file[0][0])))
+            advertise_list.objects.filter(advertise_id = request.POST.get('advertise_id')).delete()
+            return redirect('all_advertise')
+        return render(request, 'admin_dashboard/delete_advertise.html', {'username': request.session['user']})
+
+def all_circulars(request):
+    if 'user' in request.session:
+        all_circular = circular_list.objects.values()
+        paginator = Paginator(all_circular, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_circulars.html',{ 'all_circular_info':page_obj, 'username': request.session['user'] })
+    return redirect('login')
+
+def add_circular_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.FILES.get('circular_file_name'):
+                fs = FileSystemStorage(location="application/static/uploads/Circulars")
+                circular_file = request.FILES['circular_file_name']
+                filename = fs.save(circular_file.name, circular_file)
+                uploaded_circular_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
+                
+                circular_data = circular_list(
+                    circular_id = request.POST.get('circular_id'),
+                    circular_title = request.POST.get('circular_title'),
+                    circular_date = request.POST.get('circular_date'),
+                    circular_file_name = uploaded_circular_file, 
+                    circular_status = request.POST.get('circular_status')
+                )
+                circular_data.save()
+                messages.success(request, 'Circular added successfully!')
+                return redirect('all_circulars')
+            else:
+                circular_data  =  circular_list(
+                    circular_id = request.POST.get('circular_id'),
+                    circular_title = request.POST.get('circular_title'),
+                    circular_date = request.POST.get('circular_date'),
+                    circular_status = request.POST.get('circular_status')
+                )
+                circular_data.save()
+                messages.success(request, 'Circular added successfully!')
+                return redirect('all_circulars')
+        return render(request, 'admin_dashboard/add_circular_info.html', {'username': request.session['user']})
+    return redirect('login')
+
+def update_circular_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.POST.get('update_data') == 'update_data':
+                print("\n-----------------------------------")
+                if request.FILES.get('circular_file_name'):
+                    print("\n-----------------------------------")
+                    fs = FileSystemStorage(location="application/static/uploads/Circulars")
+                    circular_file = request.FILES['circular_file_name']
+                    filename = fs.save(circular_file.name, circular_file)
+                    uploaded_circular_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
+                    
+                    circular_file = circular_list.objects.filter(circular_id = request.POST.get('circular_id')).values_list('circular_file_name')    
+                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Circulars/"+str(circular_file[0][0])))
+                    
+                    circular_list.objects.filter(circular_id=request.POST.get('circular_id')).update(
+                        circular_title=request.POST.get('circular_title'),
+                        circular_date = request.POST.get('circular_date'),
+                        circular_file_name = uploaded_circular_file, 
+                        circular_status = request.POST.get('circular_status'),
+                    )
+                    all_circular = circular_list.objects.values()
+                    messages.success(request, 'Circular update successfully!')
+                    return render(request, 'admin_dashboard/all_circulars.html',{ 'all_circular_info':all_circular})
+                else:
+                    circular_list.objects.filter(circular_id=request.POST.get('circular_id')).update(
+                        circular_title=request.POST.get('circular_title'),
+                        circular_date = request.POST.get('circular_date'), 
+                        circular_status = request.POST.get('circular_status'),
+                    )
+                    all_circular = circular_list.objects.values()
+                    messages.success(request, 'Circular update successfully!')
+                    return render(request, 'admin_dashboard/all_circulars.html',{ 'all_circular_info':all_circular})
+            
+            update_circular = circular_list.objects.filter(circular_id = request.POST.get('circular_id')).values()
+            param = {'update_data':update_circular,'username': request.session['user']}
+            print(update_circular)
+        return render(request, 'admin_dashboard/update_circular_info.html', param)
+    return redirect('login')
+
+def delete_circular(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            circular_file = circular_list.objects.filter(circular_id = request.POST.get('circular_id')).values_list('circular_file_name')
+            print(circular_file)
+            os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Circulars/"+str(circular_file[0][0])))
+            circular_list.objects.filter(circular_id = request.POST.get('circular_id')).delete()
+            return redirect('all_circulars')
+        return render(request, 'admin_dashboard/delete_circular.html', {'username': request.session['user']})
+
+def all_tenders(request):
+    if 'user' in request.session:
+        all_tender = tender_list.objects.values()
+        paginator = Paginator(all_tender, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_tenders.html',{ 'all_tenders_info':page_obj, 'username': request.session['user'] })
+    return redirect('login')
+
+def add_tender_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.FILES.get('tender_file_name'):
+                fs = FileSystemStorage(location="application/static/uploads/Tenders")
+                tender_file = request.FILES['tender_file_name']
+                filename = fs.save(tender_file.name, tender_file)
+                uploaded_tender_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
+                
+                tender_data = tender_list(
+                    tender_id = request.POST.get('tender_id'),
+                    tender_title = request.POST.get('tender_title'),
+                    tender_date = request.POST.get('tender_date'),
+                    tender_file_name = uploaded_tender_file, 
+                    tender_status = request.POST.get('tender_status')
+                )
+                tender_data.save()
+                messages.success(request, 'tender added successfully!')
+                return redirect('all_tenders')
+            else:
+                tender_data  =  tender_list(
+                    tender_id = request.POST.get('tender_id'),
+                    tender_title = request.POST.get('tender_title'),
+                    tender_date = request.POST.get('tender_date'),
+                    tender_status = request.POST.get('tender_status')
+                )
+                tender_data.save()
+                messages.success(request, 'Tender added successfully!')
+                return redirect('all_tenders')
+        return render(request, 'admin_dashboard/add_tender_info.html', {'username': request.session['user']})
+    return redirect('login')
+
+def update_tender_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.POST.get('update_data') == 'update_data':
+                print("\n-----------------------------------")
+                if request.FILES.get('tender_file_name'):
+                    print("\n-----------------------------------")
+                    fs = FileSystemStorage(location="application/static/uploads/Tenders")
+                    tender_file = request.FILES['tender_file_name']
+                    filename = fs.save(tender_file.name, tender_file)
+                    uploaded_tender_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
+                    
+                    tender_file = tender_list.objects.filter(tender_id = request.POST.get('tender_id')).values_list('tender_file_name')    
+                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Tenders/"+str(tender_file[0][0])))
+                    
+                    tender_list.objects.filter(tender_id=request.POST.get('tender_id')).update(
+                        tender_title=request.POST.get('tender_title'),
+                        tender_date = request.POST.get('tender_date'),
+                        tender_file_name = uploaded_tender_file, 
+                        tender_status = request.POST.get('tender_status'),
+                    )
+                    all_tenders = tender_list.objects.values()
+                    messages.success(request, 'Tender update successfully!')
+                    return render(request, 'admin_dashboard/all_tenders.html',{ 'all_tenders_info':all_tenders})
+                else:
+                    tender_list.objects.filter(tender_id=request.POST.get('tender_id')).update(
+                        tender_title=request.POST.get('tender_title'),
+                        tender_date = request.POST.get('tender_date'), 
+                        tender_status = request.POST.get('tender_status'),
+                    )
+                    all_tenders = tender_list.objects.values()
+                    print(all_tenders)
+                    messages.success(request, 'Tender update successfully!')
+                    return render(request, 'admin_dashboard/all_tenders.html',{ 'all_tenders_info':all_tenders})
+            
+            update_tender = tender_list.objects.filter(tender_id = request.POST.get('tender_id')).values()
+            param = {'update_data':update_tender,'username': request.session['user']}
+            print(update_tender)
+        return render(request, 'admin_dashboard/update_tender_info.html', param)
+    return redirect('login')
+
+def delete_tender(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            tender_file = tender_list.objects.filter(tender_id = request.POST.get('tender_id')).values_list('tender_file_name')
+            print(tender_file)
+            os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Tenders/"+str(tender_file[0][0])))
+            tender_list.objects.filter(tender_id = request.POST.get('tender_id')).delete()
+            return redirect('all_tenders')
+        return render(request, 'admin_dashboard/delete_tender.html', {'username': request.session['user']})
+ 

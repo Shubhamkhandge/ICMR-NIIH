@@ -256,111 +256,79 @@
         }
     }
 </style>
-<div class="inner__body">
+<div class="inner__body" style="padding: 0;">
     <div class="inner__body-content">
-        <div class="container">
+        <div class="container dataInline SecLastChild">
+            <p></p>
             <div class="row">
-                <div class="col-12">
-                    <div class="colorBox">
-                        <div class="colorBox__list managedItem">
-                            <div class="row">
-                                <div class="col-3 col-lg-2 col-md-3 col-xs-12">
-                                    <div class="colorBox__list-item lightBg">
-                                        <div class="content-area">
-                                                <a href="/student-staff-details">
-                                                    <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
-                                                    src="{% static 'dist/images/staff/director/niih-director.jpg' %}" title="Indian Council of Medical Research | Government of India" />
-                                                </a>
-                                            <div class="linkView__container">
-                                                <a class="linkView" href="/student-staff-details" rel="noopener noreferrer">
-                                                    <span class="content btn px-0 py-1"> Dr. Manisha R. Madkaikar </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 col-lg-2 col-md-3 col-xs-12">
-                                    <div class="colorBox__list-item lightBg">
-                                        <div class="content-area">
-                                                <a href="/student-staff-details">
-                                                    <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
-                                                    src="{% static 'dist/images/staff/director/niih-director.jpg' %}" title="Indian Council of Medical Research | Government of India" />
-                                                </a>
-                                            <div class="linkView__container">
-                                                <a class="linkView" href="/student-staff-details" rel="noopener noreferrer">
-                                                    <span class="content btn px-0 py-1"> Dr. Manisha R. Madkaikar </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 col-lg-2 col-md-3 col-xs-12">
-                                    <div class="colorBox__list-item lightBg">
-                                        <div class="content-area">
-                                                <a href="/student-staff-details">
-                                                    <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
-                                                    src="{% static 'dist/images/staff/director/niih-director.jpg' %}" title="Indian Council of Medical Research | Government of India" />
-                                                </a>
-                                            <div class="linkView__container">
-                                                <a class="linkView" href="/student-staff-details" rel="noopener noreferrer">
-                                                    <span class="content btn px-0 py-1"> Dr. Manisha R. Madkaikar </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 col-lg-2 col-md-3 col-xs-12">
-                                    <div class="colorBox__list-item lightBg">
-                                        <div class="content-area">
-                                                <a href="/student-staff-details">
-                                                    <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
-                                                    src="{% static 'dist/images/staff/director/niih-director.jpg' %}" title="Indian Council of Medical Research | Government of India" />
-                                                </a>
-                                            <div class="linkView__container">
-                                                <a class="linkView" href="/student-staff-details" rel="noopener noreferrer">
-                                                    <span class="content btn px-0 py-1"> Dr. Manisha R. Madkaikar </span>
-                                                </a>
-                                            </div>
-                                        </div>
+                <div class="col-10 m-auto" style="margin-top:10px;">
+                    <div class="tabView">
+                        <div class="tab-content">
+                            <div class="tab-pane container active" id="tab11">
+                                <div class="tableView mt-3">
+                                    <div class="table-responsive switchIcon">
+                                        <table class="table table-bordered" id="documentTable">
+                                            <thead>
+                                                <tr>
+                                                    <th width="8%">Sr. No.</th>
+                                                    <th>Student Name</th>
+                                                    <th width="20%">Guide Name</th>
+                                                    <th width="20%">Student Department</th>
+                                                    <th width="20%">Year Of Joining</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for all_students in all_student %}
+                                                    {% if 'Active' == all_students.4 %}
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                {{forloop.counter}}
+                                                            </td>
+                                                            <td class="text-left">
+                                                                {{all_students.0}}                                                    
+                                                            </td>
+                                                            <td class="text-left">
+                                                                {{all_students.1}}                                                    
+                                                            </td>
+                                                            <td class="text-left">
+                                                                {{all_students.2}}                                                    
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{all_students.3}}                                                    
+                                                            </td>
+                                                        </tr>
+                                                        {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 
-                                <div class="col-3 col-lg-2 col-md-3 col-xs-12">
-                                    <div class="colorBox__list-item lightBg">
-                                        <div class="content-area">
-                                                <a href="/student-staff-details">
-                                                    <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
-                                                    src="{% static 'dist/images/staff/director/niih-director.jpg' %}" title="Indian Council of Medical Research | Government of India" />
-                                                </a>
-                                            <div class="linkView__container">
-                                                <a class="linkView" href="/student-staff-details" rel="noopener noreferrer">
-                                                    <span class="content btn px-0 py-1"> Dr. Manisha R. Madkaikar </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-3 col-lg-2 col-md-3 col-xs-12">
-                                    <div class="colorBox__list-item lightBg">
-                                        <div class="content-area">
-                                                <a href="/student-staff-details">
-                                                    <img alt="Indian Council of Medical Research | Government of India" class="img-fluid"
-                                                    src="{% static 'dist/images/staff/director/niih-director.jpg' %}" title="Indian Council of Medical Research | Government of India" />
-                                                </a>
-                                            <div class="linkView__container">
-                                                <a class="linkView" href="/student-staff-details" rel="noopener noreferrer">
-                                                    <span class="content btn px-0 py-1"> Dr. Manisha R. Madkaikar </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-end">
+                                        {% if all_student.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ all_student.previous_page_number }}">Previous</a></li>
+                                        {% endif %}
+                                        {% for num in all_student.paginator.page_range %}
+                                            {% if all_student.number == num %}
+                                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if all_student.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ all_student.next_page_number }}">Next</a></li>
+                                    
+                                        {% endif %}
+                                        
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <p></p>
         </div>
     </div>
 </div>

@@ -1,0 +1,65 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Add Stuent Information
+        <a href="/admin_dashboard/all_student_staff">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-9 pb-2 m-auto">
+        <form action="{% url 'add_student_staff_info' %}" method="POST" class="form" id="add-student-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="student_staff_id" class="form-label text-dark" style="font-weight: 600;">Student ID : </label>
+                    <input type="number" class="form-control rounded-0 text-center" id="student_staff_id" placeholder="Enter Student ID" name="student_staff_id" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="student_join_year" class="form-label text-dark" style="font-weight: 600;">Student Join Year : </label>
+                    <input type="number" class="form-control rounded-0 text-center" id="student_join_year" placeholder="Enter Student Join Year " name="student_join_year" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
+                    <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Profile Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="student_staff_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
+                    <input type="text" class="form-control rounded-0" id="student_staff_name" placeholder="Enter Student Name" name="student_staff_name" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="student_guide_name" class="form-label text-dark" style="font-weight: 600;">Student Guide Name : </label>
+                    <input type="text" class="form-control rounded-0" id="student_guide_name" placeholder="Enter Student Guide Name" name="student_guide_name" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="student_staff_department" class="form-label text-dark" style="font-weight: 600;">Student Department : </label>
+                    <input type="text" class="form-control rounded-0" id="student_staff_department" placeholder="Enter Student Department " name="student_staff_department" required>
+                </div>
+            </div>
+
+            <center>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-student-form">Reset</button>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

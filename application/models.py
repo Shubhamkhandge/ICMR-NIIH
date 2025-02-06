@@ -9,19 +9,12 @@ class LoggedInUser(models.Model):
 
     def __str__(self):
         return self.user.username
-    
-# Model for advertise
-class advertise(models.Model):
-    advertise_title = models.CharField(max_length=255, null=True)
-    advertise_file_name = models.CharField(max_length=255, null=True)
-    Show_1 = models.TextField()
-    date_sub = models.DateTimeField(null=True)
-
+'''
 # Model for alumini staff
 class alumini(models.Model):
     alumini_name = models.CharField(max_length=255, null=True)
     department_name = models.CharField(max_length=255, null=True)
-    year_leaving = models.CharField(max_length=255, null=True)
+    year_leaving = models.CharField(max_length=255, null=True)'''
 
 '''# Model for appointment
 class appointment(models.Model):
@@ -254,6 +247,21 @@ class project_staff(models.Model):
     project_staff_designation = models.CharField(max_length=255, null=True)
     profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
 
+class student_staff(models.Model):
+    student_staff_id = models.CharField(max_length=255, null=True)
+    student_staff_name = models.CharField(max_length=255, null=True)
+    student_guide_name = models.CharField(max_length=255, null=True)
+    student_staff_department = models.CharField(max_length=255, null=True)
+    student_join_year = models.CharField(max_length=255, null=True)
+    profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
+
+class alumini_staff(models.Model):
+    alumini_staff_id = models.CharField(max_length=255, null=True)
+    alumini_staff_name = models.CharField(max_length=255, null=True)
+    alumini_staff_designation = models.CharField(max_length=255, null=True)
+    alumini_leave_year = models.CharField(max_length=255, null=True)
+    profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
+
 '''class out_publications(models.Model):
     publication_title = models.CharField(max_length=255, null=True)
     author_name = models.CharField(max_length=255, null=True)
@@ -310,6 +318,31 @@ class newsletter_list(models.Model):
 class award_list(models.Model):
     award_name = models.CharField(max_length=255, null=True)
     scientist_name = models.CharField(max_length=255, null=True)
+
+# Model for circular
+class circular_list(models.Model):
+    circular_id = models.CharField(max_length=255, null=True)
+    circular_title = models.CharField(max_length=255, null=True)
+    circular_date = models.DateField(null=True)
+    circular_file_name = models.CharField(max_length=255, null=True)
+    circular_status = models.CharField(max_length=255, null=True)
+
+# Model for tender
+class tender_list(models.Model):
+    tender_id = models.CharField(max_length=255, null=True)
+    tender_title = models.CharField(max_length=255, null=True)
+    tender_date = models.DateField(null=True)
+    tender_file_name = models.CharField(max_length=255, null=True)
+    tender_status = models.CharField(max_length=255, null=True)
+
+# Model for advertise
+class advertise_list(models.Model):
+    advertise_id = models.CharField(max_length=255, null=True)
+    advertise_title = models.CharField(max_length=255, null=True)
+    advertise_date = models.DateField(null=True)
+    advertise_file_name = models.CharField(max_length=255, null=True)
+    advertise_status = models.CharField(max_length=255, null=True)
+    advertise_status = models.CharField(max_length=255, null=True)
 
 '''class staff_new(models.Model):
     staff_name = models.CharField(max_length=255, null=True)

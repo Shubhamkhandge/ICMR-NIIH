@@ -57,61 +57,28 @@
                                                     </td>
                                                 </tr>
                                                 {% endfor %}
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Establishment of Prenatal Diagnosis of Thalassemia Syndromes and Sickle Cell Disorders in Madhya Pradesh and Assam</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Newborn Screening and Molecular Characterization for Red Cell Enzyme Defects and Hemoglobinopathies in Tripura.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Role of Telomere Length and Telomerase activity in clinical outcome of Patients with Thalassemia.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Assessing the role of microRNAs in clinical severity of Thalassemia Patients, and in hydroxyurea mediated HbF induction.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>Role of Erythroid Kruppel-like Factor (EKLF or KLF1) in hemoglobinopathies.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>Diagnosis & Molecular Characterization of Hemoglobinopathies.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>7</td>
-                                                    <td>Quality Assurance Programme for Molecular and Prenatal Diagnosis of Haemoglobinopathies.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>8</td>
-                                                    <td>Prevalence of Hemoglobinopathies in Indigenous tribes of Meghalaya with genetic analysis and study on the role of genetic modifiers.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>9</td>
-                                                    <td>Collaborative Effort to Understanding & Characterization of Novel Molecular Changes in Fanconi Anemia (FA).</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>10</td>
-                                                    <td>Molecular Study of Telomerase RNA Component (TERC) Gene, Telomerase Reverse Transcriptase (TERT) and Dyskeratosis Congenita (DKC1) gene in Idiopathic Aplastic Anemia.</td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                     
+                                
                                 <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                                        <li aria-current="page" class="page-item active"><span class="page-link">1</span></li>
-                                        <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=2">Next</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=98"><span aria-hidden="true">»»</span></a></li>
+                                    <ul class="pagination justify-content-end">
+                                        {% if completed_project.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ completed_project.previous_page_number }}">Previous</a></li>
+                                        {% endif %}
+                                        {% for num in completed_project.paginator.page_range %}
+                                            {% if completed_project.number == num %}
+                                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if completed_project.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ completed_project.next_page_number }}">Next</a></li>
+                                    
+                                        {% endif %}
+                                        
                                     </ul>
                                 </nav>
                             </div>

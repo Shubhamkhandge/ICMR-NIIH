@@ -283,13 +283,13 @@
                                                             <td class="text-center">
                                                                 {{forloop.counter}}
                                                             </td>
-                                                            <td class="text-center">
+                                                            <td class="text-left">
                                                                 {{proj_staff.0}}                                                    
                                                             </td>
-                                                            <td class="text-center">
+                                                            <td class="text-left">
                                                                 {{proj_staff.1}}                                                    
                                                             </td>
-                                                            <td class="text-center">
+                                                            <td class="text-left">
                                                                 {{proj_staff.2}}                                                    
                                                             </td>
                                                         </tr>
@@ -300,17 +300,23 @@
                                     </div>
                                 </div>
                                 
-                        
                                 <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                                        <li aria-current="page" class="page-item active"><span class="page-link">1</span></li>
-                                        <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=2">Next</a></li>
-                                        <li class="page-item"><a class="page-link" href="?page=98"><span aria-hidden="true">»»</span></a></li>
+                                    <ul class="pagination justify-content-end">
+                                        {% if all_project_staff.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ all_project_staff.previous_page_number }}">Previous</a></li>
+                                        {% endif %}
+                                        {% for num in all_project_staff.paginator.page_range %}
+                                            {% if all_project_staff.number == num %}
+                                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if all_project_staff.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ all_project_staff.next_page_number }}">Next</a></li>
+                                    
+                                        {% endif %}
+                                        
                                     </ul>
                                 </nav>
                             </div>

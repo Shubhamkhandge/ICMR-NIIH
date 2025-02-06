@@ -37,87 +37,56 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Sr. No.</th>
+                                        <th style="width: 10%;">Sr.No</th>
                                         <th>Title</th>
-                                        <th>Link</th>
-                                        <!-- <th>Last Date</th> -->
+                                        <th style="width: 15%;">Date Of Tender</th>
+                                        <th style="width: 20%;">Tender Document</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>ANNUAL TRAINING PROGRAMME IN IMMUNOHAEMATOLOGY (2025) Medical Officers & Technicians</td>
-                                        <td>
-                                            <a class="descView__link" href="{% static 'uploads/Documents/6152Tender Notice for Lab Equipment 2024-25.pdf' %}">
-                                                <img alt="" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
-                                                <span class="action" style="font-size: 12px;">View</span>
-                                            </a>
-                                        </td>
-                                        <!-- <td></td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Tender of Confocal Microscope (Bid No. GEM/2024/B/5320963 Dt: 20-09-2024)</td>
-                                        <td>
-                                            <a class="descView__link" href="{% static 'uploads/Documents/6152Tender Notice for Lab Equipment 2024-25.pdf' %}">
-                                                <img alt="" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
-                                                <span class="action" style="font-size: 12px;">View</span>
-                                            </a>
-                                        </td>
-                                        <!-- <td></td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>BOQ Tender Document 2024- Procurement of Laboratory Chemicals & Laboratory Consumables</td>
-                                        <td>
-                                            <a class="descView__link" href="{% static 'uploads/Documents/6152Tender Notice for Lab Equipment 2024-25.pdf' %}">
-                                                <img alt="" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
-                                                <span class="action" style="font-size: 12px;">View</span>
-                                            </a>
-                                        </td>
-                                        <!-- <td></td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>GeM Tender for Manpower Outsourcing Services at ICMR-CRMCH Chandrapur</td>
-                                        <td>
-                                            <a class="descView__link" href="{% static 'uploads/Documents/6152Tender Notice for Lab Equipment 2024-25.pdf' %}">
-                                                <img alt="" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
-                                                <span class="action" style="font-size: 12px;">View</span>
-                                            </a>
-                                        </td>
-                                        <!-- <td></td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Tender Notice for Lab Equipment 2024-25</td>
-                                        <td>
-                                            <a class="descView__link" href="{% static 'uploads/Documents/6152Tender Notice for Lab Equipment 2024-25.pdf' %}">
-                                                <img alt="" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
-                                                <span class="action" style="font-size: 12px;">View</span>
-                                            </a>
-                                        </td>
-                                        <!-- <td></td> -->
-                                    </tr>
+                                    {% for all_tender in all_tenders %}
+                                        {% if 'Open' == all_tender.3 %}
+                                            <tr>
+                                                <td class="text-center">
+                                                    {{forloop.counter}}
+                                                </td>
+                                                <td>
+                                                    {{all_tender.0}}
+                                                </td>
+                                                <td class="circular-date text-center">{{all_tender.1 }}</td>
+                                                <td style="text-align: center;">
+                                                    <a class="descView__link" href="/static/uploads/Tenders/{{ all_tender.2 }}" target="_blank">
+                                                        <img alt="PDF" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
+                                                        <span class="action" style="font-size: 12px;">View</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
                                 </tbody>
                             </table>
-                            
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination">
-                                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                                    <li aria-current="page" class="page-item active"><span class="page-link">1</span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page=2">Next</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page=37"><span
-                                                aria-hidden="true">»»</span></a></li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
+                            
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-end">
+                            {% if all_tenders.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ all_tenders.previous_page_number }}">Previous</a></li>
+                            {% endif %}
+                            {% for num in all_tenders.paginator.page_range %}
+                                {% if all_tenders.number == num %}
+                                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if all_tenders.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ all_tenders.next_page_number }}">Next</a></li>
+                        
+                            {% endif %}
+                            
+                        </ul>
+                    </nav>
                 </div>
             </div>
             <p></p>

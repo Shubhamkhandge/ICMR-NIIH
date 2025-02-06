@@ -71,11 +71,11 @@
                     <select id="publication_status" value="Select Publication Status" name="publication_status" class="form-select rounded-0">
                         <option value="" selected disabled>Select Publication Status</option>
                         {% if 'Active' == update_data.0.publication_status %}
-                            <option value="Active" selected disabled>Active</option>
+                            <option value="Active" selected>Active</option>
                             <option value="Inactive">Inactive</option>
                         {% else %}
                             <option value="Active">Active</option>  
-                            <option value="Inactive" selected disabled>Inactive</option>
+                            <option value="Inactive" selected>Inactive</option>
                         {% endif %}
                     </select>
                 </div>

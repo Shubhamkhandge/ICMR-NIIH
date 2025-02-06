@@ -38,3 +38,21 @@ mysql
             do=request.POST.get('display_order')
 
 
+
+
+	(1, 11001, 'Ms. Harita Velji Gogri', 'SRF', NULL , 'Active'),
+	(2, 11002, 'Ms. Neha M. Jodhawat', 'Research Assistant', NULL , 'Active'),
+	(3, 11003, 'Ms. Merin George', 'JRF', NULL , 'Active'),
+	(4, 11004, 'Ms. Tejashree More', 'JRF', NULL , 'Active'),
+	(5, 11005, 'Ms. Priyanka Setia', 'SRF', NULL , 'Active'),
+	(6, 11006, 'Ms. Rashmi Dongerdiye', 'JRF', NULL , 'Active'),
+	(7, 11007, 'Ms. Sneha Dadheech', 'Scientist B ( Non-medical)', NULL , 'Active'),
+	(8, 11008, 'Mr. Prajyot V. Deshmukh', 'Project Technical Officer (MSW)', NULL , 'Active'),
+	(9, 11009, 'Mr. Debjeet Pandy', 'Project Technical Officer (MSW)', NULL , 'Active'),
+	(10, 11010, 'Mr. Vinod D. Umare', 'Project Technician -III', NULL , 'Active'),
+	(11, 11011, 'Mr. Nikhil S. Shinde', 'Project Technician -III', NULL , 'Active'),
+	(12, 11012, 'Ms. Minakshi D. Shirpurwar', 'UDC', NULL , 'Active'),
+	(13, 11013, 'Mr. Mohmmad. Jakir S. Waris', 'MTS', NULL , 'Active'),
+	(14, 11014, 'Ms. Sushma R. Kosarkar', 'MTS', NULL , 'Active'),
+	(15, 11015, 'Dr. Dipti Abhijit Sankhari', 'Scientist B ( Medical)', NULL , 'Active')
+
