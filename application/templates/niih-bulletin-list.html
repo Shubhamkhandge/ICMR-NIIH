@@ -27,13 +27,18 @@
         </div>
     </div>
 </div>
+<style>
+    .inner__header-slide {
+        height: 300px;
+        object-fit: cover;
+    }
+</style>
 <div class="inner__body-content">
     <div class="container dataInline SecLastChild">
         <p></p>
         <div class="row">
             <div class="col-12" style="margin-top:10px;">
                 <div class="tabView">
-                    
                     <div class="tab-content">
                         <div class="tab-pane container active" id="tab11">
                             <div class="baseFilter">
@@ -45,23 +50,9 @@
                                                 <select class="form-select form-control chzn-select" name="toMonthFilter" id="toMonthFilter">
                                                     <option value="Select Month" disabled>Select Month</option>
                                                     <option value="">---- ANY ----</option>
-                                                    {% if update_data.0.bulletin_month == 'jan-apr' %}
-                                                        <option value="jan-apr" selected>JAN - APR</option>
-                                                        <option value="may-aug">May - Aug</option>
-                                                        <option value="sep-dec">Sep - Dec</option>
-                                                    {% elif update_data.0.bulletin_month == 'may-aug' %}
-                                                        <option value="jan-apr">JAN - APR</option>
-                                                        <option value="may-aug" selected>May - Aug</option>
-                                                        <option value="sep-dec">Sep - Dec</option>
-                                                    {% elif update_data.0.bulletin_month == 'sep-dec' %}
-                                                        <option value="jan-apr">JAN - APR</option>
-                                                        <option value="may-aug">May - Aug</option>
-                                                        <option value="sep-dec" selected>Sep - Dec</option>
-                                                    {% else %}
-                                                        <option value="jan-apr">JAN - APR</option>
-                                                        <option value="may-aug">May - Aug</option>
-                                                        <option value="sep-dec">Sep - Dec</option>
-                                                    {% endif %}
+                                                    {% for bulletin in all_bulletins %}
+                                                    <option value="{{bulletin.3}}">{{bulletin.3}}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                     
@@ -71,7 +62,7 @@
                                                     <option value="Select Vol & No." disabled>Select Vol & No.</option>
                                                     <option value="">---- ANY ----</option>
                                                     {% for bulletin in all_bulletins %}
-                                                    <option value="{{bulletin.3}}">{{bulletin.3}}</option>
+                                                    <option value="{{bulletin.2}}">{{bulletin.2}}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
@@ -82,7 +73,7 @@
                                                     <option value="Select Year" disabled>Select Year</option>
                                                     <option value="">---- ANY ----</option>
                                                     {% for bulletin in all_bulletins %}
-                                                    <option value="{{bulletin.5 | date:'Y' }}">{{bulletin.5 | date:"Y" }}</option>
+                                                    <option value="{{bulletin.4 }}">{{bulletin.4 }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
@@ -102,19 +93,20 @@
                                             <tr>
                                                 <th style="width: 8%;">Sr. No.</th>
                                                 <th style="width: 70%;">Title</th>
-                                                <th style="width: 10%;">Vol. & No.</th>
-                                                <th>Months</th>
+                                                <th style="width: 13%;">Vol. & No.</th>
+                                                <th style="width: 10%;">Months</th>
                                                 <th style="width: 10%;">Year</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {% for bulletin in all_bulletins %}
                                                 <tr data-month="{{ bulletin.3 }}" data-volume="{{ bulletin.4 }}" data-year="{{ bulletin.0.5 }}">
-                                                    <td class="text-center">{{ forloop.counter }}</td>
-                                                    <td><a style="font-weight: 600;" href="/static/uploads/Bulletins/{{ bulletin.6 }}" target="_blank">{{ bulletin.2 }}</a></td>
+                                                    <!-- <td class="text-center">{{ forloop.counter }}</td> -->
+                                                    <td class="text-center">{{ bulletin.0 }}</td>
+                                                    <td><a style="font-weight: 600;" href="/static/uploads/Bulletins/{{ bulletin.5 }}" target="_blank">{{ bulletin.1 }}</a></td>
+                                                    <td class="text-center">{{ bulletin.2 }}</td>
                                                     <td class="text-center">{{ bulletin.3 }}</td>
                                                     <td class="text-center">{{ bulletin.4 }}</td>
-                                                    <td class="text-center">{{ bulletin.5 | date:"Y" }}</td>
                                                 </tr>
                                             {% endfor %}
                                         </tbody>

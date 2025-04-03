@@ -182,3 +182,4 @@ SESSION_SECURITY = {
     'IDLE_TIME': timedelta(minutes=1),
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
 }
+

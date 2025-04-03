@@ -12,7 +12,7 @@
     </h2>
 
     <!-- Add Department Form -->
-    <div class="col-md-8 pb-2 m-auto">
+    <div class="col-md-5 pb-2 m-auto">
         <form action="{% url 'add_project_staff_info' %}" method="POST" class="form" id="add-project-staff-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
@@ -20,23 +20,7 @@
                     <label for="project_staff_id" class="form-label text-dark" style="font-weight: 600;">Project Staff ID : </label>
                     <input type="number" class="form-control rounded-0" id="project_staff_id" placeholder="Enter Project Staff ID" name="project_staff_id" required>
                 </div>
-
-                <div class="col mb-3">
-                    <label for="project_staff_name" class="form-label text-dark" style="font-weight: 600;">Project Staff Name : </label>
-                    <input type="text" class="form-control rounded-0" id="project_staff_name" placeholder="Enter Project Staff Name" name="project_staff_name" required>
-                </div>
-
-                <div class="col mb-3">
-                    <label for="project_staff_departmernt" class="form-label text-dark" style="font-weight: 600;">Project Staff Department : </label>
-                    <input type="text" class="form-control rounded-0" id="project_staff_departmernt" placeholder="Enter Project Staff Department" name="project_staff_departmernt" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                    <label for="project_staff_designation" class="form-label text-dark" style="font-weight: 600;">Project Staff  Designation : </label>
-                    <input type="text" class="form-control rounded-0" id="project_staff_designation" placeholder="Enter Project Staff Designation " name="project_staff_designation" required>
-                </div>
-
+                
                 <div class="col mb-3">
                     <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
                     <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
@@ -45,7 +29,26 @@
                         <option value="Inactive">Inactive</option>
                     </select>
                 </div>
+
+                
+
+                <!-- <div class="col mb-3">
+                    <label for="project_staff_departmernt" class="form-label text-dark" style="font-weight: 600;">Project Staff Department : </label>
+                    <input type="text" class="form-control rounded-0" id="project_staff_departmernt" placeholder="Enter Project Staff Department" name="project_staff_departmernt" required>
+                </div> -->
             </div>
+            <!-- <div class="row"> -->
+                <div class="col mb-3">
+                    <label for="project_staff_name" class="form-label text-dark" style="font-weight: 600;">Project Staff Name : </label>
+                    <input type="text" class="form-control rounded-0" id="project_staff_name" placeholder="Enter Project Staff Name" name="project_staff_name" required>
+                </div>
+
+                <div class="col mb-3">
+                    <label for="project_staff_designation" class="form-label text-dark" style="font-weight: 600;">Project Staff  Designation : </label>
+                    <input type="text" class="form-control rounded-0" id="project_staff_designation" placeholder="Enter Project Staff Designation " name="project_staff_designation" required>
+                </div>
+
+            <!-- </div> -->
 
             <center>
                 <div class="mb-3">

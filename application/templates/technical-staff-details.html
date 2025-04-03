@@ -129,7 +129,7 @@
                                                                     }
                                                                 }
 
-                                                                @media screen and (min-width:567px) and (max-width:768px) {
+                                                                @media screen and (max-width:768px) {
                                                                     .individualProfile__main-media .img-fluid{
                                                                         padding: 10px;
                                                                         width: 250px;
@@ -184,7 +184,7 @@
                                                                         border-radius: 0px;
                                                                     }
                                                                 }
-                                                                @media screen and (min-width:768px) and (max-width:1024px){
+                                                                @media screen and (min-width:769px) and (max-width:1024px){
                                                                     .individualProfile__main-media .img-fluid{
                                                                         padding: 10px;
                                                                         width: 250px;
@@ -202,7 +202,7 @@
                                                                         width: auto;
                                                                     }
                                                                     .individualProfile__main-head{
-                                                                        width: auto;
+                                                                        width: 769px;
                                                                         padding: 0;
                                                                     }
                                                                     .list-item{
@@ -272,19 +272,19 @@
                                                                                     <tr>
                                                                                         <th><strong>Division  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td>ICMR-NIIH</td>
+                                                                                        <td>{{technical_info.div_name}}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th><strong>Email ID  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td><a href="mailto:madkaikarmanisha@yahoo.co.inn">{{technical_info.email_id}}</a> <br>
-                                                                                        <a href="mailto:directorniih@gmail.com">{{technical_info.alt_email_id}}</a></td>
+                                                                                        <td><a class="text-dark">{{technical_info.email_id}}</a> <br>
+                                                                                        <a class="text-dark">{{technical_info.alt_email_id}}</a></td>
                                                                                     </tr>
-                                                                                    <tr>
+                                                                                    <!-- <tr>
                                                                                         <th><strong>Academic Qualifications  </strong></th>
                                                                                         <td>:</td>
                                                                                         <td style="position: relative; top: -23px;"> {{ str_academic_info|safe }}</td>
-                                                                                    </tr>
+                                                                                    </tr> -->
                                                                                     <!-- <tr>
                                                                                         <th><strong>Specialization  </strong></th>
                                                                                         <td>:</td>
@@ -294,7 +294,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="individualProfile__main-head d-grid">
-                                                                            <h4 class="card-header" style="color: white; background-color: var(--trinetry);">Publications</h4>
+                                                                            <!-- <h4 class="card-header" style="color: white; background-color: var(--trinetry);">Publications</h4>
                                                                             <ol class="list" style="margin-left: 30px; margin-top: 10px;">
                                                                                 <li class="list-item" style="list-style: decimal;">
                                                                                     Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
@@ -316,7 +316,7 @@
                                                                                     Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
                                                                                     <br>Erythrocytes as a preferential target of oxidative stress in blood.
                                                                                 </li>
-                                                                            </ol>
+                                                                            </ol> -->
                                                                             <div class="accordionView">
                                                                                 <div id="accordion">
                                                                                     <!-- <div class="card">

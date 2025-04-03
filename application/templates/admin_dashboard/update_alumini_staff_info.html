@@ -12,7 +12,7 @@
     </h2>
 
     <!-- Add Department Form -->
-    <div class="col-md-8 pb-2 m-auto">
+    <div class="col-md-5 pb-2 m-auto">
         <form action="" method="POST" class="form" id="update-student-form" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- {{update_data.0.id}} -->
@@ -22,15 +22,20 @@
             <div class="row">
                 <div class="col mb-3">
                     <label for="alumini_staff_id" class="form-label text-dark" style="font-weight: 600;">Alumini Staff ID : </label>
-                    <input type="number" class="form-control rounded-0 text-center" id="alumini_staff_id" value="{{update_data.0.alumini_staff_id}}" placeholder="Update Alumini Staff ID" name="alumini_staff_id" readonly>
+                    <input type="number" class="form-control rounded-0 text-center" id="alumini_staff_id" value="{{update_data.0.alumini_staff_id}}" placeholder="Update Alumini Staff ID" name="alumini_staff_id">
                 </div>
 
                 <div class="col mb-3">
-                    <label for="alumini_leave_year" class="form-label text-dark" style="font-weight: 600;">Alumini Staff Name : </label>
-                    <input type="number" class="form-control rounded-0" id="alumini_leave_year" value="{{update_data.0.alumini_leave_year}}" placeholder="Update Alumini Staff Name" name="alumini_leave_year">
+                    <label for="alumini_leave_year" class="form-label text-dark" style="font-weight: 600;">Alumini Leaving Year : </label>
+                    <input type="number" class="form-control rounded-0 text-center" id="alumini_leave_year" value="{{update_data.0.alumini_leave_year}}" placeholder="Update Alumini Leaving Year" name="alumini_leave_year">
                 </div>
-                
+            </div>
+            <div class="row">    
                 <div class="col mb-3">
+                    <label for="alumini_staff_name" class="form-label text-dark" style="font-weight: 600;">Alumini Staff Name : </label>
+                    <input type="text" class="form-control rounded-0" id="alumini_staff_name" value="{{update_data.0.alumini_staff_name}}" placeholder="Update Alumini Staff Name" name="alumini_staff_name">
+                </div>
+                <div class="col-5 mb-3">
                     <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
                     <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
                         <option value="" selected disabled>Select Profile Status</option>
@@ -44,18 +49,10 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-5 mb-3">
-                    <label for="alumini_staff_name" class="form-label text-dark" style="font-weight: 600;">Alumini Staff Name : </label>
-                    <input type="text" class="form-control rounded-0" id="alumini_staff_name" value="{{update_data.0.alumini_staff_name}}" placeholder="Update Alumini Staff Name" name="alumini_staff_name">
-                </div>
-
-                <div class="col mb-3">
-                    <label for="alumini_staff_designation" class="form-label text-dark" style="font-weight: 600;">Alumini Staff Name : </label>
-                    <input type="text" class="form-control rounded-0" id="alumini_staff_designation" value="{{update_data.0.alumini_staff_designation}}" placeholder="Update Alumini Staff Name" name="alumini_staff_designation">
-                </div>
+            <div class="col mb-3">
+                <label for="alumini_staff_designation" class="form-label text-dark" style="font-weight: 600;">Alumini Designation : </label>
+                <textarea type="text" class="form-control rounded-0" id="alumini_staff_designation" value="" placeholder="Update Alumini Designation" name="alumini_staff_designation" rows="4">{{update_data.0.alumini_staff_designation}}</textarea>
             </div>
-
             <center>
                 <div class="mb-3">
                     <button type="submit" class="btn btn-success px-5 py-2 rounded-0">Update</button>

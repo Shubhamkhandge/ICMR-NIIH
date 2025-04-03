@@ -1,3 +1,18 @@
+
+
+<footer class="footer">
+    
+      {% if messages %}
+      {% for msg in messages %}
+      <div id="alertBox{{forloop.counter}}" class="alert">
+      <span class="alert-message">{{msg}}</span>
+      <i class="fas fa-times close-btn" onclick="closeAlert()"></i>
+      </div>
+      {% endfor %}
+      {% endif %}
+    <p> <i class="footer__icon"></i> by <a href="#" target="_blank" class="footer__signature">Vibeai  --</a></p>
+  </footer>
+
 Django==5.1.3
 django-simple-captcha==0.6.0
 django-session-timeout==0.1.0
@@ -16,43 +31,90 @@ mysql
 # Django admin
 # -username : admin
 # -password : Niih@123
-    d_name = department.objects.values_list('department_name','department_info')
-    return render(request, 'departments.html', {'d_name': d_name})
-
-    
-    if request.method=='POST':
-        d_id=request.POST.get('department_id')
-        d_name=request.POST.get('department_name')
-        hid=request.POST.get('hod_id')
-        hname=request.POST.get('hod_name')
-        dinfo=request.POST.get('department_info')
-        radio_selected = request.POST.get('tax-calculation', None)
-            ab1=request.POST.get('about_department1')
-            ab2=request.POST.get('about_department2')
-            ab3=request.POST.get('about_department3')
-            ars=request.POST.get('about_research')
-            rsp=request.POST.get('research_projects')
-            sd=request.POST.get('staff_designation')
-            se=request.POST.get('staff_email')
-            sdo=request.POST.get('staff_display_order')
-            do=request.POST.get('display_order')
 
 
+INSERT INTO technical_staff (
+    id, technical_id, technical_name, category_name, lab_department_name, support_department_name, 
+    designation, email_id, alt_email_id, profilepic_name, phone_no, fax_no, 
+    alt_phone_no, level_no, aadhar_no, join_year, author_name, publications, 
+    academic_background, specialization, professional_experience, profile_status, data_created
+)
+VALUES
+# (15, 'Vijay G Padwal', 'Technical', 'Library & Computers (IT)', 'Sr. Technical Officer (Library)', '9869107238', '8903 5177 9465', 12, '2019-04-01'),
+# (27, 'Seema A Jadhav', 'Technical', 'Transfusion Medicine', 'Sr.Technical Officer', '9119658405', '5829 1435 0693', 12, '2020-04-01'),
+(29, 'Vaishali R Pujari', 'Technical', 'Transfusion Transmitted Diseases', 'Technical Officer C', '228', '11', '9820548431', '6853 4529 5824', 11),
+(30, 'Maya R Gupta', 'Technical', 'Pediatric Immunology & Leukocyte Biology', 'Technical Officer C', '106', '10', '9324606855', '7111 7751 2147', 10),
+(31, 'Pratibha M Sawant', 'Technical', 'Hematogenetics', 'Technical Officer B', '112', '07', '9869683817', '3831 1597 0049', 07),
+(34, 'Prakash K Solanki', 'Technical', 'Technician -C', '112', '06', '9969129790', '8652 7614 7133', 06),
+(38, 'Ramdas V Mayekar', 'Technical', 'Laboratory Assistant', '112', '05', '9420277497', '9647 4429 3395', 05),
+(40, 'Shailesh R Shinde', 'Technical', 'Laboratory Assistant', '228', '05', '9930255449', '3064 5897 0180', 05),
+(42, 'Gurudeo J Rane', 'Technical', 'Laboratory Assistant', '112', '05', '9869691531', '3054 6258 7208', 05),
+(44, 'Ashok S Patel', 'Technical', 'Laboratory Assistant', '112', '05', '9869380372', '3777 4105 8532', 05),
+(46, 'Harishchandra V Pawar', 'Technical', 'Laboratory Assistant', '05', '9969499030', '4378 6421 5224', 05),
+(47, 'Santosh S Naik', 'Technical', 'Laboratory Assistant', '135', '05', '9819967170', '6313 5000 2938', 05),
+(48, 'Dilip J Bali', 'Technical', 'Laboratory Assistant', '05', 05),
+(50, 'Neha Kargutkar', 'Technical', 'SRF', '112'),
+(52, 'Nikhil S. Shinde', 'Technical', 'SRF', '112'),
+(55, 'Dr. Rucha K Patil', 'Technical', 'Haemostasis and Thrombosis', 'Scientist D', 'dr_rucha-patil.JPG', '9833053196', '2173 7735 6648', 12, '2024-07-01'),
+(56, 'Dr. Reetika Malik Yadav', 'Technical', 'Pediatric Immunology & Leukocyte Biology', 'Scientist D', 'ritika-malik.jpg', '9711393579', '3832 9688 7011', 12, '2024-07-01'),
+(67, 'Sharda D Shanbhag', 'Technical', 'Haemostasis and Thrombosis', 'Technical Officer A', '135', '07', '2023-11-02', '9892109118', '4574 6861 0133', 07, '2023'),
+(68, 'Somprakash Dhangar', 'Technical', 'Cytogenetics', 'Technical Officer A', '109', '07', '2023-11-02', '6966 3624 7312', 07, '2023'),
+(69, 'Nikesh Krishna Kawankar', 'Technical', 'Haemostasis and Thrombosis', 'Technical Officer A', '135', '06', '2023-11-02', '9029006266', '5044 5671 8470', 06, '2023'),
+(70, 'Rati Devendra', 'Technical', 'Hematogenetics', 'Technical Officer A', '112', '06', '2023-11-02', '09920688933', '2329 7574 1793', 06, '2023'),
+(71, 'Ganesh Moorthy Swami Durai', 'Technical', 'Technical Officer A', '228', '06', '2023-11-02', '9702062778', '6684 5110 6770', 06, '2023'),
+(72, 'Aparna D Dalvi', 'Technical', 'Technical Officer A', '106', '06', '2023-11-02', '9867956726', '9327 4721 7392', 06, '2023'),
+(73, 'Kirti K. Beelagi', 'Technical, 'Technical Officer A', '135', '06', '2023-11-02', 06, '2023'),
+(74, 'Monali A Lokhande', 'Technica'l', 'Technical Officer A', '06', '2023-11-02', '9768702404', '3600 8243 5830', 06, '2023'),
+(75, 'Shreyasi M Athalye', 'Technical', 'Tech.Assistant', '228', '06', '9833087985', '2159 9293 8603', '22'),
+(76, 'Shweta S Shinde', 'Technical', 'Tech. Assistant', '06', '9766880227', '7459 1031 1704'),
+(77, 'Shreya M Chavan', 'Technical', 'Technician -C', '228', '05', '9768944920', '8973 8523 9171', 05),
+(78, 'Jagadeeshwar B Ghatanatti', 'Technical', 'Technician -C', '05', 05),
+(79, 'Pallavi Thaker', 'Technician -C', '112', '8087852041', '7019 7079 1303', 'Technical', '16'),
+(80, 'Dr. Ashish S Chiddarwar', 'Technician -C', '112', '9960297857', '3704 4488 2239', 'Technical', '16'),
+(81, 'Manju Suhas Gorivale', 'Technician -A', '112', '7276663065', '2813 3449 1042', 'Technical'),
+(82, 'Tushar V Shivtarkar', 'Technician -A', '9819290168', '4092 7451 3047', 'Technical'),
+(83, 'Swapnal Ravindra Pawaskar', 'Technician -A', '9769413519', '9736 0233 2132', 'Technical'),
+(84, 'Nitin H Salve', 'MTS', '7977713296', '8104 5978 3155', 'Technical'),
+(85, 'Anant L Radye', 'MTS', 'Technical', 'TM/PID'),
+(90, 'Amar J. Gode', 'Laboratory Attendant-2', '228', '9867877981', '2636 5517 0039', 'Technical', '22');
+# (91, '226', 'PrashantT.jpg', 'Prashant Tapase', 'Tapase P', 'Sr. Technical Officer', '106', '12', '2024-04-01', '9324753236', '4625 1746 4214', 'Technical', 'Computers (IT)', '18', 'prashant_ut@yahoo.co.in', NULL, '<ul>\r\n	<li><strong>M.Sc.</strong> (Mathematics)</li>\r\n	<li>Diploma in Computer Programming</li>\r\n</ul>\r\n');
 
 
-	(1, 11001, 'Ms. Harita Velji Gogri', 'SRF', NULL , 'Active'),
-	(2, 11002, 'Ms. Neha M. Jodhawat', 'Research Assistant', NULL , 'Active'),
-	(3, 11003, 'Ms. Merin George', 'JRF', NULL , 'Active'),
-	(4, 11004, 'Ms. Tejashree More', 'JRF', NULL , 'Active'),
-	(5, 11005, 'Ms. Priyanka Setia', 'SRF', NULL , 'Active'),
-	(6, 11006, 'Ms. Rashmi Dongerdiye', 'JRF', NULL , 'Active'),
-	(7, 11007, 'Ms. Sneha Dadheech', 'Scientist B ( Non-medical)', NULL , 'Active'),
-	(8, 11008, 'Mr. Prajyot V. Deshmukh', 'Project Technical Officer (MSW)', NULL , 'Active'),
-	(9, 11009, 'Mr. Debjeet Pandy', 'Project Technical Officer (MSW)', NULL , 'Active'),
-	(10, 11010, 'Mr. Vinod D. Umare', 'Project Technician -III', NULL , 'Active'),
-	(11, 11011, 'Mr. Nikhil S. Shinde', 'Project Technician -III', NULL , 'Active'),
-	(12, 11012, 'Ms. Minakshi D. Shirpurwar', 'UDC', NULL , 'Active'),
-	(13, 11013, 'Mr. Mohmmad. Jakir S. Waris', 'MTS', NULL , 'Active'),
-	(14, 11014, 'Ms. Sushma R. Kosarkar', 'MTS', NULL , 'Active'),
-	(15, 11015, 'Dr. Dipti Abhijit Sankhari', 'Scientist B ( Medical)', NULL , 'Active')
-
+INSERT INTO icmrniih.application_technical_staff (
+    id, technical_id, technical_name, category_name, lab_department_name, support_department_name, 
+    designation, phone_no, level_no, aadhar_no, profile_status, data_created
+) VALUES
+(4, '228','Vaishali R Pujari', 'Technical', 'Transfusion Transmitted Diseases', 'Technical', 'Technical Officer C', '9820548431', '11', '6853 4529 5824', 'Active'),
+(5, '106','Maya R Gupta', 'Technical', 'Pediatric Immunology & Leukocyte Biology', 'Technical Officer C',  '10', '9324606855', '7111 7751 2147', NULL, NULL, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, '112','Pratibha M Sawant', 'Technical', 'Hematogenetics', 'Technical Officer B',  '07', '9869683817', '3831 1597 0049', NULL, NULL, 07, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, '112','Prakash K Solanki', 'Technical', 'Technician -C',  '06', '9969129790', '8652 7614 7133', NULL, NULL, 06, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, '112','Ramdas V Mayekar', 'Technical', 'Laboratory Assistant',  '05', '9420277497', '9647 4429 3395',NULL, NULL, 05, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, '228','Shailesh R Shinde', 'Technical', 'Laboratory Assistant',  '05', '9930255449', '3064 5897 0180', NULL, NULL, 05, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, '112','Gurudeo J Rane', 'Technical', 'Laboratory Assistant',  '05', '9869691531', '3054 6258 7208', NULL, NULL, 05, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, '112','Ashok S Patel', 'Technical', 'Laboratory Assistant', '05', '9869380372', '3777 4105 8532', NULL, NULL, 05, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'Harishchandra V Pawar', 'Technical', 'Laboratory Assistant', '05', NULL, '9969499030', '4378 6421 5224', NULL, NULL, 05, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, '135','Santosh S Naik', 'Technical', 'Laboratory Assistant', '05', '9819967170', '6313 5000 2938', NULL, NULL, 05, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'Dilip J Bali', 'Technical', 'Laboratory Assistant', '05', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'Neha Kargutkar', 'Technical', 'SRF', '112', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'Nikhil S. Shinde', 'Technical', 'SRF', '112', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'Dr. Rucha K Patil', 'Technical', 'Haemostasis and Thrombosis', 'Scientist D', 'dr_rucha-patil.JPG', '9833053196', '2173 7735 6648', NULL, '2024-07-01', NULL, NULL, NULL, NULL, NULL),
+(18, 'Dr. Reetika Malik Yadav', 'Technical', 'Pediatric Immunology & Leukocyte Biology', 'Scientist D', 'ritika-malik.jpg', '9711393579', '3832 9688 7011', NULL, '2024-07-01', NULL, NULL, NULL, NULL, NULL),
+(19, 'Sharda D Shanbhag', 'Technical', 'Haemostasis and Thrombosis', 'Technical Officer A', '135', '07', '2023-11-02', '9892109118', '4574 6861 0133', NULL, '2023', NULL, NULL, NULL, NULL),
+(20, 'Somprakash Dhangar', 'Technical', 'Cytogenetics', 'Technical Officer A', '109', '07', '2023-11-02', '6966 3624 7312', NULL, NULL, '2023', NULL, NULL, NULL, NULL),
+(21, 'Nikesh Krishna Kawankar', 'Technical', 'Haemostasis and Thrombosis', 'Technical Officer A', '135', '06', '2023-11-02', '9029006266', '5044 5671 8470', NULL, '2023', NULL, NULL, NULL, NULL),
+(22, 'Rati Devendra', 'Technical', 'Hematogenetics', 'Technical Officer A', '112', '06', '2023-11-02', '09920688933', '2329 7574 1793', NULL, '2023', NULL, NULL, NULL, NULL),
+(23, 'Ganesh Moorthy Swami Durai', 'Technical', 'Technical Officer A', '228', '06', '2023-11-02', '9702062778', '6684 5110 6770', NULL, '2023', NULL, NULL, NULL, NULL),
+(24, 'Aparna D Dalvi', 'Technical', 'Technical Officer A', '106', '06', '2023-11-02', '9867956726', '9327 4721 7392', NULL, '2023', NULL, NULL, NULL, NULL),
+(25, 'Kirti K. Beelagi', 'Technical', 'Technical Officer A', '135', '06', '2023-11-02', NULL, NULL, '2023'),26, 74, 'Monali A Lokhande', 'Technical', 'Technical Officer A', '06', '2023-11-02', '9768702404', '3600 8243 5830', NULL, '2023'),
+(27, 'Shreyasi M Athalye', 'Technical', 'Tech.Assistant', '228', '06', '9833087985', '2159 9293 8603', NULL, '22'),
+(28, 'Shweta S Shinde', 'Technical', 'Tech. Assistant', '06', '9766880227', '7459 1031 1704', NULL),
+(29, 'Shreya M Chavan', 'Technical', 'Technician -C', '228', '05', '9768944920', '8973 8523 9171', NULL, '05'),
+(30, 'Jagadeeshwar B Ghatanatti', 'Technical', 'Technician -C', '05', NULL, NULL, NULL, NULL),
+(31, 'Pallavi Thaker', 'Technician -C', '112', '8087852041', '7019 7079 1303', NULL, '16'),
+(32, 'Dr. Ashish S Chiddarwar', 'Technician -C', '112', '9960297857', '3704 4488 2239', NULL, '16'),
+(33, 'Manju Suhas Gorivale', 'Technician -A', '112', '7276663065', '2813 3449 1042', NULL),
+(34, 'Tushar V Shivtarkar', 'Technician -A', '9819290168', '4092 7451 3047', NULL),
+(35, 'Swapnal Ravindra Pawaskar', 'Technician -A', '9769413519', '9736 0233 2132', NULL),
+(36, 'Nitin H Salve', 'MTS', '7977713296', '8104 5978 3155', NULL),
+(37, 'Anant L Radye', 'MTS', 'TM/PID', NULL),
+(38, 'Amar J. Gode', 'Laboratory Attendant-2', '228', '9867877981', '2636 5517 0039', NULL, '22');

@@ -8,7 +8,7 @@
     </h2>
 
     <!-- Add Department Form -->
-    <div class="col-md-9 m-auto">
+    <div class="col-md-10 m-auto">
         <form action="" method="POST" class="form" id="update-admin-form" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- {{update_data.0.id}} -->
@@ -16,6 +16,20 @@
                 <input type="hidden" name="update_data" value="update_data">
             </div>
             <div class="row">
+                <div class="row justify-content-end mx-0 px-0">
+                    <div class="col-3 mb-3">
+                        <label for="join_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Joining Date : </label>
+                        <input type="date" class="form-control rounded-0" id="join_date" placeholder="Select Joining Date" value="{{update_data.0.join_date}}" name="join_date" >
+                    </div>
+                    <div class="col-3 mb-3">
+                        <label for="current_post_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Current Post Date : </label>
+                        <input type="date" class="form-control rounded-0" id="current_post_date" placeholder="Select Current Post Date" value="{{update_data.0.current_post_date}}" name="current_post_date" >
+                    </div>
+                    <div class="col-3 mb-3">
+                        <label for="retire_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Superannuation Year : </label>
+                        <input type="date" class="form-control rounded-0" id="retire_date" placeholder="Select Superannuation Date" value="{{update_data.0.retire_date}}" name="retire_date" >
+                    </div>
+                </div>
                 <div class="row mb-2 mx-0 px-0">
                     <div class="col-3">
                         <div class="col mb-1">
@@ -28,13 +42,13 @@
                     <div class="col-9 row mx-0 px-0">
                         <div class="col-6 mb-3">
                             <label for="admin_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Administration ID : </label>
-                            <input type="number" class="form-control rounded-0" id="admin_id" value="{{update_data.0.admin_id}}" name="admin_id" readonly required>
+                            <input type="number" class="form-control rounded-0" id="admin_id" value="{{update_data.0.admin_id}}" name="admin_id" required>
                         </div>
                         <div class="col-6 mb-3">
                             <label for="admin_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Administration Name : </label>
                             <input type="text" class="form-control rounded-0" id="admin_name" value="{{update_data.0.admin_name}}" placeholder="Update Admin Name" name="admin_name" required>
                         </div>
-                        <div class="col-5 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="support_department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Department : </label>
                             <select id="support_department_name" value="Select Department" name="support_department_name" class="form-select rounded-0">
                                 <option value="" selected disabled>Select Department</option>
@@ -47,7 +61,7 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-3 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="category_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Category : </label>
                             <select id="category_name" value="Select Department" name="category_name" class="form-select rounded-0">
                                 <option value="" disabled>Select Category</option>
@@ -74,23 +88,22 @@
                                 </optgroup>
                             </select>
                         </div>
-                        <div class="col-4 mb-3">
-                            <label for="profile_status" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Status : </label>
-                            <select id="profile_status" value="Select Status" name="profile_status" class="form-select rounded-0">
-                                <!-- <option value="{{update_data.0.profile_status}}" selected>{{update_data.0.status}}</option> -->
-                                {% if 'Active' == update_data.0.profile_status %}
-                                    <option value="Active" selected>Active</option>
-                                    <option value="Inactive">Inactive</option>
-                                {% else %}
-                                    <option value="Active">Active</option>  
-                                    <option value="Inactive" selected>Inactive</option>
-                                {% endif %}
-                            </select>
+                        <div class="col-6 mb-3">
+                            <label for="email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email ID : </label>
+                            <input type="email" class="form-control rounded-0" id="email_id" value="{{update_data.0.email_id}}" placeholder="Update your EmailID" name="email_id" >
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="alt_email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Alternate Email ID : </label>
+                            <input type="email" class="form-control rounded-0" id="alt_email_id" value="{{update_data.0.alt_email_id}}" placeholder="Update your Alternate EmailID" name="alt_email_id" >
                         </div>
                         <!-- <div class="col-4 mb-3">
                             <label for="author_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Author Name : </label>
                             <input type="text" class="form-control rounded-0" id="author_name" placeholder="Update Author Name" name="author_name" >
                         </div> -->
+                        <div class="col-4 mb-3">
+                            <label for="birth_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Birth Date : </label>
+                            <input type="date" class="form-control rounded-0" id="birth_date" placeholder="Select Birth Year" value="{{update_data.0.birth_date}}" name="birth_date" >
+                        </div>
                         <div class="col-8 mb-3">
                             <label for="profilepic_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Profile Picture : </label>
                             {{update_data.0.profilepic_name}}
@@ -99,25 +112,21 @@
                     </div>
                 </div>
                 <div class="row mx-0 px-0">
-                    <div class="col-6 mb-3">
-                        <label for="email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email ID : </label>
-                        <input type="email" class="form-control rounded-0" id="email_id" value="{{update_data.0.email_id}}" placeholder="Update your EmailID" name="email_id" >
-                    </div>
-                    <div class="col-6 mb-3">
-                        <label for="alt_email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Alternate Email ID : </label>
-                        <input type="email" class="form-control rounded-0" id="alt_email_id" value="{{update_data.0.alt_email_id}}" placeholder="Update your Alternate EmailID" name="alt_email_id" >
-                    </div>
-                    <div class="col-6 mb-3">
+                    <div class="col-4 mb-3">
                         <label for="phone_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Phone Number : </label>
                         <input type="tel" class="form-control rounded-0" id="phone_no" name="phone_no" value="{{update_data.0.phone_no}}" placeholder="Update Phone Number" pattern="^[7-9]{1}[0-9]{9}$" >
                         <!-- <small>Format: 9876543210 (10 digits starting with 7, 8, or 9)</small> -->
                         <!-- <input type="number" class="form-control rounded-0" id="phoneNo" name="phoneNo" > -->
                     </div>
-                    <div class="col-6 mb-3">
+                    <div class="col-4 mb-3">
                         <label for="alt_phone_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Alternate Phone Number : </label>
                         <input type="tel" class="form-control rounded-0" id="alt_phone_no" name="alt_phone_no" value="{{update_data.0.alt_phone_no}}" placeholder="Update Alternate Phone Number" pattern="^[7-9]{1}[0-9]{9}$" >
                         <!-- <small>Format: 9876543210 (10 digits starting with 7, 8, or 9)</small> -->
                         <!-- <input type="number" class="form-control rounded-0" id="phoneNo" name="phoneNo" > -->
+                    </div>
+                    <div class="col-4 mb-3">
+                        <label for="aadhar_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Aadhar(UAN) Number : </label>
+                        <input type="text" class="form-control rounded-0" id="aadhar_no" value="{{update_data.0.aadhar_no}}" placeholder="Update Aaadhar(UAN) Number" name="aadhar_no" >
                     </div>
                 </div>
                 <div class="row mx-0 px-0">
@@ -125,9 +134,58 @@
                         <label for="fax_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">FAX Number : </label>
                         <input type="text" class="form-control rounded-0" id="fax_no" value="{{update_data.0.fax_no}}" placeholder="Update FAX Number" name="fax_no" >
                     </div>
-                    <div class="col-4 mb-3">
-                        <label for="aadhar_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Aadhar(UAN) Number : </label>
-                        <input type="text" class="form-control rounded-0" id="aadhar_no" value="{{update_data.0.aadhar_no}}" placeholder="Update Aaadhar(UAN) Number" name="aadhar_no" >
+                    <div class="col-2 mb-3">
+                        <label for="profile_status" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Status : </label>
+                        <select id="profile_status" value="Select Status" name="profile_status" class="form-select rounded-0">
+                            <!-- <option value="{{update_data.0.profile_status}}" selected>{{update_data.0.status}}</option> -->
+                            {% if 'Active' == update_data.0.profile_status %}
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            {% else %}
+                                <option value="Active">Active</option>  
+                                <option value="Inactive" selected>Inactive</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="div_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Division : </label>
+                        <select id="div_name" value="Select Division" name="div_name" class="form-select rounded-0">
+                            <!-- <option value="{{update_data.0.profile_status}}" selected>{{update_data.0.status}}</option> -->
+                            {% if 'ICMR-NIIH-CRMCH' == update_data.0.div_name %}
+                                <option value="ICMR-NIIH-CRMCH" selected>ICMR-NIIH-CRMCH</option>
+                                <option value="ICMR-NIIH">ICMR-NIIH</option>
+                                <option value="ICMR-CRMCH">ICMR-CRMCH</option>
+                            {% elif 'ICMR-NIIH' == update_data.0.div_name %}
+                                <option value="ICMR-NIIH-CRMCH">ICMR-NIIH-CRMCH</option>
+                                <option value="ICMR-NIIH" selected>ICMR-NIIH</option>
+                                <option value="ICMR-CRMCH">ICMR-CRMCH</option>
+                            {% elif 'ICMR-CRMCH' == update_data.0.div_name %}
+                                <option value="ICMR-NIIH-CRMCH">ICMR-NIIH-CRMCH</option>
+                                <option value="ICMR-NIIH">ICMR-NIIH</option>  
+                                <option value="ICMR-CRMCH" selected>ICMR-CRMCH</option>
+                            {% else %}
+                                <option value="ICMR-NIIH-CRMCH">ICMR-NIIH-CRMCH</option>
+                                <option value="ICMR-NIIH">ICMR-NIIH</option>  
+                                <option value="ICMR-CRMCH">ICMR-CRMCH</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-2 mb-3">
+                        <label for="display_order" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Order : </label>
+                        {{update_data.0.display_order}}
+                        <select id="display_order" value="Select Display Order" name="display_order" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Order</option>
+                            {% for j in display_order %}
+                                {{j}}
+                                {% if j|floatformat == update_data.0.display_order|floatformat %}
+                                    <option value="{{j}}" selected>{{j}}</option>
+                                
+                                {% elif j != update_data.0.display_order %}
+                                    <option value="{{j}}">{{j}}</option>
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="col-2 mb-3">
                         <label for="level_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Level : </label>
@@ -138,7 +196,7 @@
                             {% for j in level %}
                                 {{j}}
                                 {% if j|floatformat == update_data.0.level_no|floatformat %}
-                                    <option value="{{j}}" selected disabled>{{j}}</option>
+                                    <option value="{{j}}" selected>{{j}}</option>
                                 
                                 {% elif j != update_data.0.level_no %}
                                     <option value="{{j}}">{{j}}</option>
@@ -146,10 +204,6 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                    </div>
-                    <div class="col-3">
-                        <label for="join_year" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Joining Year : </label>
-                        <input type="date" class="form-control rounded-0" id="join_year" placeholder="Select Joining Year" value="{{update_data.0.join_year}}" name="join_year" >
                     </div>
                     <!-- <div class="col-3 mb-3">
                         <label for="join_year" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Joining Year : </label>

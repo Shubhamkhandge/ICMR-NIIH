@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <!-- Title -->
     <h2 class="text-center text-uppercase my-4">Manage Projects
-        <a href="/admin_dashboard/add_project_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add Project</button></a>
+        <a href="/admin_dashboard/add_project_info"><button class="btn btn-primary mb-3 rounded-0" style="float: right; font-size: 16px; font-weight: 600;">Add Project</button></a>
         <hr>
     </h2>
     
@@ -58,7 +58,6 @@
                             <td>{{i.scientist_name}}</td>
                             <td>{{i.project_status}}</td>
                             <td>{{i.project_date|date:"j F Y"}}</td>
-                            <!-- <td>{{i.project_date|date:"j F Y h:i A"}}</td> -->
                             <td>
                                 <form action="{% url 'update_project_info' %}" method="POST">
                                     {% csrf_token %}
@@ -66,14 +65,31 @@
                                     <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                                 </form>
                             </td>
-                            <td>
-                                <form action="{% url 'delete_project' %}" method="POST"
-                                    enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <!-- <input type="hidden" name="delete_data" value="delete_data"> -->
-                                    <input type="hidden" name="project_id" value="{{i.project_id}}">
-                                    <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                                </form>
+                            <td class="text-center">
+                                <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ i.project_id }}"></i></button>
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="deleteModal{{ i.project_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ i.project_id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel{{ i.project_id }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete "{{ i.project_id }}"?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <form action="{% url 'delete_project' %}" method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <!-- <input type="hidden" name="delete_data" value="delete_data"> -->
+                                                    <input type="hidden" name="project_id" value="{{i.project_id}}">
+                                                    <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         {% endfor %}
@@ -95,7 +111,7 @@
                     </tbody>
                 </table>
                 <div class="col">
-                    <nav aria-label="Page navigation">
+                    <nav aria-label="Page navigation" style="margin-bottom: 60px;">
                         <ul class="pagination justify-content-end">
                             {% if ongoing_project.has_previous %}
                                 <li class="page-item"><a class="page-link" href="?page={{ ongoing_project.previous_page_number }}">Previous</a></li>
@@ -139,7 +155,6 @@
                             <td>{{i.scientist_name}}</td>
                             <td>{{i.project_status}}</td>
                             <td>{{i.project_date|date:"j F Y"}}</td>
-                            <!-- <td>{{i.project_date|date:"j F Y h:i A"}}</td> -->
                             <td>
                                 <form action="{% url 'update_project_info' %}" method="POST">
                                     {% csrf_token %}
@@ -147,14 +162,31 @@
                                     <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                                 </form>
                             </td>
-                            <td>
-                                <form action="{% url 'delete_project' %}" method="POST"
-                                    enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <!-- <input type="hidden" name="delete_data" value="delete_data"> -->
-                                    <input type="hidden" name="project_id" value="{{i.project_id}}">
-                                    <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                                </form>
+                            <td class="text-center">
+                                <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ i.project_id }}"></i></button>
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="deleteModal{{ i.project_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ i.project_id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel{{ i.project_id }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete "{{ i.project_id }}"?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <form action="{% url 'delete_project' %}" method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <!-- <input type="hidden" name="delete_data" value="delete_data"> -->
+                                                    <input type="hidden" name="project_id" value="{{i.project_id}}">
+                                                    <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         {% endfor %}
@@ -176,7 +208,7 @@
                     </tbody>
                 </table>
                 <div class="col">
-                    <nav aria-label="Page navigation">
+                    <nav aria-label="Page navigation" style="margin-bottom: 60px;">
                         <ul class="pagination justify-content-end">
                             {% if completed_project.has_previous %}
                                 <li class="page-item"><a class="page-link" href="?page={{ completed_project.previous_page_number }}">Previous</a></li>

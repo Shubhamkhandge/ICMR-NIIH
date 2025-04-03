@@ -267,29 +267,35 @@
                                                                                     <tr>
                                                                                         <th><strong>Designation  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td>Director &amp; {{scientist_info.designation}}</td>
+                                                                                        <td>{{scientist_info.designation}}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th><strong>Division  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td>ICMR-NIIH</td>
+                                                                                        <td>{{scientist_info.div_name}}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th><strong>Email ID  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td><a href="mailto:madkaikarmanisha@yahoo.co.inn">{{scientist_info.email_id}}</a> <br>
-                                                                                        <a href="mailto:directorniih@gmail.com">{{scientist_info.alt_email_id}}</a></td>
+                                                                                        <td>
+                                                                                            <a class="text-dark">{{scientist_info.email_id}}</a> <br>
+                                                                                            <a class="text-dark">{{scientist_info.alt_email_id}}</a>
+                                                                                        </td>
                                                                                     </tr>
+                                                                                    {% if str_academic_info %}
                                                                                     <tr>
                                                                                         <th><strong>Academic Qualifications  </strong></th>
                                                                                         <td>:</td>
                                                                                         <td> {{ str_academic_info|safe }}</td>
                                                                                     </tr>
+                                                                                    {% endif %}
+                                                                                    {% if sci_spec %}
                                                                                     <tr>
                                                                                         <th><strong>Specialization  </strong></th>
                                                                                         <td>:</td>
                                                                                         <td style="text-align: justify;"> {{ sci_spec|safe }}</td>
                                                                                     </tr>   
+                                                                                    {% endif %}
                                                                                     <tr>
                                                                                         <th><strong>Links  </strong></th>
                                                                                         <td>:</td>
@@ -362,56 +368,64 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="card">
-                                                                                        <div class="card-header">
-                                                                                            <a class="collapsed btn" data-bs-toggle="collapse" href="#awards">
-                                                                                                Awards & Achievements
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class="collapse" data-bs-parent="#accordion" id="awards">
-                                                                                            <div class="card-body">
-                                                                                                <ol class="list">
-                                                                                                    {% for awards in award_info %}
-                                                                                                        <li class="list-item" style="list-style: disc;">
-                                                                                                            {{ awards.award_name }}
-                                                                                                        </li>
-                                                                                                    {% endfor %}
-                                                                                                </ol>
+                                                                                    {% if award_info %}
+                                                                                        <div class="card">
+                                                                                            <div class="card-header">
+                                                                                                <a class="collapsed btn" data-bs-toggle="collapse" href="#awards">
+                                                                                                    Awards & Achievements
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <div class="collapse" data-bs-parent="#accordion" id="awards">
+                                                                                                <div class="card-body">
+                                                                                                    <ol class="list">
+                                                                                                        {% for awards in award_info %}
+                                                                                                            <li class="list-item" style="list-style: disc;">
+                                                                                                                {{ awards.award_name }}
+                                                                                                            </li>
+                                                                                                        {% endfor %}
+                                                                                                    </ol>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
+                                                                                    {% endif %}
                                                                                 </div>
                                                                             </div> 
-                                                                            <div class="col-12">
-                                                                                <h4 class="sub-title">Research Staff :</h4>
-                                                                                <!-- <p>1. <strong>Dr. Vandana D Pradhan</strong> Scientist D</p> -->
-                                                                                <!-- {% for res_staff_list in res_staff %}
-                                                                                    <p>{{forloop.counter}}. <strong>{{res_staff.0.0}}</strong> {{res_staff.0.1}}</p>
-                                                                                {% endfor %} -->
-                                                                                <table class="table tbl2 table-bordered table-striped">
-                                                                                    <thead class="text-center">
-                                                                                        <th>Sr. No.</th>
-                                                                                        <th>Staff Name</th>
-                                                                                        <th>Designation</th>
-                                                                                    </thead>
-                                                                                    <tbody class="text-center">
-                                                                                        {% for res_staff_list in res_staff %}
-                                                                                        <tr>
-                                                                                            <td>{{forloop.counter}}</td>
-                                                                                            <td><strong>{{res_staff.0.0}}</strong></td>
-                                                                                            <td>{{res_staff.0.1}}</td>
-                                                                                        </tr>
-                                                                                        {% endfor %}
-                                                                                        {% for staff in technical_staff %}
-                                                                                        <tr>
-                                                                                            <td>{{forloop.counter}}</td>
-                                                                                            <td><strong>{{staff.0.2}}</strong></td>
-                                                                                            <td>{{staff.0.5}}</td>
-                                                                                        </tr>
-                                                                                        {% endfor %}
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </div>
+                                                                            {% if sci_staff %}
+                                                                                <div class="col-12">
+                                                                                    <h4 class="sub-title">Research Staff :</h4>
+                                                                                    <!-- <p>1. <strong>Dr. Vandana D Pradhan</strong> Scientist D</p> -->
+                                                                                    <!-- {% for res_staff_list in res_staff %}
+                                                                                        <p>{{forloop.counter}}. <strong>{{res_staff.0.0}}</strong> {{res_staff.0.1}}</p>
+                                                                                    {% endfor %} -->
+                                                                                    <table class="table tbl2 table-bordered table-striped">
+                                                                                        <thead class="text-center">
+                                                                                            <th>Sr. No.</th>
+                                                                                            <th>Staff Name</th>
+                                                                                            <th>Designation</th>
+                                                                                        </thead>
+                                                                                        <tbody class="text-left">
+                                                                                            {% for res_staff_list in sci_staff %}
+                                                                                                {% if scientist_info.scientist_name != res_staff_list.2 %}
+                                                                                                    <tr>
+                                                                                                        <td>{{forloop.counter}}</td>
+                                                                                                        <td><strong>{{res_staff_list.2}}</strong></td>
+                                                                                                        <td>{{res_staff_list.5}}</td>
+                                                                                                    </tr>
+                                                                                                {% endif %}
+                                                                                            {% endfor %}
+                                                                                            {% for staff in technical_staff.0 %}
+                                                                                                {% if scientist_info.scientist_name != staff.2 %}
+                                                                                                    <tr>
+                                                                                                        <td>{{forloop.counter}}</td>
+                                                                                                        <td><strong>{{staff.2}}</strong></td>
+                                                                                                        <td>{{staff.5}}</td>
+                                                                                                    </tr>
+                                                                                                {% endif %}
+                                                                                            {% endfor %}
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            {% endif %}
                                                                         </div>
                                                                     </div>
                                                                 </div>

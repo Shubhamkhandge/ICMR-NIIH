@@ -4,193 +4,265 @@
     <!-- Dashboard Content -->
     <div class="px-4 py-2 dashboard bg-light">
         <div class="container-fluid px-5 pb-5">
-            <h1 class="h3 mb-2">Dashboard <hr></h1>
             <div class="row">
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_departments" class="text-decoration-none text-muted">Total Departments</a></h3>
-                        <p class="h3 mb-2 text-center">{{ total_departments }}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 12% from last month
-                        </span> -->
+                <div class="col">
+                    <h1 class="h3 mb-2">ADMIN DASHBOARD <hr></h1>
+                    <div class="row">
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_departments" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Departments</h3>
+                                    <p class="h3 mb-2 text-center">{{ total_departments }}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 12% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_support_departments" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 17.5px;">Total Support Departments</h3>
+                                    <p class="h3 mb-2 text-center">{{ total_support_departments }}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 12% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_categories" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Categories</h3>
+                                    <p class="h3 mb-2 text-center">{{total_categories}}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 8% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_designations" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Designations</h3>
+                                    <p class="h3 mb-2 text-center">{{total_designations}}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 8% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_circulars" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Circulars</h3>
+                                    <p class="h3 mb-2 text-center">{{total_circulars}}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 8% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_advertise" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Advertise</h3>
+                                    <p class="h3 mb-2 text-center">{{total_advertises}}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 8% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_tenders" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Tenders</h3>
+                                    <p class="h3 mb-2 text-center">{{total_tenders}}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 8% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_awards" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Awards</h3>
+                                    <p class="h3 mb-2 text-center">{{total_awards}}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 8% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col mb-4">
+                            <a href="/admin_dashboard/all_media" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Total Events</h3>
+                                    <p class="h3 mb-2 text-center">{{total_event}}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 8% from last month
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_support_departments" class="text-decoration-none text-muted">Total Support Departments</a></h3>
-                        <p class="h3 mb-2 text-center">{{ total_support_departments }}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 12% from last month
-                        </span> -->
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_categories" class="text-decoration-none text-muted">Total Categories</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_categories}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_designations" class="text-decoration-none text-muted">Total Designations</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_designations}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
-                </div>
+                <!-- <div class="col-3">
+                    <h1 class="h3 mb-2">Logs <hr></h1>
+                    <style>
+                        pre {
+                            background-color: #f4f4f4;
+                            padding: 10px;
+                            border-radius: 5px;
+                            white-space: pre-wrap;
+                            word-wrap: break-word;
+                        }
+                    </style>
+                    <div>
+                        <pre>
+                            {% for line in logs %}
+                                {{ line }}
+                            {% endfor %}
+                        </pre>
+                    </div> 
+                </div> -->
             </div>
             <div class="row">
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_circulars" class="text-decoration-none text-muted">Total Circulars</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_circulars}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_advertise" class="text-decoration-none text-muted">Total Advertise</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_advertises}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_tenders" class="text-decoration-none text-muted">Total Tenders</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_tenders}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_awards" class="text-decoration-none text-muted">Total Awards</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_awards}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <h3>Staff <hr></h3>
+                <h3>STAFF <hr></h3>
                 <div class="col-md-4 px-5 mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_scientists_staff" class="text-decoration-none text-muted">Total Scientists Staff</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_scientist_staff}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
+                    <a href="/admin_dashboard/all_scientists_staff" class="text-decoration-none text-muted">
+                        <div class="status-card">
+                            <h3 class="h5" style="font-size: 18px;">Total Scientists Staff</h3>
+                            <p class="h3 mb-2 text-center">{{total_scientist_staff}}</p>
+                            <!-- <span class="small positive-trend">
+                                <i class="bi bi-arrow-up"></i> 8% from last month
+                            </span> -->
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 px-5 mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_admin_staff" class="text-decoration-none text-muted">Total Administraion Staff</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_admin_staff}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
+                    <a href="/admin_dashboard/all_admin_staff" class="text-decoration-none text-muted">
+                        <div class="status-card">
+                            <h3 class="h5" style="font-size: 18px;">Total Administraion Staff</h3>
+                            <p class="h3 mb-2 text-center">{{total_admin_staff}}</p>
+                            <!-- <span class="small positive-trend">
+                                <i class="bi bi-arrow-up"></i> 8% from last month
+                            </span> -->
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 px-5 mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_technical_staff" class="text-decoration-none text-muted">Total Technical Staff</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_technical_staff}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
+                    <a href="/admin_dashboard/all_technical_staff" class="text-decoration-none text-muted">
+                        <div class="status-card">
+                            <h3 class="h5" style="font-size: 18px;">Total Technical Staff</h3>
+                            <p class="h3 mb-2 text-center">{{total_technical_staff}}</p>
+                            <!-- <span class="small positive-trend">
+                                <i class="bi bi-arrow-up"></i> 8% from last month
+                            </span> -->
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 px-5 mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_project_staff" class="text-decoration-none text-muted">Total Project Staff</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_project_staff}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
+                    <a href="/admin_dashboard/all_project_staff" class="text-decoration-none text-muted">
+                        <div class="status-card">
+                            <h3 class="h5" style="font-size: 18px;">Total Project Staff</h3>
+                            <p class="h3 mb-2 text-center">{{total_project_staff}}</p>
+                            <!-- <span class="small positive-trend">
+                                <i class="bi bi-arrow-up"></i> 8% from last month
+                            </span> -->
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 px-5 mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_student_staff" class="text-decoration-none text-muted">Total Student Staff</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_student_staff}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
+                    <a href="/admin_dashboard/all_student_staff" class="text-decoration-none text-muted">
+                        <div class="status-card">
+                            <h3 class="h5" style="font-size: 18px;">Total Student Staff</h3>
+                            <p class="h3 mb-2 text-center">{{total_student_staff}}</p>
+                            <!-- <span class="small positive-trend">
+                                <i class="bi bi-arrow-up"></i> 8% from last month
+                            </span> -->
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 px-5 mb-4">
-                    <div class="stats-card">
-                        <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_alumini_staff" class="text-decoration-none text-muted">Total Alumini Staff</a></h3>
-                        <p class="h3 mb-2 text-center">{{total_alumini_staff}}</p>
-                        <!-- <span class="small positive-trend">
-                            <i class="bi bi-arrow-up"></i> 8% from last month
-                        </span> -->
-                    </div>
+                    <a href="/admin_dashboard/all_alumini_staff" class="text-decoration-none text-muted">
+                        <div class="status-card">
+                            <h3 class="h5" style="font-size: 18px;">Total Alumini Staff</h3>
+                            <p class="h3 mb-2 text-center">{{total_alumini_staff}}</p>
+                            <!-- <span class="small positive-trend">
+                                <i class="bi bi-arrow-up"></i> 8% from last month
+                            </span> -->
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-5">
-                    <h3>Projects <hr></h3>
+                    <h3>PROJECTS <hr></h3>
                     <div class="box d-flex">
                         <div class="col-md-12 mb-4" style="width: 48.5%; margin-right: 25px;">
-                            <div class="stats-card">
-                                <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_projects" class="text-decoration-none text-muted">Ongoing Projects</a></h3>
-                                <p class="h3 mb-2 text-center text-danger">{{ ongoing_projects }}</p>
-                                <!-- <span class="small negative-trend">
-                                    <i class="bi bi-arrow-down"></i> 3% from last month
-                                </span> -->
-                            </div>
+                            <a href="/admin_dashboard/all_projects" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Ongoing Projects</h3>
+                                    <p class="h3 mb-2 text-center text-danger">{{ ongoing_projects }}</p>
+                                    <!-- <span class="small negative-trend">
+                                        <i class="bi bi-arrow-down"></i> 3% from last month
+                                    </span> -->
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-12 mb-4" style="width: 48.5%;">
-                            <div class="stats-card">
-                                <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_projects" class="text-decoration-none text-muted">Completed Projects</a></h3>
-                                <p class="h3 mb-2 text-center">{{ completed_projects }}</p>
-                                <!-- <span class="small positive-trend">
-                                    <i class="bi bi-arrow-up"></i> 5% from last month
-                                </span> -->
-                            </div>
+                            <a href="/admin_dashboard/all_projects" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">Completed Projects</h3>
+                                    <p class="h3 mb-2 text-center">{{ completed_projects }}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 5% from last month
+                                    </span> -->
+                                </div>
+                        </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-7">
-                    <h3>Publications <hr></h3>
+                    <h3>PUBLICATIONS <hr></h3>
                     <div class="box d-flex">
                         <div class="col-md-12 mb-4" style="width: 31.5%; margin-right: 25px;">
-                            <div class="stats-card">
-                                <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_publications" class="text-decoration-none text-muted">All Publications</a></h3>
-                                <p class="h3 mb-2 text-center text-dark">{{ total_publications }}</p>
-                                <!-- <span class="small negative-trend">
-                                    <i class="bi bi-arrow-down"></i> 3% from last month
-                                </span> -->
-                            </div>
+                            <a href="/admin_dashboard/all_publications" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">All Publications</h3>
+                                    <p class="h3 mb-2 text-center text-dark">{{ total_publications }}</p>
+                                    <!-- <span class="small negative-trend">
+                                        <i class="bi bi-arrow-down"></i> 3% from last month
+                                    </span> -->
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-12 mb-4" style="width: 31.5%; margin-right: 25px;">
-                            <div class="stats-card">
-                                <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_niih_bulletins" class="text-decoration-none text-muted">All NIIH Bulletins</a></h3>
-                                <p class="h3 mb-2 text-center text-dark">{{ total_niih_bulletins }}</p>
-                                <!-- <span class="small negative-trend">
-                                    <i class="bi bi-arrow-down"></i> 3% from last month
-                                </span> -->
-                            </div>
+                            <a href="/admin_dashboard/all_niih_bulletins" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">All NIIH Bulletins</h3>
+                                    <p class="h3 mb-2 text-center text-dark">{{ total_niih_bulletins }}</p>
+                                    <!-- <span class="small negative-trend">
+                                        <i class="bi bi-arrow-down"></i> 3% from last month
+                                    </span> -->
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-12 mb-4" style="width: 31.5%;">
-                            <div class="stats-card">
-                                <h3 class="h5" style="font-size: 18px;"><a href="/admin_dashboard/all_newsletters" class="text-decoration-none text-muted">All BGRC Newsletters</a></h3>
-                                <p class="h3 mb-2 text-center text-dark">{{ total_bgrc_newsletters }}</p>
-                                <!-- <span class="small positive-trend">
-                                    <i class="bi bi-arrow-up"></i> 5% from last month
-                                </span> -->
-                            </div>
+                            <a href="/admin_dashboard/all_newsletters" class="text-decoration-none text-muted">
+                                <div class="status-card">
+                                    <h3 class="h5" style="font-size: 18px;">All BGRC Newsletters</h3>
+                                    <p class="h3 mb-2 text-center text-dark">{{ total_bgrc_newsletters }}</p>
+                                    <!-- <span class="small positive-trend">
+                                        <i class="bi bi-arrow-up"></i> 5% from last month
+                                    </span> -->
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

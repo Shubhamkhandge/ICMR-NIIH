@@ -16,6 +16,7 @@ from .models import *
 from django.core.files.storage import FileSystemStorage
 # Admin Dashboard Urls
 # Register your models here.
+
 def login_page(request):
     CaptchaForm1 = CaptchaForm(request.POST)
     if request.method == 'POST':
@@ -62,6 +63,7 @@ def dashboard_view(request):
         total_advertises = advertise_list.objects.count()
         total_tenders = tender_list.objects.count()
         total_awards = award_list.objects.count()
+        total_event = media.objects.count()
 
         # Assuming 'project_status' field to differentiate between ongoing and completed projects
         ongoing_projects = projects.objects.filter(project_status='on going').count()
@@ -89,6 +91,7 @@ def dashboard_view(request):
             'total_advertises': total_advertises,
             'total_tenders': total_tenders,
             'total_awards': total_awards,
+            'total_event': total_event,
         }
         return render(request, 'admin_dashboard/dashboard.html', context)
     return redirect('login')
@@ -221,7 +224,10 @@ def delete_department(request):
 def all_support_departments(request):
     if 'user' in request.session:
         supp_dept_info = support_department.objects.values()
-        return render(request, 'admin_dashboard/all_support_departments.html',{'all_supp_dept':supp_dept_info, 'username': request.session['user']})
+        paginator = Paginator(supp_dept_info, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_support_departments.html',{'all_supp_dept':page_obj, 'username': request.session['user']})
     return redirect('login')
 
 def add_support_department_info(request):
@@ -340,36 +346,51 @@ def all_designations(request):
 def add_designation_info(request):
     if 'user' in request.session:
         category_name = category.objects.values_list('category_name')
-        param={'category_name':category_name,'username': request.session['user']}
+        support_department_name = support_department.objects.values_list('support_department_name')
+        # lab_department_name = dept_info.objects.values_list('lab_department_name')
+        param={'category_name':category_name,'support_department_name':support_department_name,'username': request.session['user']}
         print(category_name)
         if request.method == 'POST':
             desig_name = request.POST.get('designation')
             cat_name = request.POST.get('category_name')
-            # print(staff_designation.objects.filter(designation = desig_name, department = cat_name).values_list())
-            if not staff_designation.objects.filter(designation = desig_name, category_name = cat_name).exists():
+            supp_name = request.POST.get('support_department_name')
+
+            print(staff_designation.objects.filter(designation = desig_name, category_name = cat_name).values_list())
+            if not staff_designation.objects.filter(designation = desig_name, category_name = cat_name, support_department_name = supp_name).exists():
                 desig = staff_designation(
                     designation = desig_name,
-                    category_name = cat_name
+                    category_name = cat_name,
+                    support_department_name = supp_name
                 )
                 desig.save()
             return redirect('all_designations')
         return render(request, 'admin_dashboard/add_designation_info.html', param)
     return redirect('login')
-        
-            
+                  
 def update_designation_info(request):
     if 'user' in request.session:
-        designation_name = staff_designation.objects.filter(designation = request.POST.get('designation')).values()
-        category_name = category.objects.values_list('category_name')
         if request.method == 'POST':
             if request.POST.get('update_data') == 'update_data':
-                print(request.POST.get('designation'),request.POST.get('category_name'))
+                print(request.POST.get('designation'),request.POST.get('category_name'))  # Debugging to check what you're getting
+
                 staff_designation.objects.filter(id=request.POST.get('id')).update(
                     designation = request.POST.get('designation'),
                     category_name = request.POST.get('category_name'),
+                    support_department_name = request.POST.get('support_department_name'),
                 )
                 return redirect('all_designations')
-        return render(request, 'admin_dashboard/update_designation_info.html', {'update_data': designation_name, 'category_name': category_name,'username': request.session['user']})
+
+            update_designation = staff_designation.objects.filter(designation=request.POST.get('designation')).values()
+            category_name = category.objects.values_list('category_name')  # This line fetches the categories (if needed for dropdown or display)
+            support_department_name = support_department.objects.values_list('support_department_name')
+           
+            return render(request, 'admin_dashboard/update_designation_info.html', {
+                'update_data': update_designation,
+                'support_department_name': support_department_name,
+                'category_name': category_name,  # Ensure this is passed here
+                'username': request.session['user']
+            })
+
     return redirect('login')
             
 def delete_designation_info(request):
@@ -424,11 +445,15 @@ def add_scientist_info(request):
                     alt_phone_no = request.POST.get('alt_phone_no'),
                     aadhar_no = request.POST.get('aadhar_no'),
                     orcid = request.POST.get('orcid'),
+                    div_name = request.POST.get('div_name'),
                     # guide_name = request.POST.get('guide_name'),
                     fax_no = request.POST.get('fax_no'),
                     profile_status = request.POST.get('profile_status'),
                     level_no = request.POST.get('level_no'),
-                    join_year = request.POST.get('join_year'),
+                    birth_date = request.POST.get('birth_date'),
+                    current_post_date = request.POST.get('current_post_date'),
+                    join_date = request.POST.get('join_date'),
+                    retire_date = request.POST.get('retire_date'),
                     profilepic_name = uploaded_photo,
                     research_interests = request.POST.get('research_interests'),
                     academic_background = request.POST.get('academic_background'),
@@ -453,8 +478,12 @@ def add_scientist_info(request):
                     level_no = request.POST.get('level_no'),
                     aadhar_no = request.POST.get('aadhar_no'),
                     orcid = request.POST.get('orcid'),
+                    div_name = request.POST.get('div_name'),
                     # guide_name = request.POST.get('guide_name'),
-                    join_year = request.POST.get('join_year'),
+                    birth_date = request.POST.get('birth_date'),
+                    current_post_date = request.POST.get('current_post_date'),
+                    join_date = request.POST.get('join_date'),
+                    retire_date = request.POST.get('retire_date'),
                     profile_status = request.POST.get('profile_status'),
                     research_interests = request.POST.get('research_interests'),
                     academic_background = request.POST.get('academic_background'),
@@ -477,8 +506,7 @@ def update_scientist_info(request):
                     photo = fs.save(photo.name, photo)
                     uploaded_photo = fs.url(photo).replace('/media/', '').replace('%20', ' ')
                     
-                    profilepic = scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).values_list('profilepic_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/scientists/"+str(profilepic[0][0])))
+                    
                     scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).update(
                         profilepic_name = uploaded_photo,
                         scientist_name = request.POST.get('scientist_name'),
@@ -492,19 +520,25 @@ def update_scientist_info(request):
                         alt_phone_no = request.POST.get('alt_phone_no'),
                         aadhar_no = request.POST.get('aadhar_no'),
                         orcid = request.POST.get('orcid'),
+                        div_name = request.POST.get('div_name'),
                         # guide_name = request.POST.get('guide_name'),
                         fax_no = request.POST.get('fax_no'),
                         profile_status = request.POST.get('profile_status'),
                         level_no = request.POST.get('level_no'),
-                        join_year = request.POST.get('join_year'),
+                        birth_date = request.POST.get('birth_date'),
+                        current_post_date = request.POST.get('current_post_date'),
+                        join_date = request.POST.get('join_date'),
+                        retire_date = request.POST.get('retire_date'),
                         research_interests = request.POST.get('research_interests'),
                         academic_background = request.POST.get('academic_background'),
                         professional_experience = request.POST.get('professional_experience'),
                         data_created = datetime.datetime.now()
                     )
                     all_scientist = scientific_staff.objects.values()
-                    
-                    return render(request, 'admin_dashboard/all_scientists_staff.html', {'all_sci': all_scientist})
+                    paginator = Paginator(all_scientist, 10)
+                    page_number = request.GET.get('page')
+                    page_obj = paginator.get_page(page_number)
+                    return render(request, 'admin_dashboard/all_scientists_staff.html', {'all_sci': page_obj,'username': request.session['user']})
                 else:
                     scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).update(
                         scientist_name = request.POST.get('scientist_name'),
@@ -518,23 +552,30 @@ def update_scientist_info(request):
                         alt_phone_no = request.POST.get('alt_phone_no'),
                         aadhar_no = request.POST.get('aadhar_no'),
                         orcid = request.POST.get('orcid'),
+                        div_name = request.POST.get('div_name'),
                         # guide_name = request.POST.get('guide_name'),
                         fax_no = request.POST.get('fax_no'),
                         profile_status = request.POST.get('profile_status'),
                         level_no = request.POST.get('level_no'),
-                        join_year = request.POST.get('join_year'),
+                        birth_date = request.POST.get('birth_date'),
+                        current_post_date = request.POST.get('current_post_date'),
+                        join_date = request.POST.get('join_date'),
+                        retire_date = request.POST.get('retire_date'),
                         research_interests = request.POST.get('research_interests'),
                         academic_background = request.POST.get('academic_background'),
                         professional_experience = request.POST.get('professional_experience'),
                         data_created = datetime.datetime.now()
                     )
                     all_scientist = scientific_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_scientists_staff.html', {'all_sci': all_scientist})
+                    paginator = Paginator(all_scientist, 10)
+                    page_number = request.GET.get('page')
+                    page_obj = paginator.get_page(page_number)
+                    return render(request, 'admin_dashboard/all_scientists_staff.html', {'all_sci': page_obj,'username': request.session['user']})
             update_scientist = scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).values()
             lab_department_name = dept_info.objects.values_list('lab_department_name')
             category_name = category.objects.filter(category_name = 'Scientist').values_list('category_name')
             dropdesig = staff_designation.objects.filter(category_name = 'Scientist').values_list('designation')
-            level=[1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+            level=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,'13A',14]
             param = {'update_data':update_scientist,'dropdesig':dropdesig, 'lab_department_name':lab_department_name, 'category_name':category_name,'level':level,'username': request.session['user']}
             
             return render(request, 'admin_dashboard/update_scientist_info.html',param)
@@ -546,12 +587,16 @@ def delete_scientist(request):
         if request.method == 'POST':
             if scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).exists():
                 if request.POST.get('delete_data') == 'delete_data':
-                    profilepic = scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).values_list('profilepic_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/scientists/"+str(profilepic[0][0])))
-                    scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).delete()
-                    all_scientist = scientific_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_scientists_staff.html', {'all_sci': all_scientist,'username': request.session['user']})
-        return render(request, 'admin_dashboard/delete_scientist.html', {'username': request.session['user']})
+                    profilepic = scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).values_list('profilepic_name')  
+                    if str(profilepic[0][0]) != 'None':
+                        os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/scientists/"+str(profilepic[0][0])))
+                        scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).delete()
+                        return redirect('all_scientists_staff')
+                    else:
+                        scientific_staff.objects.filter(scientist_id = request.POST.get('scientist_id')).delete()
+                        return redirect('all_scientists_staff')
+        return redirect('all_scientists_staff')
+    return redirect('login')
 
 # Admin Staff
 def all_admin_staff(request):
@@ -591,12 +636,17 @@ def add_admin_info(request):
                     aadhar_no = request.POST.get('aadhar_no'),
                     fax_no = request.POST.get('fax_no'),
                     profile_status = request.POST.get('profile_status'),
+                    div_name = request.POST.get('div_name'),
                     level_no = request.POST.get('level_no'),
-                    join_year = request.POST.get('join_year'),
+                    birth_date = request.POST.get('birth_date'),
+                    current_post_date = request.POST.get('current_post_date'),
+                    retire_date = request.POST.get('retire_date'),
+                    join_date = request.POST.get('join_date'),
                     profilepic_name = uploaded_photo,
                     specialization = request.POST.get('specialization'),
                     academic_background = request.POST.get('academic_background'),
                     professional_experience = request.POST.get('professional_experience'),
+                    display_order = request.POST.get('display_order'),
                     data_created = datetime.datetime.now()
                 )
                 admin_info.save()
@@ -615,11 +665,16 @@ def add_admin_info(request):
                     fax_no = request.POST.get('fax_no'),
                     level_no = request.POST.get('level_no'),
                     aadhar_no = request.POST.get('aadhar_no'),
-                    join_year = request.POST.get('join_year'),
+                    birth_date = request.POST.get('birth_date'),
+                    current_post_date = request.POST.get('current_post_date'),
+                    retire_date = request.POST.get('retire_date'),
+                    join_date = request.POST.get('join_date'),
                     profile_status = request.POST.get('profile_status'),
+                    div_name = request.POST.get('div_name'),
                     specialization = request.POST.get('specialization'),
                     academic_background = request.POST.get('academic_background'),
                     professional_experience = request.POST.get('professional_experience'),
+                    display_order = request.POST.get('display_order'),
                     data_created = datetime.datetime.now()
                 )
                 admin_info.save()
@@ -634,34 +689,41 @@ def update_admin_info(request):
             if request.POST.get('update_data') == 'update_data':
                 if request.FILES.get('profilepic_name'):
                     fs = FileSystemStorage(location="application/static/dist/images/staff/administration")
-                    photo = request.FILES['profilepic_name']
+                    photo=request.FILES['profilepic_name']
                     photo = fs.save(photo.name, photo)
-                    uploaded_photo = fs.url(photo).replace('/media/', '').replace('%20', ' ')
-
-                    profilepic = administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).values_list('profilepic_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/administration/"+str(profilepic[0][0])))
+                    
+                    uploaded_photo = fs.url(photo).replace('/media/','').replace('%20',' ')
+                    
                     administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).update(
-                        profilepic_name = uploaded_photo,
-                        admin_name = request.POST.get('admin_name'),
-                        support_department_name = request.POST.get('support_department_name'),
-                        category_name = request.POST.get('category_name'),
-                        designation = request.POST.get('designation'),
-                        email_id = request.POST.get('email_id'),
-                        alt_email_id = request.POST.get('alt_email_id'),
-                        phone_no = request.POST.get('phone_no'),
-                        alt_phone_no = request.POST.get('alt_phone_no'),
-                        aadhar_no = request.POST.get('aadhar_no'),
-                        fax_no = request.POST.get('fax_no'),
-                        profile_status = request.POST.get('profile_status'),
-                        level_no = request.POST.get('level_no'),
-                        join_year = request.POST.get('join_year'),
-                        specialization = request.POST.get('specialization'),
-                        academic_background = request.POST.get('academic_background'),
-                        professional_experience = request.POST.get('professional_experience'),
-                        data_created = datetime.datetime.now()
+                    profilepic_name = uploaded_photo,
+                    admin_name = request.POST.get('admin_name'),
+                    support_department_name = request.POST.get('support_department_name'),
+                    category_name = request.POST.get('category_name'),
+                    designation = request.POST.get('designation'),
+                    email_id = request.POST.get('email_id'),
+                    alt_email_id = request.POST.get('alt_email_id'),
+                    phone_no = request.POST.get('phone_no'),
+                    alt_phone_no = request.POST.get('alt_phone_no'),
+                    aadhar_no = request.POST.get('aadhar_no'),
+                    fax_no = request.POST.get('fax_no'),
+                    profile_status = request.POST.get('profile_status'),
+                    div_name = request.POST.get('div_name'),
+                    level_no = request.POST.get('level_no'),
+                    birth_date = request.POST.get('birth_date'),
+                    current_post_date = request.POST.get('current_post_date'),
+                    retire_date = request.POST.get('retire_date'),
+                    join_date = request.POST.get('join_date'),
+                    specialization = request.POST.get('specialization'),
+                    academic_background = request.POST.get('academic_background'),
+                    professional_experience = request.POST.get('professional_experience'),
+                    display_order = request.POST.get('display_order'),
+                    data_created = datetime.datetime.now()
                     )
                     all_admins = administration_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_admin_staff.html', {'all_admin': all_admins})
+                    paginator = Paginator(all_admins, 10)
+                    page_number = request.GET.get('page')
+                    page_obj = paginator.get_page(page_number)
+                    return render(request, 'admin_dashboard/all_admin_staff.html', {'all_admin': page_obj,'username': request.session['user']})
                 else:
                     administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).update(
                         admin_name = request.POST.get('admin_name'),
@@ -675,22 +737,31 @@ def update_admin_info(request):
                         aadhar_no = request.POST.get('aadhar_no'),
                         fax_no = request.POST.get('fax_no'),
                         profile_status = request.POST.get('profile_status'),
+                        div_name = request.POST.get('div_name'),
                         level_no = request.POST.get('level_no'),
-                        join_year = request.POST.get('join_year'),
+                        birth_date = request.POST.get('birth_date'),
+                        current_post_date = request.POST.get('current_post_date'),
+                        retire_date = request.POST.get('retire_date'),
+                        join_date = request.POST.get('join_date'),
                         specialization = request.POST.get('specialization'),
                         academic_background = request.POST.get('academic_background'),
                         professional_experience = request.POST.get('professional_experience'),
+                        display_order = request.POST.get('display_order'),
                         data_created = datetime.datetime.now()
                     )
                     all_admins = administration_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_admin_staff.html', {'all_admin': all_admins})
+                    paginator = Paginator(all_admins, 10)
+                    page_number = request.GET.get('page')
+                    page_obj = paginator.get_page(page_number)
+                    return render(request, 'admin_dashboard/all_admin_staff.html', {'all_admin': page_obj,'username': request.session['user']})
             
             update_admin = administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).values()
             support_department_name = support_department.objects.values_list('support_department_name')
             category_name = category.objects.filter(category_name = 'Admin').values_list('category_name')
             dropdesig = staff_designation.objects.filter(category_name = 'Admin').values_list('designation')
-            level=[1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-            param = {'update_data':update_admin,'dropdesig':dropdesig, 'support_department_name':support_department_name, 'category_name':category_name,'level':level,'username': request.session['user']}
+            level=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,'13A',14]
+            display_order=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+            param = {'update_data':update_admin,'dropdesig':dropdesig, 'support_department_name':support_department_name, 'category_name':category_name,'level':level,'display_order':display_order,'username': request.session['user']}
             
             return render(request, 'admin_dashboard/update_admin_info.html',param)
         return render(request, 'admin_dashboard/update_admin_info.html')
@@ -701,11 +772,16 @@ def delete_admin(request):
         if request.method == 'POST':
             if administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).exists():
                 if request.POST.get('delete_data') == 'delete_data':
-                    profilepic = administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).values_list('profilepic_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/administration/"+str(profilepic[0][0])))
-                    administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).delete()
-                    all_admins = administration_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_admin_staff.html', {'all_admin': all_admins,'username': request.session['user']})
+                    profilepic = administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).values_list('profilepic_name')   
+                    if profilepic[0][0] != 'None':
+                        os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/administration/"+str(profilepic[0][0])))
+                        administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).delete()
+                        return redirect('all_admin_staff')
+                    else:
+                        administration_staff.objects.filter(admin_id = request.POST.get('admin_id')).delete()
+                        return redirect('all_admin_staff')
+            
+        
         # return render(request, 'admin_dashboard/delete_admin.html', {'username': request.session['user']})
 
 # Technical Staff   
@@ -720,10 +796,11 @@ def all_technical_staff(request):
 
 def add_technical_info(request):
     if 'user' in request.session:
+        lab_department_name = dept_info.objects.values_list('lab_department_name')
         support_department_name = support_department.objects.values_list('support_department_name')
         category_name = category.objects.filter(category_name = 'Technical').values_list('category_name')
         dropdesig = staff_designation.objects.filter(category_name = 'Technical').values_list('designation')
-        param={'category_name':category_name,'dropdesig':dropdesig, 'support_department_name': support_department_name,'username': request.session['user']}
+        param={'category_name':category_name,'dropdesig':dropdesig, 'support_department_name': support_department_name, 'lab_department_name': lab_department_name ,'username': request.session['user']}
         if request.method == 'POST':
             if request.FILES.get('profilepic_name'):
                 fs = FileSystemStorage(location="application/static/dist/images/staff/technical")
@@ -737,6 +814,7 @@ def add_technical_info(request):
                     technical_id = request.POST.get('technical_id'),
                     technical_name = request.POST.get('technical_name'),
                     support_department_name = request.POST.get('support_department_name'),
+                    lab_department_name = request.POST.get('lab_department_name'),
                     category_name = request.POST.get('category_name'),
                     designation = request.POST.get('designation'),
                     email_id = request.POST.get('email_id'),
@@ -747,8 +825,12 @@ def add_technical_info(request):
                     aadhar_no = request.POST.get('aadhar_no'),
                     fax_no = request.POST.get('fax_no'),
                     profile_status = request.POST.get('profile_status'),
+                    div_name = request.POST.get('div_name'),
                     level_no = request.POST.get('level_no'),
-                    join_year = request.POST.get('join_year'),
+                    birth_date = request.POST.get('birth_date'),
+                    current_post_date = request.POST.get('current_post_date'),
+                    retire_date = request.POST.get('retire_date'),
+                    join_date = request.POST.get('join_date'),
                     profilepic_name = uploaded_photo,
                     specialization = request.POST.get('specialization'),
                     academic_background = request.POST.get('academic_background'),
@@ -762,6 +844,7 @@ def add_technical_info(request):
                     technical_id = request.POST.get('technical_id'),
                     technical_name = request.POST.get('technical_name'),
                     support_department_name = request.POST.get('support_department_name'),
+                    lab_department_name = request.POST.get('lab_department_name'),
                     category_name = request.POST.get('category_name'),
                     designation = request.POST.get('designation'),
                     email_id = request.POST.get('email_id'),
@@ -772,8 +855,12 @@ def add_technical_info(request):
                     author_name = request.POST.get('author_name'),
                     level_no = request.POST.get('level_no'),
                     aadhar_no = request.POST.get('aadhar_no'),
-                    join_year = request.POST.get('join_year'),
+                    birth_date = request.POST.get('birth_date'),
+                    current_post_date = request.POST.get('current_post_date'),
+                    retire_date = request.POST.get('retire_date'),
+                    join_date = request.POST.get('join_date'),
                     profile_status = request.POST.get('profile_status'),
+                    div_name = request.POST.get('div_name'),
                     specialization = request.POST.get('specialization'),
                     academic_background = request.POST.get('academic_background'),
                     professional_experience = request.POST.get('professional_experience'),
@@ -795,12 +882,13 @@ def update_technical_info(request):
                     photo = fs.save(photo.name, photo)
                     uploaded_photo = fs.url(photo).replace('/media/', '').replace('%20', ' ')
 
-                    profilepic = administration_staff.objects.filter(technical_id = request.POST.get('technical_id')).values_list('profilepic_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/technical/"+str(profilepic[0][0])))
+                    
                     technical_staff.objects.filter(technical_id = request.POST.get('technical_id')).update(
+                        technical_id = request.POST.get('technical_id'),
                         profilepic_name = uploaded_photo,
                         technical_name = request.POST.get('technical_name'),
                         support_department_name = request.POST.get('support_department_name'),
+                        lab_department_name = request.POST.get('lab_department_name'),
                         category_name = request.POST.get('category_name'),
                         designation = request.POST.get('designation'),
                         email_id = request.POST.get('email_id'),
@@ -811,19 +899,28 @@ def update_technical_info(request):
                         aadhar_no = request.POST.get('aadhar_no'),
                         fax_no = request.POST.get('fax_no'),
                         profile_status = request.POST.get('profile_status'),
+                        div_name = request.POST.get('div_name'),
                         level_no = request.POST.get('level_no'),
-                        join_year = request.POST.get('join_year'),
+                        birth_date = request.POST.get('birth_date'),
+                        current_post_date = request.POST.get('current_post_date'),
+                        retire_date = request.POST.get('retire_date'),
+                        join_date = request.POST.get('join_date'),
                         specialization = request.POST.get('specialization'),
                         academic_background = request.POST.get('academic_background'),
                         professional_experience = request.POST.get('professional_experience'),
                         data_created = datetime.datetime.now()
                     )
                     all_technical = technical_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_technical_staff.html', {'all_tech': all_technical})
+                    paginator = Paginator(all_technical, 10)
+                    page_number = request.GET.get('page')
+                    page_obj = paginator.get_page(page_number)
+                    return render(request, 'admin_dashboard/all_technical_staff.html', {'all_tech': page_obj,'username': request.session['user']})
                 else:
                     technical_staff.objects.filter(technical_id = request.POST.get('technical_id')).update(
+                        technical_id = request.POST.get('technical_id'),
                         technical_name = request.POST.get('technical_name'),
                         support_department_name = request.POST.get('support_department_name'),
+                        lab_department_name = request.POST.get('lab_department_name'),
                         category_name = request.POST.get('category_name'),
                         designation = request.POST.get('designation'),
                         email_id = request.POST.get('email_id'),
@@ -834,22 +931,30 @@ def update_technical_info(request):
                         aadhar_no = request.POST.get('aadhar_no'),
                         fax_no = request.POST.get('fax_no'),
                         profile_status = request.POST.get('profile_status'),
+                        div_name = request.POST.get('div_name'),
                         level_no = request.POST.get('level_no'),
-                        join_year = request.POST.get('join_year'),
+                        birth_date = request.POST.get('birth_date'),
+                        current_post_date = request.POST.get('current_post_date'),
+                        retire_date = request.POST.get('retire_date'),
+                        join_date = request.POST.get('join_date'),
                         specialization = request.POST.get('specialization'),
                         academic_background = request.POST.get('academic_background'),
                         professional_experience = request.POST.get('professional_experience'),
                         data_created = datetime.datetime.now()
                     )
                     all_technical = technical_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_technical_staff.html', {'all_tech': all_technical})
+                    paginator = Paginator(all_technical, 10)
+                    page_number = request.GET.get('page')
+                    page_obj = paginator.get_page(page_number)
+                    return render(request, 'admin_dashboard/all_technical_staff.html', {'all_tech': page_obj,'username': request.session['user']})
             
             update_technical = technical_staff.objects.filter(technical_id = request.POST.get('technical_id')).values()
+            lab_department_name = dept_info.objects.values_list('lab_department_name')
             support_department_name = support_department.objects.values_list('support_department_name')
             category_name = category.objects.filter(category_name = 'Technical').values_list('category_name')
             dropdesig = staff_designation.objects.filter(category_name = 'Technical').values_list('designation')
-            level=[1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-            param = {'update_data':update_technical,'dropdesig':dropdesig, 'support_department_name':support_department_name, 'category_name':category_name,'level':level,'username': request.session['user']}
+            level=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,'13A',14]
+            param = {'update_data':update_technical,'dropdesig':dropdesig, 'support_department_name':support_department_name, 'lab_department_name': lab_department_name, 'category_name':category_name,'level':level,'username': request.session['user']}
             print(update_technical)
             return render(request, 'admin_dashboard/update_technical_info.html',param)
         return render(request, 'admin_dashboard/update_technical_info.html')
@@ -860,12 +965,14 @@ def delete_technical(request):
         if request.method == 'POST':
             if technical_staff.objects.filter(technical_id = request.POST.get('technical_id')).exists():
                 if request.POST.get('delete_data') == 'delete_data':
-                    profilepic = administration_staff.objects.filter(technical_id = request.POST.get('technical_id')).values_list('profilepic_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/technical/"+str(profilepic[0][0])))
-                    technical_staff.objects.filter(technical_id = request.POST.get('technical_id')).delete()
-                    all_technical = technical_staff.objects.values()
-                    return render(request, 'admin_dashboard/all_technical_staff.html', {'all_tech': all_technical,'username': request.session['user']})
-        return render(request, 'admin_dashboard/delete_technical.html',{'username': request.session['user']})
+                    profilepic = technical_staff.objects.filter(technical_id = request.POST.get('technical_id')).values_list('profilepic_name')
+                    if profilepic[0][0] != "None":
+                        os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/dist/images/staff/technical/"+str(profilepic[0][0])))
+                        return redirect('all_technical_staff')
+                    else:
+                        technical_staff.objects.filter(technical_id = request.POST.get('technical_id')).delete()
+                        return redirect('all_technical_staff')
+        return redirect('all_technical_staff')
 
 # Project Staff
 def all_project_staff(request):
@@ -925,18 +1032,20 @@ def all_student_staff(request):
 
 def add_student_staff_info(request):
     if 'user' in request.session:
+        lab_department_name = dept_info.objects.values_list('lab_department_name')
         if request.method == 'POST':
             student_data = student_staff(
                 student_staff_id = request.POST.get('student_staff_id'),
                 student_staff_name = request.POST.get('student_staff_name'),
                 student_guide_name = request.POST.get('student_guide_name'),
+                # lab_department_name = request.POST.get('lab_department_name'),
                 student_staff_department = request.POST.get('student_staff_department'),
                 student_join_year = request.POST.get('student_join_year'),
                 profile_status = request.POST.get('profile_status')
             )
             student_data.save()
             return redirect('all_student_staff') 
-        return render(request, 'admin_dashboard/add_student_staff_info.html')
+        return render(request, 'admin_dashboard/add_student_staff_info.html', {'lab_department_name': lab_department_name,'username': request.session['user']})
     return redirect('login')
 
 def update_student_staff_info(request):
@@ -944,8 +1053,10 @@ def update_student_staff_info(request):
         if request.method == 'POST':
             if request.POST.get('update_data') == 'update_data':
                 student_staff.objects.filter(student_staff_id = request.POST.get('student_staff_id')).update(
+                    student_staff_id = request.POST.get('student_staff_id'),
                     student_staff_name = request.POST.get('student_staff_name'),
                     student_guide_name = request.POST.get('student_guide_name'),
+                    # lab_department_name = request.POST.get('lab_department_name'),
                     student_staff_department = request.POST.get('student_staff_department'),
                     student_join_year = request.POST.get('student_join_year'),
                     profile_status = request.POST.get('profile_status')
@@ -953,7 +1064,8 @@ def update_student_staff_info(request):
                 return redirect('all_student_staff')
             
             update_student= student_staff.objects.filter(student_staff_id=request.POST.get('student_staff_id')).values()
-            param={'update_data':update_student, 'username': request.session['user']}
+            lab_department_name = dept_info.objects.values_list('lab_department_name')
+            param={'update_data':update_student, 'lab_department_name': lab_department_name,'username': request.session['user'] }
         return render(request, 'admin_dashboard/update_student_staff_info.html',param)
     return redirect('login')
 
@@ -962,7 +1074,8 @@ def delete_student(request):
         if request.method == 'POST':
             student_staff.objects.filter(student_staff_id = request.POST.get('student_staff_id')).delete()
             return redirect('all_student_staff')
-        return render(request, 'admin_dashboard/delete_student.html', {'username': request.session['user']})
+        return redirect('all_student')
+    return redirect('login')
 
 # Alumini Pages
 def all_alumini_staff(request):
@@ -1072,13 +1185,13 @@ def delete_project(request):
             # project_id = request.POST.get('project_id')
             projects.objects.filter(project_id = request.POST.get('project_id')).delete()
             return redirect('all_projects')
-        return render(request, 'admin_dashboard/delete_project.html', {'username': request.session['user']})
+        return redirect('projects')
 
 # Project Pages
 def all_publications(request):
     if 'user' in request.session:
         all_publication = publications_list.objects.values()
-        paginator = Paginator(all_publication, 10)
+        paginator = Paginator(all_publication, 100)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'admin_dashboard/all_publications.html',{ 'all_publications':page_obj, 'username': request.session['user'] })
@@ -1089,7 +1202,7 @@ def add_publication_info(request):
         if request.method == 'POST':
             # Create the new publication object
             publication_data = publications_list(
-                publication_id = request.POST.get('publication_id'),
+                # publication_id = request.POST.get('publication_id'),
                 publication_author_name = request.POST.get('publication_author_name'),
                 publication_title = request.POST.get('publication_title'),
                 publication_journal_name = request.POST.get('publication_journal_name'),
@@ -1107,7 +1220,7 @@ def update_publication_info(request):
     if 'user' in request.session:
         if request.method == 'POST':
             if request.POST.get('update_data') == 'update_data':
-                publications_list.objects.filter(publication_id = request.POST.get('publication_id')).update(
+                publications_list.objects.filter(id = request.POST.get('id')).update(
                     publication_author_name = request.POST.get('publication_author_name'),
                     publication_title = request.POST.get('publication_title'),
                     publication_journal_name = request.POST.get('publication_journal_name'),
@@ -1117,7 +1230,7 @@ def update_publication_info(request):
                 )
                 return redirect('all_publications')
             
-            update_publication= publications_list.objects.filter(publication_id=request.POST.get('publication_id')).values()
+            update_publication= publications_list.objects.filter(id=request.POST.get('id')).values()
             param={'update_data':update_publication, 'username': request.session['user']}
         return render(request, 'admin_dashboard/update_publication_info.html', param)
     return redirect('login')
@@ -1125,14 +1238,14 @@ def update_publication_info(request):
 def delete_publication(request):
     if 'user' in request.session:
         if request.method == 'POST':
-            publications_list.objects.filter(publication_id = request.POST.get('publication_id')).delete()
+            publications_list.objects.filter(id = request.POST.get('id')).delete()
             return redirect('all_publications')
         return render(request, 'admin_dashboard/delete_publication.html', {'username': request.session['user']})
 
 def all_niih_bulletins(request):
     if 'user' in request.session:
         all_niih_bulletins = bulletin_list.objects.values()
-        paginator = Paginator(all_niih_bulletins, 10)
+        paginator = Paginator(all_niih_bulletins, 50)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'admin_dashboard/all_niih_bulletins.html',{ 'all_bulletins':page_obj, 'username': request.session['user'] })
@@ -1148,23 +1261,23 @@ def add_niih_bulletin_info(request):
                 uploaded_bulletin_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
                 
                 bulletin_data = bulletin_list(
-                    bulletin_id=request.POST.get('bulletin_id'),
-                    bulletin_title=request.POST.get('bulletin_title'),
-                    bulletin_vol_no=request.POST.get('bulletin_vol_no'),
-                    bulletin_year=request.POST.get('bulletin_year'),
-                    bulletin_month=request.POST.get('bulletin_month'),
-                    bulletin_file_name=uploaded_bulletin_file, 
+                    # bulletin_id = request.POST.get('bulletin_id'),
+                    bulletin_title = request.POST.get('bulletin_title'),
+                    bulletin_vol_no = request.POST.get('bulletin_vol_no'),
+                    bulletin_year = request.POST.get('bulletin_year'),
+                    bulletin_month = request.POST.get('bulletin_month'),
+                    bulletin_file_name = uploaded_bulletin_file, 
                 )
                 bulletin_data.save()
                 messages.success(request, 'Bulletin added successfully!')
                 return redirect('all_niih_bulletins')
             else:
                 bulletin_data = bulletin_list(
-                    bulletin_id=request.POST.get('bulletin_id'),
-                    bulletin_title=request.POST.get('bulletin_title'),
-                    bulletin_vol_no=request.POST.get('bulletin_vol_no'),
-                    bulletin_year=request.POST.get('bulletin_year'),
-                    bulletin_month=request.POST.get('bulletin_month')
+                    # bulletin_id = request.POST.get('bulletin_id'),
+                    bulletin_title = request.POST.get('bulletin_title'),
+                    bulletin_vol_no = request.POST.get('bulletin_vol_no'),
+                    bulletin_year = request.POST.get('bulletin_year'),
+                    bulletin_month = request.POST.get('bulletin_month')
                 )
                 bulletin_data.save()
                 messages.success(request, 'Bulletin added successfully!')
@@ -1183,30 +1296,28 @@ def update_niih_bulletin_info(request):
                     bulletin_file = request.FILES['bulletin_file_name']
                     filename = fs.save(bulletin_file.name, bulletin_file)
                     uploaded_bulletin_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
-                    bulletin_file = bulletin_list.objects.filter(bulletin_id = request.POST.get('bulletin_id')).values_list('bulletin_file_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Bulletins/"+str(bulletin_file[0][0])))
                     
-                    bulletin_list.objects.filter(bulletin_id=request.POST.get('bulletin_id')).update(
-                        bulletin_title=request.POST.get('bulletin_title'),
-                        bulletin_vol_no=request.POST.get('bulletin_vol_no'),
-                        bulletin_year=request.POST.get('bulletin_year'),
-                        bulletin_month=request.POST.get('bulletin_month'),
-                        bulletin_file_name=uploaded_bulletin_file, 
+                    bulletin_list.objects.filter(id = request.POST.get('id')).update(
+                        bulletin_title = request.POST.get('bulletin_title'),
+                        bulletin_vol_no = request.POST.get('bulletin_vol_no'),
+                        bulletin_year = request.POST.get('bulletin_year'),
+                        bulletin_month = request.POST.get('bulletin_month'),
+                        bulletin_file_name = uploaded_bulletin_file, 
                     )
                     all_niih_bulletins = bulletin_list.objects.values()
                     messages.success(request, 'Bulletin update successfully!')
                     return render(request, 'admin_dashboard/all_niih_bulletins.html',{ 'all_bulletins':all_niih_bulletins})
                 else:
-                    bulletin_list.objects.filter(bulletin_id=request.POST.get('bulletin_id')).update(
-                        bulletin_title=request.POST.get('bulletin_title'),
-                        bulletin_vol_no=request.POST.get('bulletin_vol_no'),
-                        bulletin_year=request.POST.get('bulletin_year'),
-                        bulletin_month=request.POST.get('bulletin_month')
+                    bulletin_list.objects.filter(id = request.POST.get('id')).update(
+                        bulletin_title = request.POST.get('bulletin_title'),
+                        bulletin_vol_no = request.POST.get('bulletin_vol_no'),
+                        bulletin_year = request.POST.get('bulletin_year'),
+                        bulletin_month = request.POST.get('bulletin_month')
                     )
                     all_niih_bulletins = bulletin_list.objects.values()
-                    messages.success(request, 'Bulletin update successfully!')
+                    messages.success(request, 'Bulletin without file update successfully!')
                     return render(request, 'admin_dashboard/all_niih_bulletins.html',{ 'all_bulletins':all_niih_bulletins})
-            update_bulletins = bulletin_list.objects.filter(bulletin_id = request.POST.get('bulletin_id')).values()
+            update_bulletins = bulletin_list.objects.filter(id = request.POST.get('id')).values()
             param = {'update_data':update_bulletins,'username': request.session['user']}
             print(update_bulletins)
         return render(request, 'admin_dashboard/update_niih_bulletin_info.html', param)
@@ -1215,17 +1326,17 @@ def update_niih_bulletin_info(request):
 def delete_niih_bulletin(request):
     if 'user' in request.session:
         if request.method == 'POST':
-            bulletin_file = bulletin_list.objects.filter(bulletin_id = request.POST.get('bulletin_id')).values_list('bulletin_file_name')
+            bulletin_file = bulletin_list.objects.filter(id = request.POST.get('id')).values_list('bulletin_file_name')
             print(bulletin_file)
             os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Bulletins/"+str(bulletin_file[0][0])))
-            bulletin_list.objects.filter(bulletin_id = request.POST.get('bulletin_id')).delete()
+            bulletin_list.objects.filter(id = request.POST.get('id')).delete()
             return redirect('all_niih_bulletins')
         return render(request, 'admin_dashboard/delete_niih_bulletin.html', {'username': request.session['user']})
     
 def all_newsletters(request):
     if 'user' in request.session:
         all_newsletter = newsletter_list.objects.values()
-        paginator = Paginator(all_newsletter, 10)
+        paginator = Paginator(all_newsletter, 30)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'admin_dashboard/all_newsletters.html',{ 'all_news':page_obj, 'username': request.session['user'] })
@@ -1236,11 +1347,11 @@ def add_newsletter_info(request):
         if request.method == 'POST':
             # Create the new publication object
             newsletter_data = newsletter_list(
-                newsletter_id=request.POST.get('newsletter_id'),
-                newsletter_title=request.POST.get('newsletter_title'),
-                newsletter_vol_no=request.POST.get('newsletter_vol_no'),
-                newsletter_year=request.POST.get('newsletter_year'),
-                newsletter_month=request.POST.get('newsletter_month')
+                # newsletter_id=request.POST.get('newsletter_id'),
+                newsletter_title = request.POST.get('newsletter_title'),
+                newsletter_vol_no = request.POST.get('newsletter_vol_no'),
+                newsletter_year = request.POST.get('newsletter_year'),
+                newsletter_month = request.POST.get('newsletter_month')
             )
             newsletter_data.save()
             messages.success(request, 'Newsletter added successfully!')
@@ -1252,28 +1363,32 @@ def update_newsletter_info(request):
     if 'user' in request.session:
         if request.method == 'POST':
             if request.POST.get('update_data') == 'update_data':
-                newsletter_list.objects.filter(newsletter_id = request.POST.get('newsletter_id')).update(
-                    newsletter_title=request.POST.get('newsletter_title'),
-                    newsletter_vol_no=request.POST.get('newsletter_vol_no'),
-                    newsletter_year=request.POST.get('newsletter_year'),
-                    newsletter_month=request.POST.get('newsletter_month')
+                newsletter_list.objects.filter(id = request.POST.get('id')).update(
+                    newsletter_title = request.POST.get('newsletter_title'),
+                    newsletter_vol_no = request.POST.get('newsletter_vol_no'),
+                    newsletter_year = request.POST.get('newsletter_year'),
+                    newsletter_month = request.POST.get('newsletter_month')
                 )
                 return redirect('all_newsletters')
             
-            update_newsletter= newsletter_list.objects.filter(newsletter_id=request.POST.get('newsletter_id')).values()
+            update_newsletter= newsletter_list.objects.filter(id = request.POST.get('id')).values()
             param={'update_data':update_newsletter, 'username': request.session['user']}
         return render(request, 'admin_dashboard/update_newsletter_info.html', param)
     return redirect('login')    
 
 def delete_newsletter(request):
     if 'user' in request.session:
-        return render(request, 'admin_dashboard/delete_newsletter.html',{ 'all_bulletins':all_niih_bulletins, 'username': request.session['user'] })
-
+        if request.POST.get('delete_data') == 'delete_data':
+            newsletter_list.objects.filter(id = request.POST.get('id')).delete()
+            all_newsletter = newsletter_list.objects.values()
+            return render(request, 'admin_dashboard/all_newsletters.html', { 'all_news':all_newsletter})
+        return render(request, 'admin_dashboard/delete_newsletter.html',{ 'username': request.session['user'] })
+    return redirect('login')
 
 def all_awards(request):
     if 'user' in request.session:
         all_awards_list = award_list.objects.values()
-        paginator = Paginator(all_awards_list, 10)
+        paginator = Paginator(all_awards_list, 50)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'admin_dashboard/all_awards.html',{ 'all_awards':page_obj, 'username': request.session['user'] })
@@ -1300,12 +1415,12 @@ def update_award_info(request):
         if request.method == 'POST':
             if request.POST.get('update_data') == 'update_data':
                 print(request.POST.get('award_name'),request.POST.get('scientist_name'))
-                award_list.objects.filter(scientist_name=request.POST.get('scientist_name')).update(
+                award_list.objects.filter(id = request.POST.get('id')).update(
                     award_name = request.POST.get('award_name'),
                     scientist_name = request.POST.get('scientist_name')
                 )
                 return redirect('all_awards')
-        award_detail = award_list.objects.filter(award_name = request.POST.get('award_name')).values()
+        award_detail = award_list.objects.filter(id = request.POST.get('id')).values()
         return render(request, 'admin_dashboard/update_award_info.html', {'update_data': award_detail, 'scientist_name': scientist_name,'username': request.session['user']})
     return redirect('login')
 
@@ -1553,8 +1668,7 @@ def update_tender_info(request):
                     filename = fs.save(tender_file.name, tender_file)
                     uploaded_tender_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
                     
-                    tender_file = tender_list.objects.filter(tender_id = request.POST.get('tender_id')).values_list('tender_file_name')    
-                    os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Tenders/"+str(tender_file[0][0])))
+                    
                     
                     tender_list.objects.filter(tender_id=request.POST.get('tender_id')).update(
                         tender_title=request.POST.get('tender_title'),
@@ -1592,3 +1706,90 @@ def delete_tender(request):
             return redirect('all_tenders')
         return render(request, 'admin_dashboard/delete_tender.html', {'username': request.session['user']})
  
+# Media Gallery
+def all_media(request):
+    if 'user' in request.session:
+        all_media = media.objects.values()
+        paginator = Paginator(all_media, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'admin_dashboard/all_media.html',{ 'all_media_info':page_obj, 'username': request.session['user'] })
+    return redirect('login')
+
+def add_media_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.FILES.get('first_look_img'):
+                if request.FILES.get('img'):
+                    fs = FileSystemStorage(location="application/static/uploads/media")
+                    first_look_img = request.FILES['first_look_img']
+                    filename1 = fs.save(first_look_img.name, first_look_img)
+                    uploaded_advertise_file = fs.url(filename1).replace('/media/', '').replace('% 20', ' ')
+                    img = request.FILES['img']
+                    filename2 = fs.save(img.name, img)
+                    uploaded_advertise_file = fs.url(filename2).replace('/media/', '').replace('% 20', ' ')
+                
+                    media_data = media(
+                        event_name = request.POST.get('event_name'),
+                        img = filename2,
+                        first_look_img = filename1,
+                        media_status = request.POST.get('media_status'), 
+                        event_details = request.POST.get('event_details'),
+                    )
+                    media_data.save()
+                    messages.success(request, 'Advertise added successfully!')
+                    return redirect('all_advertise')
+            else:
+                messages.warning(request, 'Don`t have Media file')
+                return redirect('all_media')
+        return render(request, 'admin_dashboard/add_media_info.html', {'username': request.session['user']})
+    return redirect('login')
+
+def update_media_info(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            if request.POST.get('update_data') == 'update_data':
+                print("\n-----------------------------------")
+                if request.FILES.get('advertise_file_name'):
+                    print("\n-----------------------------------")
+                    fs = FileSystemStorage(location="application/static/uploads/Advertise")
+                    advertise_file = request.FILES['advertise_file_name']
+                    filename = fs.save(advertise_file.name, advertise_file)
+                    uploaded_advertise_file = fs.url(filename).replace('/media/', '').replace('%20', ' ')
+                    
+                    
+                    advertise_list.objects.filter(advertise_id=request.POST.get('advertise_id')).update(
+                        advertise_title=request.POST.get('advertise_title'),
+                        advertise_date = request.POST.get('advertise_date'),
+                        advertise_file_name = uploaded_advertise_file, 
+                        advertise_status = request.POST.get('advertise_status'),
+                    )
+                    all_advertise = advertise_list.objects.values()
+                    messages.success(request, 'Advertise update successfully!')
+                    return render(request, 'admin_dashboard/all_advertise.html',{ 'all_advertise_info':all_advertise})
+                else:
+                    advertise_list.objects.filter(advertise_id=request.POST.get('advertise_id')).update(
+                        advertise_title=request.POST.get('advertise_title'),
+                        advertise_date = request.POST.get('advertise_date'),
+                        advertise_status = request.POST.get('advertise_status'),
+                    )
+                    all_advertise = advertise_list.objects.values()
+                    messages.success(request, 'Advertise update successfully!')
+                    return render(request, 'admin_dashboard/all_advertise.html',{ 'all_advertise_info':all_advertise})
+            
+            update_advertise = advertise_list.objects.filter(advertise_id = request.POST.get('advertise_id')).values()
+            param = {'update_data':update_advertise,'username': request.session['user']}
+            print(update_advertise)
+        return render(request, 'admin_dashboard/update_media_info.html', param)
+    return redirect('login')
+
+def delete_media(request):
+    if 'user' in request.session:
+        if request.method == 'POST':
+            advertise_file = advertise_list.objects.filter(advertise_id = request.POST.get('advertise_id')).values_list('advertise_file_name')
+            print(advertise_file)
+            os.remove(os.path.join(settings.MEDIA_ROOT,"../application/static/uploads/Advertise/"+str(advertise_file[0][0])))
+            advertise_list.objects.filter(advertise_id = request.POST.get('advertise_id')).delete()
+            return redirect('all_advertise')
+        return redirect('all_media.html')
+    

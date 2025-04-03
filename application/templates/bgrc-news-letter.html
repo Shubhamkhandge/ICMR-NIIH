@@ -26,6 +26,12 @@
             </div>
     </div>
 </div>
+<style>
+    .inner__header-slide {
+        height: 300px;
+        object-fit: cover;
+    }
+</style>
 <div class="inner__body-content">
     <div class="container dataInline SecLastChild">
         <p></p>
@@ -60,52 +66,124 @@
                                                     <option value="">---- ANY ----</option>
                                                     {% if update_data.0.newsletter_month == 'Jan - Feb' %}
                                                         <option value="Jan - Feb" selected>Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
                                                         <option value="Mar - Apr">Mar - Apr</option>
-                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
                                                         <option value="July - Aug">July - Aug</option>
-                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'Jan - Mar' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar" selected>Jan - Mar</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
                                                         <option value="Nov - Dec">Nov - Dec</option>
                                                     {% elif update_data.0.newsletter_month == 'Mar - Apr' %}
                                                         <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
                                                         <option value="Mar - Apr" selected>Mar - Apr</option>
-                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
                                                         <option value="July - Aug">July - Aug</option>
-                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
                                                         <option value="Nov - Dec">Nov - Dec</option>
-                                                    {% elif update_data.0.newsletter_month == 'May - Jun' %}
+                                                    {% elif update_data.0.newsletter_month == 'Apr - June' %}
                                                         <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
                                                         <option value="Mar - Apr">Mar - Apr</option>
-                                                        <option value="May - Jun" selected>May - Jun</option>
+                                                        <option value="Apr - June" selected>Apr - June</option>
+                                                        <option value="May - June">May - June</option>
                                                         <option value="July - Aug">July - Aug</option>
-                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'May - June' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June" selected>May - June</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
                                                         <option value="Nov - Dec">Nov - Dec</option>
                                                     {% elif update_data.0.newsletter_month == 'July - Aug' %}
                                                         <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
                                                         <option value="Mar - Apr">Mar - Apr</option>
-                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
                                                         <option value="July - Aug" selected>July - Aug</option>
-                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
                                                         <option value="Nov - Dec">Nov - Dec</option>
-                                                    {% elif update_data.0.newsletter_month == 'Sep - Oct' %}
+                                                    {% elif update_data.0.newsletter_month == 'July - Sept' %}
                                                         <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
                                                         <option value="Mar - Apr">Mar - Apr</option>
-                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
                                                         <option value="July - Aug">July - Aug</option>
-                                                        <option value="Sep - Oct" selected>Sep - Oct</option>
+                                                        <option value="July - Sept" selected>July - Sept</option>
+                                                        <option value="Sept - Oct">Sep - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'Sept - Oct' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct" selected>Sep - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
+                                                        <option value="Nov - Dec">Nov - Dec</option>
+                                                    {% elif update_data.0.newsletter_month == 'Oct - Dec' %}
+                                                        <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
+                                                        <option value="Mar - Apr">Mar - Apr</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
+                                                        <option value="July - Aug">July - Aug</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec" selected>Oct - Dec</option>
                                                         <option value="Nov - Dec">Nov - Dec</option>
                                                     {% elif update_data.0.newsletter_month == 'Nov - Dec' %}
                                                         <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
                                                         <option value="Mar - Apr">Mar - Apr</option>
-                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
                                                         <option value="July - Aug">July - Aug</option>
-                                                        <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="July - Sept">July - Sept</option>
+                                                        <option value="Sept - Oct">Sept - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
                                                         <option value="Nov - Dec" selected>Nov - Dec</option>
                                                     {% else %}
                                                         <option value="Jan - Feb">Jan - Feb</option>
+                                                        <option value="Jan - Mar">Jan - Mar</option>
                                                         <option value="Mar - Apr">Mar - Apr</option>
-                                                        <option value="May - Jun">May - Jun</option>
+                                                        <option value="Apr - June">Apr - June</option>
+                                                        <option value="May - June">May - June</option>
                                                         <option value="July - Aug">July - Aug</option>
+                                                        <option value="July - Sept">July - Sept</option>
                                                         <option value="Sep - Oct">Sep - Oct</option>
+                                                        <option value="Oct - Dec">Oct - Dec</option>
                                                         <option value="Nov - Dec">Nov - Dec</option>
                                                     {% endif %}
                                                 </select>
@@ -117,7 +195,7 @@
                                                     <option value="Select Vol & No." disabled>Select Vol & No.</option>
                                                     <option value="">---- ANY ----</option>
                                                     {% for all_newsletters in all_news %}
-                                                    <option value="{{all_newsletters.3}}">{{all_newsletters.3}}</option>
+                                                    <option value="{{all_newsletters.3}}">{{all_newsletters.2}}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
@@ -128,7 +206,7 @@
                                                     <option value="Select Year" disabled>Select Year</option>
                                                     <option value="">---- ANY ----</option>
                                                     {% for all_newsletters in all_news %}
-                                                    <option value="{{all_newsletters.5 | date:'Y' }}">{{all_newsletters.5 | date:"Y" }}</option>
+                                                    <option value="{{all_newsletters.5 | date:'Y' }}">{{all_newsletters.4 }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
@@ -158,11 +236,12 @@
                                         <tbody>
                                             {% for all_newsletters in all_news %}
                                                 <tr data-month="{{ all_newsletters.3 }}" data-volume="{{ all_newsletters.4 }}" data-year="{{ all_newsletters.0.5 }}">
-                                                    <td class="text-center">{{ forloop.counter }}</td>
-                                                    <td style="font-weight: 600;">{{ all_newsletters.2 }}</td>
+                                                    <!-- <td class="text-center">{{ forloop.counter }}</td> -->
+                                                    <td class="text-center">{{ all_newsletters.0 }}</td>
+                                                    <td style="font-weight: 500;">{{ all_newsletters.1 }}</td>
+                                                    <td class="text-center">{{ all_newsletters.2 }}</td>
                                                     <td class="text-center">{{ all_newsletters.3 }}</td>
                                                     <td class="text-center">{{ all_newsletters.4 }}</td>
-                                                    <td class="text-center">{{ all_newsletters.5 | date:"Y" }}</td>
                                                 </tr>
                                             {% endfor %}
                                         </tbody>

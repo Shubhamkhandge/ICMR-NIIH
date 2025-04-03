@@ -56,20 +56,38 @@
                             <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                         </form>
                     </td>
-                    <td>
-                        <form action="{% url 'delete_tender' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="delete_data" value="delete_data">
-                            <input type="hidden" name="tender_id" value="{{all_tender.tender_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                        </form>
+                    <td class="text-center">
+                        <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ all_tender.tender_id }}"></i></button>
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteModal{{ all_tender.tender_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ all_tender.tender_id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel{{ all_tender.tender_id }}">Confirm Deletion</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete "{{ all_tender.tender_id }}"?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <form action="{% url 'delete_tender' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="delete_data" value="delete_data">
+                                            <input type="hidden" name="tender_id" value="{{all_tender.tender_id}}">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         <div class="col">
-            <nav aria-label="Page navigation">
+            <nav aria-label="Page navigation" style="margin-bottom: 60px;">
                 <ul class="pagination justify-content-end">
                     {% if all_tenders_info.has_previous %}
                         <li class="page-item"><a class="page-link" href="?page={{ all_tenders_info.previous_page_number }}">Previous</a></li>

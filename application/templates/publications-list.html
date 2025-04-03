@@ -26,15 +26,21 @@
             </div>
     </div>
 </div>
+<style>
+    .inner__header-slide {
+        height: 350px;
+        object-fit: cover;
+    }
+</style>
 <div class="inner__body-content">
     <div class="container-fluid dataInline SecLastChild">
         <p></p>
         <div class="row">
-            <div class="col-12" style="margin-top:10px;">
+            <div class="col-10 m-auto" style="margin-top:10px;">
                 <div class="tabView">
                     <div class="tab-content">
                         <div class="tab-pane container-fluid active" id="tab11">
-                            <div class="baseFilter container w-50">
+                            <div class="baseFilter col-8 m-auto mb-3">
                                 <form method="GET">
                                     <div class="baseFilter__main">
                                         <div class="formView">
@@ -42,21 +48,7 @@
                                             <div class="formView__group">
                                                 <label class="form-label" for="fromYear">From Year</label>
                                                 <select class="form-select form-control chzn-select" name="fromYear" id="fromYear">
-                                                    <option value="">-- ANY --</option>
-                                                    <option value="2011">2011</option>
-                                                    <option value="2012">2012</option>
-                                                    <option value="2013">2013</option>
-                                                    <option value="2014">2014</option>
-                                                    <option value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
+                                                    <option value="">---- ANY ----</option>
                                                 </select>
                                             </div>
             
@@ -65,20 +57,31 @@
                                                 <label class="form-label" for="toYear">To Year</label>
                                                 <select class="form-select form-control chzn-select" name="toYear" id="toYear">
                                                     <option value="">-- ANY --</option>
-                                                    <option value="2011">2011</option>
-                                                    <option value="2012">2012</option>
-                                                    <option value="2013">2013</option>
-                                                    <option value="2014">2014</option>
-                                                    <option value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="formView__group">
+                                                <label class="form-label" for="toVolumeFilter">Select Publication Type</label>
+                                                <select class="form-select form-control chzn-select" name="toVolumeFilter" id="toVolumeFilter">
+                                                    <option value="Select Publication Type" disabled>Select Publication Type</option>
+                                                    <option value="">---- ANY ----</option>
+                                                    {% if update_data.0.publication_type == 'publication' %}
+                                                        <option value="Publication" selected>Publication</option>
+                                                        <option value="Journal">Journal</option>
+                                                        <option value="Booklet">Booklet</option>
+                                                    {% elif update_data.0.publication_type == 'Booklet' %}
+                                                        <option value="Publication">Publication</option>
+                                                        <option value="Journal">Journal</option>
+                                                        <option value="Booklet" selected>Booklet</option>
+                                                    {% elif update_data.0.publication_type == 'Journal' %}
+                                                        <option value="Publication">Publication</option>
+                                                        <option value="Journal" selected>Journal</option>
+                                                        <option value="Booklet">Booklet</option>
+                                                    {% else %}
+                                                        <option value="Publication">Publication</option>
+                                                        <option value="Journal">Journal</option>
+                                                        <option value="Booklet">Booklet</option>
+                                                    {% endif %}
                                                 </select>
                                             </div>
                                         </div>
@@ -93,46 +96,47 @@
                                     </div>
                                 </form> 
                             </div>
-                            <div class="tableView m-auto mt-3 mx-5 px-5" style="width: auto;">
+                            <div class="tableView m-auto">
                                 <div class="table-responsive switchIcon">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered" id="documentTable">
                                         <thead>
                                             <tr>
-                                                <th style="width: 5%;">Sr.No</th>
-                                                <th>Title</th>
-                                                <th style="width: 10%;">Date</th>
+                                                <th style="width: 8%;">Sr. No</th>
+                                                <th width="">Title</th>
+                                                <th>Date</th>
                                                 <!-- <th class="w-12">Document</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {% for all_publications in publications %}
-                                            <tr>
-                                                <td class="text-center">
-                                                    {{forloop.counter}}
-                                                </td>
-                                                <td>
-                                                    <i>{{all_publications.2}}</i> <br>
-                                                    <div class="text-primary" style="font-weight: 600;">{{all_publications.3}}</div>
-                                                    <em class="text-muted">{{all_publications.4}}</em>
-                                                </td>
-                                                <td class="text-center">{{all_publications.7 | date:"Y"}}</td>
-                                                <!-- <td>
-                                                    <a class="descView__link" href="{% static 'uploads/Documents/6152Tender Notice for Lab Equipment 2024-25.pdf' %}" target="_blank">
-                                                        <img alt="None" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
-                                                        <span class="value title">Open Document</span> 
-                                                        <span class="value size">( 609.03 KB)</span> 
-                                                        <span class="action" style="font-size: 12px;">View</span>
-                                                    </a>
-                                                </td> -->
-                                            </tr>
+                                                {% if 'Active' == all_publications.5 %}
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            {{forloop.counter}}
+                                                        </td>
+                                                        <td>
+                                                            <i>{{all_publications.1}}</i> <br>
+                                                            <div class="text-primary" style="font-weight: 600;">{{all_publications.2}}</div>
+                                                            <em class="text-muted"><b>{{all_publications.3}}</b>, {{all_publications.4}}</em>
+                                                        </td>
+                                                        <td class="text-center">{{all_publications.6 | date:"Y"}}</td>
+                                                        <!-- <td>
+                                                            <a class="descView__link" href="{% static 'uploads/Documents/6152Tender Notice for Lab Equipment 2024-25.pdf' %}" target="_blank">
+                                                                <img alt="None" class="img-fluid u-image" src="{% static 'dist/images/svg/pdf.svg' %}" />
+                                                                <span class="value title">Open Document</span> 
+                                                                <span class="value size">( 609.03 KB)</span> 
+                                                                <span class="action" style="font-size: 12px;">View</span>
+                                                            </a>
+                                                        </td> -->
+                                                    </tr>
+                                                {% endif %}
                                             {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
                             <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center">
+                                <ul class="pagination justify-content-end">
                                     {% if publications.has_previous %}
                                         <li class="page-item"><a class="page-link" href="?page={{ publications.previous_page_number }}">Previous</a></li>
                                     {% endif %}
@@ -159,27 +163,51 @@
                     </div>
                     
                     <script>
-                        document.querySelector('form').addEventListener('submit', function (event) {
-                            event.preventDefault(); // Prevent default form submission
-    
-                            // Get selected fromYear and toYear values
-                            var fromYear = document.getElementById('fromYear').value;
-                            var toYear = document.getElementById('toYear').value;
-    
-                            // Example: Filtering documents based on selected year range
-                            var rows = document.querySelectorAll('.tableView tbody tr');
-                            rows.forEach(function (row) {
-                                var date = row.querySelector('td:nth-child(3)').innerText.trim();
-                                var year = new Date(date).getFullYear();
-    
-                                if ((fromYear === '' || year >= fromYear) && (toYear === '' || year <= toYear)) {
-                                    row.style.display = ''; // Show the row if it matches the filter
-                                } else {
-                                    row.style.display = 'none'; // Hide the row if it doesn't match
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const currentYear = new Date().getFullYear();
+
+                            // Function to populate the year options dynamically
+                            function populateYearOptions(selectElement) {
+                                for (let year = 2005; year <= currentYear; year++) {
+                                    const option = document.createElement("option");
+                                    option.value = year;
+                                    option.textContent = year;
+                                    selectElement.appendChild(option);
                                 }
+                            }
+
+                            // Get the select elements
+                            const fromYearSelect = document.getElementById("fromYear");
+                            const toYearSelect = document.getElementById("toYear");
+
+                            // Populate both year select elements
+                            populateYearOptions(fromYearSelect);
+                            populateYearOptions(toYearSelect);
+
+                            // Handle form submission for filtering rows based on the selected years
+                            document.querySelector('form').addEventListener('submit', function (event) {
+                                event.preventDefault(); // Prevent default form submission
+
+                                // Get selected fromYear and toYear values
+                                var fromYear = document.getElementById('fromYear').value;
+                                var toYear = document.getElementById('toYear').value;
+
+                                // Example: Filtering documents based on selected year range
+                                var rows = document.querySelectorAll('.tableView tbody tr');
+                                rows.forEach(function (row) {
+                                    var date = row.querySelector('td:nth-child(3)').innerText.trim();
+                                    var year = new Date(date).getFullYear();
+
+                                    if ((fromYear === '' || year >= fromYear) && (toYear === '' || year <= toYear)) {
+                                        row.style.display = ''; // Show the row if it matches the filter
+                                    } else {
+                                        row.style.display = 'none'; // Hide the row if it doesn't match
+                                    }
+                                });
                             });
+
+                            
                         });
-    
                     </script>
                 </div>
             </div>

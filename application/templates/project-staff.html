@@ -270,10 +270,10 @@
                                         <table class="table table-bordered" id="documentTable">
                                             <thead>
                                                 <tr>
-                                                    <th width="8%">Sr. No.</th>
-                                                    <th>Staff Name</th>
-                                                    <th width="20%">Staff Designation</th>
-                                                    <th width="20%">Staff Department</th>
+                                                    <th  class="text-center">Sr. No.</th>
+                                                    <th class="text-center">Staff Name</th>
+                                                    <th  class="text-center">Staff Designation</th>
+                                                    <!-- <th width="20%">Staff Department</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -283,15 +283,15 @@
                                                             <td class="text-center">
                                                                 {{forloop.counter}}
                                                             </td>
-                                                            <td class="text-left">
+                                                            <td>
                                                                 {{proj_staff.0}}                                                    
                                                             </td>
-                                                            <td class="text-left">
+                                                            <td>
                                                                 {{proj_staff.1}}                                                    
                                                             </td>
-                                                            <td class="text-left">
+                                                            <!-- <td class="text-left">
                                                                 {{proj_staff.2}}                                                    
-                                                            </td>
+                                                            </td> -->
                                                         </tr>
                                                         {% endif %}
                                                 {% endfor %}

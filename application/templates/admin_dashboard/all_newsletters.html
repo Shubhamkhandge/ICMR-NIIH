@@ -1,87 +1,106 @@
 {% include 'admin_dashboard/includes/header.html'%}
 {% load static %}
 
-<div class="container-fluid">
+<div class="container-fluid px-5">
     <!-- Title -->
-    <h2 class="text-center px-3 text-uppercase my-4">Manage BGRC Newsletters
+    <h2 class="text-center text-uppercase my-4 px-3">Manage BGRC Newsletters
         <a href="/admin_dashboard/add_newsletter_info"><button class="btn btn-primary rounded-0 mb-3" style="float: right; font-size: 16px; font-weight: 600; letter-spacing: 0.8px;">Add Newsletter</button></a>
         <hr>
     </h2>
     
-    <div class="container-fluid px-3">
-        <table class="table table-responsive table-bordered" id="departments-table">
-            <thead class="text-center">
-                <th>ID</th>
-                <th>Newsletter ID</th>
-                <th>Newsletter Title</th>
-                <th>Newsletter Vol & No.</th>
-                <th>Newsletter Month</th>
-                <th>Newsletter Year</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </thead>
-            <tbody>
-                {% for all_newsletter in all_news %}
-                <tr style="text-align: center;">
-                    {% csrf_token %}
-                    <td>
-                        {{forloop.counter}}
-                    </td>
-                    <td>
-                        {{all_newsletter.newsletter_id}}
-                    </td>
-                    <td>
-                        {{all_newsletter.newsletter_title}}
-                    </td>
-                    <td>
-                        {{all_newsletter.newsletter_vol_no}}
-                    </td>
-                    <td>
-                        {{all_newsletter.newsletter_month}}
-                    </td>
-                    <td>
-                        {{all_newsletter.newsletter_year | date:"Y" }}
-                    </td>
-                    <td>
-                        <form action="{% url 'update_newsletter_info' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="newsletter_id" value="{{all_newsletter.newsletter_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{% url 'delete_newsletter' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="delete_data" value="delete_data">
-                            <input type="hidden" name="newsletter_id" value="{{all_newsletter.newsletter_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                        </form>
-                    </td>
-                </tr>
+    <table class="table table-bordered table-responsive" id="departments-table">
+        <thead class="text-center">
+            <th width="5%">ID</th>
+            <!-- <th>Newsletter ID</th> -->
+            <th>Newsletter Title</th>
+            <th width="12%">Newsletter Vol & No.</th>
+            <th width="12%">Newsletter Month</th>
+            <th width="12%">Newsletter Year</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% for all_newsletter in all_news %}
+            <tr>
+                {% csrf_token %}
+                <!-- <td>
+                    {{forloop.counter}}
+                </td> -->
+                <td class="text-center">
+                    {{all_newsletter.id}}
+                </td>
+                <!-- <td>
+                    {{all_newsletter.newsletter_id}}
+                </td> -->
+                <td class="text-left">
+                    {{all_newsletter.newsletter_title}}
+                </td>
+                <td class="text-center">
+                    {{all_newsletter.newsletter_vol_no}}
+                </td>
+                <td class="text-center">
+                    {{all_newsletter.newsletter_month}}
+                </td>
+                <td class="text-center">
+                    {{all_newsletter.newsletter_year }}
+                </td>
+                <td class="text-center">
+                    <form action="{% url 'update_newsletter_info' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{all_newsletter.id}}">
+                        <button type="submit" class="btn"><i class="text-success fa-edit fa-solid"></i></button>
+                    </form>
+                </td>
+                <td class="text-center">
+                    <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ all_newsletter.id }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ all_newsletter.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ all_newsletter.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ all_newsletter.id }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ all_newsletter.id }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_newsletter' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="id" value="{{all_newsletter.id}}">
+                                        <button type="submit" class="btn"><i class="text-danger fa-solid fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col">
+        <nav aria-label="Page navigation" style="margin-bottom: 60px;">
+            <ul class="justify-content-end pagination">
+                {% if all_news.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_newsletters?page={{ all_news.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% for num in all_news.paginator.page_range %}
+                    {% if all_news.number == num %}
+                        <li class="active page-item"><span class="page-link">{{ num }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_newsletters?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
                 {% endfor %}
-            </tbody>
-        </table>
-        <div class="col">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-end">
-                    {% if all_news.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_news.previous_page_number }}">Previous</a></li>
-                    {% endif %}
-                    {% for num in all_news.paginator.page_range %}
-                        {% if all_news.number == num %}
-                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if all_news.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_news.next_page_number }}">Next</a></li>
+                {% if all_news.has_next %}
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_newsletters?page={{ all_news.next_page_number }}">Next</a></li>
+            
+                {% endif %}
                 
-                    {% endif %}
-                    
-                </ul>
-            </nav>
-        </div>
+            </ul>
+        </nav>
     </div>
 </div>
 {% include 'admin_dashboard/includes/footer.html'%}

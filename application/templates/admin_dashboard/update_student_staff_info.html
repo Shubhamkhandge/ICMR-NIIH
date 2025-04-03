@@ -12,7 +12,7 @@
     </h2>
 
     <!-- Add Department Form -->
-    <div class="col-md-8 pb-2 m-auto">
+    <div class="col-md-7 pb-2 m-auto">
         <form action="" method="POST" class="form" id="update-student-form" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- {{update_data.0.id}} -->
@@ -20,45 +20,86 @@
                 <input type="hidden" name="update_data" value="update_data">
             </div>
             <div class="row">
-                <div class="col mb-3">
-                    <label for="student_staff_id" class="form-label text-dark" style="font-weight: 600;">Student ID : </label>
-                    <input type="number" class="form-control rounded-0 text-center" id="student_staff_id" value="{{update_data.0.student_staff_id}}" placeholder="Update Student ID" name="student_staff_id" readonly>
+                <div class="col-5">
+                    <div class="col mb-3">
+                        <label for="student_staff_id" class="form-label text-dark" style="font-weight: 600;">Student ID : </label>
+                        <input type="number" class="form-control rounded-0 text-center" id="student_staff_id" value="{{update_data.0.student_staff_id}}" placeholder="Update Student ID" name="student_staff_id">
+                    </div>
+    
+                    <div class="col mb-3">
+                        <label for="student_join_year" class="form-label text-dark" style="font-weight: 600;">Student Join Year : </label>
+                        <input type="number" class="form-control rounded-0 text-center" id="student_join_year" value="{{update_data.0.student_join_year}}" placeholder="Update Student Join Year" name="student_join_year">
+                    </div>
+                    
+                    <div class="col mb-3">
+                        <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
+                        <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Profile Status</option>
+                            {% if 'Active' == update_data.0.profile_status %}
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            {% else %}
+                                <option value="Active">Active</option>  
+                                <option value="Inactive" selected>Inactive</option>
+                            {% endif %}
+                        </select>
+                    </div>
                 </div>
-
-                <div class="col mb-3">
-                    <label for="student_join_year" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
-                    <input type="number" class="form-control rounded-0" id="student_join_year" value="{{update_data.0.student_join_year}}" placeholder="Update Student Name" name="student_join_year">
-                </div>
-                
-                <div class="col mb-3">
-                    <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
-                    <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
-                        <option value="" selected disabled>Select Profile Status</option>
-                        {% if 'Active' == update_data.0.profile_status %}
-                            <option value="Active" selected>Active</option>
-                            <option value="Inactive">Inactive</option>
-                        {% else %}
-                            <option value="Active">Active</option>  
-                            <option value="Inactive" selected>Inactive</option>
-                        {% endif %}
-                    </select>
+                <div class="col-7">
+                    <div class="col mb-3">
+                        <label for="student_staff_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
+                        <input type="text" class="form-control rounded-0" id="student_staff_name" value="{{update_data.0.student_staff_name}}" placeholder="Update Student Name" name="student_staff_name">
+                    </div>
+    
+                    <div class="col mb-3">
+                        <label for="student_guide_name" class="form-label text-dark" style="font-weight: 600;">Student Guide Name : </label>
+                        <input type="text" class="form-control rounded-0" id="student_guide_name" value="{{update_data.0.student_guide_name}}" placeholder="Update Student Name" name="student_guide_name">
+                    </div>
+    
+                    <div class="col mb-3">
+                        <label for="student_staff_department" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select LAB Department : </label>
+                        <select id="student_staff_department" value="Select LAB Department" name="student_staff_department" class="form-select rounded-0">
+                            <option value="" selected disabled>Select LAB Department</option>
+                            {% for i in lab_department_name %}
+                                {% if i.0 == update_data.0.student_staff_department %}
+                                    <option value="{{update_data.0.student_staff_department}}" selected class="text-muted">{{update_data.0.student_staff_department}}</option>
+                                {% else %}
+                                    <option value="{{i.0}}">{{i.0}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col mb-3">
+                <!-- <div class="col mb-3">
                     <label for="student_staff_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
                     <input type="text" class="form-control rounded-0" id="student_staff_name" value="{{update_data.0.student_staff_name}}" placeholder="Update Student Name" name="student_staff_name">
                 </div>
 
                 <div class="col mb-3">
-                    <label for="student_guide_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
+                    <label for="student_guide_name" class="form-label text-dark" style="font-weight: 600;">Student Guide Name : </label>
                     <input type="text" class="form-control rounded-0" id="student_guide_name" value="{{update_data.0.student_guide_name}}" placeholder="Update Student Name" name="student_guide_name">
                 </div>
 
-                <div class="col mb-3">
+                <div class="col-6 mb-3 mb-3">
+                    <label for="student_staff_department" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select LAB Department : </label>
+                    <select id="student_staff_department" value="Select LAB Department" name="student_staff_department" class="form-select rounded-0">
+                        <option value="" selected disabled>Select LAB Department</option>
+                        {% for i in lab_department_name %}
+                            {% if i.0 == update_data.0.student_staff_department %}
+                                <option value="{{update_data.0.student_staff_department}}" selected class="text-muted">{{update_data.0.student_staff_department}}</option>
+                            {% else %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div> -->
+
+                <!-- <div class="col mb-3">
                     <label for="project_staff_departmernt" class="form-label text-dark" style="font-weight: 600;">Student Department Name : </label>
                     <input type="text" class="form-control rounded-0" id="project_staff_departmernt" value="{{update_data.0.student_staff_department}}" placeholder="Update Student Department" name="student_staff_department">
-                </div>
+                </div> -->
             </div>
 
             <center>

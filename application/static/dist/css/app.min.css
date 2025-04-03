@@ -14747,7 +14747,7 @@ ul li {
 .scrollBar-smallWidth,
 body *,
 html * {
-    scrollbar-width: thin
+    scrollbar-width: none;
 }
 
 .global-navs.design1>.global-navs__grid>.global-navs__list.dropdown>.global-navs__grid::-webkit-scrollbar,
@@ -17372,7 +17372,8 @@ strong {
 }
 
 .colorBox__list-item .content-area p+p {
-    margin-top: 8px
+    margin-top: 8px;
+    text-align: justify;
 }
 
 .colorBox__list-item .content-area.colWise .linkView__container {
@@ -19379,7 +19380,7 @@ strong {
 
 .mapSection.mTabView .map-section .nav .nav-item.ls-chandrapur {
     top: 270px;
-    left: 380px
+    left: 390px
 }
 
 .mapSection.mTabView .map-section .nav .nav-item.ls-portblair {
@@ -19549,7 +19550,7 @@ strong {
     border-bottom: 2px solid var(--secoundry);
     margin-bottom: 7px;
     display: inline-block;
-    position: relative
+    position: relative;
 }
 
 .mapSection.mTabView .mapView__container-content .listView .colorBox__list-item .content-area .highlightes .keyText .divider {
@@ -22220,7 +22221,8 @@ strong {
 
 .timelineView {
     background: #021e42;
-    padding: 100px 50px;
+    /* padding: 100px 50px; */
+    padding: 50px;
     position: relative
 }
 
@@ -22240,9 +22242,9 @@ strong {
 
 .timelineView .timeline-slide {
     background-color: #011631;
-    padding: 20px;
+    padding: 15px;
     position: relative;
-    margin-top: 100px;
+    margin-top: 40px;
     -webkit-border-radius: 12px;
     border-radius: 12px;
     background-clip: padding-box;
@@ -22309,8 +22311,8 @@ strong {
 }
 
 .timelineView .timeline-slide .img-fluid {
-    width: 200px;
-    height: 250px;
+    width: 70%;
+    height: 300px;
     padding: 10px;
     -webkit-border-radius: 150px;
     border-radius: 10px;
@@ -22327,6 +22329,7 @@ strong {
 .timelineView .timeline-slide .title {
     color: var(--white);
     font-size: var(--fs-25);
+    margin-top: -30px;
 }
 
 .timelineView .timeline-slide p {

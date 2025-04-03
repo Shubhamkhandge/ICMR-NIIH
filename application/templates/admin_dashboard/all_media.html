@@ -1,0 +1,92 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container-fluid">
+    <!-- Title -->
+    <h2 class="text-center px-3 text-uppercase my-4">Manage Media
+        <a href="/admin_dashboard/add_media_info"><button class="btn btn-primary rounded-0 mb-3" style="float: right; font-size: 16px; font-weight: 600; letter-spacing: 0.8px;">Add Media</button></a>
+        <hr>
+    </h2>
+    
+    <div class="container-fluid px-3">
+        <table class="table table-responsive table-bordered" id="departments-table">
+            <thead class="text-center">
+                <!-- <th>ID</th> -->
+                <th>Media ID</th>
+                <th>Media Name</th>
+                <th>Media Title</th>
+                <th>Media Status</th>
+                <th>Media Date</th>
+                <!-- <th>Media File</th> -->
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                {% for all_media in all_media_info %}
+                <!-- {{all_media}} -->
+                <tr style="text-align: center;">
+                    {% csrf_token %}
+                    <td>
+                        {{forloop.counter}}
+                    </td>
+                    <!-- <td>
+                        {{all_media.advertise_id}}
+                    </td> -->
+                    <td>
+                        {{all_media.event_name}}
+                    </td>
+                    <td>
+                        {{all_media.event_details}}
+                    </td>
+                    <td>
+                        {{all_media.advertise_status}}
+                    </td>
+                    <td>
+                        {{all_media.advertise_date | date:"d M Y"}}
+                    </td>
+                    <!-- <td>
+                        {{all_media.advertise_file_name}}
+                    </td> -->
+                    <td>
+                        <form action="{% url 'update_media_info' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="advertise_id" value="{{all_media.advertise_id}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url 'delete_media' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_data" value="delete_data">
+                            <input type="hidden" name="advertise_id" value="{{all_media.advertise_id}}">
+                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="col">
+            <nav aria-label="Page navigation" style="margin-bottom: 60px;">
+                <ul class="pagination justify-content-end">
+                    {% if all_media_info.has_previous %}
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_media?page={{ all_media_info.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+                    {% for num in all_media_info.paginator.page_range %}
+                        {% if all_media_info.number == num %}
+                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="/admin_dashboard/all_media?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if all_media_info.has_next %}
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_media?page={{ all_media_info.next_page_number }}">Next</a></li>
+                
+                    {% endif %}
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% include 'admin_dashboard/includes/footer.html'%}

@@ -3,29 +3,33 @@
 
 <div class="container my-3">
     <h2 class="text-center mb-4 text-uppercase">Update Designation
-        <a href="/admin_dashboard/all_designations"><div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i></div><hr></a>
+        <a href="/admin_dashboard/all_designations">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
     </h2>
 
-    <!-- Add Department Form -->
+    <!-- Update Designation Form -->
     <div class="col-md-5 m-auto">
         <form action="" method="POST" class="form mb-3" id="update-designation-form">
             {% csrf_token %}
-            <!-- {{update_data.0.id}} -->
             <div class="col-12 d-none">
                 <input type="hidden" name="update_data" value="update_data">
-                <input type="hidden" name="id" value="{{update_data.0.id}}">
+                <input type="hidden" name="id" value="{{ update_data.0.id }}">
             </div>
 
             <!-- Designation Name -->
             <div class="col-12 mb-3">
-                <label for="designation" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Designation Name : </label>
-                <input type="text" class="form-control rounded-0" id="designation" placeholder="Update Designation Name" value="{{update_data.0.designation}}" name="designation" required>
+                <label for="designation" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Designation Name: </label>
+                <input type="text" class="form-control rounded-0" id="designation" placeholder="Update Designation Name" value="{{ update_data.0.designation }}" name="designation" required>
             </div>
 
-            <!-- Department Name -->
+            <!-- Department Category -->
             <div class="col-12 mb-3">
-                <label for="category_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select your Department Category : </label>
-                <select id="category_name" value="Select Department Category" name="category_name" class="form-select rounded-0">
+                <label for="category_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Department Category: </label>
+                <select id="category_name" name="category_name" class="form-select rounded-0" required>
                     <option value="" selected disabled>Select Department Category</option>
                     {% for i in category_name %}
                         {% if i.0 == update_data.0.category_name %}
@@ -36,14 +40,25 @@
                     {% endfor %}
                 </select>
             </div>
-            <!-- <div class="col-12 mb-3">
-                <label for="departmentName" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Department Name : </label>
-                <input type="text" class="form-control rounded-0" id="departmentName" name="departmentName" required>
-            </div> -->
+            <div class="col-12 mb-3">
+                <label for="support_department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Support Department Name: </label>
+                <select id="support_department_name" name="support_department_name" class="form-select rounded-0">
+                    <option value="" selected disabled>Select Support Department</option>
+                    {% for i in support_department_name %}
+                        {% if i.0 == update_data.0.support_department_name %}
+                            <option value="{{update_data.0.support_department_name}}" selected class="text-muted">{{update_data.0.support_department_name}}</option>
+                        {% else %}
+                            <option value="{{i.0}}">{{i.0}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Action Buttons -->
             <center>
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Update</button>
-                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="update-designation-form">Reset</button>
+                    <button type="reset" class="btn btn-danger px-5 py-2 rounded-0">Reset</button>
                 </div>
             </center>
         </form>

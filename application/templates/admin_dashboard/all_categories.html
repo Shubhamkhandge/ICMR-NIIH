@@ -3,11 +3,10 @@
 
 <div class="container p-5">
     <h2 class="text-center mb-4 text-uppercase">Manage Department Categories 
+        <a href="/admin_dashboard/add_category_info"><button class="btn btn-primary mb-3 rounded-0" style="float: right; font-size: 16px; font-weight: 600;">Add Category</button></a>
         <hr>
     </h2>
     <!-- Departments Table -->
-    <a href="/admin_dashboard/add_category_info"><button class="btn btn-primary mb-3"
-            style="float: right; font-size: 16px; font-weight: 600;">Add Category</button></a>
 
     <table class="table table-responsive table-bordered" id="departments-table">
         <thead class="text-center">
@@ -46,12 +45,30 @@
                     </form>
                 </td>
                 <td>
-                    <form action="{% url 'delete_category' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="delete_data" value="delete_data">
-                        <input type="hidden" name="category_id" value="{{category_info.category_id}}">
-                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                    </form>
+                    <button class="btn"><i class="fa-solid fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ category_info.category_id }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ category_info.category_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ category_info.category_id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ category_info.category_id }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ category_info.category_id }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_category' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="category_id" value="{{category_info.category_id}}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             {% endfor %}

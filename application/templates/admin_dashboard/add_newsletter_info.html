@@ -16,9 +16,14 @@
         <form action="{% url 'add_newsletter_info' %}" method="POST" class="form" id="add-newsletter-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
-                <div class="col mb-3 px-1">
+                <!-- <div class="col mb-3 px-1">
                     <label for="newsletter_id" class="form-label text-dark" style="font-weight: 600;">Newsletter ID : </label>
                     <input type="number" class="form-control rounded-0" id="newsletter_id" placeholder="Enter Newsletter ID" name="newsletter_id" required>
+                </div> -->
+
+                <div class="col-12 mb-3 p-0">
+                    <label for="newsletter_title" class="form-label text-dark" style="font-weight: 600;">Newsletter Title : </label>
+                    <textarea class="form-control rounded-0" id="newsletter_title" placeholder="Enter Newsletter Title" name="newsletter_title" rows="5" required></textarea>
                 </div>
                 
                 <div class="col mb-3 px-1">
@@ -27,7 +32,7 @@
                 </div>
                 <div class="col mb-3 px-1">
                     <label for="newsletter_year" class="form-label text-dark" style="font-weight: 600;">Select Newsletter Year : </label>
-                    <input type="date" name="newsletter_year" id="newsletter_year" class="form-control rounded-0">
+                    <input type="text" name="newsletter_year" id="newsletter_year" class="form-control rounded-0">
                 </div>
 
                 <div class="col mb-3 px-1">
@@ -35,17 +40,16 @@
                     <select id="newsletter_month" value="Select Newsletter Month" name="newsletter_month" class="form-select rounded-0">
                         <option value="" selected disabled>Select Newsletter Month</option>
                         <option value="Jan - Feb">Jan - Feb</option>
+                        <option value="Jan - Mar">Jan - Mar</option>
                         <option value="Mar - Apr">Mar - Apr</option>
-                        <option value="May - Jun">May - Jun</option>
+                        <option value="Apr - June">Apr - June</option>
+                        <option value="May - June">May - June</option>
                         <option value="July - Aug">July - Aug</option>
+                        <option value="July - Sept">July - Sept</option>
                         <option value="Sep - Oct">Sep - Oct</option>
+                        <option value="Oct - Dec">Oct - Dec</option>
                         <option value="Nov - Dec">Nov - Dec</option>
                     </select>
-                </div>
-
-                <div class="col-12 mb-3 p-0">
-                    <label for="newsletter_title" class="form-label text-dark" style="font-weight: 600;">Newsletter Title : </label>
-                    <textarea class="form-control rounded-0" id="newsletter_title" placeholder="Enter Newsletter Title" name="newsletter_title" rows="5" required></textarea>
                 </div>
             </div>
 

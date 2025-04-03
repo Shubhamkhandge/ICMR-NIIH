@@ -22,6 +22,7 @@ urlpatterns = [
     # Staff-related pages
     path('scientist-staff/', views.scientist_staff, name='scientist-staff'),
     path('scientist-staff-details/', views.scientist_details, name='scientist-staff-details'),
+    path('scientist_details_id?!<int:sci_id>', views.scientist_details_id, name='scientist_details_id'),#/<str:auth_id>/
     path('administration-staff/', views.admin_staff, name='administration-staff'),
     path('administration-staff-details/', views.administration_details, name='administration-staff-details'),
     path('technical-staff/', views.technical_staffs, name='technical-staff'),
@@ -59,7 +60,7 @@ urlpatterns = [
 
     # Dashboard URL
     path('admin_dashboard/dashboard', views.dashboard_view, name='dashboard'),
-
+    
     # User-registration page
     path('admin_dashboard/admin_user_registration', views.admin_user_registration, name='admin_user_registration'),
     path('admin_dashboard/add_admin_user', views.add_admin_user, name='add_admin_user'),
@@ -128,11 +129,6 @@ urlpatterns = [
     path('admin_dashboard/update_alumini_staff_info', views.update_alumini_staff_info, name='update_alumini_staff_info'),
     path('admin_dashboard/delete_alumini', views.delete_alumini, name='delete_alumini'),
     
-
-
-
-
-
     # Project Pages URL's
     path('admin_dashboard/all_projects', views.all_projects, name='all_projects'),
     path('admin_dashboard/add_project_info', views.add_project_info, name='add_project_info'),
@@ -180,6 +176,12 @@ urlpatterns = [
     path('admin_dashboard/add_advertise_info', views.add_advertise_info, name='add_advertise_info'),
     path('admin_dashboard/update_advertise_info', views.update_advertise_info, name='update_advertise_info'),
     path('admin_dashboard/delete_advertise', views.delete_advertise, name='delete_advertise'),
+    
+    # Advertisement Pages URL's
+    path('admin_dashboard/all_media', views.all_media, name='all_media'),
+    path('admin_dashboard/add_media_info', views.add_media_info, name='add_media_info'),
+    path('admin_dashboard/update_media_info', views.update_media_info, name='update_media_info'),
+    path('admin_dashboard/delete_media', views.delete_media, name='delete_media'),
     
     # Settings Page URL
     path('admin_dashboard/settings', views.settings_page, name='settings'),

@@ -23,10 +23,11 @@ from django.core import serializers
 from json import dumps
 import json
 from dateutil.relativedelta import relativedelta
-from django.db.models import Q
+from django.db.models import *
 import csv
 import xlwt
 from .admin import *
+from datetime import datetime
 #from datetime import datetime
 # Create your views here.
 
@@ -71,47 +72,63 @@ def departments_details(request):
 
 # Staff-related pages
 def scientist_staff(request):
-    sci_staff = scientific_staff.objects.values_list('scientist_name','profilepic_name', 'scientist_id','profile_status')
-    paginator = Paginator(sci_staff, 12)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'scientist-staff.html', {'scientist_staff':page_obj})
+    sci_staff = scientific_staff.objects.values_list('scientist_name','profilepic_name', 'scientist_id','profile_status','author_name','designation','level_no','join_date','current_post_date','div_name')
+    data_list = list(sci_staff) 
+    
+    # Sort in descending order (latest to oldest)
+    data_list.sort(key=lambda x: x[8], reverse=False)
+    data_list.sort(key=lambda x: x[6], reverse=True)
+    # Print the sorted list
+    
+       #item[8] = datetime.strptime(item[8], "%Y-%m-%d")
+    #sci_info1=sorted(sci_staff, key=lambda x: x["date"], reverse=True)
+    #for item in sci_info1:
+      #  print(f"Name: {item['8']}, Date: {item['8'].strftime('%Y-%m-%d')}")
+    #sci_info = sorted(sci_staff, key=lambda x: (x[6], datetime.strptime(x[7])))
+    
+    # paginator = Paginator(sci_staff, 15)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    return render(request, 'scientist-staff.html', {'scientist_staff':data_list})
+
+def scientist_details_id(request, sci_id):#, auth_id):
+    sci_info = scientific_staff.objects.filter(scientist_id = sci_id).values()
+    project = projects.objects.filter(scientist_name = sci_info[0]['scientist_name']).values()
+    awards = award_list.objects.filter(scientist_name = sci_info[0]['scientist_name']).values()
+    findPub = sci_info[0]['author_name']
+    # publications = publications_list.objects.values_list('publication_author_name')
+    # print(publications[0][0].split(', '))
+    publications = publications_list.objects.values_list('publication_author_name','publication_title','publication_journal_name','publication_status')
+    pubauth = []
+    for i in range(len(publications)):
+        authpublst = publications[i][0].split(', ')
+        for j in range(len(authpublst)):
+            if authpublst[j] == findPub:
+                pubauth.append(publications[i])
+            
+    #print(publications)
+    
+    str_academic_info = str(sci_info[0]['academic_background'])
+    str_info = str(sci_info[0]['research_interests'])
+    
+    sci_info_academic = '<br> - '.join(str_academic_info.split('-')).strip()
+    sci_info_sepc = '<br> - '.join(str_info.split('-')).strip()
+    print(sci_info[0]['lab_department_name'])
+    sci_staff=scientific_staff.objects.filter(lab_department_name=sci_info[0]['lab_department_name']).values_list()
+    technical_staffs=technical_staff.objects.filter(support_department_name=sci_info[0]['lab_department_name']).values_list()
+    return render(request, 'scientist-staff-details.html', {'scientist_info': sci_info[0], 'sci_spec': sci_info_sepc, 'project_info': project, 'award_info': awards , 'publication_info': pubauth , 'str_academic_info': sci_info_academic, 'technical_staff':technical_staffs, 'sci_staff':sci_staff})
 
 def scientist_details(request):
-    if request.method == 'POST': 
-        sci_info = scientific_staff.objects.filter(scientist_id = request.POST.get('sci_id')).values()
-        project = projects.objects.filter(scientist_name = sci_info[0]['scientist_name']).values()
-        awards = award_list.objects.filter(scientist_name = sci_info[0]['scientist_name']).values()
-        findPub = sci_info[0]['author_name']
-        # publications = publications_list.objects.values_list('publication_author_name')
-        # print(publications[0][0].split(', '))
-        publications = publications_list.objects.values_list('publication_author_name','publication_title','publication_journal_name','publication_status')
-        
-        pubauth = []
-        for i in range(len(publications)):
-            authpublst = publications[i][0].split(', ')
-            for j in range(len(authpublst)):
-                if authpublst[j] == findPub:
-                    pubauth.append(publications[i])
-                
-        print(publications)
-        
-        str_academic_info = str(sci_info[0]['academic_background'])
-        str_info = str(sci_info[0]['research_interests'])
-        
-        sci_info_academic = '<br> - '.join(str_academic_info.split('-')).strip()
-        sci_info_sepc = '<br> - '.join(str_info.split('-')).strip()
-
-        return render(request, 'scientist-staff-details.html', {'scientist_info': sci_info[0], 'sci_spec': sci_info_sepc, 'project_info': project, 'award_info': awards , 'publication_info': pubauth , 'str_academic_info': sci_info_academic})
-    return render(request, 'scientist-staff-details.html')
+    if request.method == 'POST':
+        return redirect('scientist_details_id', sci_id=request.POST.get('sci_id'))#, auth_id=request.POST.get('auth_id'))
+        #return render(request, 'scientist-staff-details.html')
 
 def admin_staff(request):
-    admin_staff = administration_staff.objects.values_list('admin_name','profilepic_name', 'admin_id','profile_status')
-    
-    paginator = Paginator(admin_staff, 12)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'administration-staff.html', {'admin_staff_info':page_obj})
+    admin_staff = administration_staff.objects.values_list('admin_name','profilepic_name', 'admin_id','profile_status','designation','level_no','display_order','join_date','current_post_date','div_name').order_by('-display_order')
+    # paginator = Paginator(admin_staff, 12)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    return render(request, 'administration-staff.html', {'admin_staff_info':admin_staff})
 
 def administration_details(request):
     if request.method == 'POST': 
@@ -122,11 +139,16 @@ def administration_details(request):
     return render(request, 'administration-staff-details.html')
 
 def technical_staffs(request):
-    tech_staff = technical_staff.objects.values_list('technical_name','profilepic_name', 'technical_id','profile_status')
-    paginator = Paginator(tech_staff, 12)
+    tech_staff = technical_staff.objects.values_list('technical_name','profilepic_name', 'technical_id','profile_status','designation','level_no','current_post_date')
+    # data_list = list(tech_staff) 
+
+    # data_list.sort(key=lambda x: x[4])
+    # data_list.sort(key=lambda x: x[5])
+    '''paginator = Paginator(data_list, 12)
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'technical-staff.html', {'technical_staff':page_obj})
+    page_obj = paginator.get_page(page_number)'''
+
+    return render(request, 'technical-staff.html', {'technical_staff':tech_staff})
 
 def technical_details(request):
     if request.method == 'POST': 
@@ -144,30 +166,31 @@ def technical_details(request):
 
 def project_staff_info(request):
     proj_staff = project_staff.objects.values_list('project_staff_name', 'project_staff_designation', 'project_staff_department', 'profile_status')
-    paginator = Paginator(proj_staff, 8)
+    paginator = Paginator(proj_staff, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'project-staff.html', {'all_project_staff': page_obj})
+    return render(request, 'project-staff.html', {'all_project_staff': proj_staff})
 
 def project_details(request):
     return render(request, 'project-staff-details.html')
 
 def students_list(request):
     all_students = student_staff.objects.values_list('student_staff_name', 'student_guide_name', 'student_staff_department', 'student_join_year','profile_status')
-    paginator = Paginator(all_students, 8)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'students-list.html', {'all_student': page_obj})
+    # paginator = Paginator(all_students, 10)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    return render(request, 'students-list.html', {'all_student': all_students})
 
 def student_details(request):
     return render(request, 'student-staff-details.html')
 
 def alumini_list(request):
-    all_aluminis = alumini_staff.objects.values_list('alumini_staff_name', 'alumini_staff_designation', 'alumini_leave_year','profile_status')
-    paginator = Paginator(all_aluminis, 8)
+    all_aluminis = alumini_staff.objects.values_list('id','alumini_staff_name', 'alumini_staff_designation', 'alumini_leave_year','profile_status')
+    paginator = Paginator(all_aluminis, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'alumini-staff.html', {'all_alumini': page_obj})
+    return render(request, 'alumini-staff.html', {'all_alumini': all_aluminis})
+
 
 def alumini_details(request):
     return render(request, 'alumini-staff-details.html')
@@ -175,30 +198,30 @@ def alumini_details(request):
 # Publications and News
 def publications(request):
     all_publications = publications_list.objects.values_list()
-    paginator = Paginator(all_publications, 8)
+    paginator = Paginator(all_publications, 100)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'publications-list.html', {'publications':page_obj})
 
 def niih_bulletin_list(request):
     all_niih_bulletins = bulletin_list.objects.values_list()
-    paginator = Paginator(all_niih_bulletins, 8)
+    paginator = Paginator(all_niih_bulletins, 45)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'niih-bulletin-list.html', {'all_bulletins':page_obj})
 
 def bgrc_news_letter(request):
     all_newsletters = newsletter_list.objects.values_list()
-    paginator = Paginator(all_newsletters, 8)
+    paginator = Paginator(all_newsletters, 25)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'bgrc-news-letter.html', {'all_news':page_obj})
+    return render(request, 'bgrc-news-letter.html', {'all_news':all_newsletters})
 
 # Projects
 def ongoing_projects_list(request):
     all_project = projects.objects.values()
     ongoing_project = projects.objects.filter(project_status = 'On going').values()
-    paginator = Paginator(ongoing_project, 8)
+    paginator = Paginator(ongoing_project, 15)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'ongoing-projects-list.html', {'projects':all_project, 'ongoing_project':page_obj})
@@ -206,14 +229,15 @@ def ongoing_projects_list(request):
 def completed_projects_list(request):
     all_project = projects.objects.values()
     completed_project = projects.objects.filter(project_status = 'Completed').values()
-    paginator = Paginator(completed_project, 8)
+    paginator = Paginator(completed_project, 15)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'completed-projects-list.html', {'projects':all_project, 'completed_project':page_obj})
 
 # Media and Photo Details
 def media_gallery(request):
-    return render(request, 'media-gallery.html')
+    all_media = media.objects.values_list()
+    return render(request, 'media-gallery.html', {'media':all_media})
 
 def photo_details(request):
     return render(request, 'photo-details.html')

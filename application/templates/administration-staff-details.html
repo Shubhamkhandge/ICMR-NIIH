@@ -93,10 +93,6 @@
                                                                         font-size: 8px;
                                                                         width: auto;
                                                                     }
-                                                                    .individualProfile__main-head{
-                                                                        width: auto;
-                                                                        padding: 0;
-                                                                    }
                                                                     .list-item{
                                                                         font-size: 6px;
                                                                         margin-left: -5px;
@@ -129,7 +125,7 @@
                                                                     }
                                                                 }
 
-                                                                @media screen and (min-width:567px) and (max-width:768px) {
+                                                                @media screen and (max-width:768px) {
                                                                     .individualProfile__main-media .img-fluid{
                                                                         padding: 10px;
                                                                         width: 250px;
@@ -184,7 +180,7 @@
                                                                         border-radius: 0px;
                                                                     }
                                                                 }
-                                                                @media screen and (min-width:768px) and (max-width:1024px){
+                                                                @media screen and (min-width:769px) and (max-width:1024px){
                                                                     .individualProfile__main-media .img-fluid{
                                                                         padding: 10px;
                                                                         width: 250px;
@@ -202,8 +198,7 @@
                                                                         width: auto;
                                                                     }
                                                                     .individualProfile__main-head{
-                                                                        width: auto;
-                                                                        padding: 0;
+                                                                        width: 780px;
                                                                     }
                                                                     .list-item{
                                                                         font-size: 12px;
@@ -251,7 +246,7 @@
                                                                             <div class="individualProfile__main-media">
                                                                                 <div class="blogView-1 mb-2">
                                                                                     <h2 class="page-head v2">Profile Photo :</h2>
-                                                                                    <img alt="DG Photo of ICMR" class="img-fluid" src="/static/dist/images/staff/administration/{{admin_info.profilepic_name}}" />
+                                                                                    <img alt="Staff Photo" class="img-fluid" src="/static/dist/images/staff/administration/{{admin_info.profilepic_name}}" />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="individualProfile__main-content">
@@ -272,172 +267,24 @@
                                                                                     <tr>
                                                                                         <th><strong>Division  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td>ICMR-NIIH</td>
+                                                                                        <td>{{admin_info.div_name}}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th><strong>Email ID  </strong></th>
                                                                                         <td>:</td>
-                                                                                        <td><a href="mailto:madkaikarmanisha@yahoo.co.inn">{{admin_info.email_id}}</a> <br>
-                                                                                        <a href="mailto:directorniih@gmail.com">{{admin_info.email_id}}</a></td>
+                                                                                        <td>
+                                                                                            <a class="text-dark">{{admin_info.email_id}}</a> <br>
+                                                                                            <a class="text-dark">{{admin_info.alt_email_id}}</a>
+                                                                                        </td>
                                                                                     </tr>
-                                                                                    <tr>
+                                                                                    <!-- <tr>
                                                                                         <th><strong>Specialization  </strong></th>
                                                                                         <td>:</td>
                                                                                         <td>{{ admin_spec|safe }}</td>
-                                                                                    </tr>
+                                                                                    </tr> -->
                                                                                 </table>
                                                                             </div>
                                                                         </div>
-                                                                        <!-- <div class="individualProfile__main-head d-grid">
-                                                                            <div class="accordionView">
-                                                                                <div id="accordion">
-                                                                                    <div class="card">
-                                                                                        <div class="card-header">
-                                                                                            <a class="btn collapsed" data-bs-toggle="collapse" href="#projects">
-                                                                                                Projects
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class="collapse" data-bs-parent="#accordion" id="projects">
-                                                                                            <div class="card-body">
-                                                                                                <ul class="list">
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Understanding the Genomics of Primary Immune Disorders ( PID) using Next Generation Sequencing (NGS).
-                                                                                                    </li>
-                                                                                                </ul>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="card">
-                                                                                        <div class="card-header">
-                                                                                            <a class="collapsed btn" data-bs-toggle="collapse" href="#publications">
-                                                                                                Publications
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class="collapse" data-bs-parent="#accordion" id="publications">
-                                                                                            <div class="card-body">
-                                                                                                <ol class="list">
-                                                                                                    <li class="list-item" style="list-style: decimal;">
-                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: decimal;">
-                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: decimal;">
-                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: decimal;">
-                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: decimal;">
-                                                                                                        Fujii J, Homma T, Kobayashi S, Warang P, Madkaikar M, Mukherjee MB.
-                                                                                                        <br>Erythrocytes as a preferential target of oxidative stress in blood.
-                                                                                                    </li>
-                                                                                                </ol>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="card">
-                                                                                        <div class="card-header">
-                                                                                            <a class="collapsed btn" data-bs-toggle="collapse" href="#awards">
-                                                                                                Awards & Achievements
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class="collapse" data-bs-parent="#accordion" id="awards">
-                                                                                            <div class="card-body">
-                                                                                                <ol class="list">
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                                    </li>
-                                                                                                    <li class="list-item" style="list-style: disc;">
-                                                                                                        Received best paper award in clinical category for the year 2015, presented by The Cytometry Society, India. The paper entitled Differential antigen expression and aberrant signaling via PI3 / AKT, MAP / ERK, JAK / STAT and Wnt Beta catening in Lin- / CD
-                                                                                                    </li>
-                                                                                                </ol>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="card">
-                                                                                        <div class="card-header">
-                                                                                            <a class="collapsed btn" data-bs-toggle="collapse" href="#research">
-                                                                                                Research Staff
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class="collapse" data-bs-parent="#accordion" id="research">
-                                                                                            <div class="card-body">
-                                                                                                <table class="table tbl2 table-bordered">
-                                                                                                    <thead>
-                                                                                                        <th class="text-center">Sr. No.</th>
-                                                                                                        <th class="text-center">Name</th>
-                                                                                                        <th class="text-center">Designation</th>
-                                                                                                    </thead>
-                                                                                                    <tbody class="text-center">
-                                                                                                        <tr>
-                                                                                                            <td>1</td>
-                                                                                                            <td><strong>Dr. Anindita Banerjee</strong></td>
-                                                                                                            <td>Scientist E</td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>2</td>
-                                                                                                            <td><strong>Dr. Reetika Malik Yadav</strong></td>
-                                                                                                            <td>Scientist D</td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>3</td>
-                                                                                                            <td><strong>Dr. Umair A Bargir</strong></td>
-                                                                                                            <td>Scientist B</td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>4</td>
-                                                                                                            <td><strong>Dr. Nithin Rajamani</strong></td>
-                                                                                                            <td>Scientist B</td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>5</td>
-                                                                                                            <td><strong>Prashant Tapase</strong></td>
-                                                                                                            <td>Sr. Technical Officer</td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>6</td>
-                                                                                                            <td><strong>Aparna D Dalvi</strong></td>
-                                                                                                            <td>Technical Officer A</td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>7</td>
-                                                                                                            <td><strong>Maya R Gupta</strong></td>
-                                                                                                            <td>Technical Officer C</td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div> -->
                                                                     </div>
                                                                 </div>
                                                             </div>

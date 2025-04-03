@@ -14,7 +14,7 @@
                 <th width="5%">ID</th>
                 <th width="15%">Project Staff ID</th>
                 <th>Project Staff Name</th>
-                <th>Project Staff Department</th>
+                <!-- <th>Project Staff Department</th> -->
                 <th>Project Staff Designation</th>
                 <th width="8%">Edit</th>
                 <th width="8%">Delete</th>
@@ -23,8 +23,11 @@
                 {% for allproject_staff in all_proj_staff %}
                 <tr style="text-align: center;">
                     {% csrf_token %}
-                    <td>
+                    <!-- <td>
                         {{forloop.counter}}
+                    </td> -->
+                    <td>
+                        {{allproject_staff.id}}
                     </td>
                     <td>
                         {{allproject_staff.project_staff_id}}
@@ -32,9 +35,9 @@
                     <td>
                         {{allproject_staff.project_staff_name}}
                     </td>
-                    <td>
+                    <!-- <td>
                         {{allproject_staff.project_staff_department}}
-                    </td>
+                    </td> -->
                     <td>
                         {{allproject_staff.project_staff_designation}}
                     </td>
@@ -45,13 +48,31 @@
                             <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                         </form>
                     </td>
-                    <td>
-                        <form action="{% url 'delete_project_staff' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="delete_data" value="delete_data">
-                            <input type="hidden" name="project_staff_id" value="{{allproject_staff.project_staff_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                        </form>
+                    <td class="text-center">
+                        <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ allproject_staff.project_staff_id }}"></i></button>
+                        <!-- Delete Confirmation Modal -->
+                        <div class="modal fade" id="deleteModal{{ allproject_staff.project_staff_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ allproject_staff.project_staff_id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel{{ allproject_staff.project_staff_id }}">Confirm Deletion</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete "{{ allproject_staff.project_staff_id }}"?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <form action="{% url 'delete_project_staff' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="delete_data" value="delete_data">
+                                            <input type="hidden" name="project_staff_id" value="{{allproject_staff.project_staff_id}}">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
@@ -61,17 +82,17 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-end">
                     {% if all_proj_staff.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_proj_staff.previous_page_number }}">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_project_staff?page={{ all_proj_staff.previous_page_number }}">Previous</a></li>
                     {% endif %}
                     {% for num in all_proj_staff.paginator.page_range %}
                         {% if all_proj_staff.number == num %}
                             <li class="page-item active"><span class="page-link">{{ num }}</span></li>
                         {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            <li class="page-item"><a class="page-link" href="/admin_dashboard/all_project_staff?page={{ num }}">{{ num }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if all_proj_staff.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_proj_staff.next_page_number }}">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_project_staff?page={{ all_proj_staff.next_page_number }}">Next</a></li>
                 
                     {% endif %}
                     

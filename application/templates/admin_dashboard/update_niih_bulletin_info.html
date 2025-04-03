@@ -18,8 +18,9 @@
             <!-- {{update_data.0.id}} -->
             <div class="col-12 d-none">
                 <input type="hidden" name="update_data" value="update_data">
+                <input type="hidden" class="form-control text-center rounded-0" id="id" value="{{update_data.0.id}}" placeholder="Update Bulletin Info" name="id" required>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col mb-3">
                     <label for="bulletin_id" class="form-label text-dark" style="font-weight: 600;">Bulletin ID : </label>
                     <input type="number" class="form-control text-center rounded-0" id="bulletin_id" value="{{update_data.0.bulletin_id}}" placeholder="Update Bulletin ID" name="bulletin_id" required>
@@ -70,6 +71,40 @@
                     <label for="bulletin_file_name" class="form-label text-dark" style="font-weight: 600;">Select Bulletin File : </label>
                     {{update_data.0.bulletin_file_name}}
                     <input type="file" id="bulletin_file_name" value="Select Bulletin File" name="bulletin_file_name" class="form-control rounded-0">
+                </div>
+            </div> -->
+
+            <div class="row">
+                <!-- <div class="col mb-3">
+                    <label for="id" class="form-label text-dark" style="font-weight: 600;">Bulletin ID : </label>
+                    <input type="number" class="form-control text-center rounded-0" id="id" value="{{update_data.0.id}}" placeholder="Update Bulletin ID" name="id" required>
+                </div> -->
+
+                <div class="col-4 mb-3">
+                    <label for="bulletin_vol_no" class="form-label text-dark" style="font-weight: 600;">Bulletin Volume No. : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="bulletin_vol_no" placeholder="Enter Bulletin Volume No." value="{{update_data.0.bulletin_vol_no}}" name="bulletin_vol_no">
+                </div>
+                
+                <div class="col-4 mb-3">
+                    <label for="bulletin_year" class="form-label text-dark" style="font-weight: 600;">Bulletin Year : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="bulletin_year" placeholder="Enter Bulletin Year" value="{{update_data.0.bulletin_year}}" name="bulletin_year">
+                </div>
+
+                <div class="col-4 mb-3">
+                    <label for="bulletin_month" class="form-label text-dark" style="font-weight: 600;">Bulletin Month : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="bulletin_month" placeholder="Enter Bulletin Month" value="{{update_data.0.bulletin_month}}" name="bulletin_month">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="bulletin_file_name" class="form-label text-dark" style="font-weight: 600;">Select Bulletin File : </label>
+                    {{update_data.0.bulletin_file_name}}
+                    <input type="file" id="bulletin_file_name" value="Select Bulletin File" name="bulletin_file_name" value="{{update_data.0.bulletin_file_name}}" class="form-control rounded-0">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="bulletin_title" class="form-label text-dark" style="font-weight: 600;">Bulletin Title : </label>
+                    <textarea class="form-control rounded-0" id="bulletin_title" placeholder="Enter Bulletin Title" name="bulletin_title" rows="5">{{update_data.0.bulletin_title}}</textarea>
                 </div>
             </div>
 

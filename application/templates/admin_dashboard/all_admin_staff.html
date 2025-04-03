@@ -1,19 +1,24 @@
 {% include 'admin_dashboard/includes/header.html'%}
 {% load static %}
 
-<div class="container p-5">
-    <h2 class="text-center mb-4 text-uppercase mx-1">Manage Administration Staff<hr></h2>
+<div class="container-fluid px-5 py-3">
+    <h2 class="text-center mb-4 text-uppercase mx-1">Manage Administration Staff
     <!-- Departments Table -->
-    <a href="/admin_dashboard/add_admin_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add Administration Profile</button></a>
-
+        <a href="/admin_dashboard/add_admin_info"><button class="btn btn-primary mb-3 rounded-0" style="float: right; font-size: 16px; font-weight: 600;">Add Administration Profile</button></a>
+    <hr></h2>
     <table class="table table-responsive table-bordered mx-2" id="scientists-table">
         <thead class="text-center">
             <th>ID</th>
             <th>Admin ID</th>
             <th>Admin Name</th>
-            <th>Department Name</th>
             <th>Designation</th>
-            <!-- <th>Division</th> -->
+            <th>Department Name</th>
+            <th>Category</th>
+            <th>Email-ID</th>
+            <th>Division</th>
+            <th>Display Order</th>
+            <th>Level No.</th>
+            <th>Profile Status</th>
             <!-- <th>Email ID</th> -->
             <!-- <th>Specialization</th> -->
             <th>Edit</th>
@@ -22,20 +27,29 @@
         <tbody>
             {% for admin in all_admin %}
             <tr style="text-align: center;">
-                <td>
+                <!-- <td>
                     {{forloop.counter}}
+                </td> -->
+                <td>
+                    {{admin.id}}
                 </td>
                 <td>
                     {{admin.admin_id}}
                 </td>
-                <td>
+                <td class="text-start">
                     {{admin.admin_name}}
+                </td>
+                <td>
+                    {{admin.designation}}
                 </td>
                 <td>
                     {{admin.support_department_name}}
                 </td>
                 <td>
                     {{admin.category_name}}
+                </td>
+                <td>
+                    {{admin.profile_status}}
                 </td>
                 <!-- <td style="text-align: justify;">
                     <table>
@@ -47,6 +61,10 @@
                         </tr>
                     </table>
                 </td> -->
+                <td>{{admin.div_name}}</td>
+                <td>{{admin.display_order}}</td>
+                <td>{{admin.level_no}}</td>
+                <td>{{admin.email_id}}</td>
                 <td>
                     <form action="{% url 'update_admin_info' %}" method="POST">
                         {% csrf_token %}
@@ -55,12 +73,30 @@
                     </form>
                 </td>
                 <td>
-                    <form action="{% url 'delete_admin' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="delete_data" value="delete_data">
-                        <input type="hidden" name="admin_id" value="{{admin.admin_id}}">
-                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                    </form>
+                    <button class="btn"><i class="fa-solid fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ admin.admin_id }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ admin.admin_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ admin.admin_id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ admin.admin_id }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ admin.admin_id }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_admin' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="admin_id" value="{{admin.admin_id}}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             {% endfor %}
@@ -70,17 +106,17 @@
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-end">
                 {% if all_admin.has_previous %}
-                    <li class="page-item"><a class="page-link" href="?page={{ all_admin.previous_page_number }}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_admin_staff?page={{ all_admin.previous_page_number }}">Previous</a></li>
                 {% endif %}
                 {% for num in all_admin.paginator.page_range %}
                     {% if all_admin.number == num %}
                         <li class="page-item active"><span class="page-link">{{ num }}</span></li>
                     {% else %}
-                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_admin_staff?page={{ num }}">{{ num }}</a></li>
                     {% endif %}
                 {% endfor %}
                 {% if all_admin.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ all_admin.next_page_number }}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_admin_staff?page={{ all_admin.next_page_number }}">Next</a></li>
             
                 {% endif %}
                 

@@ -27,6 +27,7 @@
     </div>
 </div>
 <style>
+    
     .inner__header-slide {
         height: 290px;
         object-fit: cover;
@@ -256,12 +257,13 @@
         }
     }
 </style>
+
 <div class="inner__body" style="padding: 0;">
     <div class="inner__body-content">
         <div class="container dataInline SecLastChild">
             <p></p>
             <div class="row">
-                <div class="col-10 m-auto" style="margin-top:10px;">
+                <div class="col-12 m-auto" style="margin-top:10px;">
                     <div class="tabView">
                         <div class="tab-content">
                             <div class="tab-pane container active" id="tab11">
@@ -270,27 +272,30 @@
                                         <table class="table table-bordered" id="documentTable">
                                             <thead>
                                                 <tr>
-                                                    <th width="8%">Sr. No.</th>
-                                                    <th width="30%">Alumini Name</th>
-                                                    <th>Alumini Designation</th>
+                                                    <th width="10%">Sr. No.</th>
+                                                    <th width="20%">Alumini Name</th>
+                                                    <th width="50%">Alumini Designation</th>
                                                     <th width="20%">Year Of Leaving</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {% for all_aluminis in all_alumini %}
-                                                    {% if 'Active' == all_aluminis.3 %}
+                                                    {% if 'Active' == all_aluminis.4 %}
                                                         <tr>
-                                                            <td class="text-center">
+                                                            <td width="10%" class="text-center">
                                                                 {{forloop.counter}}
                                                             </td>
-                                                            <td class="text-left">
+                                                            <!-- <td class="text-left">
                                                                 {{all_aluminis.0}}                                                    
-                                                            </td>
-                                                            <td class="text-left">
+                                                            </td> -->
+                                                            <td width="20%" class="text-left">
                                                                 {{all_aluminis.1}}                                                    
                                                             </td>
-                                                            <td class="text-center">
+                                                            <td width="50%" class="text-left text-wrap">
                                                                 {{all_aluminis.2}}                                                    
+                                                            </td>
+                                                            <td width="20%" class="text-center">
+                                                                {{all_aluminis.3}}                                                    
                                                             </td>
                                                         </tr>
                                                         {% endif %}

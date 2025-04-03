@@ -1,21 +1,22 @@
 {% include 'admin_dashboard/includes/header.html'%}
 {% load static %}
 
-<div class="container-fluid p-5">
-    <h2 class="text-center mb-4 text-uppercase mx-1">Manage Scientists Staff<hr></h2>
+<div class="container-fluid py-3" style="padding-right: 30px;">
+    <h2 class="text-center mb-4 text-uppercase mx-1">Manage Scientists Staff
     <!-- Departments Table -->
-    <a href="/admin_dashboard/add_scientist_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add Scientists Profile</button></a>
-
+        <a href="/admin_dashboard/add_scientist_info"><button class="btn btn-primary mb-3 rounded-0" style="float: right; font-size: 16px; font-weight: 600;">Add Scientists Profile</button></a>
+    <hr></h2>
     <table class="table table-responsive table-bordered mx-2" id="scientists-table">
         <thead class="text-center">
-            <th>ID</th>
+            <th width="3%">ID</th>
             <th>Scientist ID</th>
             <th>Scientist Name</th>
             <th>Department Name</th>
-            <th>Deignation</th>
-            <!-- <th>Division</th> -->
-            <th>Email ID</th>
-            <!-- <th>Specialization</th> -->
+            <th>Designation</th>
+            <th>Division</th>
+            <!-- <th>Email ID</th> -->
+            <th>Author Name</th>
+            <th>ORCID</th>
             <th>Edit</th>
             <th>Delete</th>
         </thead>
@@ -23,13 +24,14 @@
             {% for all_scientist in all_sci %}
             <tr style="text-align: center;">
                 {% csrf_token %}
-                <td>{{forloop.counter}}</td>
+                <!-- <td>{{forloop.counter}}</td> -->
+                <td>{{all_scientist.id}}</td>
                 <td>{{all_scientist.scientist_id}}</td>
-                <td>{{all_scientist.scientist_name}}</td>
+                <td class="text-start">{{all_scientist.scientist_name}}</td>
                 <td>{{all_scientist.lab_department_name}}</td>
                 <td>{{all_scientist.designation}}</td>
-                <!-- <td>ICMR-NIIH</td> -->
-                <td style="text-align: justify;">
+                <td>{{all_scientist.div_name}}</td>
+                <!-- <td style="text-align: justify;">
                     <table>
                         <tr>
                             <td>{{all_scientist.email_id}}</td>
@@ -38,7 +40,9 @@
                             <td>{{all_scientist.alt_email_id}}</td>
                         </tr>
                     </table>
-                </td>
+                </td> -->
+                <td>{{all_scientist.author_name}}</td>
+                <td>{{all_scientist.orcid}}</td>
                 <!-- <td>Primary Immunodeficiency Disorders and Hematological Malignancy</td> -->
                 <td>
                     <form action="{% url 'update_scientist_info' %}" method="POST">
@@ -48,12 +52,30 @@
                     </form>
                 </td>
                 <td>
-                    <form action="{% url 'delete_scientist' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="delete_data" value="delete_data">
-                        <input type="hidden" name="scientist_id" value="{{all_scientist.scientist_id}}">
-                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                    </form>
+                    <button class="btn"><i class="fa-solid fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ all_scientist.scientist_id }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ all_scientist.scientist_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ all_scientist.scientist_id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ all_scientist.scientist_id }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ all_scientist.scientist_id }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_scientist' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="scientist_id" value="{{all_scientist.scientist_id}}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 <!-- <td><a href="/admin_dashboard/update_scientist_info"><i class="fa-solid fa-edit text-success"></i></a></td>
                 <td><a href="/admin_dashboard/delete_scientist"><i class="fa-solid fa-trash text-danger"></i></a></td> -->
@@ -65,17 +87,17 @@
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-end">
                 {% if all_sci.has_previous %}
-                    <li class="page-item"><a class="page-link" href="?page={{ all_sci.previous_page_number }}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_scientists_staff?page={{ all_sci.previous_page_number }}">Previous</a></li>
                 {% endif %}
                 {% for num in all_sci.paginator.page_range %}
                     {% if all_sci.number == num %}
                         <li class="page-item active"><span class="page-link">{{ num }}</span></li>
                     {% else %}
-                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_scientists_staff?page={{ num }}">{{ num }}</a></li>
                     {% endif %}
                 {% endfor %}
                 {% if all_sci.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ all_sci.next_page_number }}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_scientists_staff?page={{ all_sci.next_page_number }}">Next</a></li>
             
                 {% endif %}
                 

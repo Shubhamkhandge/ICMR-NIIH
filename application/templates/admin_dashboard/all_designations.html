@@ -2,15 +2,16 @@
 {% load static %}
 
 <div class="container p-5">
-    <h2 class="text-center mb-4 text-uppercase">Manage Designations<hr></h2>
+    <h2 class="text-center mb-2 text-uppercase">Manage Designations
     <!-- Designations Table -->
-    <a href="/admin_dashboard/add_designation_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add Designation</button></a>
-
+        <a href="/admin_dashboard/add_designation_info"><button class="btn btn-primary mb-0 rounded-0" style="float: right; font-size: 16px; font-weight: 600;"> Add Designation</button></a>
+    <hr></h2>
     <table class="table table-responsive table-bordered" id="departments-table">
         <thead class="text-center">
             <th>ID</th>
             <th>Designation Name</th>
             <th>Category Name</th>
+            <th>Department Name</th>
             <th>Edit</th>
             <th>Delete</th>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{forloop.counter}}</td>
                 <td>{{all_desig.designation}}</td>
                 <td>{{all_desig.category_name}}</td>
+                <td>{{all_desig.support_department_name}}</td>
                 <td>
                     <form action="{% url 'update_designation_info' %}" method="POST">
                         {% csrf_token %}
@@ -27,15 +29,32 @@
                          <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                     </form>
                 </td>
-                <td>
-                    <form action="{% url 'delete_designation_info' %}" method="POST"
-                        enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" name="delete_data" value="delete_data">
-                        <input type="hidden" name="designation" value="{{all_desig.designation}}">
-                        <input type="hidden" name="category_name" value="{{all_desig.category_name}}">
-                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                    </form>
+                <td class="text-center">
+                    <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ all_desig.designation }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ all_desig.designation }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ all_desig.designation }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ all_desig.designation }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ all_desig.designation }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_designation_info' %}" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="designation" value="{{all_desig.designation}}">
+                                        <input type="hidden" name="category_name" value="{{all_desig.category_name}}">
+                                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             {% endfor %}

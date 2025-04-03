@@ -11,6 +11,20 @@
         <form action="{% url 'add_technical_info' %}" method="POST" class="form" id="add-technical-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
+                <div class="row justify-content-end mx-0 px-0">
+                    <div class="col-3 mb-3">
+                        <label for="join_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Joining Date : </label>
+                        <input type="date" class="form-control rounded-0" id="join_date" placeholder="Select Joining Date" name="join_date" >
+                    </div>
+                    <div class="col-3 mb-3">
+                        <label for="current_post_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Current Post Date : </label>
+                        <input type="date" class="form-control rounded-0" id="current_post_date" placeholder="Select Current Post Date" name="current_post_date" >
+                    </div>
+                    <div class="col-3 mb-3">
+                        <label for="retire_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Superannuation Date : </label>
+                        <input type="date" class="form-control rounded-0" id="retire_date" placeholder="Select Retire Date" name="retire_date" >
+                    </div>
+                </div>
                 <div class="row mb-2 mx-0 px-0">
                     <div class="col-3">
                         <div class="col mb-1">
@@ -21,24 +35,15 @@
                         </div>
                     </div>
                     <div class="col-9 row mx-0 px-0">
-                        <div class="col-6 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="technical_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Technical Officer ID : </label>
                             <input type="number" class="form-control rounded-0" id="technical_id" placeholder="Enter Technician ID" name="technical_id" required>
                         </div>
-                        <div class="col-6 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="technical_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Technical Officer Name : </label>
                             <input type="text" class="form-control rounded-0" id="technical_name" placeholder="Enter Technician Name" name="technical_name" required>
                         </div>
-                        <div class="col-5 mb-3">
-                            <label for="support_department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Department : </label>
-                            <select id="support_department_name" value="Select Department" name="support_department_name" class="form-select rounded-0">
-                                <option value="" selected disabled>Select Department</option>
-                                {% for i in support_department_name %}
-                                <option value="{{i.0}}">{{i.0}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-3 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="category_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Category : </label>
                             <select id="category_name" value="Select Department" name="category_name" class="form-select rounded-0">
                                 <option value="" disabled>Select Category</option>
@@ -47,7 +52,25 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-4 mb-3">
+                        <!-- <div class="col-6 mb-3">
+                            <label for="lab_department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select LAB Department : </label>
+                            <select id="lab_department_name" value="Select Department" name="lab_department_name" class="form-select rounded-0">
+                                <option value="" selected disabled>Select Department</option>
+                                {% for i in lab_department_name %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                                {% endfor %}
+                            </select>
+                        </div> -->
+                        <div class="col-6 mb-3">
+                            <label for="support_department_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Department : </label>
+                            <select id="support_department_name" value="Select Department" name="support_department_name" class="form-select rounded-0">
+                                <option value="" selected disabled>Select Department</option>
+                                {% for i in support_department_name %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-6 mb-3">
                             <label for="designation" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Designation : </label>
                             <select id="designation" value="Select Designation" name="designation" class="form-select rounded-0">
                                 <option value="" selected disabled>Select Designation</option>
@@ -58,13 +81,17 @@
                                 </optgroup>
                             </select>
                         </div>
-                        <div class="col-6 mb-3">
+                        <div class="col-5 mb-3">
                             <label for="email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email ID : </label>
                             <input type="email" class="form-control rounded-0" id="email_id" placeholder="Enter your EmailID" name="email_id" >
                         </div>
-                        <div class="col-6 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="alt_email_id" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Alternate Email ID : </label>
                             <input type="email" class="form-control rounded-0" id="alt_email_id" placeholder="Enter your Alternate EmailID" name="alt_email_id" >
+                        </div>
+                        <div class="col-3 mb-3">
+                            <label for="birth_date" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Birth Date : </label>
+                            <input type="date" class="form-control rounded-0" id="birth_date" placeholder="Select Birth Year" name="birth_date" >
                         </div>
                         <div class="col-4 mb-3">
                             <label for="author_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Author Name : </label>
@@ -103,14 +130,24 @@
                         <label for="profile_status" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Status : </label>
                         <select id="profile_status" value="Select Status" name="profile_status" class="form-select rounded-0">
                             <option value="" selected disabled>Select Status</option>
-                            <option value="active">Active</option>
-                            <option value="deactive">Inactive</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-3 mb-3">
+                        <label for="div_name" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Division : </label>
+                        <select id="div_name" value="Select Division" name="div_name" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Division</option>
+                            <option value="ICMR-NIIH-CRMCH">ICMR-NIIH-CRMCH</option>
+                            <option value="ICMR-NIIH">ICMR-NIIH</option>
+                            <option value="ICMR-CRMCH">ICMR-CRMCH</option>
                         </select>
                     </div>
                     <div class="col-2 mb-3">
                         <label for="level_no" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Level : </label>
                         <select id="level_no" value="Select Level" name="level_no" class="form-select rounded-0">
                             <option value="" selected disabled>Select Level</option>
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -124,11 +161,9 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                             <option value="13">13</option>
+                            <option value="13A">13A</option>
+                            <option value="14">14</option>
                         </select>
-                    </div>
-                    <div class="col-3">
-                        <label for="join_year" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Joining Year : </label>
-                        <input type="date" class="form-control rounded-0" id="join_year" placeholder="Select Joining Year" name="join_year" >
                     </div>
                 </div>
                 <div class="col-12 mb-3">

@@ -52,6 +52,16 @@ class cv_photo(models.Model):
     Show_1 = models.CharField(max_length=255, null=True)
     date_sub = models.DateTimeField(null=True)'''
 
+class media(models.Model):
+    # General Department Information
+    event_name = models.CharField(max_length=255, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=False)
+    img = models.CharField(max_length=255, null=True)
+    first_look_img = models.CharField(max_length=255, null=True)
+    event_details = models.CharField(max_length=255, null=True)
+    media_status = models.CharField(max_length=255, null=True)
+    
+
 class dept_info(models.Model):
     # General Department Information
     department_id = models.CharField(max_length=255, null=True)
@@ -181,10 +191,14 @@ class scientific_staff(models.Model):
     fax_no = models.CharField(max_length=255, null=True)
     alt_phone_no = models.CharField(max_length=255, null=True)
     author_name = models.CharField(max_length=255, null=True)
+    div_name = models.CharField(max_length=255, null=True)
     level_no = models.CharField(max_length=255, null=True)
     aadhar_no = models.CharField(max_length=255, null=True)
     # guide_name = models.CharField(max_length=255, null=True)
-    join_year = models.CharField(max_length=255, null=True)
+    current_post_date = models.CharField(max_length=255, null=True)
+    birth_date = models.CharField(max_length=255, null=True)
+    join_date = models.CharField(max_length=255, null=True)
+    retire_date = models.CharField(max_length=255, null=True)
     academic_background = models.TextField()
     professional_experience = models.TextField()
     research_interests = models.TextField()
@@ -207,19 +221,25 @@ class administration_staff(models.Model):
     phone_no = models.CharField(max_length=255, null=True)
     fax_no = models.CharField(max_length=255, null=True)
     alt_phone_no = models.CharField(max_length=255, null=True)
+    div_name = models.CharField(max_length=255, null=True)
     level_no = models.CharField(max_length=255, null=True)
     aadhar_no = models.CharField(max_length=255, null=True)
     # guide_name = models.CharField(max_length=255, null=True)
-    join_year = models.CharField(max_length=255, null=True)
+    current_post_date = models.CharField(max_length=255, null=True)
+    birth_date = models.CharField(max_length=255, null=True)
+    join_date = models.CharField(max_length=255, null=True)
+    retire_date = models.CharField(max_length=255, null=True)
     academic_background = models.TextField()
     specialization = models.TextField()
     professional_experience = models.TextField()
+    display_order = models.IntegerField(null=True)
     profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
     data_created = models.DateTimeField(null=True)  # Changed to DateTimeField
 
 class technical_staff(models.Model):
     technical_id = models.CharField(max_length=255, null=True)
     technical_name = models.CharField(max_length=255, null=True)
+    lab_department_name = models.CharField(max_length=255, null=True)
     support_department_name = models.CharField(max_length=255, null=True)
     category_name = models.CharField(max_length=255, null=True)
     designation = models.CharField(max_length=255, null=True)
@@ -229,14 +249,18 @@ class technical_staff(models.Model):
     phone_no = models.CharField(max_length=255, null=True)
     fax_no = models.CharField(max_length=255, null=True)
     alt_phone_no = models.CharField(max_length=255, null=True)
+    div_name = models.CharField(max_length=255, null=True)
     level_no = models.CharField(max_length=255, null=True)
     aadhar_no = models.CharField(max_length=255, null=True)
-    join_year = models.CharField(max_length=255, null=True)
+    current_post_date = models.CharField(max_length=255, null=True)
+    birth_date = models.CharField(max_length=255, null=True)
+    join_date = models.CharField(max_length=255, null=True)
+    retire_date = models.CharField(max_length=255, null=True)
     author_name = models.CharField(max_length=255, null=True)
-    publications = models.TextField()
-    academic_background = models.TextField()
-    specialization = models.TextField()
-    professional_experience = models.TextField()
+    publications = models.TextField(null=True)
+    academic_background = models.TextField(null=True)
+    specialization = models.TextField(null=True)
+    professional_experience = models.TextField(null=True)
     profile_status = models.CharField(max_length=255, null=True)  # Changed to BooleanField
     data_created = models.DateTimeField(null=True)  # Changed to DateTimeField
 
@@ -278,45 +302,45 @@ class projects(models.Model):
     project_title = models.CharField(max_length=1000, null=True)
     scientist_name = models.CharField(max_length=255, null=True)
     category_name = models.CharField(max_length=255, null=True)
-    project_date = models.DateTimeField(null=True)
+    project_date = models.DateField(null=True)
     project_status = models.CharField(max_length=255, null=True)
 
 class publications_list(models.Model):
-    publication_id = models.CharField(max_length=255, null=True)
-    publication_author_name = models.CharField(max_length=255, null=True)
-    publication_title = models.CharField(max_length=255, null=True)
-    publication_journal_name = models.CharField(max_length=255, null=True)
+    # publication_id = models.CharField(max_length=255, null=True)
+    publication_author_name = models.CharField(max_length=800, null=True)
+    publication_title = models.CharField(max_length=800, null=True)
+    publication_journal_name = models.CharField(max_length=800, null=True)
     publication_type = models.CharField(max_length=255, null=True)
     publication_status = models.CharField(max_length=255, null=True)
-    publication_date = models.DateTimeField(null=True)
+    publication_date = models.DateField(null=True)
     
 # Model for bulletin
 class bulletin_list(models.Model):
-    bulletin_id = models.CharField(max_length=255, null=True)
+    # bulletin_id = models.CharField(max_length=255, null=True)
     bulletin_title = models.CharField(max_length=255, null=True)
     bulletin_vol_no = models.CharField(max_length=255, null=True)
     bulletin_month = models.CharField(max_length=255, null=True)
     # bulletin_start_month = models.CharField(max_length=255, null=True)
     # bulletin_end_month = models.CharField(max_length=255, null=True)
-    bulletin_year = models.DateTimeField(null=True)
+    bulletin_year = models.CharField(max_length=300,null=True)
     bulletin_file_name = models.CharField(max_length=300, null=True)
     # bulletin_date = models.DateTimeField(null=True)
 
 # Model for bgrc_news
 class newsletter_list(models.Model):
-    newsletter_id = models.CharField(max_length=255, null=True)
+    # newsletter_id = models.CharField(max_length=255, null=True)
     newsletter_title = models.CharField(max_length=255, null=True)
     newsletter_vol_no = models.CharField(max_length=255, null=True)
     newsletter_month = models.CharField(max_length=255, null=True)
     # newsletter_start_month = models.CharField(max_length=255, null=True)
     # newsletter_end_month = models.CharField(max_length=255, null=True)
-    newsletter_year = models.DateTimeField(null=True)
+    newsletter_year = models.CharField(max_length=255, null=True)
     # newsletter_file_name = models.CharField(max_length=300, null=True)
 
 
 # Model for award
 class award_list(models.Model):
-    award_name = models.CharField(max_length=255, null=True)
+    award_name = models.CharField(max_length=500, null=True)
     scientist_name = models.CharField(max_length=255, null=True)
 
 # Model for circular
@@ -378,4 +402,117 @@ class admin_user(models.Model):
 
 class staff_designation(models.Model):
     designation = models.CharField(max_length=255, null=True)
+    support_department_name = models.CharField(max_length=255, null=True)
     category_name = models.CharField(max_length=255, null=True)
+    # lab_department_name = models.CharField(max_length=100, null=True, blank=True)
+
+
+
+
+
+# Extra form
+class JobAppl(models.Model):
+    profilepic_name = models.CharField(max_length=255, null=True)
+    fname = models.CharField(max_length=255, null=True)
+    mname = models.CharField(max_length=255, null=True)
+    lname = models.CharField(max_length=255, null=True)
+    fhname = models.CharField(max_length=255, null=True)
+    corAdd = models.CharField(max_length=255, null=True)
+    perAdd = models.CharField(max_length=255, null=True)
+    dob = models.DateField(null=True)
+    age = models.CharField(max_length=255, null=True)
+    gender = models.CharField(max_length=50, null=True)
+    mobNo = models.CharField(max_length=15, null=True)  # Reduced length
+    email = models.CharField(max_length=255, null=True)
+    post = models.CharField(max_length=255, null=True)
+    org = models.CharField(max_length=255, null=True)
+    last_pay = models.CharField(max_length=255, null=True)
+    ppo_no = models.CharField(max_length=255, null=True)
+    
+    # Educational data
+    tenplus2_course = models.CharField(max_length=255, null=True)
+    tenplus2_year = models.CharField(max_length=255, null=True)
+    tenplus2_subjects = models.TextField(null=True)
+    tenplus2_uni_board = models.CharField(max_length=255, null=True)
+    tenplus2_div = models.CharField(max_length=255, null=True)
+    tenplus2_percentage = models.CharField(max_length=255, null=True)
+
+    graduate_course = models.CharField(max_length=255, null=True)
+    graduate_year = models.CharField(max_length=255, null=True)
+    graduate_subjects = models.TextField(null=True)
+    graduate_uni_board = models.CharField(max_length=255, null=True)
+    graduate_div = models.CharField(max_length=255, null=True)
+    graduate_percentage = models.CharField(max_length=255, null=True)
+
+    p_graduate_course = models.CharField(max_length=255, null=True)
+    p_graduate_year = models.CharField(max_length=255, null=True)
+    p_graduate_subjects = models.TextField(null=True)
+    p_graduate_uni_board = models.CharField(max_length=255, null=True)
+    p_graduate_div = models.CharField(max_length=255, null=True)
+    p_graduate_percentage = models.CharField(max_length=255, null=True)
+
+    phd_course = models.CharField(max_length=255, null=True)
+    phd_year = models.CharField(max_length=255, null=True)
+    phd_subjects = models.TextField(null=True)
+    phd_uni_board = models.CharField(max_length=255, null=True)
+    phd_div = models.CharField(max_length=255, null=True)
+    phd_percentage = models.CharField(max_length=255, null=True)
+
+    other_course = models.CharField(max_length=255, null=True)
+    other_year = models.CharField(max_length=255, null=True)
+    other_subjects = models.TextField(null=True)
+    other_uni_board = models.CharField(max_length=255, null=True)
+    other_div = models.CharField(max_length=255, null=True)
+    other_percentage = models.CharField(max_length=255, null=True)
+
+    # Work Experience Data
+    Employee_1 = models.CharField(max_length=255, null=True)
+    post_1 = models.CharField(max_length=255, null=True)
+    date_f_1 = models.DateField(null=True)
+    date_t_1 = models.DateField(null=True)
+    reason_lea_1 = models.CharField(max_length=255, null=True)
+
+    Employee_2 = models.CharField(max_length=255, null=True)
+    post_2 = models.CharField(max_length=255, null=True)
+    date_f_2 = models.DateField(null=True)
+    date_t_2 = models.DateField(null=True)
+    reason_lea_2 = models.CharField(max_length=255, null=True)
+
+    Employee_3 = models.CharField(max_length=255, null=True)
+    post_3 = models.CharField(max_length=255, null=True)
+    date_f_3 = models.DateField(null=True)
+    date_t_3 = models.DateField(null=True)
+    reason_lea_3 = models.CharField(max_length=255, null=True)
+
+    Employee_4 = models.CharField(max_length=255, null=True)
+    post_4 = models.CharField(max_length=255, null=True)
+    date_f_4 = models.DateField(null=True)
+    date_t_4 = models.DateField(null=True)
+    reason_lea_4 = models.CharField(max_length=255, null=True)
+
+    Employee_5 = models.CharField(max_length=255, null=True)
+    post_5 = models.CharField(max_length=255, null=True)
+    date_f_5 = models.DateField(null=True)
+    date_t_5 = models.DateField(null=True)
+    reason_lea_5 = models.CharField(max_length=255, null=True)
+
+    Employee_6 = models.CharField(max_length=255, null=True)
+    post_6 = models.CharField(max_length=255, null=True)
+    date_f_6 = models.DateField(null=True)
+    date_t_6 = models.DateField(null=True)
+    reason_lea_6 = models.CharField(max_length=255, null=True)
+
+    # Total Experience
+    no_year_exp = models.CharField(max_length=255, null=True)
+    require_to_join = models.DateField(null=True)
+
+    # References
+    ref_name_1 = models.CharField(max_length=255, null=True)
+    ref_add_1 = models.CharField(max_length=255, null=True)
+    mobile_ref_1 = models.CharField(max_length=15, null=True)  # Reduced length
+    ref_email_1 = models.CharField(max_length=255, null=True)
+
+    ref_name_2 = models.CharField(max_length=255, null=True)
+    ref_add_2 = models.CharField(max_length=255, null=True)
+    mobile_ref_2 = models.CharField(max_length=15, null=True)  # Reduced length
+    ref_email_2 = models.CharField(max_length=255, null=True)

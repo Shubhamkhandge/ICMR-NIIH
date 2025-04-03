@@ -2,13 +2,15 @@
 {% load static %}
 
 <div class="container p-5">
-    <h2 class="text-center mb-4 text-uppercase mx-1">Manage LAB Departments<hr></h2>
+    <h2 class="text-center mb-4 text-uppercase mx-1">Manage LAB Departments
     <!-- Departments Table -->
-    <a href="/admin_dashboard/add_department_info"><button class="btn btn-primary mb-3" style="float: right; font-size: 16px; font-weight: 600;">Add LAB Department</button></a>
+    <a href="/admin_dashboard/add_department_info"><button class="btn btn-primary mb-3 rounded-0" style="float: right; font-size: 16px; font-weight: 600;">Add LAB Department</button></a>
+    <hr></h2>
 
     <table class="table table-responsive table-bordered mx-2" id="departments-table">
         <thead class="text-center">
             <th width="8%">ID</th>
+            <th>LAB Department ID</th>
             <th>LAB Department Name</th>
             <th>Head of Department</th>
             <!-- <th>Department Name</th> -->
@@ -31,6 +33,10 @@
                 <td>
                     {{forloop.counter}}
                     <input type="hidden" name="dept_id" value="department.id">
+                </td>
+                <td>
+                    {{deptinfo.department_id}}
+                    <input type="hidden" name="department_id" value="department_id">
                 </td>
                 <td>
                     {{deptinfo.lab_department_name}}
@@ -56,13 +62,31 @@
                         <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
                     </form>
                 </td>
-                <td>
-                    <form action="{% url 'delete_department' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="delete_data" value="delete_data">
-                        <input type="hidden" name="department_id" value="{{deptinfo.department_id}}">
-                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                    </form>
+                <td class="text-center">
+                    <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ deptinfo.department_id }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ deptinfo.department_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ deptinfo.department_id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ deptinfo.department_id }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ deptinfo.department_id }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_department' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="department_id" value="{{deptinfo.department_id}}">
+                                        <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             {% endfor %}

@@ -1,0 +1,28 @@
+{% include 'admin_dashboard/includes/header.html'%}
+{% load static %}
+
+<div class="container-fluid py-3" style="padding-right: 30px;">
+    <h2 class="text-center mb-4 text-uppercase mx-1">Manage Scientists Staff
+    <!-- Departments Table -->
+        <a href="/admin_dashboard/add_scientist_info"><button class="btn btn-primary mb-3 rounded-0" style="float: right; font-size: 16px; font-weight: 600;">Add Scientists Profile</button></a>
+    <hr></h2>
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+    <h1>Backend Logs</h1>
+    <div>
+        <pre>
+            {% for line in logs %}
+                {{ line }}
+            {% endfor %}
+        </pre>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html'%}

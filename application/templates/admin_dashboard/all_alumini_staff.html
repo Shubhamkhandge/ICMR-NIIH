@@ -1,83 +1,106 @@
 {% include 'admin_dashboard/includes/header.html'%}
 {% load static %}
 
-<div class="container">
+<div class="container-fluid px-5 py-2">
     <!-- Title -->
-    <h2 class="text-center px-3 text-uppercase my-4">Manage Alumini Staff
+    <h2 class="text-center text-uppercase my-1">Manage Alumini Staff
         <a href="/admin_dashboard/add_alumini_staff_info"><button class="btn btn-primary rounded-0 mb-3" style="float: right; font-size: 16px; font-weight: 600; letter-spacing: 0.8px;">Add Alumini Profile</button></a>
         <hr>
     </h2>
     
-    <div class="container px-3">
-        <table class="table table-responsive table-bordered" id="departments-table">
-            <thead class="text-center">
-                <th width="5%">ID</th>
-                <th width="15%">Alumini Staff ID</th>
-                <th>Alumini Name</th>
-                <th>Alumini Designation</th>
-                <th>Alumini Leaving Year</th>
-                <th width="8%">Edit</th>
-                <th width="8%">Delete</th>
-            </thead>
-            <tbody>
-                {% for all_aluminis in all_alumini_info %}
-                <tr style="text-align: center;">
-                    {% csrf_token %}
-                    <td>
-                        {{forloop.counter}}
-                    </td>
-                    <td>
-                        {{all_aluminis.alumini_staff_id}}
-                    </td>
-                    <td>
-                        {{all_aluminis.alumini_staff_name}}
-                    </td>
-                    <td>
-                        {{all_aluminis.alumini_staff_designation}}
-                    </td>
-                    <td>
-                        {{all_aluminis.alumini_leave_year}}
-                    </td>
-                    <td>
-                        <form action="{% url 'update_alumini_staff_info' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="alumini_staff_id" value="{{all_aluminis.alumini_staff_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{% url 'delete_alumini' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="delete_data" value="delete_data">
-                            <input type="hidden" name="alumini_staff_id" value="{{all_aluminis.alumini_staff_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                        </form>
-                    </td>
-                </tr>
+    <table class="table table-responsive table-bordered" id="departments-table">
+        <thead class="text-center">
+            <th width="5%">ID</th>
+            <th width="10%">Alumini Staff ID</th>
+            <th width="15%">Alumini Name</th>
+            <th width="36%">Alumini Designation</th>
+            <th>Alumini Leave Year</th>
+            <th>Alumini Profile Status</th>
+            <th width="5%">Edit</th>
+            <th width="5%">Delete</th>
+        </thead>
+        <tbody>
+            {% for all_aluminis in all_alumini_info %}
+            <tr>
+                {% csrf_token %}
+                <!-- <td class="text-center">
+                    {{forloop.counter}}
+                </td> -->
+                <td class="text-center">
+                    {{all_aluminis.id}}
+                </td>
+                <td class="text-center">
+                    {{all_aluminis.alumini_staff_id}}
+                </td>
+                <td class="text-left">
+                    {{all_aluminis.alumini_staff_name}}
+                </td>
+                <td class="text-left">
+                    {{all_aluminis.alumini_staff_designation}}
+                </td>
+                <td class="text-center">
+                    {{all_aluminis.alumini_leave_year}}
+                </td>
+                <td class="text-center">
+                    {{all_aluminis.profile_status}}
+                </td>
+                <td class="text-center">
+                    <form action="{% url 'update_alumini_staff_info' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="alumini_staff_id" value="{{all_aluminis.alumini_staff_id}}">
+                        <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
+                    </form>
+                </td>
+                <td class="text-center">
+                    <button class="btn"><i class="fa-solid fa-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ all_aluminis.alumini_staff_id }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ all_aluminis.alumini_staff_id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ all_aluminis.alumini_staff_id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ all_aluminis.alumini_staff_id }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ all_aluminis.alumini_staff_id }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_alumini' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="alumini_staff_id" value="{{all_aluminis.alumini_staff_id}}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+                {% if all_alumini_info.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ all_alumini_info.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% for num in all_alumini_info.paginator.page_range %}
+                    {% if all_alumini_info.number == num %}
+                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
                 {% endfor %}
-            </tbody>
-        </table>
-        <div class="col">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-end">
-                    {% if all_alumini_info.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_alumini_info.previous_page_number }}">Previous</a></li>
-                    {% endif %}
-                    {% for num in all_alumini_info.paginator.page_range %}
-                        {% if all_alumini_info.number == num %}
-                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if all_alumini_info.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_alumini_info.next_page_number }}">Next</a></li>
+                {% if all_alumini_info.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ all_alumini_info.next_page_number }}">Next</a></li>
+            
+                {% endif %}
                 
-                    {% endif %}
-                    
-                </ul>
-            </nav>
-        </div>
+            </ul>
+        </nav>
     </div>
 </div>
 

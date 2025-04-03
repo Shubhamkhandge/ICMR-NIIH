@@ -1,0 +1,135 @@
+{% include 'admin_dashboard/includes/header.html' %}
+{% load static %}
+
+<div class="container fixed my-5">
+    <h2 class="text-center mb-4 text-uppercase">Add Media Information
+        <a href="/admin_dashboard/all_media">
+            <div class="btn btn-dark text-white px-4" style="float: right; font-size: 18px; font-weight: 600;">
+                Back <i class="fa-regular fa-circle-right" style="font-size: 18px;"></i>
+            </div>
+            <hr>
+        </a>
+    </h2>
+
+    <!-- Add Department Form -->
+    <div class="col-md-10 pb-2 m-auto">
+        <form action="{% url 'add_media_info' %}" method="POST" class="form" id="add-media-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- <div class="col-3 mb-3">
+                <label for="advertise_id" class="form-label text-dark" style="font-weight: 600;">Advertise ID : </label>
+                <input type="number" class="form-control rounded-0" id="advertise_id" placeholder="Enter Advertise ID" name="advertise_id" required>
+            </div> -->
+
+            <!-- <div class="col mb-3">
+                <label for="advertise_date" class="form-label text-dark" style="font-weight: 600;">Select Advertise Date : </label>
+                <input type="date" name="advertise_date" id="advertise_date" class="form-control rounded-0">
+            </div> -->
+            <div class="row">
+                <div class="col-4 mb-3">
+                    <label for="event_name" class="form-label text-dark" style="font-weight: 600;">Event Name : </label>
+                    <input type="text" class="form-control rounded-0" id="event_name" placeholder="Enter Unique Event Name " name="event_name" required>
+                </div>
+                <div class="col-3 offset-5 mb-3">
+                    <label for="media_status" class="form-label text-dark" style="font-weight: 600;">Select Media Status : </label>
+                    <select id="media_status" value="Select Status" name="media_status" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div> 
+                <div class="col-12 mb-3">
+                    <label for="event_details" class="form-label text-dark" style="font-weight: 600;">Event Title : </label>
+                    <textarea class="form-control rounded-0" id="event_details" placeholder="Enter Event Title" name="event_details" rows="5" required></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-4 mb-3">
+                        <label for="first_look_img" class="form-label text-dark" style="font-weight: 600;">Select First Look Media : </label>
+                        <input type="file" id="first_look_img" value="Select First Look Media" name="first_look_img" class="form-control rounded-0 mb-1" accept="image/*" onchange="previewImage(event)" required>
+                        <div class="col">
+                            <div class="col mb-1">
+                                <label for="previewPicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">First Look Preview : </label>
+                                <div class="border p-2">
+                                    <img id="preview" src="#" alt="" class="img-fluid rounded-0" style="height: 280px; width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 mb-3">
+                        <label for="img" class="form-label text-dark" style="font-weight: 600;">Select Media Files : </label>
+                        
+                        <div class="row">
+                            <input type="file" id="img" value="Select Media File" name="img" class="form-control rounded-0 mb-1" accept="image/*" multiple>
+                            <div class="col">
+                                <div class="col-6 mb-1">
+                                    <label for="previewPicture" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Media Preview : </label>
+                                    <div class="border p-2">
+                                        <img id="preview_multi" src="#" alt="" class="img-fluid rounded-0" style="height: 280px; width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <center>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary px-5 py-2 rounded-0">Add</button>
+                        <button type="reset" class="btn btn-danger px-5 py-2 rounded-0" form="add-media-form">Reset</button>
+                    </div>
+                </center>
+            </div>
+        </form>
+        <script>
+            // JavaScript function to preview the selected profile picture
+            function previewImage(event) {
+                const preview = document.getElementById('preview');
+                const file = event.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                        preview.style.marginTop = '0px';
+                        preview.style.width = '100%';
+                        preview.style.height = '280px';
+                    }
+
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = 'none';
+                }
+            }
+            document.getElementById("img").addEventListener("change", function(event) {
+            const preview = document.getElementById("preview_multi");
+            preview.innerHTML = ""; // Clear previous previews
+            
+            const files = event.target.files;
+            
+            if (files.length > 0) {
+                
+                for (let file of files) {
+                    
+                    if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                        preview.style.marginTop = '0px';
+                        preview.style.width = '100%';
+                        preview.style.height = '280px';
+                    }
+
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = 'none';
+                }
+                }
+            }
+        });
+        </script>
+    </div>
+</div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

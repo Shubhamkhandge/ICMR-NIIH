@@ -12,31 +12,54 @@
     </h2>
 
     <!-- Add Department Form -->
-    <div class="col-md-9 pb-2 m-auto">
+    <div class="col-md-7 pb-2 m-auto">
         <form action="{% url 'add_student_staff_info' %}" method="POST" class="form" id="add-student-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
-                <div class="col mb-3">
-                    <label for="student_staff_id" class="form-label text-dark" style="font-weight: 600;">Student ID : </label>
-                    <input type="number" class="form-control rounded-0 text-center" id="student_staff_id" placeholder="Enter Student ID" name="student_staff_id" required>
+                <div class="col-4">
+                    <div class="col mb-3">
+                        <label for="student_staff_id" class="form-label text-dark" style="font-weight: 600;">Student ID : </label>
+                        <input type="number" class="form-control rounded-0 text-center" id="student_staff_id" placeholder="Enter Student ID" name="student_staff_id" required>
+                    </div>
+    
+                    <div class="col mb-3">
+                        <label for="student_join_year" class="form-label text-dark" style="font-weight: 600;">Student Join Year : </label>
+                        <input type="number" class="form-control rounded-0 text-center" id="student_join_year" placeholder="Enter Student Join Year " name="student_join_year" required>
+                    </div>
+    
+                    <div class="col mb-3">
+                        <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
+                        <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Profile Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
                 </div>
-
-                <div class="col mb-3">
-                    <label for="student_join_year" class="form-label text-dark" style="font-weight: 600;">Student Join Year : </label>
-                    <input type="number" class="form-control rounded-0 text-center" id="student_join_year" placeholder="Enter Student Join Year " name="student_join_year" required>
-                </div>
-
-                <div class="col mb-3">
-                    <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
-                    <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
-                        <option value="" selected disabled>Select Profile Status</option>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                    </select>
+                <div class="col-8">
+                    <div class="col mb-3">
+                        <label for="student_staff_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
+                        <input type="text" class="form-control rounded-0 text-center" id="student_staff_name" placeholder="Enter Student Name" name="student_staff_name" required>
+                    </div>
+    
+                    <div class="col mb-3">
+                        <label for="student_guide_name" class="form-label text-dark" style="font-weight: 600;">Student Guide Name : </label>
+                        <input type="text" class="form-control rounded-0 text-center" id="student_guide_name" placeholder="Enter Student Guide Name" name="student_guide_name" required>
+                    </div>
+    
+                    <div class="col mb-3">
+                        <label for="student_staff_department" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Student Department : </label>
+                        <select id="student_staff_department" value="Select Student Department" name="student_staff_department" class="form-select rounded-0">
+                            <option value="" selected disabled>Select Student Department</option>
+                            {% for i in lab_department_name %}
+                                <option value="{{i.0}}">{{i.0}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col mb-3">
+                <!-- <div class="col mb-3">
                     <label for="student_staff_name" class="form-label text-dark" style="font-weight: 600;">Student Name : </label>
                     <input type="text" class="form-control rounded-0" id="student_staff_name" placeholder="Enter Student Name" name="student_staff_name" required>
                 </div>
@@ -46,10 +69,20 @@
                     <input type="text" class="form-control rounded-0" id="student_guide_name" placeholder="Enter Student Guide Name" name="student_guide_name" required>
                 </div>
 
-                <div class="col mb-3">
+                <div class="col-5 mb-3">
+                    <label for="student_staff_department" class="form-label text-dark" style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Select Student Department : </label>
+                    <select id="student_staff_department" value="Select Student Department" name="student_staff_department" class="form-select rounded-0">
+                        <option value="" selected disabled>Select Student Department</option>
+                        {% for i in lab_department_name %}
+                            <option value="{{i.0}}">{{i.0}}</option>
+                        {% endfor %}
+                    </select>
+                </div> -->
+
+                <!-- <div class="col mb-3">
                     <label for="student_staff_department" class="form-label text-dark" style="font-weight: 600;">Student Department : </label>
                     <input type="text" class="form-control rounded-0" id="student_staff_department" placeholder="Enter Student Department " name="student_staff_department" required>
-                </div>
+                </div> -->
             </div>
 
             <center>

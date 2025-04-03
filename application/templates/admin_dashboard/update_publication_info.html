@@ -18,14 +18,15 @@
             <!-- {{update_data.0.id}} -->
             <div class="col-12 d-none">
                 <input type="hidden" name="update_data" value="update_data">
+                <input type="hidden" class="form-control text-center rounded-0" id="id" value="{{update_data.0.id}}" placeholder="Update publication Info" name="id" required>
             </div>
             <div class="row">
-                <div class="col-3 mb-3">
+                <!-- <div class="col-3 mb-3">
                     <label for="publication_id" class="form-label text-dark" style="font-weight: 600;">Publication ID : </label>
-                    <input type="number" class="form-control rounded-0" id="publication_id" value="{{update_data.0.publication_id}}" placeholder="Update Publication ID" name="publication_id" readonly>
-                </div>
+                    <input type="number" class="form-control rounded-0" id="publication_id" value="{{update_data.0.publication_id}}" placeholder="Update Publication ID" name="publication_id">
+                </div> -->
 
-                <div class="col-9 mb-3">
+                <div class="col mb-3">
                     <label for="publication_author_name" class="form-label text-dark" style="font-weight: 600;">Publication Author : </label>
                     <input type="text" class="form-control rounded-0" id="publication_author_name" value="{{update_data.0.publication_author_name}}" placeholder="Update Publication Author" name="publication_author_name">
                 </div>
@@ -46,22 +47,22 @@
                     <label for="publication_type" class="form-label text-dark" style="font-weight: 600;">Select Publication Type : </label>
                     <select id="publication_type" value="Select Publication Type" name="publication_type" class="form-select rounded-0">
                         <option value="" selected disabled>Select Publication Type</option>
-                        {% if 'publication' == update_data.0.publication_type %}
-                            <option value="publication" selected>Publication</option>
-                            <option value="booklet">Booklet</option>
-                            <option value="newsletter">Newsletter</option>
-                        {% elif 'booklet' == update_data.0.publication_type %}
-                            <option value="publication">Publication</option>
-                            <option value="booklet" selected>Booklet</option>
-                            <option value="newsletter">Newsletter</option>
-                        {% elif 'newsletter' == update_data.0.publication_type %}
-                            <option value="publication">Publication</option>
-                            <option value="booklet">Booklet</option>
-                            <option value="newsletter" selected>Newsletter</option>
+                        {% if 'Publication' == update_data.0.publication_type %}
+                            <option value="Publication" selected>Publication</option>
+                            <option value="Journal">Journal</option>
+                            <option value="Booklet">Booklet</option>
+                        {% elif 'Booklet' == update_data.0.publication_type %}
+                            <option value="Publication">Publication</option>
+                            <option value="Journal">Journal</option>
+                            <option value="Booklet" selected>Booklet</option>
+                        {% elif 'Journal' == update_data.0.publication_type %}
+                            <option value="Publication">Publication</option>
+                            <option value="Journal" selected>Journal</option>
+                            <option value="Booklet">Booklet</option>
                         {% else %}
-                            <option value="publication">Publication</option>
-                            <option value="booklet">Booklet</option>
-                            <option value="newsletter">Newsletter</option>
+                            <option value="Publication">Publication</option>
+                            <option value="Journal">Journal</option>
+                            <option value="Booklet">Booklet</option>
                         {% endif %}
                     </select>
                 </div>

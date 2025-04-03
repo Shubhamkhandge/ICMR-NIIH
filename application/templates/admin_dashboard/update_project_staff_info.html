@@ -12,7 +12,7 @@
     </h2>
 
     <!-- Add Department Form -->
-    <div class="col-md-8 pb-2 m-auto">
+    <div class="col-md-5 pb-2 m-auto">
         <form action="" method="POST" class="form" id="update-publiation-form" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- {{update_data.0.id}} -->
@@ -24,23 +24,6 @@
                     <label for="project_staff_id" class="form-label text-dark" style="font-weight: 600;">Project Staff ID : </label>
                     <input type="number" class="form-control rounded-0 text-center" id="project_staff_id" value="{{update_data.0.project_staff_id}}" placeholder="Update Project Staff ID" name="project_staff_id" readonly>
                 </div>
-
-                <div class="col mb-3">
-                    <label for="project_staff_name" class="form-label text-dark" style="font-weight: 600;">Project Staff Name : </label>
-                    <input type="text" class="form-control rounded-0" id="project_staff_name" value="{{update_data.0.project_staff_name}}" placeholder="Update Project Staff Name" name="project_staff_name">
-                </div>
-
-                <div class="col mb-3">
-                    <label for="project_staff_departmernt" class="form-label text-dark" style="font-weight: 600;">Project Staff Department Name : </label>
-                    <input type="text" class="form-control rounded-0" id="project_staff_departmernt" value="{{update_data.0.project_staff_departmernt}}" placeholder="Update Project Staff Department" name="project_staff_departmernt">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                    <label for="project_staff_designation" class="form-label text-dark" style="font-weight: 600;">Project Staff Designation Name : </label>
-                    <input type="text" class="form-control rounded-0" id="project_staff_designation" value="{{update_data.0.project_staff_designation}}" placeholder="Update Project Staff Designation" name="project_staff_designation">
-                </div>
-                
                 <div class="col mb-3">
                     <label for="profile_status" class="form-label text-dark" style="font-weight: 600;">Select Profile Status : </label>
                     <select id="profile_status" value="Select Profile Status" name="profile_status" class="form-select rounded-0">
@@ -54,7 +37,24 @@
                         {% endif %}
                     </select>
                 </div>
+
+
+                <!-- <div class="col mb-3">
+                    <label for="project_staff_departmernt" class="form-label text-dark" style="font-weight: 600;">Project Staff Department Name : </label>
+                    <input type="text" class="form-control rounded-0" id="project_staff_departmernt" value="{{update_data.0.project_staff_departmernt}}" placeholder="Update Project Staff Department" name="project_staff_departmernt">
+                </div> -->
             </div>
+            <!-- <div class="row"> -->
+                <div class="col mb-3">
+                    <label for="project_staff_name" class="form-label text-dark" style="font-weight: 600;">Project Staff Name : </label>
+                    <input type="text" class="form-control rounded-0" id="project_staff_name" value="{{update_data.0.project_staff_name}}" placeholder="Update Project Staff Name" name="project_staff_name">
+                </div>
+
+                <div class="col mb-3">
+                    <label for="project_staff_designation" class="form-label text-dark" style="font-weight: 600;">Project Staff Designation Name : </label>
+                    <input type="text" class="form-control rounded-0" id="project_staff_designation" value="{{update_data.0.project_staff_designation}}" placeholder="Update Project Staff Designation" name="project_staff_designation">
+                </div>
+            <!-- </div> -->
 
             <center>
                 <div class="mb-3">

@@ -3,82 +3,124 @@
 
 <div class="container-fluid">
     <!-- Title -->
-    <h2 class="text-center px-3 text-uppercase my-4">Manage Publications
+    <h2 class="text-center text-uppercase my-3 px-0">Manage Publications
         <a href="/admin_dashboard/add_publication_info"><button class="btn btn-primary rounded-0 mb-3" style="float: right; font-size: 16px; font-weight: 600; letter-spacing: 0.8px;">Add Publication</button></a>
         <hr>
     </h2>
-    
-    <div class="container-fluid px-3">
-        <table class="table table-responsive table-bordered" id="departments-table">
-            <thead class="text-center">
-                <th width="5%">ID</th>
-                <th width="8%">Publication ID</th>
-                <th>Publication Author</th>
-                <th>Publication Title</th>
-                <th width="10%">Publication Date</th>
-                <th width="5%">Edit</th>
-                <th width="5%">Delete</th>
-            </thead>
-            <tbody>
-                {% for all_publication in all_publications %}
-                <tr style="text-align: center;">
-                    {% csrf_token %}
-                    <td>
-                        {{forloop.counter}}
-
-                    </td>
-                    <td>
-                        {{all_publication.publication_id}}
-                    </td>
-                    <td style="text-align: justify;">
-                        {{all_publication.publication_author_name}}
-                    </td>
-                    <td style="text-align: justify;">
-                        {{all_publication.publication_title}}
-                    </td>
-                    <td>
-                        {{all_publication.publication_date | date:"d M Y" }}
-                    </td>
-                    <td>
-                        <form action="{% url 'update_publication_info' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="publication_id" value="{{all_publication.publication_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-edit text-success"></i></button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{% url 'delete_publication' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="delete_data" value="delete_data">
-                            <input type="hidden" name="publication_id" value="{{all_publication.publication_id}}">
-                            <button type="submit" class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
-                        </form>
-                    </td>
-                </tr>
+    <!-- <div class="col">
+        <nav aria-label="Page navigation" style="margin-bottom: 60px;">
+            <ul class="justify-content-end pagination">
+                {% if all_publications.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_publications?page={{ all_publications.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% for num in all_publications.paginator.page_range %}
+                    {% if all_publications.number == num %}
+                        <li class="active page-item"><span class="page-link">{{ num }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_publications?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
                 {% endfor %}
-            </tbody>
-        </table>
-        <div class="col">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-end">
-                    {% if all_publications.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_publications.previous_page_number }}">Previous</a></li>
-                    {% endif %}
-                    {% for num in all_publications.paginator.page_range %}
-                        {% if all_publications.number == num %}
-                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if all_publications.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ all_publications.next_page_number }}">Next</a></li>
+                {% if all_publications.has_next %}
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_publications?page={{ all_publications.next_page_number }}">Next</a></li>
+            
+                {% endif %}
                 
+            </ul>
+        </nav>
+    </div> -->
+    <table class="table table-bordered table-responsive px-3" id="departments-table">
+        <thead class="text-center">
+            <th width="5%">ID</th>
+            <!-- <th width="8%">Publication ID</th> -->
+            <th width="25%">Publication Author</th>
+            <th>Publication Title</th>
+            <th width="10%">Publication Type</th>
+            <th width="10%">Publication Date</th>
+            <th width="5%">Edit</th>
+            <th width="5%">Delete</th>
+        </thead>
+        <tbody>
+            {% for all_publication in all_publications %}
+            <tr style="text-align: center;">
+                {% csrf_token %}
+                <!-- <td>
+                    {{forloop.counter}}
+                </td> -->
+                <td>
+                    {{all_publication.id}}
+                </td>
+                <!-- <td>
+                    {{all_publication.publication_id}}
+                </td> -->
+                <td style="text-align: justify;">
+                    {{all_publication.publication_author_name}}
+                </td>
+                <td style="text-align: justify;">
+                    {{all_publication.publication_title}}
+                </td>
+                <td style="text-align: center;">
+                    {{all_publication.publication_type}}
+                </td>
+                <td>
+                    {{all_publication.publication_date | date:"d M Y" }}
+                </td>
+                <td>
+                    <form action="{% url 'update_publication_info' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{all_publication.id}}">
+                        <button type="submit" class="btn"><i class="text-success fa-edit fa-solid"></i></button>
+                    </form>
+                </td>
+                <td class="text-center">
+                    <button class="btn"><i class="text-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal{{ all_publication.id }}"></i></button>
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal{{ all_publication.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ all_publication.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ all_publication.id }}">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete "{{ all_publication.id }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{% url 'delete_publication' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_data" value="delete_data">
+                                        <input type="hidden" name="id" value="{{all_publication.id}}">
+                                        <button type="submit" class="btn"><i class="text-danger fa-solid fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col">
+        <nav aria-label="Page navigation" style="margin-bottom: 60px;">
+            <ul class="justify-content-end pagination">
+                {% if all_publications.has_previous %}
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_publications?page={{ all_publications.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% for num in all_publications.paginator.page_range %}
+                    {% if all_publications.number == num %}
+                        <li class="active page-item"><span class="page-link">{{ num }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="/admin_dashboard/all_publications?page={{ num }}">{{ num }}</a></li>
                     {% endif %}
-                    
-                </ul>
-            </nav>
-        </div>
+                {% endfor %}
+                {% if all_publications.has_next %}
+                    <li class="page-item"><a class="page-link" href="/admin_dashboard/all_publications?page={{ all_publications.next_page_number }}">Next</a></li>
+            
+                {% endif %}
+                
+            </ul>
+        </nav>
     </div>
 </div>
 {% include 'admin_dashboard/includes/footer.html'%}

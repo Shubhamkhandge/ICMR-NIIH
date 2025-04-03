@@ -15,7 +15,7 @@
     <div class="col-md-8 pb-2 m-auto">
         <form action="{% url 'add_niih_bulletin_info' %}" method="POST" class="form" id="add-publiation-form" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="row">
+        <!-- <div class="row">    
                 <div class="col mb-3">
                     <label for="bulletin_id" class="form-label text-dark" style="font-weight: 600;">Bulletin ID : </label>
                     <input type="number" class="form-control rounded-0" id="bulletin_id" placeholder="Enter Bulletin ID" name="bulletin_id" required>
@@ -52,6 +52,34 @@
                 <div class="col mb-3">
                     <label for="bulletin_file_name" class="form-label text-dark" style="font-weight: 600;">Select Bulletin File : </label>
                     <input type="file" id="bulletin_file_name" value="Select Bulletin File" name="bulletin_file_name" class="form-control rounded-0">
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-4 mb-3">
+                    <label for="bulletin_vol_no" class="form-label text-dark" style="font-weight: 600;">Bulletin Volume No. : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="bulletin_vol_no" placeholder="Enter Bulletin Volume No." name="bulletin_vol_no">
+                </div>
+                
+                <div class="col-4 mb-3">
+                    <label for="bulletin_year" class="form-label text-dark" style="font-weight: 600;">Bulletin Year : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="bulletin_year" placeholder="Enter Bulletin Year" name="bulletin_year">
+                </div>
+
+                <div class="col-4 mb-3">
+                    <label for="bulletin_month" class="form-label text-dark" style="font-weight: 600;">Bulletin Month : </label>
+                    <input type="text" class="form-control rounded-0 text-center" id="bulletin_month" placeholder="Enter Bulletin Month" name="bulletin_month">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="bulletin_file_name" class="form-label text-dark" style="font-weight: 600;">Select Bulletin File : </label>
+                    <input type="file" id="bulletin_file_name" value="Select Bulletin File" name="bulletin_file_name" class="form-control rounded-0">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="bulletin_title" class="form-label text-dark" style="font-weight: 600;">Bulletin Title : </label>
+                    <textarea class="form-control rounded-0" id="bulletin_title" placeholder="Enter Bulletin Title" name="bulletin_title" rows="5"></textarea>
                 </div>
             </div>
 
